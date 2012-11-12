@@ -29,7 +29,7 @@ public class Plateau extends JComponent {
      */
     public Plateau() {
         super();
-        this.setPreferredSize(new Dimension((colonne+1)*Case.TAILLE,(ligne+1)*Case.TAILLE));
+        this.setPreferredSize(new Dimension((colonne)*Case.TAILLE,(ligne)*Case.TAILLE));
         plateau = new Case[ligne][colonne];
         /* Initialisation des cases blanches */
         for(int i=0;i<ligne;i++) {
