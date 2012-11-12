@@ -9,8 +9,8 @@ import moteur.classes.Archer;
  */
 public class ArcherOrc extends Archer implements Orc {
 
-	public ArcherOrc(int vie, int armure, int attaque, int precision, int esquive, int coupCritique, int depl, Case c) {
-		super(vie, armure, attaque, precision, esquive, coupCritique, depl, c);
+	public ArcherOrc(Case c) {
+		super(vieArcher, armureArcher, attaqueArcher, precisionArcher, esquiveArcher, coupCritiqueArcher, deplArcher, c);
 	}
 	
 }
