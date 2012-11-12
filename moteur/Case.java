@@ -177,6 +177,7 @@ public class Case extends JComponent implements MouseListener{
      */
     public  void remove(){
 		element = null;
+		color = Color.WHITE;
 	}
     
     
@@ -203,7 +204,12 @@ public class Case extends JComponent implements MouseListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		System.out.println(toString());
-		color = Color.RED;
+		if(color == Color.WHITE){
+			color = Color.RED;
+		}
+		else{
+			color = Color.WHITE;
+		}
 		repaint();
 	}
 
