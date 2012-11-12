@@ -1,11 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package moteur;
-
-import moteur.Case;
-import moteur.Element;
 
 /**
  *
@@ -13,15 +6,20 @@ import moteur.Element;
  */
 public abstract class Pion extends Element{
 	
-	short attaque;
+	protected int attaque;
+	protected int precision;
+	protected int esquive;
+	protected int coupCritique;
+	protected int depl;
 	
-	short depl;
+	protected Case c;
 	
-	Case c;
-	
-	public Pion(int vie, int armure, short attaque, short depl, Case c){
+	public Pion(int vie, int armure, int attaque, int precision, int esquive, int coupCritique, int depl, Case c){
 		super(vie, armure);
 		this.attaque = attaque;
+		this.precision = precision;
+		this.esquive = esquive;
+		this.coupCritique = coupCritique;
 		this.depl = depl;
 		this.c = c;
 	}

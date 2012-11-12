@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package moteur;
 
 import java.awt.Graphics;
@@ -28,6 +24,7 @@ public abstract class Element extends JComponent{
 		return vie;
 	}
 	
+	@Override
 	public abstract void paintComponent(Graphics g);
 	
 }
