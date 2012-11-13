@@ -1,6 +1,7 @@
 package moteur;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import javax.swing.JComponent;
 
 /**
@@ -76,6 +77,7 @@ public class Plateau extends JComponent {
      * Méthode retournant la hauteur du plateau
      * @return hauteur du plateau
      */
+	@Override
     public int getHeight() {
         return ligne*Case.TAILLE;
     }
@@ -84,21 +86,27 @@ public class Plateau extends JComponent {
      * Retourne la largeur du tableau
      * @return largeur du tableau
      */
+	@Override
     public int getWidth() {
         return colonne*Case.TAILLE;
     }
-
+	
     
     /**
      * Supprime les pieces se situant sur la plateau.
      *
      */
     public void vider() {
-        for(int i=0;i<ligne;i++) {
-            for(int j=0;j<colonne;j++) {
+        for(int i=0;i<ligne;i++)
+            for(int j=0;j<colonne;j++)
                 get(i,j).remove();
-            }
-        }
-        repaint();
     }
+	
+	
+	@Override
+    public void paintComponent(Graphics g){
+		for(int i=0;i<ligne;i++)
+            for(int j=0;j<colonne;j++)
+				plateau[i][j].repaint();
+	}
 }

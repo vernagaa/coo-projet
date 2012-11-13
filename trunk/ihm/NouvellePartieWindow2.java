@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm;
 
 /**
@@ -9,7 +5,7 @@ package ihm;
  * @author Kévin
  */
 public class NouvellePartieWindow2 extends javax.swing.JDialog {
-
+	public java.awt.Frame parent;
 	/**
 	 * Creates new form NouvellePartieWindow2
 	 */
@@ -17,6 +13,7 @@ public class NouvellePartieWindow2 extends javax.swing.JDialog {
 		super(parent, modal);
 		initComponents();
 		setVisible(true);
+		this.parent = parent;
 	}
 
 	/**
@@ -125,8 +122,10 @@ public class NouvellePartieWindow2 extends javax.swing.JDialog {
 		 */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
+			@Override
 			public void run() {
 				NouvellePartieWindow2 dialog = new NouvellePartieWindow2(new javax.swing.JFrame(), true);
+				
 				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
 
 					@Override
