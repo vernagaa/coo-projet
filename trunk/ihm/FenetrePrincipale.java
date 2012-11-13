@@ -1,13 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * FenetrePrincipale.java
- *
- * Created on 12 nov. 2012, 15:52:44
- */
 package ihm;
 
 import java.awt.Dimension;
@@ -48,9 +38,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         int largeurEcran = tailleEcran.width;
         int hauteurEcran = tailleEcran.height;
         setSize((int) (largeurEcran*hauteur), (int) (hauteurEcran*largeur));
-        setLocation((int) (largeurEcran*posX), (int) (hauteurEcran*posY));
-		
 		initComponents();
+//        setLocation((int) (largeurEcran*posX), (int) (hauteurEcran*posY));
+		setLocationRelativeTo(getParent());
 	}
 
 	/** This method is called from within the constructor to
@@ -65,21 +55,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         plateau1 = new moteur.Plateau();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuNouvellePartie = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Fichier");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Nouvelle Partie");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuNouvellePartie.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        menuNouvellePartie.setText("Nouvelle Partie");
+        menuNouvellePartie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuNouvellePartieActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(menuNouvellePartie);
 
         jMenuBar1.add(jMenu1);
 
@@ -94,23 +84,23 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(plateau1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, Short.MAX_VALUE)
+                .addComponent(plateau1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(plateau1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, Short.MAX_VALUE)
+                .addComponent(plateau1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+	private void menuNouvellePartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouvellePartieActionPerformed
 		plateau1.vider();
-	}//GEN-LAST:event_jMenuItem1ActionPerformed
+	}//GEN-LAST:event_menuNouvellePartieActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -128,7 +118,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem menuNouvellePartie;
     private moteur.Plateau plateau1;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,7 @@ package moteur.familles.orc;
  *
  * @author vernagaa
  */
-public interface Orc {
+public interface Oiseau {
 	public final int vieArcher = 20;
 	public final int armureArcher = 20;
 	public final int attaqueArcher = 20;
@@ -20,4 +20,12 @@ public interface Orc {
 	public final int esquiveGuerrier = 20;
 	public final int coupCritiqueGuerrier = 20;
 	public final int deplGuerrier = 20;
+	
+	public final int vieTank = 20;
+	public final int armureTank = 20;
+	public final int attaqueTank = 20;
+	public final int precisionTank = 20;
+	public final int esquiveTank = 20;
+	public final int coupCritiqueTank = 20;
+	public final int deplTank = 20;
 }

@@ -4,7 +4,7 @@ package moteur;
  *
  * @author Kévin
  */
-public abstract class Pion extends Element{
+public abstract class Pion extends Element {
 	
 	protected int attaque;
 	protected int precision;
@@ -40,6 +40,7 @@ public abstract class Pion extends Element{
 	 */
 	public abstract void seDeplacer(Case c);
 	
+	public abstract String getNom();
 	
 	
 }
