@@ -1,14 +1,17 @@
 package moteur;
 
+import java.awt.image.BufferedImage;
 import moteur.classes.Orientation;
 
-	
 /**
  *
  * @author Kévin
  */
 public abstract class Pion {
 
+	/*
+	 * La partie Statistique
+	 */
 	private static final int CHANCEMIN = 20;
 	private static final int CHANCEMAX = 30;
 	protected int vie;
@@ -20,6 +23,11 @@ public abstract class Pion {
 	protected int portee;
 	protected int mouvement;
 	protected Orientation orientation;
+	/*
+	 * La partie Image
+	 */
+	protected BufferedImage image;
+	
 	protected Case c;
 
 	public Pion(int vie, int force, int precision, int vitesse, int defense, int portee, int mouvement, Case c) {
@@ -32,11 +40,16 @@ public abstract class Pion {
 		this.portee = portee;
 		this.mouvement = mouvement;
 		this.c = c;
-		if(c.getColonne() < 5){
+		if (c.getColonne() < 5) {
 			orientation = Orientation.OUEST;
 		} else {
 			orientation = Orientation.EST;
 		}
+		
+		
+		
+		
+		orientation = Orientation.SUD;
 	}
 
 	public void deplacerPion(Case c) {
@@ -47,33 +60,30 @@ public abstract class Pion {
 	 *
 	 */
 	public void attaquerPion(Pion p) {
-		attaquerPion(p,95);
+		attaquerPion(p, 95);
 	}
-	
-	private void attaquerPion(Pion p, int tauxRiposte){
+
+	private void attaquerPion(Pion p, int tauxRiposte) {
 		float orientation = dosCoteFace(p);
-		int degatInflige = (int) ((force + (int) (force * janken(p)))*orientation);
+		int degatInflige = (int) ((force + (int) (force * janken(p))) * orientation);
 		int seDefend = p.seDefendre(p);
 		int hit = hit();
 		int esquive = esquiveEnnemi(p);
 		int aleaEsquive = (int) (Math.random() * (101));
 		int aleaRiposte = (int) (Math.random() * (101));
-		if (esquive > 100) {
-			esquive = 100;
-		}
-		
-		if (aleaEsquive > esquive) {
+
+		if (esquive < 100 && aleaEsquive > esquive) {
 			if (degatInflige > seDefend) {
-				System.out.println("J'attaque avec "+(degatInflige-seDefend));
-				p.recevoirDegat(degatInflige-seDefend);
+				System.out.println("J'attaque avec " + (degatInflige - seDefend));
+				p.recevoirDegat(degatInflige - seDefend);
 			} else {
 				System.out.println("Attaque de 1");
 				p.recevoirDegat(1);
 			}
-			
-			if(aleaRiposte < tauxRiposte){
+
+			if (aleaRiposte < tauxRiposte) {
 				System.out.println("Il riposte");
-				p.attaquerPion(this, tauxRiposte/2);
+				p.attaquerPion(this, tauxRiposte / 2);
 			}
 		}
 	}
@@ -92,21 +102,23 @@ public abstract class Pion {
 	protected abstract float janken(Pion p);
 
 	private float dosCoteFace(Pion p) {
-		if(orientation.equals(p.getOrientation())){
-			return 15/10;
-		} else if (orientation.equalsOp(p.getOrientation())){
+		if (orientation.equals(p.getOrientation())) {
+			return 15 / 10;
+		} else if (orientation.equalsOp(p.getOrientation())) {
 			return 1;
 		}
-		return 12/10;
+		return 12 / 10;
 	}
+
 	private int hit() {
 		return precision * 4;
 	}
 
 	private int esquiveEnnemi(Pion p) {
-		return ((int) (p.vitesse * 1.5) + p.chance) + (int) (p.cooperation() * ((int) (p.vitesse * 1.5) + p.chance)/4) 
-													+ (int)(janken(p)*((int) (p.vitesse * 1.5) + p.chance)/2)
-													/*+ (int) (p.getCase().getType.getBonus()*(p.vitesse * 1.5) + p.chance)/3)*/;
+		return ((int) (p.vitesse * 1.5) + p.chance) + (int) (p.cooperation() * ((int) (p.vitesse * 1.5) + p.chance) / 4)
+				+ (int) (janken(p) * ((int) (p.vitesse * 1.5) + p.chance) / 2) /*
+				 * + (int) (p.getCase().getType.getBonus()*(p.vitesse * 1.5) + p.chance)/3)
+				 */;
 	}
 
 	private float coupCritiques() {
@@ -133,19 +145,20 @@ public abstract class Pion {
 	public abstract String getNom();
 
 	@Override
-	public String toString(){
-		return getNom()+" possède "+vie+".";
+	public String toString() {
+		return getNom() + " possède " + vie + ".";
 	}
-	
-	public Case getCase(){
+
+	public Case getCase() {
 		return c;
 	}
-	
-	public Orientation getOrientation(){
+
+	public Orientation getOrientation() {
 		return orientation;
 	}
 
-
-
-
+	public BufferedImage getImageFixe() {
+		//Selon l'orientation retourne une image découpé de l'image contenant tout les sprites de la classe
+		return null;
+	}
 }
