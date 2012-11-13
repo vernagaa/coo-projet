@@ -3,6 +3,7 @@ package moteur;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JComponent;
+import moteur.familles.oiseau.GuerrierOiseau;
 
 /**
  *
@@ -41,7 +42,7 @@ public class Plateau extends JComponent {
                 get(i, j).setBounds(j * Case.TAILLE, i * Case.TAILLE, Case.TAILLE, Case.TAILLE);
                 add(get(i, j));
             }
-        }
+		}
     }
 
     /**
