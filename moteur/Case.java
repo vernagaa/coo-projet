@@ -46,7 +46,8 @@ public class Case extends JComponent implements MouseListener{
 	 *		- Pion, signifie qu'il y a un personnage jouable
 	 *		- Obstacle, signifie qu'il y a un obsatcle non jouable
 	 */
-	protected Element element;
+	protected Pion pion;
+	protected Obstacle obstacle;
 	
 	protected Color color;
 	
@@ -65,7 +66,8 @@ public class Case extends JComponent implements MouseListener{
 		col = c;
 		plateau = terrain;
 		select = false;
-		element = null;
+		pion = null;
+		obstacle = null;
 		color = Color.WHITE;
 		this.bordure = bordure;
 		addMouseListener(this);
@@ -81,7 +83,8 @@ public class Case extends JComponent implements MouseListener{
 		col = c.col;
 		plateau = c.plateau;
 		select = c.select;
-		element = c.element;
+		pion = c.pion;
+		obstacle = c.obstacle;
 		bordure = c.bordure;
 	}
 
@@ -133,11 +136,19 @@ public class Case extends JComponent implements MouseListener{
     }
     
     /**
-     * Méthode abstraite renvoyant la <code>pièce se trouvant sur la <code>case</code>.
-     * @return <code>Pièce</code> se trouvant sur la <code>case</code>, null s'il n'y a pas de <code>pièce</code> dessus
+     * Méthode abstraite renvoyant le <code>pion se trouvant sur la <code>case</code>.
+     * @return <code>Pion</code> se trouvant sur la <code>case</code>, null s'il n'y a pas de <code>pion</code> dessus
      */
-    public Element getElement(){
-		return element;
+    public Pion getPion(){
+		return pion;
+	}
+    
+    /**
+     * Méthode abstraite renvoyant l'<code>obstacle se trouvant sur la <code>case</code>.
+     * @return <code>Obstacle</code> se trouvant sur la <code>case</code>, null s'il n'y a pas d'<code>obstacle</code> dessus
+     */
+    public Obstacle getObstacle(){
+		return obstacle;
 	}
     
     /**
@@ -176,7 +187,8 @@ public class Case extends JComponent implements MouseListener{
      *
      */
     public  void remove(){
-		element = null;
+		pion = null;
+		obstacle = null;
 		color = Color.WHITE;
 	}
     
