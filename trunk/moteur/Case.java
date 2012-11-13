@@ -71,12 +71,12 @@ public class Case extends JComponent implements MouseListener{
         obstacle = null;
         this.bordure = bordure;
         addMouseListener(this);
-        try {
-            img = new BufferedImage(TAILLE, TAILLE, BufferedImage.TYPE_INT_ARGB);
-            img = ImageIO.read(getClass().getResource("/Image/roc.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Case.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            img = new BufferedImage(TAILLE, TAILLE, BufferedImage.TYPE_INT_ARGB);
+//            img = ImageIO.read(getClass().getResource("/Image/roc.png"));
+//        } catch (IOException ex) {
+//            Logger.getLogger(Case.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 
