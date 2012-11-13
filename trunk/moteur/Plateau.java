@@ -3,6 +3,7 @@ package moteur;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JComponent;
+import moteur.familles.oiseau.ArcherOiseau;
 import moteur.familles.oiseau.GuerrierOiseau;
 
 /**
