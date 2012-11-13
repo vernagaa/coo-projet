@@ -45,14 +45,43 @@ public abstract class Pion  {
 		//TODO
 	}
 	
+        /**
+	 * 
+	 * @param c 
+	 */
 	public void deplacerPion(Case c) {
 		//TODO
 	}
 	
-	/**
-	 * 
-	 * @param c 
-	 */
+        private int hit(){
+            return precision*4;
+        }
+        
+        private int esquiveEnnemi(Pion p){
+            return (p.vitesse*2+p.chance)+p.cooperation()*(p.vitesse*2+p.chance);
+        }
+        
+        private float coupCritiques(){
+            return precision*((float)chance/20);
+        }
+        
+        private int cooperation(){
+            int resultat = 0;
+            if(c.getPlateau().get(c.getLigne()+1, c.getColonne()+1) != null){
+                resultat+=1;
+            }
+            if(c.getPlateau().get(c.getLigne()-1, c.getColonne()+1) != null){
+                resultat+=1;
+            }
+            if(c.getPlateau().get(c.getLigne()+1, c.getColonne()-1) != null){
+                resultat+=1;
+            }
+            if(c.getPlateau().get(c.getLigne()-1, c.getColonne()-1) != null){
+                resultat+=1;
+            }
+            return resultat*7;
+        }
+
 	
 	public abstract String getNom();
 	
