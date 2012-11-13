@@ -11,10 +11,8 @@
 package ihm;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import moteur.Case;
 /**
  *
  * @author disavinr
@@ -120,6 +118,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	public static void main(String args[]) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
+			@Override
 			public void run() {
 				new FenetrePrincipale().setVisible(true);
 			}
