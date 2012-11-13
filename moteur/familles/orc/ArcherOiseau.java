@@ -7,9 +7,9 @@ import moteur.classes.Archer;
  *
  * @author vernagaa
  */
-public class ArcherOrc extends Archer implements Orc {
+public class ArcherOiseau extends Archer implements Oiseau {
 
-	public ArcherOrc(Case c) {
+	public ArcherOiseau(Case c) {
 		super(vieArcher, armureArcher, attaqueArcher, precisionArcher, esquiveArcher, coupCritiqueArcher, deplArcher, c);
 	}
 	

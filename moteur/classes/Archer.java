@@ -36,5 +36,10 @@ public class Archer extends Pion {
 	public void paintComponent(Graphics g) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
+
+	@Override
+	public String getNom() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 	
 }
