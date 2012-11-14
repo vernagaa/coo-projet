@@ -1,25 +1,12 @@
 package moteur;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.JComponent;
-import moteur.familles.oiseau.ArcherOiseau;
 
 /**
  *
  * @author Kévin
  */
-public class Case extends JComponent implements MouseListener {
+public class Case {
 
 	/**
 	 * Constante qui défiint la taille en pixel de la case
@@ -58,7 +45,6 @@ public class Case extends JComponent implements MouseListener {
 	 * terrain où se trouve la case
 	 */
 	public Case(int l, int c, Plateau terrain, boolean bordure) {
-		super();
 
 		lig = l;
 		col = c;
@@ -67,7 +53,6 @@ public class Case extends JComponent implements MouseListener {
 		pion = null;
 		obstacle = null;
 		this.bordure = bordure;
-		addMouseListener(this);
 //        try {
 //            img = new BufferedImage(TAILLE, TAILLE, BufferedImage.TYPE_INT_ARGB);
 //            img = ImageIO.read(getClass().getResource("/Image/roc.png"));
@@ -94,13 +79,6 @@ public class Case extends JComponent implements MouseListener {
 		obstacle = c.obstacle;
 	}
 
-	/**
-	 * Méthode qui permet l'ajout d'un élément à la case
-	 */
-	@Override
-	public Component add(Component comp) {
-		return super.add(comp);
-	}
 
 	/**
 	 * Méthode qui compare 2 case grace à la ligne et à la colonne
@@ -183,38 +161,6 @@ public class Case extends JComponent implements MouseListener {
 		return TAILLE;
 	}
 
-	/**
-	 *
-	 */
-	@Override
-	public void paintComponent(Graphics g) {
-		Graphics2D gr = (Graphics2D) g;
-		gr.drawImage(img, 0, 0, null);
-
-		if (obstacle != null) {
-		}
-
-		if (pion != null) {
-			gr.drawImage(pion.getImageFixe(), 0, 0, null);
-		}
-
-		/*
-		 * Quadrillage
-         *
-		 */
-		gr.drawLine(0, 0, TAILLE, 0);
-		gr.drawLine(TAILLE - 1, 0, TAILLE - 1, TAILLE);
-		if (bordure) {
-			if (col == 0) {
-				gr.drawLine(0, 0, 0, TAILLE);
-			} else {
-				gr.drawLine(0, TAILLE - 1, TAILLE - 1, TAILLE - 1);
-			}
-			if (col == 0 && lig == plateau.getHeight() / TAILLE - 1) {
-				gr.drawLine(0, TAILLE - 1, TAILLE - 1, TAILLE - 1);
-			}
-		}
-	}
 
 	/**
 	 * Méthode qui enlève l'élément se trouvant sur la case.
@@ -244,29 +190,4 @@ public class Case extends JComponent implements MouseListener {
 		return lig + "," + col;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-//		System.out.println(toString());
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		System.out.println(toString());
-		repaint();
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-//		System.out.println("BLIBLI");
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-//		System.out.println("Lalalala");
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-//		System.out.println("Exited");
-	}
 }
