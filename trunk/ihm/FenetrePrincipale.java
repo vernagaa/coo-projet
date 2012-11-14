@@ -1,5 +1,6 @@
 package ihm;
 
+import ecouteur.EcouteurPlateau;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -37,10 +38,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         Dimension tailleEcran = k.getScreenSize();
         int largeurEcran = tailleEcran.width;
         int hauteurEcran = tailleEcran.height;
-        setSize((int) (largeurEcran*hauteur), (int) (hauteurEcran*largeur));
 		initComponents();
+        setSize((int) (largeurEcran*hauteur), (int) (hauteurEcran*largeur));
 //        setLocation((int) (largeurEcran*posX), (int) (hauteurEcran*posY));
 		setLocationRelativeTo(getParent());
+		EcouteurPlateau e = new EcouteurPlateau(plateau1);
+		plateau1.addMouseListener(e);
 	}
 
 	/** This method is called from within the constructor to
@@ -84,15 +87,15 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(plateau1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(plateau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(plateau1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(plateau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
