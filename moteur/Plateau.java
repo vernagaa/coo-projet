@@ -38,11 +38,7 @@ public class Plateau extends JComponent {
 		/* Initialisation des cases blanches */
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				if (i == ligne - 1 || j == 0) {
-					plateau[i][j] = new Case(i, j, this, true);
-				} else {
-					plateau[i][j] = new Case(i, j, this, false);
-				}
+					plateau[i][j] = new Case(i, j, this);
 			}
 		}
 	}

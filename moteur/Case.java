@@ -34,7 +34,6 @@ public class Case {
 	 * signifie qu'il n'y a pas d'élément - Pion, signifie qu'il y a un
 	 * personnage jouable - Obstacle, signifie qu'il y a un obsatcle non jouable
 	 */
-	protected boolean bordure;
 	private BufferedImage img;
 	private Pion pion;
 	private Obstacle obstacle;
@@ -44,7 +43,7 @@ public class Case {
 	 * entier désignant la ligne param c entier désignant la colonne param
 	 * terrain où se trouve la case
 	 */
-	public Case(int l, int c, Plateau terrain, boolean bordure) {
+	public Case(int l, int c, Plateau terrain) {
 
 		lig = l;
 		col = c;
@@ -52,7 +51,6 @@ public class Case {
 		select = false;
 		pion = null;
 		obstacle = null;
-		this.bordure = bordure;
 //        try {
 //            img = new BufferedImage(TAILLE, TAILLE, BufferedImage.TYPE_INT_ARGB);
 //            img = ImageIO.read(getClass().getResource("/Image/roc.png"));
@@ -74,7 +72,6 @@ public class Case {
 		col = c.col;
 		plateau = c.plateau;
 		select = c.select;
-		bordure = c.bordure;
 		pion = c.pion;
 		obstacle = c.obstacle;
 	}
