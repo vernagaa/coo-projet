@@ -28,8 +28,8 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener{
 		int x = e.getX();
 		int y = e.getY();
 		
-		int lig = x/ Case.TAILLE;
-		int col = y/ Case.TAILLE;
+		int col = x/ Case.TAILLE;
+		int lig = y/ Case.TAILLE;
 		Case c = plateau.get(lig, col);
 		System.out.println("case :" + c);
 		System.out.println("lig "+lig+" col "+col);
