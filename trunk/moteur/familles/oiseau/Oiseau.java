@@ -53,6 +53,6 @@ public interface Oiseau {
 	public static final int vitesseTacticien = 2;
 	public static final int defenseTacticien = -2;
 	public static final int chanceTacticien = 0;
-	public static final int porteeTacticien = 1;//TODO ici ?
+	public static final int porteeTacticien = 0;
 	public static final int mouvementTacticien = 0;
 }

@@ -1,5 +1,7 @@
 package moteur;
 
+import java.io.FileInputStream;
+
 /**
  *
  * @author Kévin
@@ -33,6 +35,15 @@ public class Plateau {
 		}
 	}
 
+	/**
+	 * Constructeur avec une carte prédéfinie
+	 * @param f 
+	 */
+	public Plateau(FileInputStream f) {
+		//TODO lire le fichier et construire le plateau
+	}
+
+	
 	/**
 	 * Retourne la case situé à la même position, c'est-à-dire même ligne et même colonne. 
 	 * @param c Case qui est retournée
