@@ -1,11 +1,5 @@
 package moteur;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-
 /**
  *
  * @author Kévin
@@ -19,30 +13,28 @@ public class Case {
 	/**
 	 * Entier contenant la colonne où se trouve la case
 	 */
-	protected int col;
+	private int col;
 	/**
 	 * Entier contenant la ligne où se trouve la case
 	 */
-	protected int lig;
+	private int lig;
 	/**
 	 * Représente le plateau sur lequel se trouve la case
 	 */
-	protected Plateau plateau;
+	private Plateau plateau;
 	/**
 	 * Cette variable permet de mettre la case en surbrillance dans 2 cas : - Si
 	 * la case est selectionné - Si la case est accessible est survolé
 	 */
-	protected boolean select;
+	private boolean select;
 	/**
 	 * Variable contenant l'element présent sur la case, 3 cas : - null,
 	 * signifie qu'il n'y a pas d'élément - Pion, signifie qu'il y a un
 	 * personnage jouable - Obstacle, signifie qu'il y a un obsatcle non jouable
 	 */
-	private BufferedImage img;
 	private Pion pion;
 	private Obstacle obstacle;
-	private BufferedImage terrain;
-	private String typeTerrain;
+	private int typeTerrain;
 
 	/**
 	 * Constructeur de base de la classe Case. Prend 3 paramètres : param l
@@ -58,14 +50,6 @@ public class Case {
 		pion = null;
 		obstacle = null;
 		typeTerrain = Terrain.ROC;
-		terrain = new BufferedImage(TAILLE, TAILLE, BufferedImage.TYPE_INT_ARGB);
-		try {
-			terrain = ImageIO.read(getClass().getResource(typeTerrain));
-
-		} catch (IOException ex) {
-			Logger.getLogger(Case.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
 	}
 
 	/**
@@ -75,14 +59,13 @@ public class Case {
 	 * @param c
 	 */
 	private Case(Case c) {
-		super();
 		lig = c.lig;
 		col = c.col;
 		plateau = c.plateau;
 		select = c.select;
 		pion = c.pion;
 		obstacle = c.obstacle;
-		terrain = c.terrain;
+		typeTerrain = c.typeTerrain;
 	}
 
 
@@ -188,19 +171,13 @@ public class Case {
 		this.pion = pion;
 	}
 
-	public void setTerrain(String terrain) {
-		try {
-			typeTerrain = terrain;
-			this.terrain = ImageIO.read(getClass().getResource(typeTerrain));
-		} catch (IOException ex) {
-			Logger.getLogger(Case.class.getName()).log(Level.SEVERE, null, ex);
-		}
+	public int getTypeTerrain() {
+		return typeTerrain;
 	}
 
-	public BufferedImage getTerrain() {
-		return terrain;
+	public void setTypeTerrain(int typeTerrain) {
+		this.typeTerrain = typeTerrain;
 	}
-
 	
 	
 	/**

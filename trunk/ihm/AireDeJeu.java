@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import javax.swing.JComponent;
 import moteur.Case;
 import moteur.Plateau;
+import moteur.Terrain;
 
 /**
  *
@@ -17,10 +18,12 @@ import moteur.Plateau;
  */
 public class AireDeJeu extends JComponent {
 	private Plateau plateau;
-
+	private Terrain terrain;
+	
 	public AireDeJeu(Plateau plateau) {
-		setPreferredSize(new Dimension(plateau.getColonne()*Case.TAILLE, plateau.getLigne()*Case.TAILLE));
+		setPreferredSize(new Dimension(plateau.getNbColonne()*Case.TAILLE, plateau.getNbLigne()*Case.TAILLE));
 		this.plateau = plateau;
+		terrain = new Terrain();
 	}
 	
 	public AireDeJeu() {
@@ -35,13 +38,13 @@ public class AireDeJeu extends JComponent {
 		this.plateau = plateau;
 	}
 	
-		@Override
+	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D)g;
 		
 		for(Case[] c : plateau.get()){
 			for(Case c1 : c){
-				gd.drawImage(c1.getTerrain(), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+				gd.drawImage(terrain.getImage(c1.getTypeTerrain()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
 			}
 		}
 
