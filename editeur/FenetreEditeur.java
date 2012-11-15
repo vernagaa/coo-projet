@@ -15,12 +15,9 @@ import ihm.AireDeJeu;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import moteur.Case;
 
@@ -99,6 +96,11 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
         chargerMap.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         chargerMap.setText("Charger carte");
+        chargerMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chargerMapActionPerformed(evt);
+            }
+        });
         jMenu1.add(chargerMap);
 
         sauverMap.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
@@ -142,32 +144,60 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
 	    File fichier = fc.getSelectedFile();
 
-	    FileOutputStream fos = null;
+
 	    try {
-		fos = new FileOutputStream(fichier);
-	    } catch (FileNotFoundException ex) {
-		System.err.println("Fichier non trouvé");
-	    }
-	    if (fos != null) {
-		Case[][] map = aireDeJeu1.getPlateau().get();
-		for (Case[] c1 : map) {
-		    for (Case c : c1) {
-			try {
-			    fos.write(c.getTypeTerrain());
-			    fos.write(' ');
-			} catch (IOException ex) {
-			    System.err.println("erreur d'écriture");
+		FileWriter fw = new FileWriter(fichier);
+
+		if (fw != null) {
+		    Case[][] map = aireDeJeu1.getPlateau().get();
+		    for (Case[] c1 : map) {
+			for (Case c : c1) {
+			    System.out.print(c.getTypeTerrain() + " ");
+			    fw.write(c.getTypeTerrain() + " ");
 			}
-		    }
-		    try {
-			fos.write('\n');
-		    } catch (IOException ex) {
-			System.err.println("erreur d'écriture");
+			System.out.println("");
+			fw.write('\n');
+
 		    }
 		}
+		fw.flush();
+		fw.close();
+	    } catch (IOException ex) {
+		System.err.println("Fichier non trouvé");
 	    }
 	}
     }//GEN-LAST:event_sauverMapActionPerformed
+
+    private void chargerMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargerMapActionPerformed
+	JFileChooser fc = new JFileChooser();
+	if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+	    File fichier = fc.getSelectedFile();
+
+	    if (fichier.exists()) {
+
+		try {
+		    FileReader fr = new FileReader(fichier);
+		    if (fr != null) {
+			Case[][] map = aireDeJeu1.getPlateau().get();
+			for (Case[] c1 : map) {
+			    for (Case c : c1) {
+				//Conversion de ASCII vers entier
+				int i = fr.read()-48;
+				c.setTypeTerrain(i);
+				fr.read();
+			    }
+			    fr.read();
+			}
+		    }
+		    fr.close();
+		} catch (IOException ex) {
+		    System.err.println("Fichier non trouvé");
+		}
+
+	    }
+	}
+	aireDeJeu1.repaint();
+    }//GEN-LAST:event_chargerMapActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ihm.AireDeJeu aireDeJeu1;
     private javax.swing.JMenuItem chargerMap;
