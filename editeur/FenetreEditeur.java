@@ -11,8 +11,10 @@
 package editeur;
 
 import ecouteur.EcouteurEditeur;
+import ihm.AireDeJeu;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import moteur.Case;
 
 /**
  *
@@ -40,7 +42,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
         setSize((int) (largeurEcran*hauteur), (int) (hauteurEcran*largeur));
 //        setLocation((int) (largeurEcran*posX), (int) (hauteurEcran*posY));
 		setLocationRelativeTo(getParent());
-		EcouteurEditeur ecouteur = new EcouteurEditeur(aireDeJeu1);
+		EcouteurEditeur ecouteur = new EcouteurEditeur(this);
 		aireDeJeu1.addMouseListener(ecouteur);
 		initComponents();
 		setVisible(true);
@@ -128,4 +130,15 @@ public class FenetreEditeur extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
+
+	public AireDeJeu getAireDeJeu1() {
+		return aireDeJeu1;
+	}
+
+	public void choix(Case case1, Case case2) {
+		new ChoixTexture(this, case1, case2).setVisible(true);
+	}
+
+
+
 }
