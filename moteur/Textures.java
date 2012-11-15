@@ -22,7 +22,8 @@ public class Textures {
 	public static final int HERBE = 4;
 	
 	private BufferedImage[] terrain = new BufferedImage[5];
-	private BufferedImage[] perso = new BufferedImage[15];//TODO les initialiser
+	private BufferedImage[][] perso = new BufferedImage[15][4];//TODO les initialiser
+	private BufferedImage[] obstacle = new BufferedImage[2];//TODO les initialiser
 
 	public Textures() {
 		terrain[ROC] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
@@ -66,7 +67,22 @@ public class Textures {
 		return terrain[numTerrain];
 	}
 	
-	public BufferedImage getPersonnage(int numPerso) {
-		return terrain[numPerso];
+	public BufferedImage getPersonnage(int numPerso, Orientation orientation) {
+		switch (orientation) {
+			case NORD:
+				return perso[numPerso][0];
+			case SUD:
+				return perso[numPerso][1];
+			case EST:
+				return perso[numPerso][2];
+			case OUEST:
+				return perso[numPerso][3];
+			default:
+				return null;
+		}
+	}
+	
+	public BufferedImage getObstacle(int numObstacle) {
+		return obstacle[numObstacle];
 	}
 }
