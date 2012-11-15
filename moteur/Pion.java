@@ -14,6 +14,7 @@ public abstract class Pion {
 	 */
 	private static final int CHANCEMIN = 20;
 	private static final int CHANCEMAX = 30;
+	
 	protected int vie;
 	protected int force;
 	protected int precision;
@@ -26,9 +27,9 @@ public abstract class Pion {
 	/*
 	 * La partie Image
 	 */
-	protected BufferedImage image;
+	protected BufferedImage image;//TODO rien à faire là (MVC!!!)
 	
-	protected Case c;
+	private Case c;
 
 	public Pion(int vie, int force, int precision, int vitesse, int defense, int portee, int mouvement, Case c) {
 		this.vie = vie;
@@ -45,11 +46,7 @@ public abstract class Pion {
 		} else {
 			orientation = Orientation.EST;
 		}
-		
-		
-		
-		
-		orientation = Orientation.SUD;
+//		orientation = Orientation.SUD;
 	}
 
 	public void deplacerPion(Case c) {
@@ -64,8 +61,8 @@ public abstract class Pion {
 	}
 
 	private void attaquerPion(Pion p, int tauxRiposte) {
-		float orientation = dosCoteFace(p);
-		int degatInflige = (int) ((force + (int) (force * janken(p))) * orientation);
+		float orient = dosCoteFace(p);
+		int degatInflige = (int) ((force + (int) (force * janken(p))) * orient);
 		int seDefend = p.seDefendre(p);
 		int hit = hit();
 		int esquive = esquiveEnnemi(p);

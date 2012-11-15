@@ -1,7 +1,5 @@
 package moteur;
 
-import java.awt.Dimension;
-
 /**
  *
  * @author Kévin
@@ -11,11 +9,11 @@ public class Plateau {
 	/**
 	 * Nombre de colonne dans le plateau
 	 */
-	private static int colonne = 24;
+	private int colonne = 24;
 	/**
 	 * Nombre de ligne dans le plateau
 	 */
-	private static int ligne = 18;
+	private int ligne = 18;
 	/**
 	 * Tableau de Cases symbolisant la plateau.
 	 */
@@ -79,11 +77,11 @@ public class Plateau {
 		}
 	}
 
-	public static int getColonne() {
+	public int getNbColonne() {
 		return colonne;
 	}
 
-	public static int getLigne() {
+	public int getNbLigne() {
 		return ligne;
 	}
 
