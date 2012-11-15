@@ -6,18 +6,29 @@
 /*
  * ChoixTexture.java
  *
- * Created on 15 nov. 2012, 14:48:54
+ * Created on 15 nov. 2012, 16:36:13
  */
 package editeur;
+
+import moteur.Case;
+import moteur.Textures;
 
 /**
  *
  * @author disavinr
  */
-public class ChoixTexture extends javax.swing.JFrame {
+public class ChoixTexture extends javax.swing.JDialog {
+
+	private FenetreEditeur fe;
+	private Case c1;
+	private Case c2;
 
 	/** Creates new form ChoixTexture */
-	public ChoixTexture() {
+	public ChoixTexture(FenetreEditeur parent, Case c1, Case c2) {
+		super(parent, true);
+		fe = parent;
+		this.c1 = c1;
+		this.c2 = c2;
 		initComponents();
 	}
 
@@ -39,25 +50,20 @@ public class ChoixTexture extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Roche");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
+        jRadioButton1.setText("Roc");
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Eau");
 
         buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Herbe");
+        jRadioButton3.setText("Sable");
 
         buttonGroup1.add(jRadioButton4);
-        jRadioButton4.setText("Sable");
+        jRadioButton4.setText("Herbe");
 
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setText("Route");
@@ -70,19 +76,24 @@ public class ChoixTexture extends javax.swing.JFrame {
         });
 
         jButton2.setText("Annuler");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton2)
                     .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3)
+                    .addComponent(jRadioButton4)
+                    .addComponent(jRadioButton5)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
@@ -94,43 +105,51 @@ public class ChoixTexture extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jRadioButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-		// TODO add your handling code here:
-}//GEN-LAST:event_jRadioButton1ActionPerformed
-
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-		// TODO add your handling code here:
+		int texture;
+		if (jRadioButton1.isSelected()) {
+			texture = Textures.ROC;
+		} else if (jRadioButton2.isSelected()) {
+			texture = Textures.EAU;
+		} else if (jRadioButton3.isSelected()) {
+			texture = Textures.SABLE;
+		} else if (jRadioButton4.isSelected()) {
+			texture = Textures.HERBE;
+		} else {
+			texture = Textures.ROUTE;
+		}
+		Case[][] c = fe.getAireDeJeu1().getPlateau().get();
+		for (int i = c1.getLigne(); i <= c2.getLigne(); i++) {
+			for (int j = c1.getColonne(); j <= c2.getColonne(); j++) {
+				c[i][j].setTypeTerrain(texture);
+			}
+		}
+		fe.getAireDeJeu1().repaint();
+		dispose();
 	}//GEN-LAST:event_jButton1ActionPerformed
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
+	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+		dispose();
+	}//GEN-LAST:event_jButton2ActionPerformed
 
-			public void run() {
-				new ChoixTexture().setVisible(true);
-			}
-		});
-	}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
