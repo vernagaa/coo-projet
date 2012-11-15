@@ -7,7 +7,7 @@ package moteur;
 public class Case {
 
 	/**
-	 * Constante qui défiint la taille en pixel de la case
+	 * Constante qui définit la taille en pixel de la case
 	 */
 	public static final int TAILLE = 30;
 	/**
@@ -49,7 +49,7 @@ public class Case {
 		select = false;
 		pion = null;
 		obstacle = null;
-		typeTerrain = Terrain.ROC;
+		typeTerrain = Textures.ROC;
 	}
 
 	/**

@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
  *
  * @author disavinr
  */
-public class Terrain {
+public class Textures {
 	private static final String ROCPATH = "/images/roc.png";
 	private static final String EAUPATH = "/images/eau.png";
 	private static final String ROUTEPATH = "/images/route.png";
@@ -21,47 +21,52 @@ public class Terrain {
 	public static final int SABLE = 3;
 	public static final int HERBE = 4;
 	
-	private BufferedImage[] images = new BufferedImage[5];
+	private BufferedImage[] terrain = new BufferedImage[5];
+	private BufferedImage[] perso = new BufferedImage[15];//TODO les initialiser
 
-	public Terrain() {
-		images[ROC] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		images[EAU] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		images[ROUTE] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		images[SABLE] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		images[HERBE] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+	public Textures() {
+		terrain[ROC] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+		terrain[EAU] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+		terrain[ROUTE] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+		terrain[SABLE] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+		terrain[HERBE] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
 		
 		try {
-			images[ROC] = ImageIO.read(getClass().getResource(ROCPATH));
+			terrain[ROC] = ImageIO.read(getClass().getResource(ROCPATH));
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ROCPATH);
 		}
 		
 		try {
-			images[EAU] = ImageIO.read(getClass().getResource(EAUPATH));
+			terrain[EAU] = ImageIO.read(getClass().getResource(EAUPATH));
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + EAUPATH);
 		}
 		
 		try {
-			images[ROUTE] = ImageIO.read(getClass().getResource(ROUTEPATH));
+			terrain[ROUTE] = ImageIO.read(getClass().getResource(ROUTEPATH));
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ROUTEPATH);
 		}
 		
 		try {
-			images[SABLE] = ImageIO.read(getClass().getResource(SABLEPATH));
+			terrain[SABLE] = ImageIO.read(getClass().getResource(SABLEPATH));
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + SABLEPATH);
 		}
 		
 		try {
-			images[HERBE] = ImageIO.read(getClass().getResource(HERBEPATH));
+			terrain[HERBE] = ImageIO.read(getClass().getResource(HERBEPATH));
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + HERBEPATH);
 		}
 	}
 	
-	public BufferedImage getImage(int numTerrain) {
-		return images[numTerrain];
+	public BufferedImage getTerrain(int numTerrain) {
+		return terrain[numTerrain];
+	}
+	
+	public BufferedImage getPersonnage(int numPerso) {
+		return terrain[numPerso];
 	}
 }

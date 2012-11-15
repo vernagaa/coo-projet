@@ -10,7 +10,7 @@ import java.awt.Graphics2D;
 import javax.swing.JComponent;
 import moteur.Case;
 import moteur.Plateau;
-import moteur.Terrain;
+import moteur.Textures;
 
 /**
  *
@@ -18,12 +18,12 @@ import moteur.Terrain;
  */
 public class AireDeJeu extends JComponent {
 	private Plateau plateau;
-	private Terrain terrain;
+	private Textures terrain;
 	
 	public AireDeJeu(Plateau plateau) {
-		setPreferredSize(new Dimension(plateau.getNbColonne()*Case.TAILLE, plateau.getNbLigne()*Case.TAILLE));
+		setPreferredSize(new Dimension(plateau.getNbColonne()*Case.TAILLE+1, plateau.getNbLigne()*Case.TAILLE+1));
 		this.plateau = plateau;
-		terrain = new Terrain();
+		terrain = new Textures();
 	}
 	
 	public AireDeJeu() {
@@ -44,7 +44,7 @@ public class AireDeJeu extends JComponent {
 		
 		for(Case[] c : plateau.get()){
 			for(Case c1 : c){
-				gd.drawImage(terrain.getImage(c1.getTypeTerrain()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+				gd.drawImage(terrain.getTerrain(c1.getTypeTerrain()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
 			}
 		}
 
@@ -54,8 +54,9 @@ public class AireDeJeu extends JComponent {
 		for(int j=0; j< getWidth(); j+=Case.TAILLE){
 			gd.drawLine(j, 0, j, getHeight());
 		}
-		gd.drawLine(0, getHeight()-1, getWidth()-1, getHeight()-1);
-		gd.drawLine(getWidth()-1, 0, getWidth()-1, getHeight()-1);		
+		
+//		System.out.println("Preferred size : "+getPreferredSize());
+//		System.out.println("Size : "+getSize());
 	}
 
 }
