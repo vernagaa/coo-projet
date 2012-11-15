@@ -4,11 +4,12 @@
  */
 package ecouteur;
 
+import ihm.AireDeJeu;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import moteur.Case;
-import moteur.Plateau;
+
 
 /**
  *
@@ -16,11 +17,11 @@ import moteur.Plateau;
  */
 public class EcouteurPlateau implements MouseListener, MouseMotionListener{
 
-	private Plateau plateau;
+	private AireDeJeu aire;
 	private Case caseCourante;
 
-	public EcouteurPlateau(Plateau plateau) {
-		this.plateau = plateau;
+	public EcouteurPlateau(AireDeJeu aire) {
+		this.aire = aire;
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener{
 		
 		int col = x/ Case.TAILLE;
 		int lig = y/ Case.TAILLE;
-		Case c = plateau.get(lig, col);
+		Case c = aire.getPlateau().get(lig, col);
 		System.out.println("case :" + c);
 		System.out.println("lig "+lig+" col "+col);
 		

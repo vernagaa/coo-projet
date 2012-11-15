@@ -4,6 +4,7 @@ import ecouteur.EcouteurPlateau;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import moteur.Moteur;
 /**
  *
  * @author disavinr
@@ -28,11 +29,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
      */
     private static final float posY = (float) 1/6;
 	
+	private Moteur moteur;
+	
 	/** Creates new form FenetrePrincipale */
-	public FenetrePrincipale() {
+	public FenetrePrincipale(Moteur m) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Jeu de Dames");
-        
+        setTitle("Ambition");
+        moteur = m;
         //Taille et position de la fenetre
         Toolkit k = Toolkit.getDefaultToolkit();
         Dimension tailleEcran = k.getScreenSize();
@@ -42,8 +45,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         setSize((int) (largeurEcran*hauteur), (int) (hauteurEcran*largeur));
 //        setLocation((int) (largeurEcran*posX), (int) (hauteurEcran*posY));
 		setLocationRelativeTo(getParent());
-		EcouteurPlateau e = new EcouteurPlateau(plateau1);
-		plateau1.addMouseListener(e);
+		EcouteurPlateau e = new EcouteurPlateau(aireDeJeu1);
+		aireDeJeu1.addMouseListener(e);
+		setVisible(true);
 	}
 
 	/** This method is called from within the constructor to
@@ -55,13 +59,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        plateau1 = new moteur.Plateau();
+        aireDeJeu1 = new ihm.AireDeJeu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuNouvellePartie = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout aireDeJeu1Layout = new javax.swing.GroupLayout(aireDeJeu1);
+        aireDeJeu1.setLayout(aireDeJeu1Layout);
+        aireDeJeu1Layout.setHorizontalGroup(
+            aireDeJeu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 711, Short.MAX_VALUE)
+        );
+        aireDeJeu1Layout.setVerticalGroup(
+            aireDeJeu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 526, Short.MAX_VALUE)
+        );
 
         jMenu1.setText("Fichier");
 
@@ -87,41 +102,33 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(plateau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(plateau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 	private void menuNouvellePartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouvellePartieActionPerformed
-		plateau1.vider();
+		moteur.getPlateau().vider();
 	}//GEN-LAST:event_menuNouvellePartieActionPerformed
 
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String args[]) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
 
-			@Override
-			public void run() {
-				new FenetrePrincipale().setVisible(true);
-			}
-		});
-	}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private ihm.AireDeJeu aireDeJeu1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuNouvellePartie;
-    private moteur.Plateau plateau1;
     // End of variables declaration//GEN-END:variables
 }

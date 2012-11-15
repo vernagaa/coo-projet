@@ -1,19 +1,12 @@
 package moteur;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.JComponent;
-import moteur.familles.oiseau.ArcherOiseau;
-import moteur.familles.oiseau.GuerrierOiseau;
 
 /**
  *
  * @author Kévin
  */
-public class Plateau extends JComponent {
+public class Plateau {
 
 	/**
 	 * Nombre de colonne dans le plateau
@@ -33,7 +26,6 @@ public class Plateau extends JComponent {
 	 */
 	public Plateau() {
 		super();
-		this.setPreferredSize(new Dimension((colonne) * Case.TAILLE, (ligne) * Case.TAILLE));
 		plateau = new Case[ligne][colonne];
 		/* Initialisation des cases blanches */
 		for (int i = 0; i < ligne; i++) {
@@ -70,23 +62,9 @@ public class Plateau extends JComponent {
 		return null;
 
 	}
-
-	/**
-	 * Méthode retournant la hauteur du plateau
-	 * @return hauteur du plateau
-	 */
-	@Override
-	public int getHeight() {
-		return ligne * Case.TAILLE;
-	}
-
-	/**
-	 * Retourne la largeur du tableau
-	 * @return largeur du tableau
-	 */
-	@Override
-	public int getWidth() {
-		return colonne * Case.TAILLE;
+	
+	public Case[][] get(){
+		return plateau;
 	}
 
 	/**
@@ -101,23 +79,13 @@ public class Plateau extends JComponent {
 		}
 	}
 
-	@Override
-	public void paintComponent(Graphics g) {
-		System.out.println("width "+ getWidth()+" height "+getHeight());
-		int lig = 0;
-		int col = 0;
-		Graphics2D gd = (Graphics2D)g;
-		for(int i = 0;i< getHeight();i+=Case.TAILLE){
-			col++;
-			gd.drawLine(0, i, getWidth(), i);
-		}
-		for(int j=0; j< getWidth(); j+=Case.TAILLE){
-			lig++;
-			gd.drawLine(j, 0, j, getHeight());
-		}
-		gd.drawLine(0, getHeight()-1, getWidth()-1, getHeight()-1);
-		gd.drawLine(getWidth()-1, 0, getWidth()-1, getHeight()-1);
-		System.out.println("lig "+lig);
-		System.out.println("col "+col);
+	public static int getColonne() {
+		return colonne;
 	}
+
+	public static int getLigne() {
+		return ligne;
+	}
+
+
 }
