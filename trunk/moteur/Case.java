@@ -1,6 +1,10 @@
 package moteur;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -37,26 +41,30 @@ public class Case {
 	private BufferedImage img;
 	private Pion pion;
 	private Obstacle obstacle;
+	private BufferedImage terrain;
+	private String typeTerrain;
 
 	/**
 	 * Constructeur de base de la classe Case. Prend 3 paramètres : param l
 	 * entier désignant la ligne param c entier désignant la colonne param
 	 * terrain où se trouve la case
 	 */
-	public Case(int l, int c, Plateau terrain) {
+	public Case(int l, int c, Plateau p) {
 
 		lig = l;
 		col = c;
-		plateau = terrain;
+		plateau = p;
 		select = false;
 		pion = null;
 		obstacle = null;
-//        try {
-//            img = new BufferedImage(TAILLE, TAILLE, BufferedImage.TYPE_INT_ARGB);
-//            img = ImageIO.read(getClass().getResource("/Image/roc.png"));
-//        } catch (IOException ex) {
-//            Logger.getLogger(Case.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+		typeTerrain = Terrain.ROC;
+		terrain = new BufferedImage(TAILLE, TAILLE, BufferedImage.TYPE_INT_ARGB);
+		try {
+			terrain = ImageIO.read(getClass().getResource(typeTerrain));
+
+		} catch (IOException ex) {
+			Logger.getLogger(Case.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
 	}
 
@@ -74,6 +82,7 @@ public class Case {
 		select = c.select;
 		pion = c.pion;
 		obstacle = c.obstacle;
+		terrain = c.terrain;
 	}
 
 
@@ -179,6 +188,21 @@ public class Case {
 		this.pion = pion;
 	}
 
+	public void setTerrain(String terrain) {
+		try {
+			typeTerrain = terrain;
+			this.terrain = ImageIO.read(getClass().getResource(typeTerrain));
+		} catch (IOException ex) {
+			Logger.getLogger(Case.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	public BufferedImage getTerrain() {
+		return terrain;
+	}
+
+	
+	
 	/**
 	 * Afficher le couple (ligne,colonne) de la case
 	 */
