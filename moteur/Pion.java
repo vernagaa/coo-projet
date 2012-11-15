@@ -24,10 +24,6 @@ public abstract class Pion {
 	protected int portee;
 	protected int mouvement;
 	protected Orientation orientation;
-	/*
-	 * La partie Image
-	 */
-	protected BufferedImage image;//TODO rien à faire là (MVC!!!)
 	
 	private Case c;
 
