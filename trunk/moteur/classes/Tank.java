@@ -21,7 +21,15 @@ public abstract class Tank extends Pion {
 	public final static int PORTEE = 1;
 	public final static int MOUVEMENT = 2;
 	
-	public Tank(int vie, int force, int precision, int vitesse, int defense, int portee, int mouvement, Case c) {
-		super(vie + VIE, force + FORCE, precision + PRECISION, vitesse + VITESSE, defense + DEFENSE, portee + PORTEE, mouvement + MOUVEMENT, c);
+	public Tank(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
+		super(vie + VIE, force + FORCE, precision + PRECISION, vitesse + VITESSE, defense + DEFENSE, bonusChance, portee + PORTEE, mouvement + MOUVEMENT, c);
+	}
+	
+	@Override
+	protected float janken(Pion p) {
+		if (p instanceof Guerrier) {
+			return 20 / 100;
+		}
+		return 0;
 	}
 }

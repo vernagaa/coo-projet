@@ -1,4 +1,4 @@
-package moteur.familles.oiseau;
+package moteur.familles.reptile;
 
 import moteur.Case;
 import moteur.classes.Archer;
@@ -7,8 +7,8 @@ import moteur.classes.Archer;
  *
  * @author vernagaa
  */
-public final class ArcherOiseau extends Archer implements Oiseau {
-	public ArcherOiseau(Case c) {
+public final class ArcherReptile extends Archer implements Reptile {
+	public ArcherReptile(Case c) {
 		super(vieArcher, forceArcher, precisionArcher, vitesseArcher, defenseArcher, chanceArcher, porteeArcher, mouvementArcher, c);
 	}
 
@@ -16,5 +16,5 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 	public String getNom() {
 		return nomArcher;
 	}
-
+	
 }

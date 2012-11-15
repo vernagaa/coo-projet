@@ -17,8 +17,13 @@ public abstract class Archer extends Pion {
 	public final static int PORTEE = 3;
 	public final static int MOUVEMENT = 3;
 	
-	public Archer(int vie, int force, int precision, int vitesse, int defense, int portee, int mouvement, Case c) {
-		super(vie + VIE, force + FORCE, precision + PRECISION, vitesse + VITESSE, defense + DEFENSE, portee + PORTEE, mouvement + MOUVEMENT, c);
+	public Archer(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
+		super(vie + VIE, force + FORCE, precision + PRECISION, vitesse + VITESSE, defense + DEFENSE, bonusChance, portee + PORTEE, mouvement + MOUVEMENT, c);
+	}
+	
+	@Override
+	protected float janken(Pion p) {
+		return 0;
 	}
 
 }

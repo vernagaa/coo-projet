@@ -1,4 +1,4 @@
-package moteur.familles.oiseau;
+package moteur.familles.felin;
 
 import moteur.Case;
 import moteur.classes.Archer;
@@ -7,8 +7,8 @@ import moteur.classes.Archer;
  *
  * @author vernagaa
  */
-public final class ArcherOiseau extends Archer implements Oiseau {
-	public ArcherOiseau(Case c) {
+public final class ArcherFelin extends Archer implements Felin {
+	public ArcherFelin(Case c) {
 		super(vieArcher, forceArcher, precisionArcher, vitesseArcher, defenseArcher, chanceArcher, porteeArcher, mouvementArcher, c);
 	}
 

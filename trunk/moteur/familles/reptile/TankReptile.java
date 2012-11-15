@@ -1,4 +1,4 @@
-package moteur.familles.oiseau;
+package moteur.familles.reptile;
 
 import moteur.Case;
 import moteur.classes.Tank;
@@ -7,9 +7,9 @@ import moteur.classes.Tank;
  *
  * @author Kévin
  */
-public final class TankOiseau extends Tank implements Oiseau {
+public final class TankReptile extends Tank implements Reptile {
 
-	public TankOiseau(Case c) {
+	public TankReptile(Case c) {
 		super(vieTank, forceTank, precisionTank, vitesseTank, defenseTank, chanceTank, porteeTank, mouvementTank, c);
 	}
 
@@ -18,4 +18,5 @@ public final class TankOiseau extends Tank implements Oiseau {
 		return nomTank;
 	}
 
+	
 }
