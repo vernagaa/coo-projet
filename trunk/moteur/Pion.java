@@ -1,7 +1,6 @@
 package moteur;
 
 import java.awt.image.BufferedImage;
-import moteur.classes.Orientation;
 
 /**
  *
@@ -14,6 +13,7 @@ public abstract class Pion {
 	 */
 	private static final int CHANCEMIN = 20;
 	private static final int CHANCEMAX = 30;
+	private static final int TAUXRIPOSTE = 95;
 	
 	protected int vie;
 	protected int force;
@@ -42,18 +42,19 @@ public abstract class Pion {
 		} else {
 			orientation = Orientation.EST;
 		}
-//		orientation = Orientation.SUD;
+		//TODO pour les tests
+		orientation = Orientation.SUD;
 	}
 
 	public void deplacerPion(Case c) {
-		//TODO
+		//TODO déplacement
 	}
 
 	/**
 	 *
 	 */
 	public void attaquerPion(Pion p) {
-		attaquerPion(p, 95);
+		attaquerPion(p, TAUXRIPOSTE);
 	}
 
 	private void attaquerPion(Pion p, int tauxRiposte) {
