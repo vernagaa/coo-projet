@@ -1,4 +1,4 @@
-package moteur.familles.oiseau;
+package moteur.familles.felin;
 
 import moteur.Case;
 import moteur.classes.Guerrier;
@@ -7,9 +7,9 @@ import moteur.classes.Guerrier;
  *
  * @author vernagaa
  */
-public final class GuerrierOiseau extends Guerrier implements Oiseau {
+public final class GuerrierFelin extends Guerrier implements Felin {
 
-	public GuerrierOiseau(Case c) {
+	public GuerrierFelin(Case c) {
 		super(vieGuerrier, forceGuerrier, precisionGuerrier, vitesseGuerrier, defenseGuerrier, chanceGuerrier, porteeGuerrier, mouvementGuerrier, c);
 	}
 

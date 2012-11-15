@@ -27,13 +27,13 @@ public abstract class Pion {
 	
 	private Case c;
 
-	public Pion(int vie, int force, int precision, int vitesse, int defense, int portee, int mouvement, Case c) {
+	public Pion(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
 		this.vie = vie;
 		this.force = force;
 		this.precision = precision;
 		this.vitesse = vitesse;
 		this.defense = defense;
-		this.chance = (int) (Math.random() * (CHANCEMAX - CHANCEMIN + 1) + CHANCEMIN);
+		this.chance = (int) (Math.random() * (CHANCEMAX - CHANCEMIN + 1) + CHANCEMIN) + bonusChance;
 		this.portee = portee;
 		this.mouvement = mouvement;
 		this.c = c;

@@ -1,4 +1,4 @@
-package moteur.familles.oiseau;
+package moteur.familles.felin;
 
 import moteur.Case;
 import moteur.classes.Assassin;
@@ -7,9 +7,9 @@ import moteur.classes.Assassin;
  *
  * @author Kévin
  */
-public class AssassinOiseau extends Assassin implements Oiseau {
+public class AssassinFelin extends Assassin implements Felin {
 
-	public AssassinOiseau(Case c) {
+	public AssassinFelin(Case c) {
 		super(vieAssassin, forceAssassin, precisionAssassin, vitesseAssassin, defenseAssassin, chanceAssassin, porteeAssassin, mouvementAssassin, c);
 	}
 

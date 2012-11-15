@@ -17,8 +17,16 @@ public abstract class Guerrier extends Pion {
 	public final static int PORTEE = 1;
 	public final static int MOUVEMENT = 4;
 	
-	public Guerrier(int vie, int force, int precision, int vitesse, int defense, int portee, int mouvement, Case c) {
-		super(vie + VIE, force + FORCE, precision + PRECISION, vitesse + VITESSE, defense + DEFENSE, portee + PORTEE, mouvement + MOUVEMENT, c);
+	public Guerrier(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
+		super(vie + VIE, force + FORCE, precision + PRECISION, vitesse + VITESSE, defense + DEFENSE, bonusChance, portee + PORTEE, mouvement + MOUVEMENT, c);
+	}
+
+	@Override
+	protected float janken(Pion p) {
+		if (p instanceof Assassin) {
+			return 20 / 100;
+		}
+		return 0;
 	}
 
 }
