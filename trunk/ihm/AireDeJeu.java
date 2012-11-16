@@ -4,6 +4,7 @@
  */
 package ihm;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -47,7 +48,7 @@ public class AireDeJeu extends JComponent {
 				gd.drawImage(terrain.getTerrain(c1.getTypeTerrain()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
 			}
 		}
-
+                gd.setColor(Color.GRAY);
 		for(int i = 0;i< getHeight();i+=Case.TAILLE){
 			gd.drawLine(0, i, getWidth(), i);
 		}
