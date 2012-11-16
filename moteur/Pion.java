@@ -63,9 +63,9 @@ public abstract class Pion {
 		int seDefend = p.seDefendre(p);
 		int hit = hit();
 		int esquive = esquiveEnnemi(p);
-		int aleaEsquive = (int) (Math.random() * (101));
-		int aleaRiposte = (int) (Math.random() * (101));
-
+		int aleaEsquive = (int) (Math.random() * (201));
+		int aleaRiposte = (int) (Math.random() * (201));
+                System.out.println(aleaEsquive+" "+esquive);
 		if (esquive < 100 && aleaEsquive > esquive) {
 			if (degatInflige > seDefend) {
 				System.out.println("J'attaque avec " + (degatInflige - seDefend));
@@ -79,7 +79,9 @@ public abstract class Pion {
 				System.out.println("Il riposte");
 				p.attaquerPion(this, tauxRiposte / 2);
 			}
-		}
+		} else {
+                    System.out.println("J'esquive");
+                }
 	}
 
 	private void recevoirDegat(int degatInflige) {
@@ -149,10 +151,5 @@ public abstract class Pion {
 
 	public Orientation getOrientation() {
 		return orientation;
-	}
-
-	public BufferedImage getImageFixe() {
-		//Selon l'orientation retourne une image découpé de l'image contenant tout les sprites de la classe
-		return null;
 	}
 }
