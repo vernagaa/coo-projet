@@ -59,11 +59,13 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		setLocationRelativeTo(getParent());
 		EcouteurEditeur ecouteur = new EcouteurEditeur(this);
 		aireDeJeu1.addMouseListener(ecouteur);
+		aireDeJeu1.addMouseMotionListener(ecouteur);
 		initComponents();
 		setVisible(true);
 		obstacle = false;
 		suppression = false;
 		bordure = false;
+		aireDeJeu1.setEdition(true);
 	}
 
 	/**
