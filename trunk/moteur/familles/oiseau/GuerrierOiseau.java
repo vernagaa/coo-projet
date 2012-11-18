@@ -1,6 +1,8 @@
 package moteur.familles.oiseau;
 
+import java.awt.image.BufferedImage;
 import moteur.Case;
+import moteur.Textures;
 import moteur.classes.Guerrier;
 
 /**
@@ -16,5 +18,10 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 	@Override
 	public String getNom() {
 		return nomGuerrier;
+	}
+
+	@Override
+	public BufferedImage getImage() {
+		return Textures.getPersonnage(Textures.GUERRIEROISEAU, orientation);
 	}
 }

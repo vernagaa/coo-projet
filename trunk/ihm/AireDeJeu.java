@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm;
 
 import java.awt.Color;
@@ -19,12 +15,10 @@ import moteur.Textures;
  */
 public class AireDeJeu extends JComponent {
 	private Plateau plateau;
-	private Textures terrain;
 	
 	public AireDeJeu(Plateau plateau) {
 		setPreferredSize(new Dimension(plateau.getNbColonne()*Case.TAILLE+1, plateau.getNbLigne()*Case.TAILLE+1));
 		this.plateau = plateau;
-		terrain = new Textures();
 	}
 	
 	public AireDeJeu() {
@@ -45,12 +39,15 @@ public class AireDeJeu extends JComponent {
 		
 		for(Case[] c : plateau.get()){
 			for(Case c1 : c){
-				gd.drawImage(terrain.getTerrain(c1.getTypeTerrain()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+				gd.drawImage(Textures.getTerrain(c1.getTypeTerrain()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
 				if(c1.getBordure() != null){
-					gd.drawImage(terrain.getBordure(c1.getBordure().getTypeBordure()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+					gd.drawImage(Textures.getBordure(c1.getBordure().getTypeBordure()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
 				}
 				if(c1.getObstacle() != null){
-					gd.drawImage(terrain.getObstacle(c1.getObstacle().getTypeObstacle()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+					gd.drawImage(Textures.getObstacle(c1.getObstacle().getTypeObstacle()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+				}
+				if(c1.getPion() != null) {
+					gd.drawImage(c1.getPion().getImage(), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
 				}
 			}
 		}
@@ -63,8 +60,6 @@ public class AireDeJeu extends JComponent {
 			gd.drawLine(j, 0, j, getHeight());
 		}
 		
-//		System.out.println("Preferred size : "+getPreferredSize());
-//		System.out.println("Size : "+getSize());
 	}
 
 }

@@ -152,4 +152,6 @@ public abstract class Pion {
 	public Orientation getOrientation() {
 		return orientation;
 	}
+	
+	public abstract BufferedImage getImage();
 }
