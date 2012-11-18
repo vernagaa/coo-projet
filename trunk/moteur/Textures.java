@@ -99,6 +99,7 @@ public class Textures {
 	private static final String ROUTEPATH = "/images/route.png";
 	private static final String SABLECENTREPATH = "/images/sableCentre.png";
 	private static final String HERBECENTREPATH = "/images/herbe.png";
+	
 	public static final int ROC = 0;
 	public static final int ROUTE = 1;
 	public static final int SABLECENTRE = 2;

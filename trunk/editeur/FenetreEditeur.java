@@ -14,12 +14,13 @@ import ecouteur.EcouteurEditeur;
 import ihm.AireDeJeu;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import moteur.Case;
+import moteur.Obstacle;
+import moteur.Plateau;
 import moteur.Textures;
 
 /**
@@ -723,61 +724,84 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
 			File fichier = fc.getSelectedFile();
 
-
+			FileOutputStream fos = null;
 			try {
-				FileWriter fw = new FileWriter(fichier);
+				fos = new FileOutputStream(fichier);
+			} catch (FileNotFoundException ex) {
+				Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
+			}
 
-				if (fw != null) {
-					Case[][] map = aireDeJeu1.getPlateau().get();
-					for (Case[] c1 : map) {
-						for (Case c : c1) {
-							System.out.print(c.getTypeTerrain() + " ");
-							fw.write(c.getTypeTerrain() + " ");
-						}
-						System.out.println("");
-						fw.write('\n');
-
+			if (fos != null) {
+				ObjectOutputStream oos = null;
+				try {
+					oos = new ObjectOutputStream(fos);
+				} catch (IOException ex) {
+					Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
+				} finally {
+					try {
+						oos.writeObject(aireDeJeu1.getPlateau());
+						oos.close();
+						fos.close();
+					} catch (IOException ex) {
+						Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
 					}
 				}
-				fw.flush();
-				fw.close();
-			} catch (IOException ex) {
-				System.err.println("Fichier non trouvé");
 			}
 		}
     }//GEN-LAST:event_sauverMapActionPerformed
 
     private void chargerMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargerMapActionPerformed
 		JFileChooser fc = new JFileChooser();
-		if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+		System.out.println(aireDeJeu1.getPlateau());
+		if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
 			File fichier = fc.getSelectedFile();
 
 			if (fichier.exists()) {
-
+				FileInputStream fis = null;
 				try {
-					FileReader fr = new FileReader(fichier);
-					if (fr != null) {
-						Case[][] map = aireDeJeu1.getPlateau().get();
-						for (Case[] c1 : map) {
-							for (Case c : c1) {
-								//Conversion de ASCII vers entier
-								int i = fr.read() - 48;
-								c.setTypeTerrain(i);
-								fr.read();
-							}
-							fr.read();
-						}
-					}
-					fr.close();
-				} catch (IOException ex) {
-					System.err.println("Fichier non trouvé");
+					fis = new FileInputStream(fichier);
+				} catch (FileNotFoundException ex) {
+					Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
 				}
 
+				if (fis != null) {
+					ObjectInputStream ois = null;
+					try {
+						ois = new ObjectInputStream(fis);
+					} catch (IOException ex) {
+						Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
+					} finally {
+						try {
+							Plateau p = (Plateau) ois.readObject();
+							for (int i = 0; i < aireDeJeu1.getPlateau().getNbLigne(); i++) {
+								for (int j = 0; j < aireDeJeu1.getPlateau().getNbColonne(); j++) {
+									aireDeJeu1.getPlateau().get(i, j).setBordure(p.get(i, j).getBordure());
+									aireDeJeu1.getPlateau().get(i, j).setObstacle(p.get(i, j).getObstacle());
+									aireDeJeu1.getPlateau().get(i, j).setTypeTerrain(p.get(i, j).getTypeTerrain());
+								}
+							}
+							aireDeJeu1.repaint();
+							ois.close();
+							fis.close();
+						} catch (IOException ex) {
+							Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
+						} catch (ClassNotFoundException ex) {
+							Logger.getLogger(Plateau.class.getName()).log(Level.SEVERE, null, ex);
+						}
+					}
+				}
+			} else {
+				System.err.println("Le fichier n'existe pas");
 			}
 		}
-		aireDeJeu1.repaint();
-    }//GEN-LAST:event_chargerMapActionPerformed
+		for (int i = 0; i < aireDeJeu1.getPlateau().getNbLigne(); i++) {
+			for (int j = 0; j < aireDeJeu1.getPlateau().getNbColonne(); j++) {
+				System.out.print(aireDeJeu1.getPlateau().get(i, j).getTypeTerrain());
+			}
+			System.out.println("");
+		}
 
+    }//GEN-LAST:event_chargerMapActionPerformed
 	private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
 		obstacle = false;
 		suppression = false;
@@ -1041,7 +1065,6 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		bordure = true;
 		texture = Textures.BORDURESABLECOINBASDROIT;
 	}//GEN-LAST:event_jRadioButton37ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ihm.AireDeJeu aireDeJeu1;
     private javax.swing.ButtonGroup buttonGroup1;
