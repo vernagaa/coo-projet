@@ -4,22 +4,29 @@
  */
 package ecouteur;
 
-import editeur.ChoixTexture;
 import editeur.FenetreEditeur;
 import ihm.AireDeJeu;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import moteur.Bordure;
 import moteur.Case;
+import moteur.Indestructible;
+import moteur.Obstacle;
 
 /**
  *
  * @author disavinr
  */
-public class EcouteurEditeur  implements MouseListener, MouseMotionListener{
+public class EcouteurEditeur implements MouseListener, MouseMotionListener {
+
 	private FenetreEditeur fenetreEditeur;
-	private Case case1 = null;
-	private Case case2 = null;
+	private Case c1 = null;
+	private Case c2 = null;
+	int ligneMin;
+	int ligneMax;
+	int colonneMin;
+	int colonneMax;
 
 	public EcouteurEditeur(FenetreEditeur fe) {
 		this.fenetreEditeur = fe;
@@ -27,33 +34,51 @@ public class EcouteurEditeur  implements MouseListener, MouseMotionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
-		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		
-		int col = x/ Case.TAILLE;
-		int lig = y/ Case.TAILLE;
-		case1 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
-		System.out.println("case :" + case1);
-		System.out.println("lig "+lig+" col "+col);
+
+		int col = x / Case.TAILLE;
+		int lig = y / Case.TAILLE;
+		c1 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		int x = e.getX();
 		int y = e.getY();
-		
-		int col = x/ Case.TAILLE;
-		int lig = y/ Case.TAILLE;
-		case2 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
-		System.out.println("case :" + case2);
-		System.out.println("lig "+lig+" col "+col);
-		fenetreEditeur.choix(case1,case2);
+
+		int col = x / Case.TAILLE;
+		int lig = y / Case.TAILLE;
+		c2 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
+
+		ligneMin = Math.min(c1.getLigne(), c2.getLigne());
+		ligneMax = Math.max(c1.getLigne(), c2.getLigne());
+		colonneMin = Math.min(c1.getColonne(), c2.getColonne());
+		colonneMax = Math.max(c1.getColonne(), c2.getColonne());
+
+		Case[][] c = fenetreEditeur.getAireDeJeu1().getPlateau().get();
+		System.out.println("Obstacle Indestructible");
+		for (int i = ligneMin; i <= ligneMax; i++) {
+			for (int j = colonneMin; j <= colonneMax; j++) {
+				if (fenetreEditeur.obstacle) {
+					Indestructible o = new Indestructible(fenetreEditeur.texture);
+					c[i][j].setObstacle(o);
+				} else if (fenetreEditeur.bordure) {
+					Bordure b = new Bordure(fenetreEditeur.texture);
+					c[i][j].setBordure(b);
+				} else if (fenetreEditeur.suppression) {
+					c[i][j].setObstacle(null);
+					c[i][j].setBordure(null);
+				} else {
+					c[i][j].setTypeTerrain(fenetreEditeur.texture);
+				}
+			}
+		}
+		fenetreEditeur.getAireDeJeu1().repaint();
 	}
 
 	@Override

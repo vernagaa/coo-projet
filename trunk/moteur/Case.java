@@ -34,6 +34,7 @@ public class Case {
 	 */
 	private Pion pion;
 	private Obstacle obstacle;
+	private Bordure bordure;
 	private int typeTerrain;
 
 	/**
@@ -179,6 +180,17 @@ public class Case {
 		this.typeTerrain = typeTerrain;
 	}
 	
+	public void setObstacle(Obstacle obstacle){
+		this.obstacle = obstacle;
+	}
+	
+	public void setBordure(Bordure bordure){
+		this.bordure = bordure;
+	}
+	
+	public Bordure getBordure(){
+		return bordure;
+	}
 	
 	/**
 	 * Afficher le couple (ligne,colonne) de la case
