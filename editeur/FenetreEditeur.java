@@ -42,12 +42,14 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	public boolean obstacle;
 	public boolean suppression;
 	public boolean bordure;
+	EcouteurEditeur ecouteur;
 
 	/**
 	 * Creates new form FenetreEditeur
 	 */
 	public FenetreEditeur(Editeur e) {
 		editeur = e;
+		ecouteur = new EcouteurEditeur(this);
 		//Taille et position de la fenetre
 		Toolkit k = Toolkit.getDefaultToolkit();
 		Dimension tailleEcran = k.getScreenSize();
@@ -57,15 +59,15 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		setSize((int) (largeurEcran * hauteur), (int) (hauteurEcran * largeur));
 //        setLocation((int) (largeurEcran*posX), (int) (hauteurEcran*posY));
 		setLocationRelativeTo(getParent());
-		EcouteurEditeur ecouteur = new EcouteurEditeur(this);
+		
 		aireDeJeu1.addMouseListener(ecouteur);
 		aireDeJeu1.addMouseMotionListener(ecouteur);
+
 		initComponents();
 		setVisible(true);
 		obstacle = false;
 		suppression = false;
 		bordure = false;
-		aireDeJeu1.setEdition(true);
 	}
 
 	/**
@@ -79,6 +81,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         aireDeJeu1 = new ihm.AireDeJeu(editeur.getPlateau());
+        aireDeSelection1 = new editeur.AireDeSelection(ecouteur);
         jRadioButton5 = new javax.swing.JRadioButton();
         jRadioButton6 = new javax.swing.JRadioButton();
         jRadioButton7 = new javax.swing.JRadioButton();
@@ -133,15 +136,26 @@ public class FenetreEditeur extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Editeur de carte");
 
+        javax.swing.GroupLayout aireDeSelection1Layout = new javax.swing.GroupLayout(aireDeSelection1);
+        aireDeSelection1.setLayout(aireDeSelection1Layout);
+        aireDeSelection1Layout.setHorizontalGroup(
+            aireDeSelection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1051, Short.MAX_VALUE)
+        );
+        aireDeSelection1Layout.setVerticalGroup(
+            aireDeSelection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 601, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout aireDeJeu1Layout = new javax.swing.GroupLayout(aireDeJeu1);
         aireDeJeu1.setLayout(aireDeJeu1Layout);
         aireDeJeu1Layout.setHorizontalGroup(
             aireDeJeu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1051, Short.MAX_VALUE)
+            .addComponent(aireDeSelection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         aireDeJeu1Layout.setVerticalGroup(
             aireDeJeu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addComponent(aireDeSelection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         buttonGroup1.add(jRadioButton5);
@@ -530,16 +544,46 @@ public class FenetreEditeur extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jRadioButton5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton31)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton33)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton34)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton35)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton36)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton37)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
+                                .addGap(117, 117, 117)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButton27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(136, 136, 136))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(112, 112, 112)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jRadioButton4)
@@ -602,37 +646,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jRadioButton8))
                                             .addComponent(jRadioButton7))
-                                        .addContainerGap())))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jRadioButton5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton32)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton28)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton29)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton30)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton31)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton33)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton34)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton35)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton36)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton37)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addContainerGap())))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -693,7 +707,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
                         .addGap(292, 292, 292))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addGap(18, 18, Short.MAX_VALUE)))
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -721,6 +735,9 @@ public class FenetreEditeur extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	public AireDeSelection getAire(){
+		return aireDeSelection1;
+	}
     private void sauverMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sauverMapActionPerformed
 		JFileChooser fc = new JFileChooser();
 		if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -1069,6 +1086,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	}//GEN-LAST:event_jRadioButton37ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ihm.AireDeJeu aireDeJeu1;
+    public editeur.AireDeSelection aireDeSelection1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenuItem chargerMap;
     private javax.swing.JMenuItem creerMap;
