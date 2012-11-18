@@ -202,4 +202,8 @@ public class Case implements Serializable{
 		return lig + "," + col;
 	}
 
+    public boolean getSelect() {
+	return select;
+    }
+
 }
