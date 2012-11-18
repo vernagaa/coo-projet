@@ -1,6 +1,8 @@
 package moteur.familles.felin;
 
+import java.awt.image.BufferedImage;
 import moteur.Case;
+import moteur.Textures;
 import moteur.classes.Archer;
 
 /**
@@ -15,6 +17,11 @@ public final class ArcherFelin extends Archer implements Felin {
 	@Override
 	public String getNom() {
 		return nomArcher;
+	}
+
+	@Override
+	public BufferedImage getImage() {
+		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation);
 	}
 
 }

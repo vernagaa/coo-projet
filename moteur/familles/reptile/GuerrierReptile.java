@@ -1,6 +1,8 @@
 package moteur.familles.reptile;
 
+import java.awt.image.BufferedImage;
 import moteur.Case;
+import moteur.Textures;
 import moteur.classes.Guerrier;
 
 /**
@@ -16,5 +18,10 @@ public final class GuerrierReptile extends Guerrier implements Reptile {
 	@Override
 	public String getNom() {
 		return nomGuerrier;
+	}
+
+	@Override
+	public BufferedImage getImage() {
+		return Textures.getPersonnage(Textures.GUERRIERREPTILE, orientation);
 	}
 }

@@ -1,6 +1,8 @@
 package moteur.familles.reptile;
 
+import java.awt.image.BufferedImage;
 import moteur.Case;
+import moteur.Textures;
 import moteur.classes.Tank;
 
 /**
@@ -16,6 +18,11 @@ public final class TankReptile extends Tank implements Reptile {
 	@Override
 	public String getNom() {
 		return nomTank;
+	}
+
+	@Override
+	public BufferedImage getImage() {
+		return Textures.getPersonnage(Textures.TANKREPTILE, orientation);
 	}
 
 	

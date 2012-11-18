@@ -1,6 +1,8 @@
 package moteur.familles.felin;
 
+import java.awt.image.BufferedImage;
 import moteur.Case;
+import moteur.Textures;
 import moteur.classes.Assassin;
 
 /**
@@ -16,5 +18,10 @@ public class AssassinFelin extends Assassin implements Felin {
 	@Override
 	public String getNom() {
 		return nomAssassin;
+	}
+
+	@Override
+	public BufferedImage getImage() {
+		return Textures.getPersonnage(Textures.ASSASSINFELIN, orientation);
 	}
 }

@@ -1,9 +1,6 @@
 package ihm;
 
 import ecouteur.EcouteurPlateau;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import javax.swing.JFrame;
 import moteur.Moteur;
 /**
  *
@@ -11,42 +8,18 @@ import moteur.Moteur;
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
 
-	
-	 /**
-     * Hauteur de la fenêtre
-     */
-    private static final float hauteur = (float) 2/3;
-    /**
-     * Largeur de la fenêtre
-     */
-    private static final float largeur = (float) 2/3;
-    /**
-     * Position X de la fenêtre
-     */
-    private static final float posX = (float) 1/6;
-    /**
-     * Position Y de la fenêtre
-     */
-    private static final float posY = (float) 1/6;
-	
 	private Moteur moteur;
 	
 	/** Creates new form FenetrePrincipale */
 	public FenetrePrincipale(Moteur m) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Ambition");
-        moteur = m;
-        //Taille et position de la fenetre
-        Toolkit k = Toolkit.getDefaultToolkit();
-        Dimension tailleEcran = k.getScreenSize();
-        int largeurEcran = tailleEcran.width;
-        int hauteurEcran = tailleEcran.height;
+		moteur = m;
 		initComponents();
-        setSize((int) (largeurEcran*hauteur), (int) (hauteurEcran*largeur));
-//        setLocation((int) (largeurEcran*posX), (int) (hauteurEcran*posY));
+		//position
 		setLocationRelativeTo(getParent());
-		EcouteurPlateau e = new EcouteurPlateau(aireDeJeu1);
-		aireDeJeu1.addMouseListener(e);
+		//écouteur sur l'aire de jeu
+		aireDeJeu1.addMouseListener(new EcouteurPlateau(aireDeJeu1));
+		
+		setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 
@@ -66,16 +39,17 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ambition");
 
         javax.swing.GroupLayout aireDeJeu1Layout = new javax.swing.GroupLayout(aireDeJeu1);
         aireDeJeu1.setLayout(aireDeJeu1Layout);
         aireDeJeu1Layout.setHorizontalGroup(
             aireDeJeu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 721, Short.MAX_VALUE)
+            .addGap(0, 1051, Short.MAX_VALUE)
         );
         aireDeJeu1Layout.setVerticalGroup(
             aireDeJeu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 541, Short.MAX_VALUE)
+            .addGap(0, 601, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Fichier");
@@ -119,10 +93,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	private void menuNouvellePartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouvellePartieActionPerformed
 		moteur.getPlateau().vider();
 	}//GEN-LAST:event_menuNouvellePartieActionPerformed
-
-	/**
-	 * @param args the command line arguments
-	 */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ihm.AireDeJeu aireDeJeu1;

@@ -1,6 +1,5 @@
 package moteur;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -9,7 +8,7 @@ import javax.imageio.ImageIO;
  *
  * @author disavinr
  */
-public class Textures {
+public final class Textures {
 	/*
 	 * ------ Tile Eau nb : 16 dont 3 bordures ------ Ce sont des obstacles
 	 * indestructible
@@ -105,11 +104,35 @@ public class Textures {
 	public static final int SABLECENTRE = 2;
 	public static final int HERBECENTRE = 3;
 	
+	/**
+	 * Personnages
+	 */
+	public static final int ARCHERFELIN = 0;
+	public static final int ASSASSINFELIN = 1;
+	public static final int GUERRIERFELIN = 2;
+	public static final int TACTICIENFELIN = 3;
+	public static final int TANKFELIN = 4;
+	
+	public static final int ARCHEROISEAU = 5;
+	public static final int ASSASSINOISEAU = 6;
+	public static final int GUERRIEROISEAU = 7;
+	public static final int TACTICIENOISEAU = 8;
+	public static final int TANKOISEAU = 9;
+	
+	public static final int ARCHERREPTILE = 10;
+	public static final int ASSASSINREPTILE = 11;
+	public static final int GUERRIERREPTILE = 12;
+	public static final int TACTICIENREPTILE = 13;
+	public static final int TANKREPTILE = 14;
+	
+	
 	private BufferedImage[] terrain = new BufferedImage[4];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][] perso = new BufferedImage[15][4];//TODO les initialiser
-	private BufferedImage[] obstacle = new BufferedImage[22];//TODO les initialiser
+	private BufferedImage[] obstacle = new BufferedImage[22];
 
+	private static Textures singleton;
+	
 	public Textures() {
 		for (int i = 0; i < terrain.length; i++) {
 			terrain[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
@@ -149,9 +172,17 @@ public class Textures {
 		tileMontagne();
 		tileSable();
 
+		initPersos();
 	}
 
-	public BufferedImage getPersonnage(int numPerso, Orientation orientation) {
+	public static BufferedImage getPersonnage(int numPerso, Orientation orientation) {
+		if(singleton == null) {
+			singleton = new Textures();
+		}
+		return singleton.getPerso(numPerso, orientation);
+	}
+	
+	private BufferedImage getPerso(int numPerso, Orientation orientation) {
 		switch (orientation) {
 			case NORD:
 				return perso[numPerso][0];
@@ -166,15 +197,36 @@ public class Textures {
 		}
 	}
 
-	public BufferedImage getTerrain(int numTerrain) {
+	public static BufferedImage getTerrain(int numTerrain) {
+		if(singleton == null) {
+			singleton = new Textures();
+		}
+		return singleton.getTerr(numTerrain);
+	}
+	
+	private BufferedImage getTerr(int numTerrain) {
 		return terrain[numTerrain];
 	}
 
-	public BufferedImage getObstacle(int numObstacle) {
+	public static BufferedImage getObstacle(int numObstacle) {
+		if(singleton == null) {
+			singleton = new Textures();
+		}
+		return singleton.getObst(numObstacle);
+	}
+	
+	private BufferedImage getObst(int numObstacle) {
 		return obstacle[numObstacle];
 	}
 
-	public BufferedImage getBordure(int numBordure) {
+	public static BufferedImage getBordure(int numBordure) {
+		if(singleton == null) {
+			singleton = new Textures();
+		}
+		return singleton.getBord(numBordure);
+	}
+
+	private BufferedImage getBord(int numBordure) {
 		return bordureTerrain[numBordure];
 	}
 
@@ -183,7 +235,7 @@ public class Textures {
 	 * consideres comme de type HERBE et non EAU. Le type EAU est
 	 * infranchissable, contrairement au type HERBE
 	 */
-	public void tileEau() {
+	private void tileEau() {
 
 		try {
 			bordureTerrain[BORDUREEAUBAS] = ImageIO.read(getClass().getResource(BORDUREEAUBASPATH));
@@ -268,7 +320,7 @@ public class Textures {
 		}
 	}
 
-	public void tileMontagne() {
+	private void tileMontagne() {
 		try {
 			obstacle[MONTAGNEHAUTDROIT] = ImageIO.read(getClass().getResource(MONTAGNEHAUTDROITPATH));
 		} catch (IOException ex) {
@@ -368,5 +420,14 @@ public class Textures {
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + SABLECENTREPATH);
 		}
+	}
+
+	private void initPersos() {
+		//TODO
+//		try {
+//			perso[XXX] = ImageIO.read(getClass().getResource(XXX));
+//		} catch (IOException ex) {
+//			System.err.println("Image non trouvée : " + XXXPATH);
+//		}
 	}
 }

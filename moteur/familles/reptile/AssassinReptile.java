@@ -1,6 +1,8 @@
 package moteur.familles.reptile;
 
+import java.awt.image.BufferedImage;
 import moteur.Case;
+import moteur.Textures;
 import moteur.classes.Assassin;
 
 /**
@@ -16,6 +18,11 @@ public class AssassinReptile extends Assassin implements Reptile {
 	@Override
 	public String getNom() {
 		return nomAssassin;
+	}
+
+	@Override
+	public BufferedImage getImage() {
+		return Textures.getPersonnage(Textures.ASSASSINREPTILE, orientation);
 	}
 
 }
