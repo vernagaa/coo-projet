@@ -46,9 +46,16 @@ public class AireDeJeu extends JComponent {
 		for(Case[] c : plateau.get()){
 			for(Case c1 : c){
 				gd.drawImage(terrain.getTerrain(c1.getTypeTerrain()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+				if(c1.getBordure() != null){
+					gd.drawImage(terrain.getBordure(c1.getBordure().getTypeBordure()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+				}
+				if(c1.getObstacle() != null){
+					gd.drawImage(terrain.getObstacle(c1.getObstacle().getTypeObstacle()), c1.getColonne()*Case.TAILLE, c1.getLigne()*Case.TAILLE, null);
+				}
 			}
 		}
-                gd.setColor(Color.GRAY);
+        gd.setColor(Color.GRAY);
+		
 		for(int i = 0;i< getHeight();i+=Case.TAILLE){
 			gd.drawLine(0, i, getWidth(), i);
 		}
