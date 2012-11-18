@@ -4,11 +4,13 @@
  */
 package moteur;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Kévin
  */
-public final class Bordure {
+public final class Bordure implements Serializable{
 	private int typeBordure;
 	
 	public Bordure(int typeBordure){

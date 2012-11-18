@@ -61,7 +61,6 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		colonneMax = Math.max(c1.getColonne(), c2.getColonne());
 
 		Case[][] c = fenetreEditeur.getAireDeJeu1().getPlateau().get();
-		System.out.println("Obstacle Indestructible");
 		for (int i = ligneMin; i <= ligneMax; i++) {
 			for (int j = colonneMin; j <= colonneMax; j++) {
 				if (fenetreEditeur.obstacle) {

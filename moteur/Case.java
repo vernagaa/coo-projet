@@ -1,10 +1,12 @@
 package moteur;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Kévin
  */
-public class Case {
+public class Case implements Serializable{
 
 	/**
 	 * Constante qui définit la taille en pixel de la case

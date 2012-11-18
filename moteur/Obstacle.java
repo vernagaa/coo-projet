@@ -1,10 +1,12 @@
 package moteur;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Kévin
  */
-public abstract class Obstacle {
+public abstract class Obstacle implements Serializable{
 	int typeObstacle;
 	
 	public Obstacle(int typeObstacle){
