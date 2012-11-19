@@ -30,7 +30,7 @@ public class AireDeSelection extends JComponent {
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;
 		if(p != null && p.c1 != null){
-			gd.setColor(new Color(80, 80, 80, 80));
+			gd.setColor(new Color(255, 0, 0, 40));
 			gd.fillRect(p.colonneMin*Case.TAILLE, p.ligneMin*Case.TAILLE, (p.colonneMax-p.colonneMin+1)*Case.TAILLE, (p.ligneMax-p.ligneMin+1)*Case.TAILLE);
 		}
 

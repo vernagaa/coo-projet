@@ -22,6 +22,7 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 	private FenetreEditeur fenetreEditeur;
 	public Case c1 = null;
 	public Case c2 = null;
+	public Case c2old = null;
 	public int ligneMin;
 	public int ligneMax;
 	public int colonneMin;
@@ -47,6 +48,12 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int lig = y / Case.TAILLE;
 		c1 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
 		c1.setSelect(true);
+		ligneMin=c1.getLigne();
+		ligneMax=c1.getLigne();
+		colonneMin=c1.getColonne();
+		colonneMax=c1.getColonne();
+		fenetreEditeur.getAire().repaint();
+
 	}
 
 	public void mouseReleased(MouseEvent e) {
@@ -56,7 +63,9 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
 		c2 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
-
+		if(c2==null){
+		    c2 = c2old;
+		}
 		ligneMin = Math.min(c1.getLigne(), c2.getLigne());
 		ligneMax = Math.max(c1.getLigne(), c2.getLigne());
 		colonneMin = Math.min(c1.getColonne(), c2.getColonne());
@@ -80,8 +89,11 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 				c[i][j].setSelect(false);
 			}
 		}
+		c1=null;
+		c2=null;
+		c2old=null;
 		fenetreEditeur.getAireDeJeu1().repaint();
-
+		fenetreEditeur.getAire().repaint();
 	}
 
 	@Override
@@ -96,11 +108,16 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int lig = y / Case.TAILLE;
 		c2 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
 
+		if(c2!=null && (c2old == null || c2old.getLigne()!=c2.getLigne() || c2old.getColonne()!=c2.getColonne())){
 		ligneMin = Math.min(c1.getLigne(), c2.getLigne());
 		ligneMax = Math.max(c1.getLigne(), c2.getLigne());
 		colonneMin = Math.min(c1.getColonne(), c2.getColonne());
 		colonneMax = Math.max(c1.getColonne(), c2.getColonne());
 		fenetreEditeur.getAire().repaint();
+		}
+		if(c2!=null){
+		    c2old = c2;
+		}
 	}
 
 	@Override
