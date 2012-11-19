@@ -1,6 +1,7 @@
 package ihm;
 
 import ecouteur.EcouteurPlateau;
+import javax.swing.JOptionPane;
 import moteur.Moteur;
 /**
  *
@@ -17,12 +18,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 		//position
 		setLocationRelativeTo(getParent());
 		//écouteur sur l'aire de jeu
-		aireDeJeu1.addMouseListener(new EcouteurPlateau(aireDeJeu1));
-		
-		setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+		aireDeJeu.addMouseListener(new EcouteurPlateau(aireDeJeu));
 		setVisible(true);
 	}
 
+	private void quitterApplication() {
+		int confirm = JOptionPane.showConfirmDialog(this,
+				"Voulez-vous vraiment quitter Animosity ?",
+				"Quitter",
+				JOptionPane.YES_NO_OPTION);
+
+		if (confirm == JOptionPane.YES_OPTION) {
+			System.exit(0);
+		}
+	}
+	
 	/** This method is called from within the constructor to
 	 * initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is
@@ -32,27 +42,33 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        aireDeJeu1 = new ihm.AireDeJeu(moteur.getPlateau());
+        aireDeJeu = new ihm.AireDeJeu(moteur.getPlateau());
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuBarFichier = new javax.swing.JMenu();
         menuNouvellePartie = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        menuQuitter = new javax.swing.JMenuItem();
+        menuBarOption = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Ambition");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Animosity");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        javax.swing.GroupLayout aireDeJeu1Layout = new javax.swing.GroupLayout(aireDeJeu1);
-        aireDeJeu1.setLayout(aireDeJeu1Layout);
-        aireDeJeu1Layout.setHorizontalGroup(
-            aireDeJeu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout aireDeJeuLayout = new javax.swing.GroupLayout(aireDeJeu);
+        aireDeJeu.setLayout(aireDeJeuLayout);
+        aireDeJeuLayout.setHorizontalGroup(
+            aireDeJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1051, Short.MAX_VALUE)
         );
-        aireDeJeu1Layout.setVerticalGroup(
-            aireDeJeu1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        aireDeJeuLayout.setVerticalGroup(
+            aireDeJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 601, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Fichier");
+        menuBarFichier.setText("Fichier");
 
         menuNouvellePartie.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         menuNouvellePartie.setText("Nouvelle Partie");
@@ -61,12 +77,21 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 menuNouvellePartieActionPerformed(evt);
             }
         });
-        jMenu1.add(menuNouvellePartie);
+        menuBarFichier.add(menuNouvellePartie);
 
-        jMenuBar1.add(jMenu1);
+        menuQuitter.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        menuQuitter.setText("Quitter");
+        menuQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuQuitterActionPerformed(evt);
+            }
+        });
+        menuBarFichier.add(menuQuitter);
 
-        jMenu2.setText("Option");
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(menuBarFichier);
+
+        menuBarOption.setText("Option");
+        jMenuBar1.add(menuBarOption);
 
         setJMenuBar(jMenuBar1);
 
@@ -76,14 +101,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -91,14 +116,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void menuNouvellePartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouvellePartieActionPerformed
-		moteur.getPlateau().vider();
+//		moteur.getPlateau().vider();
+		new NouvellePartie(this, true);
 	}//GEN-LAST:event_menuNouvellePartieActionPerformed
 
+	private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+		quitterApplication();
+	}//GEN-LAST:event_formWindowClosing
+
+	private void menuQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuQuitterActionPerformed
+		quitterApplication();
+	}//GEN-LAST:event_menuQuitterActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ihm.AireDeJeu aireDeJeu1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private ihm.AireDeJeu aireDeJeu;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu menuBarFichier;
+    private javax.swing.JMenu menuBarOption;
     private javax.swing.JMenuItem menuNouvellePartie;
+    private javax.swing.JMenuItem menuQuitter;
     // End of variables declaration//GEN-END:variables
 }
