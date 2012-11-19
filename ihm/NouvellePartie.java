@@ -4,16 +4,17 @@ package ihm;
  *
  * @author Kévin
  */
-public class NouvellePartieWindow2 extends javax.swing.JDialog {
+public class NouvellePartie extends javax.swing.JDialog {
 	public java.awt.Frame parent;
 	/**
-	 * Creates new form NouvellePartieWindow2
+	 * Creates new form NouvellePartie
 	 */
-	public NouvellePartieWindow2(java.awt.Frame parent, boolean modal) {
+	public NouvellePartie(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
-		initComponents();
-		setVisible(true);
 		this.parent = parent;
+		initComponents();
+		setLocationRelativeTo(getParent());
+		setVisible(true);
 	}
 
 	/**
@@ -33,6 +34,7 @@ public class NouvellePartieWindow2 extends javax.swing.JDialog {
         jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Nouvelle Partie");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Vous allez configurer la nouvelle partie.");
@@ -55,14 +57,14 @@ public class NouvellePartieWindow2 extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jComboBox1, 0, 313, Short.MAX_VALUE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -86,57 +88,6 @@ public class NouvellePartieWindow2 extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/*
-		 * Set the Nimbus look and feel
-		 */
-		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the
-		 * default look and feel. For details see
-		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(NouvellePartieWindow2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(NouvellePartieWindow2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(NouvellePartieWindow2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(NouvellePartieWindow2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		//</editor-fold>
-
-		/*
-		 * Create and display the dialog
-		 */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-
-			@Override
-			public void run() {
-				NouvellePartieWindow2 dialog = new NouvellePartieWindow2(new javax.swing.JFrame(), true);
-				
-				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-					@Override
-					public void windowClosing(java.awt.event.WindowEvent e) {
-						System.exit(0);
-					}
-				});
-				dialog.setVisible(true);
-			}
-		});
-	}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
