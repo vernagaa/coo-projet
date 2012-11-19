@@ -14,6 +14,7 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 
 	private FenetreEditeur fenetreEditeur;
 	public Case c1 = null;
+	private Case c1old = null;
 	public Case c2 = null;
 	public Case c2old = null;
 	public int ligneMin;
@@ -120,13 +121,16 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int lig = y / Case.TAILLE;
 		c1 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
 		
-		if(c1 != null) {
+		if(c1 != null&& (c1old == null || c1old.getLigne()!=c1.getLigne() || c1old.getColonne()!=c1.getColonne())) {
 			ligneMin=c1.getLigne();
 			ligneMax=c1.getLigne();
 			colonneMin=c1.getColonne();
 			colonneMax=c1.getColonne();
-		}
 		fenetreEditeur.getAire().repaint();
+		}
+		
+		c1old = c1;
+		
 	}
 
 	@Override
