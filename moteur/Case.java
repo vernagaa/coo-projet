@@ -25,6 +25,11 @@ public class Case implements Serializable{
 	 */
 	private Plateau plateau;
 	/**
+	 * Cette variable permet de mettre la case en surbrillance dans 2 cas : - Si
+	 * la case est selectionné - Si la case est accessible est survolé
+	 */
+	private boolean select;
+	/**
 	 * Variable contenant l'element présent sur la case, 3 cas : - null,
 	 * signifie qu'il n'y a pas d'élément - Pion, signifie qu'il y a un
 	 * personnage jouable - Obstacle, signifie qu'il y a un obsatcle non jouable
@@ -44,6 +49,7 @@ public class Case implements Serializable{
 		lig = l;
 		col = c;
 		plateau = p;
+		select = false;
 		pion = null;
 		obstacle = null;
 		typeTerrain = Textures.ROC;
@@ -59,6 +65,7 @@ public class Case implements Serializable{
 		lig = c.lig;
 		col = c.col;
 		plateau = c.plateau;
+		select = c.select;
 		pion = c.pion;
 		obstacle = c.obstacle;
 		typeTerrain = c.typeTerrain;
@@ -156,6 +163,12 @@ public class Case implements Serializable{
 		obstacle = null;
 	}
 
+	/**
+	 * Méthode permettant de sélectionner une case
+	 */
+	public void setSelect(boolean b) {
+		select = b;
+	}
 
 	void setPion(Pion pion) {
 		this.pion = pion;
@@ -188,5 +201,9 @@ public class Case implements Serializable{
 	public String toString() {
 		return lig + "," + col;
 	}
+
+    public boolean getSelect() {
+	return select;
+    }
 
 }
