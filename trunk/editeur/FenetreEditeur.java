@@ -772,7 +772,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
     private void chargerMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargerMapActionPerformed
 		JFileChooser fc = new JFileChooser();
 		System.out.println(aireDeJeu1.getPlateau());
-		if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+		if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 			File fichier = fc.getSelectedFile();
 
 			if (fichier.exists()) {
