@@ -54,11 +54,11 @@ public class AireDeJeu extends JComponent {
 		}
 		gd.setColor(new Color(80, 80, 80, 40));
 
-		for (int i = 0; i < getHeight(); i += Case.TAILLE) {
-			gd.drawLine(0, i, getWidth(), i);
+		for (int i = 0; i <= plateau.getNbLigne() * Case.TAILLE; i += Case.TAILLE) {
+			gd.drawLine(0, i, plateau.getNbColonne() * Case.TAILLE, i);
 		}
-		for (int j = 0; j < getWidth(); j += Case.TAILLE) {
-			gd.drawLine(j, 0, j, getHeight());
+		for (int i = 0; i <= plateau.getNbColonne() * Case.TAILLE; i += Case.TAILLE) {
+			gd.drawLine(i, 0, i, plateau.getNbLigne() * Case.TAILLE);
 		}
 
 	}
