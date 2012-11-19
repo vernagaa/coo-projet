@@ -1,17 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ecouteur;
 
 import editeur.FenetreEditeur;
-import ihm.AireDeJeu;
 import java.awt.event.*;
-import java.util.Timer;
 import moteur.Bordure;
 import moteur.Case;
 import moteur.Indestructible;
-import moteur.Obstacle;
 
 /**
  *
@@ -43,11 +36,9 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		x = e.getX();
 		y = e.getY();
 
-
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
 		c1 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
-		c1.setSelect(true);
 		ligneMin=c1.getLigne();
 		ligneMax=c1.getLigne();
 		colonneMin=c1.getColonne();
@@ -56,6 +47,7 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 
 	}
 
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		x = e.getX();
 		y = e.getY();
@@ -86,7 +78,6 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 				} else {
 					c[i][j].setTypeTerrain(fenetreEditeur.texture);
 				}
-				c[i][j].setSelect(false);
 			}
 		}
 		c1=null;
@@ -122,6 +113,20 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
+		x = e.getX();
+		y = e.getY();
+
+		int col = x / Case.TAILLE;
+		int lig = y / Case.TAILLE;
+		c1 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
+		
+		if(c1 != null) {
+			ligneMin=c1.getLigne();
+			ligneMax=c1.getLigne();
+			colonneMin=c1.getColonne();
+			colonneMax=c1.getColonne();
+		}
+		fenetreEditeur.getAire().repaint();
 	}
 
 	@Override
