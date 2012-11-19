@@ -788,12 +788,12 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	    } else {
 		System.err.println("Le fichier n'existe pas");
 	    }
-	}
-	for (int i = 0; i < aireDeJeu1.getPlateau().getNbLigne(); i++) {
-	    for (int j = 0; j < aireDeJeu1.getPlateau().getNbColonne(); j++) {
-		System.out.print(aireDeJeu1.getPlateau().get(i, j).getTypeTerrain());
+	    for (int i = 0; i < aireDeJeu1.getPlateau().getNbLigne(); i++) {
+		for (int j = 0; j < aireDeJeu1.getPlateau().getNbColonne(); j++) {
+		    System.out.print(aireDeJeu1.getPlateau().get(i, j).getTypeTerrain());
+		}
+		System.out.println("");
 	    }
-	    System.out.println("");
 	}
 
     }//GEN-LAST:event_chargerMapActionPerformed
