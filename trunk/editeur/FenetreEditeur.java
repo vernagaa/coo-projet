@@ -34,7 +34,6 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	aireDeJeu1.addMouseListener(ecouteur);
 	aireDeJeu1.addMouseMotionListener(ecouteur);
 
-	initComponents();
 	setVisible(true);
 	obstacle = false;
 	suppression = false;

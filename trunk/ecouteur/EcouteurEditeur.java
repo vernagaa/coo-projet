@@ -52,7 +52,6 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 	public void mouseReleased(MouseEvent e) {
 		x = e.getX();
 		y = e.getY();
-		fenetreEditeur.getAire().repaint();
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
 		c2 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
@@ -100,7 +99,7 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int lig = y / Case.TAILLE;
 		c2 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
 
-		if(c2!=null && (c2old == null || c2old.getLigne()!=c2.getLigne() || c2old.getColonne()!=c2.getColonne())){
+		if(c1!=null && c2!=null && (c2old == null || c2old.getLigne()!=c2.getLigne() || c2old.getColonne()!=c2.getColonne())){
 		ligneMin = Math.min(c1.getLigne(), c2.getLigne());
 		ligneMax = Math.max(c1.getLigne(), c2.getLigne());
 		colonneMin = Math.min(c1.getColonne(), c2.getColonne());

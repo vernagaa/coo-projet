@@ -52,7 +52,7 @@ public class AireDeJeu extends JComponent {
 				}
 			}
 		}
-		gd.setColor(Color.GRAY);
+		gd.setColor(new Color(80, 80, 80, 40));
 
 		for (int i = 0; i < getHeight(); i += Case.TAILLE) {
 			gd.drawLine(0, i, getWidth(), i);
