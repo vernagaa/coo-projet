@@ -117,11 +117,11 @@
                               <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" pref="153" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jRadioButton27" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="jRadioButton27" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
@@ -276,7 +276,7 @@
                           </Group>
                           <Component id="jRadioButton8" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="292" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="aireDeJeu1" min="-2" max="-2" attributes="0"/>

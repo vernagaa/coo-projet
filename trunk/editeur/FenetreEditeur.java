@@ -1,25 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * FenetreEditeur.java
- *
- * Created on 15 nov. 2012, 14:16:06
- */
 package editeur;
 
 import ecouteur.EcouteurEditeur;
 import ihm.AireDeJeu;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import moteur.Case;
-import moteur.Obstacle;
 import moteur.Plateau;
 import moteur.Textures;
 
@@ -29,14 +15,6 @@ import moteur.Textures;
  */
 public class FenetreEditeur extends javax.swing.JFrame {
 
-	/**
-	 * Hauteur de la fenêtre
-	 */
-	private static final float hauteur = (float) 2 / 3;
-	/**
-	 * Largeur de la fenêtre
-	 */
-	private static final float largeur = (float) 2 / 3;
 	private Editeur editeur;
 	public int texture;
 	public boolean obstacle;
@@ -50,14 +28,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	public FenetreEditeur(Editeur e) {
 		editeur = e;
 		ecouteur = new EcouteurEditeur(this);
-		//Taille et position de la fenetre
-		Toolkit k = Toolkit.getDefaultToolkit();
-		Dimension tailleEcran = k.getScreenSize();
-		int largeurEcran = tailleEcran.width;
-		int hauteurEcran = tailleEcran.height;
 		initComponents();
-		setSize((int) (largeurEcran * hauteur), (int) (hauteurEcran * largeur));
-//        setLocation((int) (largeurEcran*posX), (int) (hauteurEcran*posY));
 		setLocationRelativeTo(getParent());
 		
 		aireDeJeu1.addMouseListener(ecouteur);
@@ -580,10 +551,10 @@ public class FenetreEditeur extends javax.swing.JFrame {
                                 .addGap(117, 117, 117)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(136, 136, 136))
+                                .addComponent(jRadioButton27)
+                                .addContainerGap())
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(112, 112, 112)
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jRadioButton4)
@@ -646,7 +617,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jRadioButton8))
                                             .addComponent(jRadioButton7))
-                                        .addContainerGap())))))))
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,7 +675,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButton7))
                             .addComponent(jRadioButton8))
-                        .addGap(292, 292, 292))
+                        .addGap(260, 260, 260))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, Short.MAX_VALUE)))
