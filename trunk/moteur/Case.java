@@ -206,6 +206,6 @@ public class Case implements Serializable {
     }
     
     public boolean isObstacle(){
-        return obstacle != null;
+        return obstacle != null || pion != null;
     }
 }
