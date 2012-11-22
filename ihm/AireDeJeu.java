@@ -59,8 +59,8 @@ public class AireDeJeu extends JComponent {
                         int i = 0;
                         for (Case c2 : c1.getPion().listeDeplacement) {
                             gd.setColor(new Color(25, 150, 255, 100-i));
-                            gd.fillRect(c2.getLigne() * Case.TAILLE, c2.getColonne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-                            i += 1;
+                            gd.fillRect(c2.getColonne() * Case.TAILLE,c2.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+                            i++;
                         }
                     }
                 }

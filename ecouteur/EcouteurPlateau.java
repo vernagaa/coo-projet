@@ -34,7 +34,7 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener{
 		Case c = aire.getPlateau().get(lig, col);
 		System.out.println("case :" + c);
 		System.out.println("lig "+lig+" col "+col);
-		
+		System.out.println("obstacle :"+c.isObstacle());
 	}
 
 	@Override

@@ -5,8 +5,6 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import moteur.familles.oiseau.AssassinOiseau;
-import moteur.familles.oiseau.GuerrierOiseau;
-import moteur.familles.oiseau.TankOiseau;
 
 /**
  *
@@ -86,9 +84,9 @@ public class Plateau implements Serializable {
             }
         }
         
-        AssassinOiseau o = new AssassinOiseau(plateau[9][5]);
-       
-        System.out.println(plateau[5][5].getPion());
+        AssassinOiseau o = new AssassinOiseau(plateau[7][9]);
+        AssassinOiseau o1 = new AssassinOiseau(plateau[7][7]);
+        System.out.println(plateau[7][9].getPion());
         System.out.println(o.deplacementPossible(plateau[7][7]));
         
     }

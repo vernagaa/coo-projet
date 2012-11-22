@@ -1,10 +1,7 @@
 package moteur;
 
-import editeur.FenetreEditeur;
 import ihm.FenetrePrincipale;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 /**
@@ -25,7 +22,7 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	public Moteur() {
-		plateau = new Plateau("map/map1.map");
+		plateau = new Plateau("map/map2.map");
 	}
 
 	public static void main(String[] args) {
