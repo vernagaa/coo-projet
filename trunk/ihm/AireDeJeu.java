@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
 import moteur.Case;
+import moteur.Noeud;
 import moteur.Plateau;
 import moteur.Textures;
 
@@ -55,11 +56,11 @@ public class AireDeJeu extends JComponent {
         for (Case[] c : plateau.get()) {
             for (Case c1 : c) {
                 if (c1.getPion() != null) {
-                    if (!c1.getPion().listeDeplacement.isEmpty()) {
+                    if (!c1.getPion().listeDeplacementPossible.isEmpty()) {
                         int i = 0;
-                        for (Case c2 : c1.getPion().listeDeplacement) {
-                            gd.setColor(new Color(25, 150, 255, 100-i));
-                            gd.fillRect(c2.getColonne() * Case.TAILLE,c2.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+                        for (Noeud c2 : c1.getPion().listeDeplacementPossible) {
+                            gd.setColor(new Color(25, 150, 255, 100));
+                            gd.fillRect(c2.c.getColonne() * Case.TAILLE,c2.c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
                             i++;
                         }
                     }
