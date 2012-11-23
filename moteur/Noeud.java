@@ -12,14 +12,12 @@ import java.util.ArrayList;
  */
 public class Noeud {
     public Case c;
-    public boolean visite;
     public int cout;
     public ArrayList<Noeud> listeNoeud;
     
     public Noeud(Case c, int cout){
         this.c = c;
         this.cout = cout;
-        visite = false;
         listeNoeud = new ArrayList<Noeud>();
     }
 }
