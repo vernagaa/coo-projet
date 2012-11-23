@@ -125,6 +125,7 @@ public final class Textures {
 	public static final int TACTICIENREPTILE = 13;
 	public static final int TANKREPTILE = 14;
 	
+	private static final String ASSASSINOISEAUPATH = "/images/oiseau_test.png";
 	
 	private BufferedImage[] terrain = new BufferedImage[4];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
@@ -423,11 +424,15 @@ public final class Textures {
 	}
 
 	private void initPersos() {
-		//TODO
-//		try {
-//			perso[XXX] = ImageIO.read(getClass().getResource(XXX));
-//		} catch (IOException ex) {
-//			System.err.println("Image non trouvée : " + XXXPATH);
-//		}
+		//TODO textures personnages
+		try {
+			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINOISEAUPATH));
+			perso[ASSASSINOISEAU][1] = img.getSubimage(0, 192, 32, 32);
+			perso[ASSASSINOISEAU][3] = img.getSubimage(0, 236, 32, 32);
+			perso[ASSASSINOISEAU][2] = img.getSubimage(0, 286, 32, 32);
+			perso[ASSASSINOISEAU][0] = img.getSubimage(0, 334, 32, 32);
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
+		}
 	}
 }

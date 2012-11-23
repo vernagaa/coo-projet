@@ -105,7 +105,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Éditeur de carte");
+        setTitle("Éditeur de carte - Animosity");
 
         javax.swing.GroupLayout aireDeSelection1Layout = new javax.swing.GroupLayout(aireDeSelection1);
         aireDeSelection1.setLayout(aireDeSelection1Layout);
