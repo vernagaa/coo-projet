@@ -63,6 +63,11 @@ public class AireDeJeu extends JComponent {
 							gd.fillRect(c2.c.getColonne() * Case.TAILLE, c2.c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 							i++;
 						}
+						for (Case c2 : c1.getPion().listeAttaquePossible) {
+							gd.setColor(new Color(255, 100, 0, 255 ));
+							gd.fillRect(c2.getColonne() * Case.TAILLE, c2.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+							i++;
+						}
 						for(Case c2 : c1.getPion().getDeplacement()){
 							gd.setColor(new Color(50, 50, 100, 200));
 							gd.fillRect(c2.getColonne() * Case.TAILLE, c2.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
@@ -83,7 +88,9 @@ public class AireDeJeu extends JComponent {
 		for (int j = 0; j < getWidth(); j += Case.TAILLE) {
 			gd.drawLine(j, 0, j, getHeight());
 		}
-
+		
 
 	}
+
+	
 }

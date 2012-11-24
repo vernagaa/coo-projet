@@ -27,6 +27,7 @@ public abstract class Pion implements Serializable {
 	protected int mouvement;
 	protected Orientation orientation;
 	public ArrayList<Noeud> listeDeplacementPossible;
+	public ArrayList<Case> listeAttaquePossible;
 	private ArrayList<Case> deplacement;
 	private Noeud noeudContenu;
 	private Case c;
@@ -51,10 +52,19 @@ public abstract class Pion implements Serializable {
 		orientation = Orientation.SUD;
 		listeDeplacementPossible = new ArrayList<Noeud>();
 		deplacement = new ArrayList<Case>();
+		listeAttaquePossible = new ArrayList<Case>();
 	}
 
-	public void deplacerPion(Case c) {
-		//TODO déplacement
+	public void deplacerPion(Case c1) {
+		System.out.println("Je suis en " + c.toString());
+		this.c.setPion(null);
+		c1.setPion(this);
+		this.c = c1;
+		System.out.println("Je suis allé en " + c.toString());
+		listeAttaquePossible.clear();
+		listeDeplacementPossible.clear();
+		deplacement.clear();
+
 	}
 
 	/**
@@ -251,26 +261,23 @@ public abstract class Pion implements Serializable {
 		}
 		return false;
 	}
-	
+
 	private void recopierNoeudDansNoeud(Noeud n1, Noeud n2) {
-		for(Noeud nk : n1.listeNoeud) {
+		for (Noeud nk : n1.listeNoeud) {
 			n2.listeNoeud.add(nk);
 		}
 	}
 
 	public void afficherDeplacement(Case c2) {
-		System.out.println("Le deplacement est :");
 		deplacement.clear();
 		for (Noeud n1 : listeDeplacementPossible) {
-			if(n1.c.compare(c2)){
+			if (n1.c.compare(c2)) {
 				for (Noeud n2 : n1.listeNoeud) {
-					System.out.print(n2.c + " ");
 					deplacement.add(n2.c);
 				}
 				deplacement.add(c2);
 			}
 		}
-		System.out.println("");
 	}
 
 	public ArrayList<Case> getDeplacement() {

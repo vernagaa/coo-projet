@@ -22,6 +22,6 @@ public final class TacticienOiseau extends Tacticien implements Oiseau {
 
 	@Override
 	public BufferedImage getImage() {
-		return Textures.getPersonnage(Textures.TACTICIENOISEAU, orientation);
+		return Textures.getPersonnage(Textures.ASSASSINOISEAU, orientation);
 	}
 }
