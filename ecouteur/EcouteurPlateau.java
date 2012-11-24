@@ -18,9 +18,12 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 
 	private AireDeJeu aire;
 	private Case caseCourante;
+	private boolean mouvement;
+	private Case caseDebutMouvement;
 
 	public EcouteurPlateau(AireDeJeu aire) {
 		this.aire = aire;
+		mouvement = false;
 	}
 
 	@Override
@@ -39,14 +42,24 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 		 * Test du chemin trouve !
 		 */
 
+		if (caseCourante != null) {
+			caseCourante.setSelect(false);
+		}
+		caseCourante = aire.getPlateau().get(lig, col);
+		
 		if (aire.getPlateau().get(lig, col).getPion() != null) {
-			if (caseCourante != null) {
-				caseCourante.setSelect(false);
-			}
-			caseCourante = aire.getPlateau().get(lig, col);
+			mouvement = true;
 			caseCourante.setSelect(true);
 			caseCourante.getPion().deplacementPossible(aire.getPlateau().get(lig, col));
+			caseDebutMouvement = caseCourante;
 		}
+		if(mouvement && caseDebutMouvement.getPion().getDeplacement().contains(caseCourante)){
+			System.out.println(caseCourante.toString());
+			caseDebutMouvement.getPion().deplacerPion(caseCourante);
+			mouvement = false;
+		}
+		
+		aire.repaint();
 	}
 
 	@Override
@@ -76,7 +89,7 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
-		if (caseCourante != null && aire.getPlateau().get(lig, col) != null) {
+		if (caseCourante != null && aire.getPlateau().get(lig, col) != null && caseCourante.getPion() != null) {
 			caseCourante.getPion().afficherDeplacement(aire.getPlateau().get(lig, col));
 			aire.repaint();
 		}

@@ -4,7 +4,7 @@ import editeur.FenetreEditeur;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import moteur.familles.oiseau.AssassinOiseau;
+import moteur.familles.oiseau.*;
 
 /**
  *
@@ -84,11 +84,13 @@ public class Plateau implements Serializable {
 			}
 		}
 
-		AssassinOiseau o = new AssassinOiseau(plateau[7][9]);
-		AssassinOiseau o1 = new AssassinOiseau(plateau[12][7]);
-		AssassinOiseau o2 = new AssassinOiseau(plateau[7][7]);
-		AssassinOiseau o3 = new AssassinOiseau(plateau[5][6]);
+		GuerrierOiseau o0 = new GuerrierOiseau(plateau[7][9]);
+		ArcherOiseau o1 = new ArcherOiseau(plateau[12][7]);
+		TacticienOiseau o2 = new TacticienOiseau(plateau[6][7]);
+		TankOiseau o3 = new TankOiseau(plateau[5][6]);
 		AssassinOiseau o4 = new AssassinOiseau(plateau[5][7]);
+		AssassinOiseau o5 = new AssassinOiseau(plateau[8][11]);
+		AssassinOiseau o6 = new AssassinOiseau(plateau[8][5]);
 
 
 	}
