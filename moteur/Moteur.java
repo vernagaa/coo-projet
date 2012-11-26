@@ -22,7 +22,7 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	public Moteur() {
-		plateau = new Plateau("map/map2.map");
+		plateau = new Plateau("map/map1.map");
 	}
 
 	public static void main(String[] args) {

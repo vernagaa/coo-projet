@@ -14,6 +14,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	/** Creates new form FenetrePrincipale */
 	public FenetrePrincipale(Moteur m) {
 		moteur = m;
+		new NouvellePartie(this, true);
 		initComponents();
 		//position
 		setLocationRelativeTo(getParent());
