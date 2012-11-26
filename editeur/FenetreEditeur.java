@@ -67,6 +67,13 @@ public class FenetreEditeur extends javax.swing.JFrame {
         jRadioButton35 = new javax.swing.JRadioButton();
         jRadioButton36 = new javax.swing.JRadioButton();
         jRadioButton37 = new javax.swing.JRadioButton();
+        jPanel6 = new javax.swing.JPanel();
+        jRadioButton38 = new javax.swing.JRadioButton();
+        jPanel7 = new javax.swing.JPanel();
+        jRadioButton39 = new javax.swing.JRadioButton();
+        jPanel8 = new javax.swing.JPanel();
+        jRadioButton40 = new javax.swing.JRadioButton();
+        jRadioButton41 = new javax.swing.JRadioButton();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jRadioButton4 = new javax.swing.JRadioButton();
@@ -303,6 +310,109 @@ public class FenetreEditeur extends javax.swing.JFrame {
         );
 
         jTabbedPane3.addTab("Sable", jPanel5);
+
+        buttonGroup1.add(jRadioButton38);
+        jRadioButton38.setBorderPainted(true);
+        jRadioButton38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/route.png"))); // NOI18N
+        jRadioButton38.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton38ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1041, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton38)
+                .addContainerGap(991, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 152, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton38)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Route", jPanel6);
+
+        buttonGroup1.add(jRadioButton39);
+        jRadioButton39.setBorderPainted(true);
+        jRadioButton39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/roc.png"))); // NOI18N
+        jRadioButton39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton39ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1041, Short.MAX_VALUE)
+            .addGap(0, 1041, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton39)
+                .addContainerGap(991, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 152, Short.MAX_VALUE)
+            .addGap(0, 152, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton39)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Roc", jPanel7);
+
+        buttonGroup1.add(jRadioButton40);
+        jRadioButton40.setBorderPainted(true);
+        jRadioButton40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/neige.png"))); // NOI18N
+        jRadioButton40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton40ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton41);
+        jRadioButton41.setBorderPainted(true);
+        jRadioButton41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/glace.png"))); // NOI18N
+        jRadioButton41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton41ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButton40)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButton41)
+                .addContainerGap(935, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton41)
+                    .addComponent(jRadioButton40))
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Hiver", jPanel8);
 
         jTabbedPane1.addTab("Terrain", jTabbedPane3);
 
@@ -747,7 +857,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -844,7 +954,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	    obstacle = false;
 	    suppression = false;
 	    bordure = false;
-	    texture = Textures.HERBECENTRE;
+	    texture = Textures.HERBE;
 	}//GEN-LAST:event_jRadioButton5ActionPerformed
 
 	private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
@@ -1038,7 +1148,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	    obstacle = false;
 	    suppression = false;
 	    bordure = false;
-	    texture = Textures.SABLECENTRE;
+	    texture = Textures.SABLE;
 	}//GEN-LAST:event_jRadioButton32ActionPerformed
 
 	private void jRadioButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton28ActionPerformed
@@ -1115,6 +1225,34 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	aireDeJeu1.repaint();
     }//GEN-LAST:event_creerMapActionPerformed
 
+	private void jRadioButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton38ActionPerformed
+	    obstacle = false;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.ROUTE;
+	}//GEN-LAST:event_jRadioButton38ActionPerformed
+
+	private void jRadioButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton39ActionPerformed
+	    obstacle = false;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.ROC;
+	}//GEN-LAST:event_jRadioButton39ActionPerformed
+
+	private void jRadioButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton40ActionPerformed
+	    obstacle = false;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.NEIGE;
+	}//GEN-LAST:event_jRadioButton40ActionPerformed
+
+	private void jRadioButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton41ActionPerformed
+	    obstacle = false;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.GLACE;
+	}//GEN-LAST:event_jRadioButton41ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ihm.AireDeJeu aireDeJeu1;
     public editeur.AireDeSelection aireDeSelection1;
@@ -1129,6 +1267,9 @@ public class FenetreEditeur extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
@@ -1160,7 +1301,11 @@ public class FenetreEditeur extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton35;
     private javax.swing.JRadioButton jRadioButton36;
     private javax.swing.JRadioButton jRadioButton37;
+    private javax.swing.JRadioButton jRadioButton38;
+    private javax.swing.JRadioButton jRadioButton39;
     private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton40;
+    private javax.swing.JRadioButton jRadioButton41;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;

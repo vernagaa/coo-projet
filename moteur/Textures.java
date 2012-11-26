@@ -96,13 +96,17 @@ public final class Textures {
 	 */
 	private static final String ROCPATH = "/images/roc.png";
 	private static final String ROUTEPATH = "/images/route.png";
-	private static final String SABLECENTREPATH = "/images/sableCentre.png";
-	private static final String HERBECENTREPATH = "/images/herbe.png";
+	private static final String SABLEPATH = "/images/sableCentre.png";
+	private static final String HERBEPATH = "/images/herbemod.png";
+	private static final String NEIGEPATH = "/images/neige.png";
+	private static final String GLACEPATH = "/images/glace.png";
 	
 	public static final int ROC = 0;
 	public static final int ROUTE = 1;
-	public static final int SABLECENTRE = 2;
-	public static final int HERBECENTRE = 3;
+	public static final int SABLE = 2;
+	public static final int HERBE = 3;
+	public static final int NEIGE = 4;
+	public static final int GLACE = 5;
 	
 	/**
 	 * Personnages
@@ -129,7 +133,7 @@ public final class Textures {
 	private static final String ASSASSINREPTILEPATH = "/images/reptile_test.png";
 	private static final String ASSASSINFELINPATH = "/images/felin_test.png";
 	
-	private BufferedImage[] terrain = new BufferedImage[4];
+	private BufferedImage[] terrain = new BufferedImage[6];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][] perso = new BufferedImage[15][4];//TODO les initialiser
 	private BufferedImage[] obstacle = new BufferedImage[22];
@@ -166,9 +170,19 @@ public final class Textures {
 		}
 
 		try {
-			terrain[HERBECENTRE] = ImageIO.read(getClass().getResource(HERBECENTREPATH));
+			terrain[HERBE] = ImageIO.read(getClass().getResource(HERBEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + HERBECENTREPATH);
+			System.err.println("Image non trouvée : " + HERBEPATH);
+		}
+		try {
+			terrain[NEIGE] = ImageIO.read(getClass().getResource(NEIGEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + NEIGEPATH);
+		}
+		try {
+			terrain[GLACE] = ImageIO.read(getClass().getResource(GLACEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + GLACEPATH);
 		}
 
 		tileEau();
@@ -419,9 +433,9 @@ public final class Textures {
 		}
 		
 		try {
-			terrain[SABLECENTRE] = ImageIO.read(getClass().getResource(SABLECENTREPATH));
+			terrain[SABLE] = ImageIO.read(getClass().getResource(SABLEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + SABLECENTREPATH);
+			System.err.println("Image non trouvée : " + SABLEPATH);
 		}
 	}
 
