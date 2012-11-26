@@ -18,22 +18,18 @@ import moteur.Textures;
 public class AireDeJeu extends JComponent {
 
     private Plateau plateau;
-    public Point pointFinDeTour;
-    public Point survolFinDeTour;
+    private boolean afficherChoix;
+    private Case caseChoix;
     public boolean afficherFinDeTour;
-    public Point pointAfficherChoix;
-    public Point survolAfficherChoix;
-    public boolean afficherChoix;
+    public Case caseFinDeTour;
+    private Case caseSurvol;
     public Case pionDeplace;
     public boolean finDeDeplacement;
 
     public AireDeJeu(Plateau plateau) {
         setPreferredSize(new Dimension(plateau.getNbColonne() * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1));
         this.plateau = plateau;
-        pointFinDeTour = new Point();
         afficherFinDeTour = false;
-        pointAfficherChoix = new Point();
-        survolAfficherChoix = new Point();
         afficherChoix = false;
         finDeDeplacement = false;
         pionDeplace = null;
@@ -123,30 +119,65 @@ public class AireDeJeu extends JComponent {
         }
 
         if (afficherFinDeTour) {
-            gd.setColor(new Color(80, 80, 80, 200));
-            gd.fillRect(pointFinDeTour.x, pointFinDeTour.y, 3 * Case.TAILLE, Case.TAILLE);
-            gd.setColor(Color.WHITE);
-            gd.drawString("Fin du tour", pointFinDeTour.x + 10, pointFinDeTour.y + 20);
+            construireAfficherFinDuTour(gd);
         }
         if (afficherChoix) {
-            gd.setColor(new Color(80, 80, 80, 200));
-            gd.fillRect(pointAfficherChoix.x, pointAfficherChoix.y, 3 * Case.TAILLE, 2 * Case.TAILLE);
-            if (contientCoordonnees(survolAfficherChoix, pointAfficherChoix, 3 * Case.TAILLE, Case.TAILLE)) {
-                gd.setColor(new Color(170, 170, 170, 200));
-                gd.fillRect(pointAfficherChoix.x, pointAfficherChoix.y, 3 * Case.TAILLE, Case.TAILLE);
-            } else if (contientCoordonnees(survolAfficherChoix, new Point(pointAfficherChoix.x, pointAfficherChoix.y + Case.TAILLE),
-                    3 * Case.TAILLE, 2 * Case.TAILLE)) {
-                gd.setColor(new Color(170, 170, 170, 200));
-                gd.fillRect(pointAfficherChoix.x, pointAfficherChoix.y + Case.TAILLE, 3 * Case.TAILLE, Case.TAILLE);
-            }
-            gd.setColor(Color.WHITE);
-            gd.drawString("Attaquer", pointAfficherChoix.x + 10, pointAfficherChoix.y + 20);
-            gd.drawString("Capacité", pointAfficherChoix.x + 10, pointAfficherChoix.y + 20 + Case.TAILLE);
+            construireAffichageChoix(caseChoix, gd);
+            construireSurvolChoix(gd);
         }
 
     }
 
     public boolean contientCoordonnees(Point survol, Point rect, int ligne, int colonne) {
         return survol.x > rect.x && survol.y > rect.y && survol.x < rect.x + ligne && survol.y < rect.y + colonne;
+    }
+
+    /*
+     * 
+     *  Concerne l'affichage de la "fenetre" choix
+     */
+    public void construireAffichageChoix(Case c, Graphics2D gd) {
+        gd.setColor(new Color(80, 80, 80, 200));
+        gd.fillRect(caseChoix.getColonne() * Case.TAILLE, caseChoix.getLigne() * Case.TAILLE, 3 * Case.TAILLE, 2 * Case.TAILLE);
+        gd.setColor(Color.WHITE);
+        gd.drawString("Attaquer", caseChoix.getColonne() * Case.TAILLE + 10, caseChoix.getLigne() * Case.TAILLE + 20);
+        gd.drawString("Capacité", caseChoix.getColonne() * Case.TAILLE + 10, caseChoix.getLigne() * Case.TAILLE + 20 + Case.TAILLE);
+    }
+
+    public void affichageChoix(Case c) {
+        afficherChoix = true;
+        caseChoix = c;
+        caseSurvol = c;
+    }
+
+    public void survolAfficherChoix(Case c1) {
+        caseSurvol = c1;
+    }
+
+    private void construireSurvolChoix(Graphics2D gd) {
+        gd.setColor(new Color(170, 170, 170, 200));
+        if (caseSurvol != null) {
+            gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, 3 * Case.TAILLE, Case.TAILLE);
+        }
+    }
+
+    public void setAfficherChoix(boolean afficherChoix) {
+        this.afficherChoix = afficherChoix;
+    }
+
+    public void affichageFinDuTour(Case caseCourante) {
+        afficherFinDeTour = true;
+        this.caseFinDeTour = caseCourante;
+    }
+
+    private void construireAfficherFinDuTour(Graphics2D gd) {
+        gd.setColor(new Color(80, 80, 80, 200));
+        gd.fillRect(caseFinDeTour.getColonne() * Case.TAILLE, caseFinDeTour.getLigne() * Case.TAILLE, 3 * Case.TAILLE, Case.TAILLE);
+        gd.setColor(Color.WHITE);
+        gd.drawString("Fin du tour", caseFinDeTour.getColonne() * Case.TAILLE + 10, caseFinDeTour.getLigne() * Case.TAILLE + 20);
+    }
+
+    public void setAfficherFinDeTour(boolean afficherFinDeTour) {
+        this.afficherFinDeTour = afficherFinDeTour;
     }
 }
