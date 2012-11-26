@@ -10,280 +10,376 @@ import java.util.ArrayList;
  */
 public abstract class Pion implements Serializable {
 
-    protected static final long serialVersionUID = 1L;
-    /*
-     * La partie Statistique
-     */
-    private static final int CHANCEMIN = 20;
-    private static final int CHANCEMAX = 30;
-    private static final int TAUXRIPOSTE = 95;
-    protected int vie;
-    protected int force;
-    protected int precision;
-    protected int vitesse;
-    protected int defense;
-    protected int chance;
-    protected int portee;
-    protected int mouvement;
-    protected Orientation orientation;
-    public ArrayList<Noeud> listeDeplacementPossible;
-    public ArrayList<Case> listeAttaquePossible;
-    private ArrayList<Case> deplacement;
-    private Noeud noeudContenu;
-    private Case c;
+	protected static final long serialVersionUID = 1L;
+	/*
+	 * La partie Statistique
+	 */
+	private static final int CHANCEMIN = 20;
+	private static final int CHANCEMAX = 30;
+	private static final int TAUXRIPOSTE = 95;
+	protected int vie;
+	protected int force;
+	protected int precision;
+	protected int vitesse;
+	protected int defense;
+	protected int chance;
+	protected int portee;
+	protected int mouvement;
+	protected Orientation orientation;
+	public ArrayList<Noeud> listeDeplacementPossible;
+	public ArrayList<Case> listeAttaquePossible;
+	public ArrayList<Case> listeAttaqueAire;
+	private ArrayList<Case> deplacement;
+	private Noeud noeudContenu;
+	private Case c;
 
-    public Pion(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
-        this.vie = vie;
-        this.force = force;
-        this.precision = precision;
-        this.vitesse = vitesse;
-        this.defense = defense;
-        this.chance = (int) (Math.random() * (CHANCEMAX - CHANCEMIN + 1) + CHANCEMIN) + bonusChance;
-        this.portee = portee;
-        this.mouvement = mouvement;
-        this.c = c;
-        c.getPlateau().get(c).setPion(this);
-        if (c.getColonne() < 5) {
-            orientation = Orientation.OUEST;
-        } else {
-            orientation = Orientation.EST;
-        }
-        //TODO pour les tests
-        orientation = Orientation.SUD;
-        listeDeplacementPossible = new ArrayList<Noeud>();
-        deplacement = new ArrayList<Case>();
-        listeAttaquePossible = new ArrayList<Case>();
-    }
+	public Pion(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
+		this.vie = vie;
+		this.force = force;
+		this.precision = precision;
+		this.vitesse = vitesse;
+		this.defense = defense;
+		this.chance = (int) (Math.random() * (CHANCEMAX - CHANCEMIN + 1) + CHANCEMIN) + bonusChance;
+		this.portee = portee;
+		this.mouvement = mouvement;
+		this.c = c;
+		c.getPlateau().get(c).setPion(this);
+		if (c.getColonne() < 5) {
+			orientation = Orientation.OUEST;
+		} else {
+			orientation = Orientation.EST;
+		}
+		//TODO pour les tests
+		orientation = Orientation.SUD;
+		listeDeplacementPossible = new ArrayList<Noeud>();
+		deplacement = new ArrayList<Case>();
+		listeAttaquePossible = new ArrayList<Case>();
+		listeAttaqueAire = new ArrayList<Case>();
 
-    public void deplacerPion(Case c1) {
-        System.out.println("Je suis en " + c.toString());
-        this.c.setPion(null);
-        c1.setPion(this);
-        this.c = c1;
-        System.out.println("Je suis allé en " + c.toString());
-        listeAttaquePossible.clear();
-        listeDeplacementPossible.clear();
-        deplacement.clear();
+	}
 
-    }
+	public void deplacerPion(Case c1) {
+		System.out.println("Je suis en " + c.toString());
+		mouvement -= distanceManhattan(c1);
 
-    /**
-     *
-     */
-    public void attaquerPion(Pion p) {
-        attaquerPion(p, TAUXRIPOSTE);
-    }
+		this.c.setPion(null);
+		c1.setPion(this);
+		this.c = c1;
+		System.out.println("Je suis allé en " + c.toString() + " il me reste nb mouvement " + mouvement);
+		listeAttaquePossible.clear();
+		listeDeplacementPossible.clear();
+		listeAttaqueAire.clear();
+		deplacement.clear();
+		//TO DO Joueur.getPions().effacerTout();
 
-    private void attaquerPion(Pion p, int tauxRiposte) {
-        float orient = dosCoteFace(p);
-        int degatInflige = (int) ((force + (int) (force * janken(p))) * orient);
-        int seDefend = p.seDefendre(p);
-        int hit = hit();
-        int esquive = esquiveEnnemi(p);
-        int aleaEsquive = (int) (Math.random() * (201));
-        int aleaRiposte = (int) (Math.random() * (201));
-        System.out.println(aleaEsquive + " " + esquive);
-        if (esquive < 100 && aleaEsquive > esquive) {
-            if (degatInflige > seDefend) {
-                System.out.println("J'attaque avec " + (degatInflige - seDefend));
-                p.recevoirDegat(degatInflige - seDefend);
-            } else {
-                System.out.println("Attaque de 1");
-                p.recevoirDegat(1);
-            }
+	}
 
-            if (aleaRiposte < tauxRiposte) {
-                System.out.println("Il riposte");
-                p.attaquerPion(this, tauxRiposte / 2);
-            }
-        } else {
-            System.out.println("J'esquive");
-        }
-    }
+	/**
+	 *
+	 */
+	public void attaquerPion(Pion p) {
+		attaquerPion(p, TAUXRIPOSTE);
+	}
 
-    private void recevoirDegat(int degatInflige) {
-        vie -= degatInflige;
-    }
+	private void attaquerPion(Pion p, int tauxRiposte) {
+		float orient = dosCoteFace(p);
+		int degatInflige = (int) ((force + (int) (force * janken(p))) * orient);
+		int seDefend = p.seDefendre(p);
+		int hit = hit();
+		int esquive = esquiveEnnemi(p);
+		int aleaEsquive = (int) (Math.random() * (201));
+		int aleaRiposte = (int) (Math.random() * (201));
+		System.out.println(aleaEsquive + " " + esquive);
+		if (esquive < 100 && aleaEsquive > esquive) {
+			if (degatInflige > seDefend) {
+				System.out.println("J'attaque avec " + (degatInflige - seDefend));
+				p.recevoirDegat(degatInflige - seDefend);
+			} else {
+				System.out.println("Attaque de 1");
+				p.recevoirDegat(1);
+			}
 
-    private int seDefendre(Pion p) {
-        return defense + (int) (defense * cooperation());
-    }
+			if (aleaRiposte < tauxRiposte) {
+				System.out.println("Il riposte");
+				p.attaquerPion(this, tauxRiposte / 2);
+			}
+		} else {
+			System.out.println("J'esquive");
+		}
+	}
 
-    /*
-     * Les methodes suivantes sont destines a calculer les paramatres du combat.
-     */
-    protected abstract float janken(Pion p);
+	private void recevoirDegat(int degatInflige) {
+		vie -= degatInflige;
+	}
 
-    private float dosCoteFace(Pion p) {
-        if (orientation.equals(p.getOrientation())) {
-            return 15 / 10;
-        } else if (orientation.equalsOp(p.getOrientation())) {
-            return 1;
-        }
-        return 12 / 10;
-    }
+	private int seDefendre(Pion p) {
+		return defense + (int) (defense * cooperation());
+	}
 
-    private int hit() {
-        return precision * 4;
-    }
+	/*
+	 * Les methodes suivantes sont destines a calculer les paramatres du combat.
+	 */
+	protected abstract float janken(Pion p);
 
-    private int esquiveEnnemi(Pion p) {
-        return ((int) (p.vitesse * 1.5) + p.chance) + (int) (p.cooperation() * ((int) (p.vitesse * 1.5) + p.chance) / 4)
-                + (int) (janken(p) * ((int) (p.vitesse * 1.5) + p.chance) / 2) /*
-                 * + (int) (p.getCase().getType.getBonus()*(p.vitesse * 1.5) +
-                 * p.chance)/3)
-                 */;
-    }
+	private float dosCoteFace(Pion p) {
+		if (orientation.equals(p.getOrientation())) {
+			return 15 / 10;
+		} else if (orientation.equalsOp(p.getOrientation())) {
+			return 1;
+		}
+		return 12 / 10;
+	}
 
-    private float coupCritiques() {
-        return precision * ((float) chance / 20);
-    }
+	private int hit() {
+		return precision * 4;
+	}
 
-    private float cooperation() {
-        int resultat = 0;
-        if (c.getPlateau().get(c.getLigne() + 1, c.getColonne() + 1) != null) {
-            resultat += 1;
-        }
-        if (c.getPlateau().get(c.getLigne() - 1, c.getColonne() + 1) != null) {
-            resultat += 1;
-        }
-        if (c.getPlateau().get(c.getLigne() + 1, c.getColonne() - 1) != null) {
-            resultat += 1;
-        }
-        if (c.getPlateau().get(c.getLigne() - 1, c.getColonne() - 1) != null) {
-            resultat += 1;
-        }
-        return (resultat * 7) / 100;
-    }
+	private int esquiveEnnemi(Pion p) {
+		return ((int) (p.vitesse * 1.5) + p.chance) + (int) (p.cooperation() * ((int) (p.vitesse * 1.5) + p.chance) / 4)
+				+ (int) (janken(p) * ((int) (p.vitesse * 1.5) + p.chance) / 2) /*
+				 * + (int) (p.getCase().getType.getBonus()*(p.vitesse * 1.5) +
+				 * p.chance)/3)
+				 */;
+	}
 
-    public abstract String getNom();
+	private float coupCritiques() {
+		return precision * ((float) chance / 20);
+	}
 
-    @Override
-    public String toString() {
-        return getNom() + " possède " + vie + ".";
-    }
+	private float cooperation() {
+		int resultat = 0;
+		if (c.getPlateau().get(c.getLigne() + 1, c.getColonne() + 1) != null) {
+			resultat += 1;
+		}
+		if (c.getPlateau().get(c.getLigne() - 1, c.getColonne() + 1) != null) {
+			resultat += 1;
+		}
+		if (c.getPlateau().get(c.getLigne() + 1, c.getColonne() - 1) != null) {
+			resultat += 1;
+		}
+		if (c.getPlateau().get(c.getLigne() - 1, c.getColonne() - 1) != null) {
+			resultat += 1;
+		}
+		return (resultat * 7) / 100;
+	}
 
-    public Case getCase() {
-        return c;
-    }
+	public abstract String getNom();
 
-    public Orientation getOrientation() {
-        return orientation;
-    }
+	@Override
+	public String toString() {
+		return getNom() + " possède " + vie + ".";
+	}
 
-    public abstract BufferedImage getImage();
+	public Case getCase() {
+		return c;
+	}
 
-    public boolean deplacementPossible(Case c2) {
-        deplacement();
-        //TODO modifier le return
-        return true;
-    }
+	public Orientation getOrientation() {
+		return orientation;
+	}
 
-    public void deplacement() {
-        listeDeplacementPossible.clear();
-        deplacement.clear();
-        ArrayList<Noeud> listeFerme = new ArrayList<Noeud>();
-        ArrayList<Noeud> listeOuverte = new ArrayList<Noeud>();
+	public abstract BufferedImage getImage();
 
-        Noeud tmp;
-        Noeud tmp2;
-        Case caseVerif;
+	public boolean deplacementPossible(Case c2) {
+		deplacement();
+		//TODO modifier le return
+		return true;
+	}
 
-        tmp = new Noeud(c, 0);
-        listeOuverte.add(tmp);
-        listeDeplacementPossible.add(tmp);
-        while (!listeOuverte.isEmpty()) {
-            tmp = listeOuverte.remove(0);
-            listeFerme.add(tmp);
-            caseVerif = c.getPlateau().get(tmp.c.getLigne() + 1, tmp.c.getColonne());
-            tmp2 = new Noeud(caseVerif, tmp.cout + 1);
-            recopierNoeudDansNoeud(tmp, tmp2);
-            tmp2.listeNoeud.add(tmp);
-            if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
-                if (tmp2.cout < noeudContenu.cout) {
-                    noeudContenu.cout = tmp2.cout;
-                    noeudContenu.listeNoeud = tmp2.listeNoeud;
-                }
-            } else if (caseVerif != null && !tmp2.c.isObstacle() && !listeFerme.contains(tmp2)
-                    && !listeOuverte.contains(tmp2) && tmp2.cout <= mouvement) {
-                listeDeplacementPossible.add(tmp2);
-                listeOuverte.add(tmp2);
-            }
-            caseVerif = c.getPlateau().get(tmp.c.getLigne() - 1, tmp.c.getColonne());
-            tmp2 = new Noeud(caseVerif, tmp.cout + 1);
-            recopierNoeudDansNoeud(tmp, tmp2);
-            tmp2.listeNoeud.add(tmp);
-            if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
-                if (tmp2.cout < noeudContenu.cout) {
-                    noeudContenu.cout = tmp2.cout;
-                    noeudContenu.listeNoeud = tmp2.listeNoeud;
-                }
-            } else if (caseVerif != null && !tmp2.c.isObstacle() && !listeFerme.contains(tmp2)
-                    && !listeOuverte.contains(tmp2) && tmp2.cout <= mouvement) {
-                listeDeplacementPossible.add(tmp2);
-                listeOuverte.add(tmp2);
-            }
-            caseVerif = c.getPlateau().get(tmp.c.getLigne(), tmp.c.getColonne() + 1);
-            tmp2 = new Noeud(caseVerif, tmp.cout + 1);
-            recopierNoeudDansNoeud(tmp, tmp2);
-            tmp2.listeNoeud.add(tmp);
-            if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
-                if (tmp2.cout < noeudContenu.cout) {
-                    noeudContenu.cout = tmp2.cout;
-                    noeudContenu.listeNoeud = tmp2.listeNoeud;
-                }
-            } else if (caseVerif != null && !tmp2.c.isObstacle() && !listeFerme.contains(tmp2)
-                    && !listeOuverte.contains(tmp2) && tmp2.cout <= mouvement) {
-                listeDeplacementPossible.add(tmp2);
-                listeOuverte.add(tmp2);
-            }
-            caseVerif = c.getPlateau().get(tmp.c.getLigne(), tmp.c.getColonne() - 1);
-            tmp2 = new Noeud(caseVerif, tmp.cout + 1);
-            recopierNoeudDansNoeud(tmp, tmp2);
-            tmp2.listeNoeud.add(tmp);
-            if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
-                if (tmp2.cout < noeudContenu.cout) {
-                    noeudContenu.cout = tmp2.cout;
-                    noeudContenu.listeNoeud = tmp2.listeNoeud;
-                }
-            } else if (caseVerif != null && !tmp2.c.isObstacle() && !listeFerme.contains(tmp2)
-                    && !listeOuverte.contains(tmp2) && tmp2.cout <= mouvement) {
-                listeDeplacementPossible.add(tmp2);
-                listeOuverte.add(tmp2);
-            }
-        }
+	public void deplacement() {
+		listeDeplacementPossible.clear();
+		deplacement.clear();
+		ArrayList<Noeud> listeFerme = new ArrayList<Noeud>();
+		ArrayList<Noeud> listeOuverte = new ArrayList<Noeud>();
 
-    }
+		Noeud tmp;
+		Noeud tmp2;
+		Case caseVerif;
 
-    private boolean contient(Noeud n, ArrayList<Noeud> ln) {
-        for (Noeud n1 : ln) {
-            if (n1.c.compare(n.c)) {
-                noeudContenu = n1;
-                return true;
-            }
-        }
-        return false;
-    }
+		tmp = new Noeud(c, 0);
+		listeOuverte.add(tmp);
+		listeDeplacementPossible.add(tmp);
+		while (!listeOuverte.isEmpty()) {
+			tmp = listeOuverte.remove(0);
+			listeFerme.add(tmp);
+			caseVerif = c.getPlateau().get(tmp.c.getLigne() + 1, tmp.c.getColonne());
+			if (caseVerif != null) {
+				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+			} else {
+				tmp2 = new Noeud(caseVerif, tmp.cout);
+			}
+			recopierNoeudDansNoeud(tmp, tmp2);
+			tmp2.listeNoeud.add(tmp);
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+				if (tmp2.cout < noeudContenu.cout) {
+					noeudContenu.cout = tmp2.cout;
+					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				}
+			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+				listeDeplacementPossible.add(tmp2);
+				listeOuverte.add(tmp2);
+			}
+			caseVerif = c.getPlateau().get(tmp.c.getLigne() - 1, tmp.c.getColonne());
+			if (caseVerif != null) {
+				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+			} else {
+				tmp2 = new Noeud(caseVerif, tmp.cout);
+			}
+			recopierNoeudDansNoeud(tmp, tmp2);
+			tmp2.listeNoeud.add(tmp);
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+				if (tmp2.cout < noeudContenu.cout) {
+					noeudContenu.cout = tmp2.cout;
+					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				}
+			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+				listeDeplacementPossible.add(tmp2);
+				listeOuverte.add(tmp2);
+			}
+			caseVerif = c.getPlateau().get(tmp.c.getLigne(), tmp.c.getColonne() + 1);
+			if (caseVerif != null) {
+				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+			} else {
+				tmp2 = new Noeud(caseVerif, tmp.cout);
+			}
+			recopierNoeudDansNoeud(tmp, tmp2);
+			tmp2.listeNoeud.add(tmp);
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+				if (tmp2.cout < noeudContenu.cout) {
+					noeudContenu.cout = tmp2.cout;
+					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				}
+			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+				listeDeplacementPossible.add(tmp2);
+				listeOuverte.add(tmp2);
+			}
+			caseVerif = c.getPlateau().get(tmp.c.getLigne(), tmp.c.getColonne() - 1);
+			if (caseVerif != null) {
+				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+			} else {
+				tmp2 = new Noeud(caseVerif, tmp.cout);
+			}
+			recopierNoeudDansNoeud(tmp, tmp2);
+			tmp2.listeNoeud.add(tmp);
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+				if (tmp2.cout < noeudContenu.cout) {
+					noeudContenu.cout = tmp2.cout;
+					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				}
+			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+				listeDeplacementPossible.add(tmp2);
+				listeOuverte.add(tmp2);
+			}
+		}
 
-    private void recopierNoeudDansNoeud(Noeud n1, Noeud n2) {
-        for (Noeud nk : n1.listeNoeud) {
-            n2.listeNoeud.add(nk);
-        }
-    }
+	}
 
-    public void afficherDeplacement(Case c2) {
-        deplacement.clear();
-        for (Noeud n1 : listeDeplacementPossible) {
-            if (n1.c.compare(c2)) {
-                for (Noeud n2 : n1.listeNoeud) {
-                    deplacement.add(n2.c);
-                }
-                deplacement.add(c2);
-            }
-        }
-    }
+	public void attaque() {
+		listeAttaquePossible.clear();
+		listeAttaqueAire.clear();
+		ArrayList<Case> listeFerme = new ArrayList<Case>();
+		ArrayList<Case> listeOuverte = new ArrayList<Case>();
 
-    public ArrayList<Case> getDeplacement() {
-        return deplacement;
-    }
+		Case tmp;
+		Case caseVerif;
+
+		tmp = c;
+		listeOuverte.add(tmp);
+		listeAttaquePossible.add(tmp);
+		while (!listeOuverte.isEmpty()) {
+			tmp = listeOuverte.remove(0);
+			listeFerme.add(tmp);
+			caseVerif = c.getPlateau().get(tmp.getLigne() + 1, tmp.getColonne());
+			if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+					&& !listeOuverte.contains(caseVerif) && distanceManhattan(tmp) <= portee) {
+				if (caseVerif.getPion() != null) {
+					listeAttaquePossible.add(caseVerif);
+				}
+				listeAttaqueAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
+			}
+			caseVerif = c.getPlateau().get(tmp.getLigne() - 1, tmp.getColonne());
+			if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+					&& !listeOuverte.contains(caseVerif) && distanceManhattan(tmp) <= portee) {
+				if (caseVerif.getPion() != null) {
+					listeAttaquePossible.add(caseVerif);
+				}
+				listeAttaqueAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
+			}
+			caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() + 1);
+			if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+					&& !listeOuverte.contains(caseVerif) && distanceManhattan(tmp) <= portee) {
+				if (caseVerif.getPion() != null) {
+					listeAttaquePossible.add(caseVerif);
+				}
+				listeAttaqueAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
+			}
+			caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
+			if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+					&& !listeOuverte.contains(caseVerif) && distanceManhattan(tmp) <= portee) {
+				if (caseVerif.getPion() != null) {
+					listeAttaquePossible.add(caseVerif);
+				}
+				listeAttaqueAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
+			}
+		}
+		listeAttaquePossible.remove(c);
+
+	}
+
+	private int distanceManhattan(Case c1) {
+		return Math.abs(c1.getLigne() - c.getLigne()) + Math.abs(c1.getColonne() - c.getColonne());
+	}
+
+	private boolean contient(Noeud n, ArrayList<Noeud> ln) {
+		for (Noeud n1 : ln) {
+			if (n1.c.compare(n.c)) {
+				noeudContenu = n1;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void recopierNoeudDansNoeud(Noeud n1, Noeud n2) {
+		for (Noeud nk : n1.listeNoeud) {
+			n2.listeNoeud.add(nk);
+		}
+	}
+
+	public void afficherDeplacement(Case c2) {
+		deplacement.clear();
+		for (Noeud n1 : listeDeplacementPossible) {
+			if (n1.c.compare(c2)) {
+				for (Noeud n2 : n1.listeNoeud) {
+					deplacement.add(n2.c);
+				}
+				deplacement.add(c2);
+			}
+		}
+	}
+
+	public ArrayList<Case> getDeplacement() {
+		return deplacement;
+	}
+
+	public ArrayList<Case> getListeAttaquePossible() {
+		return listeAttaquePossible;
+	}
+
+	public ArrayList<Case> getListeAttaqueAire() {
+		return listeAttaqueAire;
+	}
+	
+	public String getVieRestante(){
+		//TODO A modifier
+		return vie+"/50";
+	}
 }

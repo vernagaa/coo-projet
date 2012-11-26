@@ -36,7 +36,6 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
         Case c = moteur.getPlateau().get(lig, col);
         System.out.println("case :" + c);
         System.out.println("lig " + lig + " col " + col);
-        System.out.println("obstacle :" + c.isObstacle());
 
         if (e.getButton() == MouseEvent.BUTTON1) {
             moteur.caseCliqueBoutonGauche(c);
