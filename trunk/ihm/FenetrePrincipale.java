@@ -19,7 +19,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         //position
         setLocationRelativeTo(getParent());
         //écouteur sur l'aire de jeu
-        EcouteurPlateau ecouterPlateau = new EcouteurPlateau(aireDeJeu, moteur);
+        EcouteurPlateau ecouterPlateau = new EcouteurPlateau(moteur);
         aireDeJeu.addMouseListener(ecouterPlateau);
         aireDeJeu.addMouseMotionListener(ecouterPlateau);
         setVisible(true);
