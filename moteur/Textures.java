@@ -126,6 +126,8 @@ public final class Textures {
 	public static final int TANKREPTILE = 14;
 	
 	private static final String ASSASSINOISEAUPATH = "/images/oiseau_test.png";
+	private static final String ASSASSINREPTILEPATH = "/images/reptile_test.png";
+	private static final String ASSASSINFELINPATH = "/images/felin_test.png";
 	
 	private BufferedImage[] terrain = new BufferedImage[4];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
@@ -433,6 +435,24 @@ public final class Textures {
 			perso[ASSASSINOISEAU][0] = img.getSubimage(0, 334, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
+		}
+		try {
+			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINREPTILEPATH));
+			perso[ASSASSINREPTILE][1] = img.getSubimage(33, 0, 32, 32);
+			perso[ASSASSINREPTILE][2] = img.getSubimage(33, 32, 32, 32);
+			perso[ASSASSINREPTILE][3] = img.getSubimage(33, 64, 32, 32);
+			perso[ASSASSINREPTILE][0] = img.getSubimage(33, 96, 32, 32);
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + ASSASSINREPTILEPATH);
+		}
+		try {
+			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINFELINPATH));
+			perso[ASSASSINFELIN][1] = img.getSubimage(224, 128, 32, 32);
+			perso[ASSASSINFELIN][2] = img.getSubimage(224, 160, 32, 32);
+			perso[ASSASSINFELIN][3] = img.getSubimage(224, 192, 32, 32);
+			perso[ASSASSINFELIN][0] = img.getSubimage(224, 224, 32, 32);
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + ASSASSINFELINPATH);
 		}
 	}
 }
