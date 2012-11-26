@@ -1,5 +1,9 @@
 package ihm;
 
+import javax.swing.ImageIcon;
+import moteur.Orientation;
+import moteur.Textures;
+
 /**
  *
  * @author Kévin
@@ -26,71 +30,235 @@ public class NouvellePartie extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         joueurLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        pseudo1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        suivantButton = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
+        pseudo2 = new javax.swing.JTextField();
+        reptile1 = new javax.swing.JButton();
+        Oiseau1 = new javax.swing.JButton();
+        Felin1 = new javax.swing.JButton();
+        Reptile2 = new javax.swing.JButton();
+        Oiseau2 = new javax.swing.JButton();
+        Felin2 = new javax.swing.JButton();
+        Archer1 = new javax.swing.JButton();
+        Assassin1 = new javax.swing.JButton();
+        Tacticien1 = new javax.swing.JButton();
+        Guerrier1 = new javax.swing.JButton();
+        Tank1 = new javax.swing.JButton();
+        Archer2 = new javax.swing.JButton();
+        Guerrier2 = new javax.swing.JButton();
+        Assassin2 = new javax.swing.JButton();
+        Tacticien2 = new javax.swing.JButton();
+        Tank2 = new javax.swing.JButton();
+        j1p1 = new javax.swing.JLabel();
+        j1p2 = new javax.swing.JLabel();
+        j1p3 = new javax.swing.JLabel();
+        j1p4 = new javax.swing.JLabel();
+        j1p5 = new javax.swing.JLabel();
+        j1p6 = new javax.swing.JLabel();
+        j1p7 = new javax.swing.JLabel();
+        j1p8 = new javax.swing.JLabel();
+        j1p9 = new javax.swing.JLabel();
+        j1p10 = new javax.swing.JLabel();
+        j1p11 = new javax.swing.JLabel();
+        j1p12 = new javax.swing.JLabel();
+        j1p13 = new javax.swing.JLabel();
+        j1p14 = new javax.swing.JLabel();
+        j1p15 = new javax.swing.JLabel();
+        j1p16 = new javax.swing.JLabel();
+        j2p14 = new javax.swing.JLabel();
+        j2p13 = new javax.swing.JLabel();
+        j2p12 = new javax.swing.JLabel();
+        j2p11 = new javax.swing.JLabel();
+        j2p10 = new javax.swing.JLabel();
+        j2p15 = new javax.swing.JLabel();
+        j2p16 = new javax.swing.JLabel();
+        j2p4 = new javax.swing.JLabel();
+        j2p3 = new javax.swing.JLabel();
+        j2p2 = new javax.swing.JLabel();
+        j2p1 = new javax.swing.JLabel();
+        j2p6 = new javax.swing.JLabel();
+        j2p7 = new javax.swing.JLabel();
+        j2p8 = new javax.swing.JLabel();
+        j2p9 = new javax.swing.JLabel();
+        j2p5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nouvelle Partie");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Vous allez configurer la nouvelle partie.");
+        jLabel1.setText("Nouvelle partie");
 
-        joueurLabel.setText("Joueur 1 :");
+        joueurLabel.setText("Joueur 1");
 
         jLabel3.setText("Nom :");
 
-        jTextField1.setText("Pseudo_joueur_1");
+        pseudo1.setText("joueur_1");
 
-        jLabel4.setText("Famille :");
+        jLabel2.setText("Joueur 2");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Reptiles");
+        jLabel4.setText("Nom :");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Oiseaux");
+        pseudo2.setText("joueur_2");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Félins");
+        reptile1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINREPTILE, Orientation.SUD)));
+        reptile1.setToolTipText("Reptile : vie (+3), force (+2), vitesse (-2)");
+        reptile1.setBorderPainted(false);
+        reptile1.setMaximumSize(new java.awt.Dimension(32, 32));
+        reptile1.setMinimumSize(new java.awt.Dimension(32, 32));
+        reptile1.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        suivantButton.setText("Suivant");
-        suivantButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                suivantButtonActionPerformed(evt);
-            }
-        });
+        Oiseau1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINOISEAU, Orientation.SUD)));
+        Oiseau1.setToolTipText("Oiseau : précision (+3), vitesse (+2), défense (-2)");
+        Oiseau1.setBorderPainted(false);
+        Oiseau1.setMaximumSize(new java.awt.Dimension(32, 32));
+        Oiseau1.setMinimumSize(new java.awt.Dimension(32, 32));
+        Oiseau1.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        jTextArea4.setEditable(false);
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jTextArea4.setText("Bonus : +5 vie, +3 force\nMalus : -2 vitesse\nBonus tacticien : +3 PA, Mue\nMue : Regain de 7 PV\n(indisponible 3 tours après utilisation)");
-        jScrollPane4.setViewportView(jTextArea4);
+        Felin1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINFELIN, Orientation.SUD)));
+        Felin1.setToolTipText("Félin : défense (+3), chance (+2), vie (-2)");
+        Felin1.setBorderPainted(false);
+        Felin1.setMaximumSize(new java.awt.Dimension(32, 32));
+        Felin1.setMinimumSize(new java.awt.Dimension(32, 32));
+        Felin1.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        jTextArea5.setEditable(false);
-        jTextArea5.setColumns(20);
-        jTextArea5.setRows(5);
-        jTextArea5.setText("Bonus : +3 précicision, +2 vitesse\nMalus : -2 défense\nBonus tacticien : +1 portée, Envol\nEnvol : le lanceur n'est plus géné par les obstacles durant 2 tours\n(En cas d'arret sur obstacle seul le déplacement permis)\n(indisponible 5 tours après utilisation)");
-        jScrollPane5.setViewportView(jTextArea5);
+        Reptile2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINREPTILE, Orientation.SUD)));
+        Reptile2.setToolTipText("Reptile : vie (+3), force (+2), vitesse (-2)");
+        Reptile2.setBorderPainted(false);
+        Reptile2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Reptile2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Reptile2.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        jTextArea6.setEditable(false);
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jTextArea6.setText("Bonus : +3 défense , +2 chance\nMalus : -2 vie\nBonus tacticien : +1 mouvement, Enragé\nEnragé : le lanceur a 100% de coup critique\n(En cas d'attaque réussie 0 de précision au tour suivant)\n(indisponible 5 tours après utilisation)");
-        jScrollPane6.setViewportView(jTextArea6);
+        Oiseau2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINOISEAU, Orientation.SUD)));
+        Oiseau2.setToolTipText("Oiseau : précision (+3), vitesse (+2), défense (-2)");
+        Oiseau2.setBorderPainted(false);
+        Oiseau2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Oiseau2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Oiseau2.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Felin2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINFELIN, Orientation.SUD)));
+        Felin2.setToolTipText("Félin : défense (+3), chance (+2), vie (-2)");
+        Felin2.setBorderPainted(false);
+        Felin2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Felin2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Felin2.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Archer1.setText("jButton7");
+        Archer1.setMaximumSize(new java.awt.Dimension(32, 32));
+        Archer1.setMinimumSize(new java.awt.Dimension(32, 32));
+        Archer1.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Assassin1.setText("jButton8");
+        Assassin1.setMaximumSize(new java.awt.Dimension(32, 32));
+        Assassin1.setMinimumSize(new java.awt.Dimension(32, 32));
+        Assassin1.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Tacticien1.setText("jButton9");
+        Tacticien1.setMaximumSize(new java.awt.Dimension(32, 32));
+        Tacticien1.setMinimumSize(new java.awt.Dimension(32, 32));
+        Tacticien1.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Guerrier1.setText("jButton10");
+        Guerrier1.setMaximumSize(new java.awt.Dimension(32, 32));
+        Guerrier1.setMinimumSize(new java.awt.Dimension(32, 32));
+        Guerrier1.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Tank1.setText("jButton11");
+        Tank1.setMaximumSize(new java.awt.Dimension(32, 32));
+        Tank1.setMinimumSize(new java.awt.Dimension(32, 32));
+        Tank1.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Archer2.setText("jButton7");
+        Archer2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Archer2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Archer2.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Guerrier2.setText("jButton10");
+        Guerrier2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Guerrier2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Guerrier2.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Assassin2.setText("jButton8");
+        Assassin2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Assassin2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Assassin2.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Tacticien2.setText("jButton9");
+        Tacticien2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Tacticien2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Tacticien2.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        Tank2.setText("jButton11");
+        Tank2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Tank2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Tank2.setPreferredSize(new java.awt.Dimension(32, 32));
+
+        j1p1.setText("jLabel5");
+
+        j1p2.setText("jLabel5");
+
+        j1p3.setText("jLabel5");
+
+        j1p4.setText("jLabel5");
+
+        j1p5.setText("jLabel5");
+
+        j1p6.setText("jLabel5");
+
+        j1p7.setText("jLabel5");
+
+        j1p8.setText("jLabel5");
+
+        j1p9.setText("jLabel5");
+
+        j1p10.setText("jLabel5");
+
+        j1p11.setText("jLabel5");
+
+        j1p12.setText("jLabel5");
+
+        j1p13.setText("jLabel5");
+
+        j1p14.setText("jLabel5");
+
+        j1p15.setText("jLabel5");
+
+        j1p16.setText("jLabel5");
+
+        j2p14.setText("jLabel5");
+
+        j2p13.setText("jLabel5");
+
+        j2p12.setText("jLabel5");
+
+        j2p11.setText("jLabel5");
+
+        j2p10.setText("jLabel5");
+
+        j2p15.setText("jLabel5");
+
+        j2p16.setText("jLabel5");
+
+        j2p4.setText("jLabel5");
+
+        j2p3.setText("jLabel5");
+
+        j2p2.setText("jLabel5");
+
+        j2p1.setText("jLabel5");
+
+        j2p6.setText("jLabel5");
+
+        j2p7.setText("jLabel5");
+
+        j2p8.setText("jLabel5");
+
+        j2p9.setText("jLabel5");
+
+        j2p5.setText("jLabel5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,85 +267,301 @@ public class NouvellePartie extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(joueurLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jRadioButton2)
-                                .addComponent(jRadioButton1))
-                            .addComponent(jRadioButton3))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Archer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Assassin1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
+                                        .addComponent(reptile1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(42, 42, 42)
+                                .addComponent(Oiseau1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69)
+                                .addComponent(Felin1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pseudo1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(308, 308, 308)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Reptile2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pseudo2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Oiseau2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(92, 92, 92)))
+                        .addGap(125, 125, 125))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(187, 187, 187)
+                .addComponent(joueurLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addGap(487, 487, 487)
+                .addComponent(jLabel2)
+                .addGap(186, 186, 186))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(j1p13)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p14)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p15)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p16))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(j1p9)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p10)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p11)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(j1p5)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p6)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p7)
+                        .addGap(18, 18, 18)
+                        .addComponent(j1p8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(j1p1)
+                                .addGap(18, 18, 18)
+                                .addComponent(j1p2))
+                            .addComponent(Guerrier1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(j1p3)
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(Tacticien1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Tank1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(j1p4))))
+                .addGap(255, 255, 255)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(j2p13)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p14)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p15)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p16))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(j2p9)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p10)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p11)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(j2p5)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p6)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p7)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p8))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(j2p1)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p2)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p3)
+                                .addGap(18, 18, 18)
+                                .addComponent(j2p4)))
+                        .addContainerGap(127, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Archer2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Assassin2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Guerrier2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Tacticien2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
-                            .addComponent(jScrollPane5)
-                            .addComponent(jScrollPane6))))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addComponent(suivantButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(Felin2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Tank2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(107, 107, 107))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(joueurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(joueurLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pseudo1)
+                            .addComponent(jLabel3))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(Reptile2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Oiseau2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(Felin2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Archer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Tank2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Assassin2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Guerrier2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Tacticien2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Felin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(reptile1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Oiseau1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Archer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Assassin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Tank1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Tacticien1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Guerrier1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(pseudo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)))
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(suivantButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j2p1)
+                            .addComponent(j2p2)
+                            .addComponent(j2p3)
+                            .addComponent(j2p4))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j2p5)
+                            .addComponent(j2p6)
+                            .addComponent(j2p7)
+                            .addComponent(j2p8))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j2p9)
+                            .addComponent(j2p10)
+                            .addComponent(j2p11)
+                            .addComponent(j2p12))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j2p13)
+                            .addComponent(j2p14)
+                            .addComponent(j2p15)
+                            .addComponent(j2p16)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j1p1)
+                            .addComponent(j1p2)
+                            .addComponent(j1p3)
+                            .addComponent(j1p4))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j1p5)
+                            .addComponent(j1p6)
+                            .addComponent(j1p7)
+                            .addComponent(j1p8))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j1p9)
+                            .addComponent(j1p10)
+                            .addComponent(j1p11)
+                            .addComponent(j1p12))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(j1p13)
+                            .addComponent(j1p14)
+                            .addComponent(j1p15)
+                            .addComponent(j1p16))))
+                .addGap(105, 105, 105))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	private void suivantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suivantButtonActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_suivantButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton Archer1;
+    private javax.swing.JButton Archer2;
+    private javax.swing.JButton Assassin1;
+    private javax.swing.JButton Assassin2;
+    private javax.swing.JButton Felin1;
+    private javax.swing.JButton Felin2;
+    private javax.swing.JButton Guerrier1;
+    private javax.swing.JButton Guerrier2;
+    private javax.swing.JButton Oiseau1;
+    private javax.swing.JButton Oiseau2;
+    private javax.swing.JButton Reptile2;
+    private javax.swing.JButton Tacticien1;
+    private javax.swing.JButton Tacticien2;
+    private javax.swing.JButton Tank1;
+    private javax.swing.JButton Tank2;
+    private javax.swing.JLabel j1p1;
+    private javax.swing.JLabel j1p10;
+    private javax.swing.JLabel j1p11;
+    private javax.swing.JLabel j1p12;
+    private javax.swing.JLabel j1p13;
+    private javax.swing.JLabel j1p14;
+    private javax.swing.JLabel j1p15;
+    private javax.swing.JLabel j1p16;
+    private javax.swing.JLabel j1p2;
+    private javax.swing.JLabel j1p3;
+    private javax.swing.JLabel j1p4;
+    private javax.swing.JLabel j1p5;
+    private javax.swing.JLabel j1p6;
+    private javax.swing.JLabel j1p7;
+    private javax.swing.JLabel j1p8;
+    private javax.swing.JLabel j1p9;
+    private javax.swing.JLabel j2p1;
+    private javax.swing.JLabel j2p10;
+    private javax.swing.JLabel j2p11;
+    private javax.swing.JLabel j2p12;
+    private javax.swing.JLabel j2p13;
+    private javax.swing.JLabel j2p14;
+    private javax.swing.JLabel j2p15;
+    private javax.swing.JLabel j2p16;
+    private javax.swing.JLabel j2p2;
+    private javax.swing.JLabel j2p3;
+    private javax.swing.JLabel j2p4;
+    private javax.swing.JLabel j2p5;
+    private javax.swing.JLabel j2p6;
+    private javax.swing.JLabel j2p7;
+    private javax.swing.JLabel j2p8;
+    private javax.swing.JLabel j2p9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel joueurLabel;
-    private javax.swing.JButton suivantButton;
+    private javax.swing.JTextField pseudo1;
+    private javax.swing.JTextField pseudo2;
+    private javax.swing.JButton reptile1;
     // End of variables declaration//GEN-END:variables
 }
