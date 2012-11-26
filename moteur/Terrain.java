@@ -5,19 +5,19 @@ package moteur;
  * @author disavinr
  */
 public class Terrain {
-	public static int effetDeplacement(int i){
+	public static double effetDeplacement(int i){
 		switch(i){
 			case Textures.NEIGE:
 			case Textures.SABLE:
-				return -2;
+				return 3;
 			case Textures.ROUTE:
-				return +2;
+				return 1.5;
 			case Textures.GLACE:
-				return +4;
+				return 1.5;
 			case Textures.HERBE:
 			case Textures.ROC:
 			default:
-				return 0;
+				return 2;
 		}
 	}
 	public static int effetPrecision(int i){

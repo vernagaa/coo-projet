@@ -27,6 +27,8 @@ public class Plateau implements Serializable {
 	 * Tableau de Cases symbolisant la plateau.
 	 */
 	private Case[][] plateau;
+	
+	private Terrain terrain;
 
 	/**
 	 * Constructeur de la classe Plateau.
