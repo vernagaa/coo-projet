@@ -181,12 +181,12 @@ public abstract class Pion implements Serializable {
     public abstract BufferedImage getImage();
 
     public boolean deplacementPossible(Case c2) {
-        deplacement();
+        calculDeplacementPossible();
         //TODO modifier le return
         return true;
     }
 
-    public void deplacement() {
+    public void calculDeplacementPossible() {
         listeDeplacementPossible.clear();
         deplacement.clear();
         ArrayList<Noeud> listeFerme = new ArrayList<Noeud>();
@@ -300,8 +300,7 @@ public abstract class Pion implements Serializable {
                 if (caseVerif.getPion() != null) {
                     listeAttaquePossible.add(caseVerif);
                 }
-                System.out.println(portee + " " + distanceManhattan(tmp));
-
+								
                 listeAttaqueAire.add(caseVerif);
                 listeOuverte.add(caseVerif);
             }
