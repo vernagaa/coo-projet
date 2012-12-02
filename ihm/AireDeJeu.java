@@ -17,19 +17,16 @@ import moteur.Textures;
 public class AireDeJeu extends JComponent {
 
 	private Plateau plateau;
-	private boolean afficherChoix;
-	private Case caseChoix;
-	private boolean afficherFinDeTour;
-	public Case caseFinDeTour;
-	private Case caseSurvol;
-	private boolean attaque;
-	private Case caseSurvolPion;
+	private boolean attaqueEnCours;
+	private boolean afficherPorteeAttaque;
+	private boolean mouvementEnCours;
+	private String affichageVie;
+	private Case caseEnCours;
+	public Case caseSurvol;
 
 	public AireDeJeu(Plateau plateau) {
 		setPreferredSize(new Dimension(plateau.getNbColonne() * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1));
 		this.plateau = plateau;
-		afficherFinDeTour = false;
-		afficherChoix = false;
 	}
 
 	public AireDeJeu() {
@@ -48,6 +45,7 @@ public class AireDeJeu extends JComponent {
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;
 
+//	Permet d'afficher la carte sans les effets, ni les pions
 		for (Case[] c : plateau.get()) {
 			for (Case c1 : c) {
 				gd.drawImage(Textures.getTerrain(c1.getTypeTerrain()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
@@ -57,39 +55,9 @@ public class AireDeJeu extends JComponent {
 				if (c1.getObstacle() != null) {
 					gd.drawImage(Textures.getObstacle(c1.getObstacle().getTypeObstacle()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
 				}
-				if (c1.getPion() != null) {
-					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
-				}
-			}
-		}
-
-		if (attaque) {
-			afficherAttaquePossible(gd);
-			construireSurvolAttaque(gd);
-		}
-
-		//TODO a refaire
-		for (Case[] c : plateau.get()) {
-			for (Case c1 : c) {
-				if (c1.getPion() != null) {
-					if (!c1.getPion().listeDeplacementPossible.isEmpty() && c1.getSelect()) {
-						int i = 0;
-						for (Noeud c2 : c1.getPion().listeDeplacementPossible) {
-							gd.setColor(new Color(25, 150, 255, 255 - i * 3));
-							gd.fillRect(c2.c.getColonne() * Case.TAILLE, c2.c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-							i++;
-						}
-						for (Case c2 : c1.getPion().getDeplacement()) {
-							gd.setColor(new Color(50, 50, 100, 200));
-							gd.fillRect(c2.getColonne() * Case.TAILLE, c2.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-						}
-					}
-					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
-				}
 
 			}
 		}
-
 //		if (finDeDeplacement) {
 //			gd.setColor(new Color(50, 200, 100, 200));
 //			if (plateau.get(pionDeplace.getLigne() - 1, pionDeplace.getColonne()) != null) {
@@ -106,26 +74,48 @@ public class AireDeJeu extends JComponent {
 //			}
 //		}
 
+//	Construit la grille du plateau	
 		gd.setColor(new Color(80, 80, 80, 40));
-
 		for (int i = 0; i < getHeight(); i += Case.TAILLE) {
 			gd.drawLine(0, i, getWidth(), i);
 		}
 		for (int j = 0; j < getWidth(); j += Case.TAILLE) {
 			gd.drawLine(j, 0, j, getHeight());
 		}
+//		if (caseSurvolPion != null) {
+//			construireSurvolPion(gd);
+//		}
 
-		if (afficherFinDeTour) {
-			construireAfficherFinDuTour(gd);
-		}
-		if (afficherChoix) {
-			construireSurvolChoix(gd);
-			construireAffichageChoix(caseChoix, gd);
-		}
-		if (caseSurvolPion != null) {
-			construireSurvolPion(gd);
+//	Affiche les pions attaquable par le pion en caseEnCours, et affiche aussi le survol d'un pion attaquable
+		if (attaqueEnCours) {
+			afficherAttaquePossible(gd);
+			construireSurvolAttaque(gd);
 		}
 
+//	Affiche la porte d'attaque du pion en caseEnCours
+		if (afficherPorteeAttaque) {
+			afficherPorteAttaque(gd);
+		}
+
+//	Affiche le deplacement du pion en caseEnCours
+		if (mouvementEnCours) {
+			afficherMouvementPossible(gd);
+		}
+
+//	Permet d'afficher les pions		
+		for (Case[] c : plateau.get()) {
+			for (Case c1 : c) {
+				if (c1.getPion() != null) {
+					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+				}
+			}
+		}
+
+		if (caseSurvol != null) {
+			if (caseSurvol.getPion() != null) {
+				construireSurvolPion(gd);
+			}
+		}
 	}
 	/*
 	 * Construction de l'image de selection des persos
@@ -139,65 +129,10 @@ public class AireDeJeu extends JComponent {
 //			}
 //		}
 
-	/*
-	 *
-	 * Concerne l'affichage de la "fenetre" choix
-	 */
-	public void construireAffichageChoix(Case c, Graphics2D gd) {
-		gd.setColor(new Color(120, 120, 120, 150));
-		gd.fillRect(caseChoix.getColonne() * Case.TAILLE, caseChoix.getLigne() * Case.TAILLE, 3 * Case.TAILLE, 2 * Case.TAILLE);
-		gd.setColor(Color.WHITE);
-		gd.drawString("Attaquer", caseChoix.getColonne() * Case.TAILLE + 10, caseChoix.getLigne() * Case.TAILLE + 20);
-		gd.drawString("Capacité", caseChoix.getColonne() * Case.TAILLE + 10, caseChoix.getLigne() * Case.TAILLE + 20 + Case.TAILLE);
-	}
-
-	public void affichageChoix(Case c) {
-		afficherChoix = true;
-		caseChoix = c;
-		caseSurvol = c;
-	}
-
-	public void survolAfficherChoix(Case c1) {
-		caseSurvol = c1;
-	}
-
-	private void construireSurvolChoix(Graphics2D gd) {
-		gd.setColor(new Color(170, 170, 170, 200));
-		if (caseSurvol != null) {
-			if (caseChoix.getLigne() == caseSurvol.getLigne()
-					&& (caseChoix.getColonne() == caseSurvol.getColonne()
-					|| caseChoix.getColonne() == caseSurvol.getColonne() + 1
-					|| caseChoix.getColonne() == caseSurvol.getColonne() + 2)) {
-				afficherPorteAttaque(gd);
-			}
-			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, 3 * Case.TAILLE, Case.TAILLE);
-		}
-
-	}
-
-	public void setAfficherChoix(boolean afficherChoix) {
-		this.afficherChoix = afficherChoix;
-	}
-
-	public void affichageFinDuTour(Case caseCourante) {
-		afficherFinDeTour = true;
-		this.caseFinDeTour = caseCourante;
-	}
-
-	private void construireAfficherFinDuTour(Graphics2D gd) {
-		gd.setColor(new Color(120, 120, 120, 150));
-		gd.fillRect(caseFinDeTour.getColonne() * Case.TAILLE, caseFinDeTour.getLigne() * Case.TAILLE, 3 * Case.TAILLE, Case.TAILLE);
-		gd.setColor(Color.WHITE);
-		gd.drawString("Fin du tour", caseFinDeTour.getColonne() * Case.TAILLE + 10, caseFinDeTour.getLigne() * Case.TAILLE + 20);
-	}
-
-	public void setAfficherFinDeTour(boolean afficherFinDeTour) {
-		this.afficherFinDeTour = afficherFinDeTour;
-	}
-
+//	Les methodes suivantes concernent l'affichage de l'attaque
 	private void afficherPorteAttaque(Graphics2D gd) {
 		int i = 0;
-		for (Case c : caseChoix.getPion().getListeAttaqueAire()) {
+		for (Case c : caseEnCours.getPion().getListeAttaqueAire()) {
 			gd.setColor(new Color(255, 0, 0, 150));
 			gd.fillRect(c.getColonne() * Case.TAILLE, c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 			i++;
@@ -206,44 +141,81 @@ public class AireDeJeu extends JComponent {
 
 	private void afficherAttaquePossible(Graphics2D gd) {
 		int i = 0;
-		for (Case c : caseChoix.getPion().getListeAttaquePossible()) {
+		for (Case c : caseEnCours.getPion().getListeAttaquePossible()) {
 			gd.setColor(new Color(255, 0, 0, 150));
 			gd.fillRect(c.getColonne() * Case.TAILLE, c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 			i++;
 		}
 	}
 
-	public void setAttaque(boolean attaque) {
-		this.attaque = attaque;
+	private void construireSurvolAttaque(Graphics2D gd) {
+		gd.setColor(new Color(255, 0, 0, 200));
+		if (caseEnCours.getPion().getListeAttaquePossible().contains(caseSurvol)) {
+			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
 	}
 
 	public void suvolAfficherAttaque(Case c1) {
 		caseSurvol = c1;
 	}
 
-	private void construireSurvolAttaque(Graphics2D gd) {
-		gd.setColor(new Color(255, 0, 0, 200));
-		if (caseChoix.getPion().getListeAttaquePossible().contains(caseSurvol)) {
-			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-		}
+	public void setAttaqueEnCours(boolean attaque) {
+		this.attaqueEnCours = attaque;
+	}
+
+	public void setAfficherPorteeAttaque(boolean b, Case c) {
+		afficherPorteeAttaque = b;
+		caseEnCours = c;
 	}
 
 	public void survolPion(Case c1) {
-		caseSurvolPion = c1;
+		caseSurvol = c1;
 	}
 
 	private void construireSurvolPion(Graphics gd) {
+		affichageVie = caseSurvol.getPion().getVieRestante();
+		if (plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne()) == null) {
+			caseSurvol = plateau.get(caseSurvol.getLigne() + 1, caseSurvol.getColonne());
+		} else if (plateau.get(caseSurvol.getLigne() + 1, caseSurvol.getColonne()) == null) {
+			caseSurvol = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
+		} else if (plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() + 1) == null) {
+			caseSurvol = plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() - 1);
+		} else if (plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() - 1) == null) {
+			caseSurvol = plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() + 1);
+		} else {
+			caseSurvol = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
+		}
 		gd.setColor(new Color(0, 255, 0, 200));
-		gd.fillRect(caseSurvolPion.getColonne() * Case.TAILLE, caseSurvolPion.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 		gd.setColor(Color.WHITE);
-		gd.drawString(caseSurvol.getPion().getVieRestante(), caseSurvolPion.getColonne() * Case.TAILLE, caseSurvolPion.getLigne() * Case.TAILLE + 20);
+		gd.drawString(affichageVie, caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE + 20);
 	}
 
 	public void survolNull() {
-		caseSurvolPion = null;
+		caseSurvol = null;
 	}
 
 	public void survol(Case c1) {
 		caseSurvol = c1;
+	}
+
+//	Les methodes suivantes concernent l'affichage du mouvement
+	private void afficherMouvementPossible(Graphics2D gd) {
+		int i = 0;
+		for (Noeud c2 : caseEnCours.getPion().listeDeplacementPossible) {
+			gd.setColor(new Color(25, 150, 255, 255 - i * 3));
+			gd.fillRect(c2.c.getColonne() * Case.TAILLE, c2.c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+			i++;
+		}
+		for (Case c2 : caseEnCours.getPion().getDeplacement()) {
+			gd.setColor(new Color(50, 50, 100, 200));
+			gd.fillRect(c2.getColonne() * Case.TAILLE, c2.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
+		gd.drawImage(caseEnCours.getPion().getImage(), caseEnCours.getColonne() * Case.TAILLE, caseEnCours.getLigne() * Case.TAILLE, null);
+	}
+
+	public void afficherMouvement(boolean b, Case c1) {
+		mouvementEnCours = b;
+		caseEnCours = c1;
 	}
 }

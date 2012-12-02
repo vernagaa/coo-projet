@@ -13,19 +13,17 @@ public class Moteur implements Runnable, Serializable {
 
 	private FenetrePrincipale fp;
 	private Plateau plateau;
-	private AireDeJeu aireDeJeu;
+	public AireDeJeu aireDeJeu;
+	private FenetreAction fenetreChoixPion;
 	/*
 	 * Gestion de la souris
 	 */
 	private Case caseCourante;
-	private boolean afficherMouvement;
-	private Case caseAncien;
-	private boolean afficherChoix;
-	private Case choix;
-	private boolean afficherFinDeTour;
-	private Case finDeTour;
-	private boolean attaque;
-	private boolean capacite;
+	private boolean mouvementEnCours;
+	private Case caseAncienne;
+	private boolean finirTour;
+	private boolean attaqueEnCours;
+	private boolean capaciteActive;
 
 	public Plateau getPlateau() {
 		return plateau;
@@ -37,6 +35,7 @@ public class Moteur implements Runnable, Serializable {
 
 	public Moteur() {
 		plateau = new Plateau("map/map4.map");
+
 	}
 
 	public static void main(String[] args) {
@@ -47,109 +46,98 @@ public class Moteur implements Runnable, Serializable {
 	public void run() {
 		fp = new FenetrePrincipale(this);
 		aireDeJeu = fp.getAireDeJeu();
+		fenetreChoixPion = new FenetreChoixPion(this);
 	}
 
 	public void caseCliqueBoutonGauche(Case c1) {
 		aireDeJeu.survolNull();
-		aireDeJeu.setAfficherChoix(afficherChoix);
-
-		if (caseCourante != null) {
-			caseCourante.setSelect(false);
-		}
+		fenetreChoixPion.effacerFenetre();
 		caseCourante = c1;
 
-		if (attaque) {
-			if (choix.getPion().getListeAttaquePossible().contains(caseCourante)) {
-				System.out.println("AAAAAAAAAAAAAATTAAAAAAQUE");
-				choix.getPion().attaquerPion(caseCourante.getPion());
+//	Permet de gerer l'attaque d'une unite ennemie
+		if (attaqueEnCours) {
+//		On verifie que le case cible est attaquable par le pion et que le pion sur cette case est un pion ennemi
+			if (caseAncienne.getPion().getListeAttaquePossible().contains(caseCourante) /*
+							 * &&
+							 * joueurOppose().geListeDePions().contains(caseCourante.getPion())
+							 */) {
+				caseAncienne.getPion().attaquerPion(caseCourante.getPion());
 			}
-			attaque = false;
-			aireDeJeu.setAttaque(attaque);
-		} else if (capacite) {
+//		On signifie que l'attaque est fini
+			attaqueEnCours = false;
+//		Et qu'il ne faut plus afficher la zone d'attaque
+			aireDeJeu.setAttaqueEnCours(attaqueEnCours);
 
-			capacite = false;
-		} else if (afficherChoix) {
-			if (c1.getLigne() == choix.getLigne()
-					&& (c1.getColonne() == choix.getColonne() || c1.getColonne() == choix.getColonne() + 1 || c1.getColonne() == choix.getColonne() + 2)) {
-				if (!choix.getPion().getListeAttaquePossible().isEmpty()) {
-					attaque = true;
-					aireDeJeu.setAttaque(attaque);
-					caseAncien = caseCourante;
-				}
-			} else if (c1.getLigne() == choix.getLigne() + 1
-					&& (c1.getColonne() == choix.getColonne() || c1.getColonne() == choix.getColonne() + 1 || c1.getColonne() == choix.getColonne() + 2)) {
-				capacite = true;
-			}
-			afficherChoix = false;
-			aireDeJeu.setAfficherChoix(false);
-		} //        Afficher Fin du tour Selectionne
-		else if (afficherFinDeTour) {
-//            Si clique à l'interieur
-			afficherFinDeTour = false;
-			aireDeJeu.setAfficherFinDeTour(afficherFinDeTour);
-		}//        Deplace un Pion
-		else if (afficherMouvement && caseAncien.getPion().getDeplacement().contains(caseCourante)) {
-			caseAncien.getPion().deplacerPion(caseCourante);
-			afficherMouvement = false;
+//	Permet de gerer l'utilisation d'une capaciteActive	
+		} else if (capaciteActive) {
+//			choix.getPion().capaciteActive():
+
+//		On signifie que la capacite a ete utilise
+			capaciteActive = false;
+		} //  Permet de gerer la fin de tour
+		else if (finirTour) {
+//		changerJoueur();	
+			finirTour = false;
+		} //  Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
+		else if (mouvementEnCours && caseAncienne.getPion().getDeplacement().contains(caseCourante)) {
+			caseAncienne.getPion().deplacerPion(caseCourante);
+//		On specifie que le mouvement est termine
+			mouvementEnCours = false;
+//		On indique qu'il ne faut plus afficher les mouvements possibles
+			aireDeJeu.afficherMouvement(mouvementEnCours, c1);
+
 //            Afficher Selection Orientation
 //            TODO Afficher Orientation
-		} //        Selectionne un Pion
+		} //  Selectionne un Pion pour le deplacer
 		else if (c1.getPion() != null) {
-			afficherMouvement = true;
-			caseCourante.setSelect(true);
-			caseCourante.getPion().deplacement();
-			caseAncien = caseCourante;
-		} //        On affiche la fin du tour
-		else {
-			afficherMouvement = false;
-			afficherFinDeTour = true;
+//		On specifie qu'un mouvement est en cours
+			mouvementEnCours = true;
+//		On indique qu'il faut afficher les mouvements possibles
+			aireDeJeu.afficherMouvement(mouvementEnCours, c1);
+//		On calcul les deplacements possible			
+			caseCourante.getPion().calculDeplacementPossible();
+//		On memorise la case ou se trouve le pion a deplacer
+			caseAncienne = caseCourante;
+		} else {
+//		On specifie que le mouvement est termine
+			mouvementEnCours = false;
+//		On indique qu'il ne faut plus afficher les mouvements possibles
+			aireDeJeu.afficherMouvement(mouvementEnCours, c1);
+			finirTour = true;
 			if (plateau.get(caseCourante.getLigne(), caseCourante.getColonne() + 2) == null) {
 				caseCourante = plateau.get(caseCourante.getLigne(), caseCourante.getColonne() - 2);
 			}
-			aireDeJeu.affichageFinDuTour(caseCourante);
+//			aireDeJeu.affichageFinDuTour(caseCourante);
 		}
 		aireDeJeu.repaint();
 	}
 
 	public void caseCliqueBoutonDroit(Case c) {
-		aireDeJeu.survolNull();
-		if (caseCourante != null) {
-			caseCourante.setSelect(false);
-		}
-		if (c.getPion() != null) {
-			afficherMouvement = false;
-			afficherFinDeTour = false;
-			aireDeJeu.setAfficherFinDeTour(false);
-			afficherChoix = true;
-			choix = c;
-			if (plateau.get(c.getLigne() + 1, c.getColonne()) == null) {
-				choix = plateau.get(c.getLigne() - 1, c.getColonne());
-			}
-			if (plateau.get(c.getLigne(), c.getColonne() + 2) == null) {
-				choix = plateau.get(c.getLigne(), c.getColonne() - 2);
-			}
-			aireDeJeu.affichageChoix(choix);
-			aireDeJeu.repaint();
-		}
-
+//	On efface la fenetre
+		fenetreChoixPion.effacerFenetre();
+//	On la place a l'endroit voulu
+		fenetreChoixPion.placerFenetre(c);
+//	On specifie que le mouvement est termine
+		mouvementEnCours = false;
+//	On indique qu'il ne faut plus afficher les mouvements possibles
+		aireDeJeu.afficherMouvement(mouvementEnCours, c);
+//	On memorise la case choisi lors du clique		
+		caseAncienne = c;
 	}
 
 	public void caseSurvol(Case c1) {
+		aireDeJeu.caseSurvol = null;
 		if (c1 != null) {
 
-			if (afficherMouvement) {
+			if (mouvementEnCours) {
 				caseSurvolMouvement(c1);
-			} else if (afficherChoix) {
-				caseSurvolChoix(c1);
-			} else if (afficherFinDeTour) {
-//                caseSurvolFinDeTour(c1);
-			} else if (attaque) {
+			} else if (attaqueEnCours) {
 				caseSurvolAttaque(c1);
 			} else if (c1.getPion() != null) {
 				caseSurvolPion(c1);
 			} else {
 				aireDeJeu.survolNull();
-				aireDeJeu.repaint();						
+				aireDeJeu.repaint();
 			}
 		}
 	}
@@ -159,21 +147,6 @@ public class Moteur implements Runnable, Serializable {
 		aireDeJeu.repaint();
 	}
 
-	private void caseSurvolChoix(Case c1) {
-		if (c1.getLigne() == choix.getLigne()
-				&& (c1.getColonne() == choix.getColonne() || c1.getColonne() == choix.getColonne() + 1 || c1.getColonne() == choix.getColonne() + 2)) {
-			choix.getPion().attaque();
-			aireDeJeu.survolAfficherChoix(choix);
-		} else if (c1.getLigne() == choix.getLigne() + 1
-				&& (c1.getColonne() == choix.getColonne() || c1.getColonne() == choix.getColonne() + 1 || c1.getColonne() == choix.getColonne() + 2)) {
-			aireDeJeu.survolAfficherChoix(plateau.get(choix.getLigne() + 1, choix.getColonne()));
-		} else {
-			aireDeJeu.survolAfficherChoix(null);
-		}
-		aireDeJeu.repaint();
-
-	}
-
 	private void caseSurvolAttaque(Case c1) {
 		aireDeJeu.suvolAfficherAttaque(c1);
 		aireDeJeu.repaint();
@@ -181,17 +154,10 @@ public class Moteur implements Runnable, Serializable {
 
 	private void caseSurvolPion(Case c1) {
 		aireDeJeu.survol(c1);
-		if (plateau.get(c1.getLigne() - 1, c1.getColonne()) == null) {
-			aireDeJeu.survolPion(plateau.get(c1.getLigne() + 1, c1.getColonne()));
-		} else if (plateau.get(c1.getLigne() + 1, c1.getColonne()) == null) {
-			aireDeJeu.survolPion(plateau.get(c1.getLigne() - 1, c1.getColonne()));
-		} else if (plateau.get(c1.getLigne(), c1.getColonne() + 1) == null) {
-			aireDeJeu.survolPion(plateau.get(c1.getLigne(), c1.getColonne() - 1));
-		} else if (plateau.get(c1.getLigne(), c1.getColonne() - 1) == null) {
-			aireDeJeu.survolPion(plateau.get(c1.getLigne(), c1.getColonne() + 1));
-		} else {
-			aireDeJeu.survolPion(plateau.get(c1.getLigne() - 1, c1.getColonne()));
-		}
 		aireDeJeu.repaint();
+	}
+
+	void setAttaqueEnCours(boolean b) {
+		attaqueEnCours = b;
 	}
 }
