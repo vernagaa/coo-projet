@@ -87,11 +87,18 @@ public abstract class Pion implements Serializable {
         int seDefend = p.seDefendre(p);
         int hit = hit();
         int esquive = esquiveEnnemi(p);
-        int aleaEsquive = (int) (Math.random() * (201));
-        int aleaRiposte = (int) (Math.random() * (201));
-        System.out.println(aleaEsquive + " " + esquive);
-        if (esquive < 100 && aleaEsquive > esquive) {
-            if (degatInflige > seDefend) {
+        int aleaEsquive = (int) (Math.random() * (101));
+        int aleaRiposte = (int) (Math.random() * (101));
+        int aleaCoupCritique = (int) (Math.random() * (101));
+        System.out.println(this.toString() + " attaque " + p.toString());
+        System.out.println("Il a %chance de toucher " + (hit - esquive));
+        if (esquive < 100 && aleaEsquive < (hit - esquive)) {
+            System.out.println("%chance coup critique " + coupCritiques());
+            if (aleaCoupCritique < coupCritiques()) {
+                System.out.println("Coup Critique");
+                System.out.println("J'attaque avec " + (1.2 * degatInflige - seDefend));
+                p.recevoirDegat((int) 1.2 * degatInflige - seDefend);
+            } else if (degatInflige > seDefend) {
                 System.out.println("J'attaque avec " + (degatInflige - seDefend));
                 p.recevoirDegat(degatInflige - seDefend);
             } else {
@@ -99,9 +106,13 @@ public abstract class Pion implements Serializable {
                 p.recevoirDegat(1);
             }
 
-            if (aleaRiposte < tauxRiposte) {
-                System.out.println("Il riposte");
-                p.attaquerPion(this, tauxRiposte / 2);
+            p.attaque();
+            if (p.getListeAttaquePossible().contains(this.c)) {
+                System.out.println("Riposte");
+                if (aleaRiposte < tauxRiposte) {
+                    System.out.println("Il riposte");
+                    p.attaquerPion(this, tauxRiposte / 2);
+                }
             }
         } else {
             System.out.println("J'esquive");
@@ -143,7 +154,7 @@ public abstract class Pion implements Serializable {
     }
 
     private float coupCritiques() {
-        return precision * ((float) chance / 20);
+        return precision * 4 * vitesse / 150;
     }
 
     private float cooperation() {
@@ -299,41 +310,40 @@ public abstract class Pion implements Serializable {
                     && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
                 if (caseVerif.getPion() != null) {
                     listeAttaquePossible.add(caseVerif);
+                    listeAttaqueAire.add(caseVerif);
+                    listeOuverte.add(caseVerif);
                 }
-								
-                listeAttaqueAire.add(caseVerif);
-                listeOuverte.add(caseVerif);
-            }
-            caseVerif = c.getPlateau().get(tmp.getLigne() - 1, tmp.getColonne());
-            if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-                    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-                if (caseVerif.getPion() != null) {
-                    listeAttaquePossible.add(caseVerif);
+                caseVerif = c.getPlateau().get(tmp.getLigne() - 1, tmp.getColonne());
+                if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+                        && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+                    if (caseVerif.getPion() != null) {
+                        listeAttaquePossible.add(caseVerif);
+                    }
+                    listeAttaqueAire.add(caseVerif);
+                    listeOuverte.add(caseVerif);
                 }
-                listeAttaqueAire.add(caseVerif);
-                listeOuverte.add(caseVerif);
-            }
-            caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() + 1);
-            if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-                    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-                if (caseVerif.getPion() != null) {
-                    listeAttaquePossible.add(caseVerif);
+                caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() + 1);
+                if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+                        && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+                    if (caseVerif.getPion() != null) {
+                        listeAttaquePossible.add(caseVerif);
+                    }
+                    listeAttaqueAire.add(caseVerif);
+                    listeOuverte.add(caseVerif);
                 }
-                listeAttaqueAire.add(caseVerif);
-                listeOuverte.add(caseVerif);
-            }
-            caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
-            if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-                    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-                if (caseVerif.getPion() != null) {
-                    listeAttaquePossible.add(caseVerif);
+                caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
+                if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+                        && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+                    if (caseVerif.getPion() != null) {
+                        listeAttaquePossible.add(caseVerif);
+                    }
+                    listeAttaqueAire.add(caseVerif);
+                    listeOuverte.add(caseVerif);
                 }
-                listeAttaqueAire.add(caseVerif);
-                listeOuverte.add(caseVerif);
             }
-        }
-        listeAttaquePossible.remove(c);
+            listeAttaquePossible.remove(c);
 
+        }
     }
 
     private int distanceManhattan(Case c1) {
