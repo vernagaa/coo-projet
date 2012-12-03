@@ -55,7 +55,7 @@ public class FenetreAction extends JComponent implements MouseListener, MouseMot
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		m.aireDeJeu.caseSurvol = null;
+		m.aireDeJeu.setCaseSurvol(null);
 
 	}
 

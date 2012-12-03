@@ -6,6 +6,7 @@ package moteur;
  */
 public class Terrain {
 	public static double effetDeplacement(int i){
+		//XXX à la base on avait : négatif pour effet ralenti, positif pour effet d'accélération
 		switch(i){
 			case Textures.NEIGE:
 			case Textures.SABLE:

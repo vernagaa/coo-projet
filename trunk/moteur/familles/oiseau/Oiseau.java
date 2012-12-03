@@ -1,10 +1,12 @@
 package moteur.familles.oiseau;
 
+import moteur.classes.Famille;
+
 /**
  *
  * @author vernagaa
  */
-public interface Oiseau {
+public interface Oiseau extends Famille {
 	
 	public static final String nomArcher = "Hirondelle";
 	public static final int vieArcher = 0;

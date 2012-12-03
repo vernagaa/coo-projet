@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import moteur.familles.felin.AssassinFelin;
+import moteur.familles.felin.TankFelin;
 import moteur.familles.oiseau.*;
 import moteur.familles.reptile.AssassinReptile;
 
@@ -52,52 +53,39 @@ public class Plateau implements Serializable {
 	 * @param f
 	 */
 	public Plateau(String str) {
-		plateau = new Case[ligne][colonne];
-		File fichier = new File(str);
-		FileInputStream fis = null;
+			plateau = new Case[ligne][colonne];
 		try {
-			fis = new FileInputStream(fichier);
-		} catch (FileNotFoundException ex) {
-			Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
-		}
-
-		if (fis != null) {
+			FileInputStream fis = new FileInputStream(str);
 			ObjectInputStream ois = null;
-			try {
-				ois = new ObjectInputStream(fis);
-			} catch (IOException ex) {
-				Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
-			} finally {
-				try {
-					Plateau p = (Plateau) ois.readObject();
-					for (int i = 0; i < plateau.length; i++) {
-						for (int j = 0; j < plateau[i].length; j++) {
-							plateau[i][j] = new Case(i, j, this);
-							plateau[i][j].setBordure(p.get(i, j).getBordure());
-							plateau[i][j].setObstacle(p.get(i, j).getObstacle());
-							plateau[i][j].setTypeTerrain(p.get(i, j).getTypeTerrain());
-						}
-					}
-					ois.close();
-					fis.close();
-				} catch (IOException ex) {
-					Logger.getLogger(FenetreEditeur.class.getName()).log(Level.SEVERE, null, ex);
-				} catch (ClassNotFoundException ex) {
-					Logger.getLogger(Plateau.class.getName()).log(Level.SEVERE, null, ex);
+			ois = new ObjectInputStream(fis);
+			Plateau p = (Plateau) ois.readObject();
+			for (int i = 0; i < plateau.length; i++) {
+				for (int j = 0; j < plateau[i].length; j++) {
+					plateau[i][j] = new Case(i, j, this);
+					plateau[i][j].setBordure(p.get(i, j).getBordure());
+					plateau[i][j].setObstacle(p.get(i, j).getObstacle());
+					plateau[i][j].setTypeTerrain(p.get(i, j).getTypeTerrain());
 				}
 			}
+			ois.close();
+			fis.close();
+
+			//XXX Pions test à supprimer
+			GuerrierOiseau o0 = new GuerrierOiseau(plateau[7][9]);
+			ArcherOiseau o1 = new ArcherOiseau(plateau[12][7]);
+			TacticienOiseau o2 = new TacticienOiseau(plateau[6][7]);
+			TankOiseau o3 = new TankOiseau(plateau[5][6]);
+			AssassinOiseau o4 = new AssassinOiseau(plateau[5][7]);
+			AssassinOiseau o5 = new AssassinOiseau(plateau[8][11]);
+			AssassinFelin o6 = new AssassinFelin(plateau[8][5]);
+			AssassinReptile o7 = new AssassinReptile(plateau[10][10]);
+			TankFelin o8 = new TankFelin(plateau[9][12]);
+
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(Plateau.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(Plateau.class.getName()).log(Level.SEVERE, null, ex);
 		}
-
-		GuerrierOiseau o0 = new GuerrierOiseau(plateau[7][9]);
-		ArcherOiseau o1 = new ArcherOiseau(plateau[12][7]);
-		TacticienOiseau o2 = new TacticienOiseau(plateau[6][7]);
-		TankOiseau o3 = new TankOiseau(plateau[5][6]);
-		AssassinOiseau o4 = new AssassinOiseau(plateau[5][7]);
-		AssassinOiseau o5 = new AssassinOiseau(plateau[8][11]);
-		AssassinFelin o6 = new AssassinFelin(plateau[8][5]);
-		AssassinReptile o7 = new AssassinReptile(plateau[10][10]);
-
-
 	}
 
 	/**

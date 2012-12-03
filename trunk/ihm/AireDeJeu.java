@@ -41,7 +41,7 @@ public class AireDeJeu extends JComponent {
     public void paintComponent(Graphics g) {
         Graphics2D gd = (Graphics2D) g;
 
-//	Permet d'afficher la carte sans les effets, ni les pions
+		// Permet d'afficher la carte sans les effets, ni les pions
         for (Case[] c : plateau.get()) {
             for (Case c1 : c) {
                 gd.drawImage(Textures.getTerrain(c1.getTypeTerrain()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
@@ -70,7 +70,7 @@ public class AireDeJeu extends JComponent {
 //			}
 //		}
 
-//	Construit la grille du plateau	
+		// Construit la grille du plateau	
         gd.setColor(new Color(80, 80, 80, 40));
         for (int i = 0; i < getHeight(); i += Case.TAILLE) {
             gd.drawLine(0, i, getWidth(), i);
@@ -82,23 +82,28 @@ public class AireDeJeu extends JComponent {
 //			construireSurvolPion(gd);
 //		}
 
-//	Affiche les pions attaquable par le pion en caseEnCours, et affiche aussi le survol d'un pion attaquable
+		// Affiche les pions attaquable par le pion en caseEnCours, et affiche aussi le survol d'un pion attaquable
         if (attaqueEnCours) {
             afficherAttaquePossible(gd);
             construireSurvolAttaque(gd);
         }
 
-//	Affiche la porte d'attaque du pion en caseEnCours
+		// Affiche la porte d'attaque du pion en caseEnCours
         if (afficherPorteeAttaque) {
             afficherPorteAttaque(gd);
         }
 
-//	Affiche le deplacement du pion en caseEnCours
+		// Affiche le deplacement du pion en caseEnCours
         if (mouvementEnCours) {
             afficherMouvementPossible(gd);
         }
 
-//	Permet d'afficher les pions		
+		if (caseSurvol != null) {
+			gd.setColor(new Color(255, 255, 50, 100));
+			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
+		
+		// Permet d'afficher les pions		
         for (Case[] c : plateau.get()) {
             for (Case c1 : c) {
                 if (c1.getPion() != null) {
@@ -107,15 +112,10 @@ public class AireDeJeu extends JComponent {
             }
         }
 
-        if (caseSurvol != null) {
-            if (caseSurvol.getPion() != null) {
-                construireSurvolPion(gd);
-            }
-        }
-    }
-    /*
-     * Construction de l'image de selection des persos
-     */
+		if (caseSurvol != null && caseSurvol.getPion() != null) {
+				construireSurvolPion(gd);
+		}
+	}
 
 //	Les methodes suivantes concernent l'affichage de l'attaque
     private void afficherPorteAttaque(Graphics2D gd) {
@@ -179,13 +179,9 @@ public class AireDeJeu extends JComponent {
         gd.drawString(affichageVie, caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE + 20);
     }
 
-    public void survolNull() {
-        caseSurvol = null;
-    }
-
-    public void survol(Case c1) {
-        caseSurvol = c1;
-    }
+	public void setCaseSurvol(Case c) {
+		caseSurvol = c;
+	}
 
 //	Les methodes suivantes concernent l'affichage du mouvement
     private void afficherMouvementPossible(Graphics2D gd) {

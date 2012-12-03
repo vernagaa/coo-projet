@@ -1,10 +1,12 @@
 package moteur.familles.felin;
 
+import moteur.classes.Famille;
+
 /**
  *
  * @author vernagaa
  */
-public interface Felin {
+public interface Felin extends Famille {
 	
 	public static final String nomArcher = "Ocelot";
 	public static final int vieArcher = -2;
@@ -46,7 +48,7 @@ public interface Felin {
 	public static final int porteeTank = 0;
 	public static final int mouvementTank = 0;
 	
-	public static final String nomTacticien = "Tacticien Félin";//TODO à définir
+	public static final String nomTacticien = "Panthère";
 	public static final int vieTacticien = -2;
 	public static final int forceTacticien = 0;
 	public static final int precisionTacticien = 0;

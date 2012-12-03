@@ -1,10 +1,12 @@
 package moteur.familles.reptile;
 
+import moteur.classes.Famille;
+
 /**
  *
  * @author vernagaa
  */
-public interface Reptile {
+public interface Reptile extends Famille {
 	
 	public static final String nomArcher = "Caméléon";
 	public static final int vieArcher = 5;
@@ -46,7 +48,7 @@ public interface Reptile {
 	public static final int porteeTank = 0;
 	public static final int mouvementTank = 0;
 	
-	public static final String nomTacticien = "Tacticien Reptile";//TODO à définir
+	public static final String nomTacticien = "Salamandre";
 	public static final int vieTacticien = 5;
 	public static final int forceTacticien = 3;
 	public static final int precisionTacticien = 0;
