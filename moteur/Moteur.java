@@ -52,62 +52,57 @@ public class Moteur implements Runnable, Serializable {
         fenetreChoixPion = new FenetreChoixPion(this);
     }
 
-	public void caseCliqueBoutonGauche(Case c1) {
-		aireDeJeu.setCaseSurvol(null);
-		fenetreChoixPion.effacerFenetre();
-		caseCourante = c1;
+    public void caseCliqueBoutonGauche(Case c1) {
+        aireDeJeu.setCaseSurvol(null);
+        fenetreChoixPion.effacerFenetre();
+        caseCourante = c1;
 
-		// Permet de gerer l'attaque d'une unite ennemie
+        // Permet de gerer l'attaque d'une unite ennemie
         if (attaqueEnCours) {
-			// On verifie que le case cible est attaquable par le pion et que le pion sur cette case est un pion ennemi
-			if (caseAncienne.getPion().getListeAttaquePossible().contains(caseCourante) 
-							/*
-							 * &&
-							 * joueurOppose().geListeDePions().contains(caseCourante.getPion())
-							 */) {
-				caseAncienne.getPion().attaquerPion(caseCourante.getPion());
-			}
-			// On signifie que l'attaque est fini
+            // On verifie que le case cible est attaquable par le pion et que le pion sur cette case est un pion ennemi
+            if (caseAncienne.getPion().getListeAttaquePossible().contains(caseCourante) /*
+                     * &&
+                     * joueurOppose().geListeDePions().contains(caseCourante.getPion())
+                     */) {
+                caseAncienne.getPion().attaquerPion(caseCourante.getPion());
+            }
+            // On signifie que l'attaque est fini
             attaqueEnCours = false;
-			// Et qu'il ne faut plus afficher la zone d'attaque
+            // Et qu'il ne faut plus afficher la zone d'attaque
             aireDeJeu.setAttaqueEnCours(attaqueEnCours);
-		}
-		// Permet de gerer l'utilisation d'une capaciteActive
-		else if (capaciteActive) {
+        } // Permet de gerer l'utilisation d'une capaciteActive
+        else if (capaciteActive) {
 //			choix.getPion().capaciteActive():
-			// On signifie que la capacite a ete utilise
-			capaciteActive = false;
-		}
-		// Permet de gerer la fin de tour
-		else if (finirTour) {
+            // On signifie que la capacite a ete utilise
+            capaciteActive = false;
+        } // Permet de gerer la fin de tour
+        else if (finirTour) {
 //			changerJoueur();	
-			finirTour = false;
-		}
-		// Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
-		else if (mouvementEnCours && caseAncienne.getPion().getDeplacement().contains(caseCourante)) {
-			caseAncienne.getPion().deplacerPion(caseCourante);
-			// On specifie que le mouvement est termine
+            finirTour = false;
+        } // Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
+        else if (mouvementEnCours && caseAncienne.getPion().getDeplacement().contains(caseCourante)) {
+            caseAncienne.getPion().deplacerPion(caseCourante);
+            // On specifie que le mouvement est termine
             mouvementEnCours = false;
-			// On indique qu'il ne faut plus afficher les mouvements possibles
+            // On indique qu'il ne faut plus afficher les mouvements possibles
             aireDeJeu.afficherMouvement(mouvementEnCours, c1);
 
             // Afficher Selection Orientation
             //TODO Afficher Orientation
-		}
-		// Selectionne un Pion pour le deplacer
-		else if (c1.getPion() != null) {
-			// On specifie qu'un mouvement est en cours
+        } // Selectionne un Pion pour le deplacer
+        else if (c1.getPion() != null) {
+            // On specifie qu'un mouvement est en cours
             mouvementEnCours = true;
-			// On indique qu'il faut afficher les mouvements possibles
+            // On indique qu'il faut afficher les mouvements possibles
             aireDeJeu.afficherMouvement(mouvementEnCours, c1);
-			// On calcul les deplacements possible			
+            // On calcul les deplacements possible			
             caseCourante.getPion().calculDeplacementPossible();
-			// On memorise la case ou se trouve le pion a deplacer
+            // On memorise la case ou se trouve le pion a deplacer
             caseAncienne = caseCourante;
         } else {
-			// On specifie que le mouvement est termine
+            // On specifie que le mouvement est termine
             mouvementEnCours = false;
-			// On indique qu'il ne faut plus afficher les mouvements possibles
+            // On indique qu'il ne faut plus afficher les mouvements possibles
             aireDeJeu.afficherMouvement(mouvementEnCours, c1);
             finirTour = true;
             if (plateau.get(caseCourante.getLigne(), caseCourante.getColonne() + 2) == null) {
@@ -120,56 +115,52 @@ public class Moteur implements Runnable, Serializable {
 
     public void caseCliqueBoutonDroit(Case c) {
         if (c.getPion() != null) {
-			// On efface la fenetre
+            // On efface la fenetre
             fenetreChoixPion.effacerFenetre();
-			// On la place a l'endroit voulu
+            // On la place a l'endroit voulu
             fenetreChoixPion.placerFenetre(c);
-			// On specifie que le mouvement est termine
+            // On specifie que le mouvement est termine
             mouvementEnCours = false;
-			// On indique qu'il ne faut plus afficher les mouvements possibles
+            // On indique qu'il ne faut plus afficher les mouvements possibles
             aireDeJeu.afficherMouvement(mouvementEnCours, c);
-			// On memorise la case choisie lors du clic
+            // On memorise la case choisie lors du clic
             caseAncienne = c;
         }
     }
 
-	public void caseSurvol(Case c1) {
+    public void caseSurvol(Case c1) {
 //		aireDeJeu.setCaseSurvol(null);
-		if (c1 != null) {
-			if (mouvementEnCours) {
-				caseSurvolMouvement(c1);
-			}
-			else if (attaqueEnCours) {
-				caseSurvolAttaque(c1);
-			}
-			else if (c1.getPion() != null) {
-				caseSurvolPion(c1);
-			}
-			else {
-				aireDeJeu.setCaseSurvol(c1);
-			}
-		}
-		else {
-			aireDeJeu.setCaseSurvol(null);
-		}
-		aireDeJeu.repaint();
-	}
+        if (c1 != null) {
+            if (mouvementEnCours) {
+                caseSurvolMouvement(c1);
+            } else if (attaqueEnCours) {
+                caseSurvolAttaque(c1);
+            } else if (c1.getPion() != null) {
+                caseSurvolPion(c1);
+            } else {
+                aireDeJeu.setCaseSurvol(c1);
+            }
+        } else {
+            aireDeJeu.setCaseSurvol(null);
+        }
+        aireDeJeu.repaint();
+    }
 
-	private void caseSurvolMouvement(Case c1) {
-		caseCourante.getPion().afficherDeplacement(c1);
-	}
+    private void caseSurvolMouvement(Case c1) {
+        caseCourante.getPion().afficherDeplacement(c1);
+    }
 
-	private void caseSurvolAttaque(Case c1) {
-		aireDeJeu.suvolAfficherAttaque(c1);
-	}
+    private void caseSurvolAttaque(Case c1) {
+        aireDeJeu.suvolAfficherAttaque(c1);
+    }
 
-	private void caseSurvolPion(Case c1) {
-		aireDeJeu.setCaseSurvol(c1);
-	}
+    private void caseSurvolPion(Case c1) {
+        aireDeJeu.setCaseSurvol(c1);
+    }
 
-	public void setAttaqueEnCours(boolean b) {
-		attaqueEnCours = b;
-	}
+    public void setAttaqueEnCours(boolean b) {
+        attaqueEnCours = b;
+    }
 
     public Joueur getJoueur1() {
         return joueur1;
