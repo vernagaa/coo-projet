@@ -1,19 +1,35 @@
 package ihm;
 
+import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
+import moteur.Joueur;
 import moteur.Orientation;
 import moteur.Textures;
+import moteur.classes.Tacticien;
+import moteur.familles.felin.ArcherFelin;
+import moteur.familles.felin.TacticienFelin;
+import moteur.familles.oiseau.ArcherOiseau;
+import moteur.familles.oiseau.TacticienOiseau;
+import moteur.familles.reptile.ArcherReptile;
+import moteur.familles.reptile.TacticienReptile;
 
 /**
  *
  * @author Kévin
  */
 public class NouvellePartie extends javax.swing.JDialog {
-	public java.awt.Frame parent;
+	private FenetrePrincipale parent;
+	private final int NBPION = 16;
+	private int choix = 0;
+	private final int REPTILE = 0;
+	private final int OISEAU = 1;
+	private final int FELIN = 2;
+	private int famille1;
+	private int famille2;
 	/**
 	 * Creates new form NouvellePartie
 	 */
-	public NouvellePartie(java.awt.Frame parent, boolean modal) {
+	public NouvellePartie(FenetrePrincipale parent, boolean modal) {
 		super(parent, modal);
 		this.parent = parent;
 		initComponents();
@@ -40,10 +56,9 @@ public class NouvellePartie extends javax.swing.JDialog {
         Oiseau2 = new javax.swing.JButton();
         Felin2 = new javax.swing.JButton();
         Archer2 = new javax.swing.JButton();
+        Tank2 = new javax.swing.JButton();
         Assassin2 = new javax.swing.JButton();
         Guerrier2 = new javax.swing.JButton();
-        Tacticien2 = new javax.swing.JButton();
-        Tank2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         j2p12 = new javax.swing.JLabel();
         j2p13 = new javax.swing.JLabel();
@@ -71,7 +86,6 @@ public class NouvellePartie extends javax.swing.JDialog {
         Felin1 = new javax.swing.JButton();
         pseudo1 = new javax.swing.JTextField();
         Guerrier1 = new javax.swing.JButton();
-        Tacticien1 = new javax.swing.JButton();
         Tank1 = new javax.swing.JButton();
         joueurLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -107,48 +121,81 @@ public class NouvellePartie extends javax.swing.JDialog {
         Reptile2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINREPTILE, Orientation.SUD)));
         Reptile2.setToolTipText("Reptile : vie (+3), force (+2), vitesse (-2)");
         Reptile2.setBorderPainted(false);
+        Reptile2.setEnabled(false);
         Reptile2.setMaximumSize(new java.awt.Dimension(32, 32));
         Reptile2.setMinimumSize(new java.awt.Dimension(32, 32));
         Reptile2.setPreferredSize(new java.awt.Dimension(32, 32));
+        Reptile2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reptile2ActionPerformed(evt);
+            }
+        });
 
         Oiseau2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINOISEAU, Orientation.SUD)));
         Oiseau2.setToolTipText("Oiseau : précision (+3), vitesse (+2), défense (-2)");
         Oiseau2.setBorderPainted(false);
+        Oiseau2.setEnabled(false);
         Oiseau2.setMaximumSize(new java.awt.Dimension(32, 32));
         Oiseau2.setMinimumSize(new java.awt.Dimension(32, 32));
         Oiseau2.setPreferredSize(new java.awt.Dimension(32, 32));
+        Oiseau2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Oiseau2ActionPerformed(evt);
+            }
+        });
 
         Felin2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINFELIN, Orientation.SUD)));
         Felin2.setToolTipText("Félin : défense (+3), chance (+2), vie (-2)");
         Felin2.setBorderPainted(false);
+        Felin2.setEnabled(false);
         Felin2.setMaximumSize(new java.awt.Dimension(32, 32));
         Felin2.setMinimumSize(new java.awt.Dimension(32, 32));
         Felin2.setPreferredSize(new java.awt.Dimension(32, 32));
+        Felin2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Felin2ActionPerformed(evt);
+            }
+        });
 
-        Archer2.setText("jButton7");
+        Archer2.setEnabled(false);
         Archer2.setMaximumSize(new java.awt.Dimension(32, 32));
         Archer2.setMinimumSize(new java.awt.Dimension(32, 32));
         Archer2.setPreferredSize(new java.awt.Dimension(32, 32));
+        Archer2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Archer2ActionPerformed(evt);
+            }
+        });
 
-        Assassin2.setText("jButton8");
-        Assassin2.setMaximumSize(new java.awt.Dimension(32, 32));
-        Assassin2.setMinimumSize(new java.awt.Dimension(32, 32));
-        Assassin2.setPreferredSize(new java.awt.Dimension(32, 32));
-
-        Guerrier2.setText("jButton10");
-        Guerrier2.setMaximumSize(new java.awt.Dimension(32, 32));
-        Guerrier2.setMinimumSize(new java.awt.Dimension(32, 32));
-        Guerrier2.setPreferredSize(new java.awt.Dimension(32, 32));
-
-        Tacticien2.setText("jButton9");
-        Tacticien2.setMaximumSize(new java.awt.Dimension(32, 32));
-        Tacticien2.setMinimumSize(new java.awt.Dimension(32, 32));
-        Tacticien2.setPreferredSize(new java.awt.Dimension(32, 32));
-
-        Tank2.setText("jButton11");
+        Tank2.setEnabled(false);
         Tank2.setMaximumSize(new java.awt.Dimension(32, 32));
         Tank2.setMinimumSize(new java.awt.Dimension(32, 32));
         Tank2.setPreferredSize(new java.awt.Dimension(32, 32));
+        Tank2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tank2ActionPerformed(evt);
+            }
+        });
+
+        Assassin2.setEnabled(false);
+        Assassin2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Assassin2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Assassin2.setPreferredSize(new java.awt.Dimension(32, 32));
+        Assassin2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Assassin2ActionPerformed(evt);
+            }
+        });
+
+        Guerrier2.setEnabled(false);
+        Guerrier2.setMaximumSize(new java.awt.Dimension(32, 32));
+        Guerrier2.setMinimumSize(new java.awt.Dimension(32, 32));
+        Guerrier2.setPreferredSize(new java.awt.Dimension(32, 32));
+        Guerrier2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Guerrier2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -172,13 +219,11 @@ public class NouvellePartie extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(Archer2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Tacticien2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Tank2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(Assassin2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Guerrier2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Guerrier2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Tank2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -195,60 +240,43 @@ public class NouvellePartie extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Archer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Tacticien2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Tank2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Assassin2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Guerrier2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Assassin2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Guerrier2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Tank2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(Oiseau2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        j2p12.setText("a");
         j2p12.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p13.setText("a");
         j2p13.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p14.setText("a");
         j2p14.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p5.setText("a");
         j2p5.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p9.setText("a");
         j2p9.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p3.setText("a");
         j2p3.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p4.setText("a");
         j2p4.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p10.setText("a");
         j2p10.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p11.setText("a");
         j2p11.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p16.setText("a");
         j2p16.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p15.setText("a");
         j2p15.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p1.setText("a");
         j2p1.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p6.setText("a");
         j2p6.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p7.setText("a");
         j2p7.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p8.setText("a");
         j2p8.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j2p2.setText("a");
         j2p2.setPreferredSize(new java.awt.Dimension(32, 32));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -354,16 +382,31 @@ public class NouvellePartie extends javax.swing.JDialog {
         reptile1.setMaximumSize(new java.awt.Dimension(32, 32));
         reptile1.setMinimumSize(new java.awt.Dimension(32, 32));
         reptile1.setPreferredSize(new java.awt.Dimension(32, 32));
+        reptile1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reptile1ActionPerformed(evt);
+            }
+        });
 
-        Archer1.setText("jButton7");
+        Archer1.setEnabled(false);
         Archer1.setMaximumSize(new java.awt.Dimension(32, 32));
         Archer1.setMinimumSize(new java.awt.Dimension(32, 32));
         Archer1.setPreferredSize(new java.awt.Dimension(32, 32));
+        Archer1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Archer1ActionPerformed(evt);
+            }
+        });
 
-        Assassin1.setText("jButton8");
+        Assassin1.setEnabled(false);
         Assassin1.setMaximumSize(new java.awt.Dimension(32, 32));
         Assassin1.setMinimumSize(new java.awt.Dimension(32, 32));
         Assassin1.setPreferredSize(new java.awt.Dimension(32, 32));
+        Assassin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Assassin1ActionPerformed(evt);
+            }
+        });
 
         Oiseau1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINOISEAU, Orientation.SUD)));
         Oiseau1.setToolTipText("Oiseau : précision (+3), vitesse (+2), défense (-2)");
@@ -371,6 +414,11 @@ public class NouvellePartie extends javax.swing.JDialog {
         Oiseau1.setMaximumSize(new java.awt.Dimension(32, 32));
         Oiseau1.setMinimumSize(new java.awt.Dimension(32, 32));
         Oiseau1.setPreferredSize(new java.awt.Dimension(32, 32));
+        Oiseau1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Oiseau1ActionPerformed(evt);
+            }
+        });
 
         Felin1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINFELIN, Orientation.SUD)));
         Felin1.setToolTipText("Félin : défense (+3), chance (+2), vie (-2)");
@@ -378,23 +426,33 @@ public class NouvellePartie extends javax.swing.JDialog {
         Felin1.setMaximumSize(new java.awt.Dimension(32, 32));
         Felin1.setMinimumSize(new java.awt.Dimension(32, 32));
         Felin1.setPreferredSize(new java.awt.Dimension(32, 32));
+        Felin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Felin1ActionPerformed(evt);
+            }
+        });
 
         pseudo1.setText("joueur_1");
 
-        Guerrier1.setText("jButton10");
+        Guerrier1.setEnabled(false);
         Guerrier1.setMaximumSize(new java.awt.Dimension(32, 32));
         Guerrier1.setMinimumSize(new java.awt.Dimension(32, 32));
         Guerrier1.setPreferredSize(new java.awt.Dimension(32, 32));
+        Guerrier1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Guerrier1ActionPerformed(evt);
+            }
+        });
 
-        Tacticien1.setText("jButton9");
-        Tacticien1.setMaximumSize(new java.awt.Dimension(32, 32));
-        Tacticien1.setMinimumSize(new java.awt.Dimension(32, 32));
-        Tacticien1.setPreferredSize(new java.awt.Dimension(32, 32));
-
-        Tank1.setText("jButton11");
+        Tank1.setEnabled(false);
         Tank1.setMaximumSize(new java.awt.Dimension(32, 32));
         Tank1.setMinimumSize(new java.awt.Dimension(32, 32));
         Tank1.setPreferredSize(new java.awt.Dimension(32, 32));
+        Tank1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Tank1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -418,12 +476,10 @@ public class NouvellePartie extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Assassin1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Tacticien1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Guerrier1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Tank1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Guerrier1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                        .addComponent(Tank1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,60 +497,43 @@ public class NouvellePartie extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Archer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Assassin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Tacticien1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Tank1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Guerrier1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Guerrier1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Tank1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         joueurLabel.setText("Joueur 1");
 
-        j1p11.setText("a");
         j1p11.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p12.setText("a");
         j1p12.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p9.setText("a");
         j1p9.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p10.setText("a");
         j1p10.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p15.setText("a");
         j1p15.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p13.setText("a");
         j1p13.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p14.setText("a");
         j1p14.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p16.setText("a");
         j1p16.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p1.setText("a");
         j1p1.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p2.setText("a");
         j1p2.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p3.setText("a");
         j1p3.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p4.setText("a");
         j1p4.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p5.setText("a");
         j1p5.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p6.setText("a");
         j1p6.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p8.setText("a");
         j1p8.setPreferredSize(new java.awt.Dimension(32, 32));
 
-        j1p7.setText("a");
         j1p7.setPreferredSize(new java.awt.Dimension(32, 32));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -626,6 +665,144 @@ public class NouvellePartie extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	private void reptile1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reptile1ActionPerformed
+		reptile1.setEnabled(false);
+		Oiseau1.setEnabled(false);
+		Felin1.setEnabled(false);
+		Archer1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ARCHERREPTILE, Orientation.SUD)));
+		Assassin1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINREPTILE, Orientation.SUD)));
+		Guerrier1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.GUERRIERREPTILE, Orientation.SUD)));
+		Tank1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TANKREPTILE, Orientation.SUD)));
+		Reptile2.setEnabled(true);
+		Oiseau2.setEnabled(true);
+		Felin2.setEnabled(true);
+		famille1 = REPTILE;
+		parent.getMoteur().getJoueur1().ajouterPion(new TacticienReptile(null));
+		j1p1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TACTICIENREPTILE, Orientation.SUD)));
+	}//GEN-LAST:event_reptile1ActionPerformed
+
+	private void Oiseau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Oiseau1ActionPerformed
+		reptile1.setEnabled(false);
+		Oiseau1.setEnabled(false);
+		Felin1.setEnabled(false);
+		Archer1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ARCHEROISEAU, Orientation.SUD)));
+		Assassin1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINOISEAU, Orientation.SUD)));
+		Guerrier1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.GUERRIEROISEAU, Orientation.SUD)));
+		Tank1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TANKOISEAU, Orientation.SUD)));
+		Reptile2.setEnabled(true);
+		Oiseau2.setEnabled(true);
+		Felin2.setEnabled(true);
+		famille1 = OISEAU;
+		parent.getMoteur().getJoueur1().ajouterPion(new TacticienOiseau(null));		
+		j1p1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TACTICIENOISEAU, Orientation.SUD)));
+	}//GEN-LAST:event_Oiseau1ActionPerformed
+
+	private void Felin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Felin1ActionPerformed
+		reptile1.setEnabled(false);
+		Oiseau1.setEnabled(false);
+		Felin1.setEnabled(false);
+		Archer1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ARCHERFELIN, Orientation.SUD)));
+		Assassin1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINFELIN, Orientation.SUD)));
+		Guerrier1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.GUERRIERFELIN, Orientation.SUD)));
+		Tank1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TANKFELIN, Orientation.SUD)));
+		Reptile2.setEnabled(true);
+		Oiseau2.setEnabled(true);
+		Felin2.setEnabled(true);
+		famille1 = FELIN;
+		parent.getMoteur().getJoueur1().ajouterPion(new TacticienFelin(null));
+		j1p1.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TACTICIENFELIN, Orientation.SUD)));
+	}//GEN-LAST:event_Felin1ActionPerformed
+
+	private void Reptile2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reptile2ActionPerformed
+		Reptile2.setEnabled(false);
+		Oiseau2.setEnabled(false);
+		Felin2.setEnabled(false);
+		Archer2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ARCHERREPTILE, Orientation.SUD)));
+		Assassin2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINREPTILE, Orientation.SUD)));
+		Guerrier2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.GUERRIERREPTILE, Orientation.SUD)));
+		Tank2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TANKREPTILE, Orientation.SUD)));
+		Archer1.setEnabled(true);
+		Assassin1.setEnabled(true);
+		Tank1.setEnabled(true);
+		Guerrier1.setEnabled(true);
+		famille2 = REPTILE;
+		parent.getMoteur().getJoueur2().ajouterPion(new TacticienReptile(null));
+	}//GEN-LAST:event_Reptile2ActionPerformed
+
+	private void Oiseau2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Oiseau2ActionPerformed
+		Reptile2.setEnabled(false);
+		Oiseau2.setEnabled(false);
+		Felin2.setEnabled(false);
+		Archer2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ARCHEROISEAU, Orientation.SUD)));
+		Assassin2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINOISEAU, Orientation.SUD)));
+		Guerrier2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.GUERRIEROISEAU, Orientation.SUD)));
+		Tank2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TANKOISEAU, Orientation.SUD)));
+		Archer1.setEnabled(true);
+		Assassin1.setEnabled(true);
+		Tank1.setEnabled(true);
+		Guerrier1.setEnabled(true);
+		famille2 = OISEAU;
+		parent.getMoteur().getJoueur2().ajouterPion(new TacticienOiseau(null));
+	}//GEN-LAST:event_Oiseau2ActionPerformed
+
+	private void Felin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Felin2ActionPerformed
+		Reptile2.setEnabled(false);
+		Oiseau2.setEnabled(false);
+		Felin2.setEnabled(false);
+		Archer2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ARCHERFELIN, Orientation.SUD)));
+		Assassin2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.ASSASSINFELIN, Orientation.SUD)));
+		Guerrier2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.GUERRIERFELIN, Orientation.SUD)));
+		Tank2.setIcon(new ImageIcon(Textures.getPersonnage(Textures.TANKFELIN, Orientation.SUD)));
+		Archer1.setEnabled(true);
+		Assassin1.setEnabled(true);
+		Tank1.setEnabled(true);
+		Guerrier1.setEnabled(true);
+		famille2 = FELIN;
+		parent.getMoteur().getJoueur2().ajouterPion(new TacticienFelin(null));
+	}//GEN-LAST:event_Felin2ActionPerformed
+
+	private void Archer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Archer1ActionPerformed
+		switch(famille1){
+			case REPTILE:
+				parent.getMoteur().getJoueur1().ajouterPion(new ArcherReptile(null));
+				break;
+			case OISEAU:
+				parent.getMoteur().getJoueur1().ajouterPion(new ArcherOiseau(null));
+				break;
+			case FELIN:
+				parent.getMoteur().getJoueur1().ajouterPion(new ArcherFelin(null));
+		}
+		
+	}//GEN-LAST:event_Archer1ActionPerformed
+
+	private void Assassin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Assassin1ActionPerformed
+		// TODO add your handling code here:
+	}//GEN-LAST:event_Assassin1ActionPerformed
+
+	private void Guerrier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guerrier1ActionPerformed
+		// TODO add your handling code here:
+	}//GEN-LAST:event_Guerrier1ActionPerformed
+
+	private void Tank1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tank1ActionPerformed
+		// TODO add your handling code here:
+	}//GEN-LAST:event_Tank1ActionPerformed
+
+	private void Archer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Archer2ActionPerformed
+		// TODO add your handling code here:
+	}//GEN-LAST:event_Archer2ActionPerformed
+
+	private void Assassin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Assassin2ActionPerformed
+		// TODO add your handling code here:
+	}//GEN-LAST:event_Assassin2ActionPerformed
+
+	private void Guerrier2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guerrier2ActionPerformed
+		// TODO add your handling code here:
+	}//GEN-LAST:event_Guerrier2ActionPerformed
+
+	private void Tank2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tank2ActionPerformed
+		// TODO add your handling code here:
+	}//GEN-LAST:event_Tank2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Archer1;
     private javax.swing.JButton Archer2;
@@ -638,8 +815,6 @@ public class NouvellePartie extends javax.swing.JDialog {
     private javax.swing.JButton Oiseau1;
     private javax.swing.JButton Oiseau2;
     private javax.swing.JButton Reptile2;
-    private javax.swing.JButton Tacticien1;
-    private javax.swing.JButton Tacticien2;
     private javax.swing.JButton Tank1;
     private javax.swing.JButton Tank2;
     private javax.swing.JLabel j1p1;

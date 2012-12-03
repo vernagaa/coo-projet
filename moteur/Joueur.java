@@ -16,6 +16,7 @@ public final class Joueur {
     private Pion commandant;
     private ArrayList<Case> placesConquises;
     private String nom;
+	private String famille;
     
     public Joueur(String nom){
         this.nom = nom;
@@ -42,4 +43,20 @@ public final class Joueur {
     public ArrayList<Case> getPlacesConquises() {
         return placesConquises;
     }
+
+	public String getFamille() {
+		return famille;
+	}
+
+	public void setFamille(String famille) {
+		this.famille = famille;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public void ajouterPion(Pion pion){
+		listeDePions.add(pion);
+	}
 }

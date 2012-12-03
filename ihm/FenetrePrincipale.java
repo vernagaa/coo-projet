@@ -15,6 +15,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     /** Creates new form FenetrePrincipale */
     public FenetrePrincipale(Moteur m) {
         moteur = m;
+		new NouvellePartie(this, true);
         initComponents();
         //position
         setLocationRelativeTo(getParent());
@@ -150,4 +151,8 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuNouvellePartie;
     private javax.swing.JMenuItem menuQuitter;
     // End of variables declaration//GEN-END:variables
+
+	public Moteur getMoteur() {
+		return moteur;
+	}
 }
