@@ -149,7 +149,6 @@ public class Moteur implements Runnable, Serializable {
 		caseCourante.getPion().afficherDeplacement(c1);
 		aireDeJeu.repaint();
 	}
-
 	private void caseSurvolAttaque(Case c1) {
 		aireDeJeu.suvolAfficherAttaque(c1);
 		aireDeJeu.repaint();

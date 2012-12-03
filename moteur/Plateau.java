@@ -154,8 +154,4 @@ public class Plateau implements Serializable {
 	public int getNbLigne() {
 		return ligne;
 	}
-
-	public boolean deplacementPossible(Case c1, Case c2) {
-		return c1.getPion().deplacementPossible(c2);
-	}
 }
