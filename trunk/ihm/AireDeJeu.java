@@ -29,6 +29,9 @@ public class AireDeJeu extends JComponent {
         this.plateau = plateau;
     }
 
+	public AireDeJeu(){
+		this(new Plateau());
+	}
     public Plateau getPlateau() {
         return plateau;
     }
