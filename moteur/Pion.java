@@ -96,8 +96,8 @@ public abstract class Pion implements Serializable {
             System.out.println("%chance coup critique " + coupCritiques());
             if (aleaCoupCritique < coupCritiques()) {
                 System.out.println("Coup Critique");
-                System.out.println("J'attaque avec " + (1.2 * degatInflige - seDefend));
-                p.recevoirDegat((int) 1.2 * degatInflige - seDefend);
+                System.out.println("J'attaque avec " + (1.2*degatInflige - seDefend));
+                p.recevoirDegat((int) 1.2*degatInflige - seDefend);
             } else if (degatInflige > seDefend) {
                 System.out.println("J'attaque avec " + (degatInflige - seDefend));
                 p.recevoirDegat(degatInflige - seDefend);
@@ -190,6 +190,7 @@ public abstract class Pion implements Serializable {
     }
 
     public abstract BufferedImage getImage();
+
 
     public boolean deplacementPossible(Case c2) {
         calculDeplacementPossible();
@@ -286,7 +287,6 @@ public abstract class Pion implements Serializable {
                 listeOuverte.add(tmp2);
             }
         }
-
     }
 
     public void attaque() {
@@ -310,40 +310,39 @@ public abstract class Pion implements Serializable {
                     && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
                 if (caseVerif.getPion() != null) {
                     listeAttaquePossible.add(caseVerif);
-                    listeAttaqueAire.add(caseVerif);
-                    listeOuverte.add(caseVerif);
                 }
-                caseVerif = c.getPlateau().get(tmp.getLigne() - 1, tmp.getColonne());
-                if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-                        && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-                    if (caseVerif.getPion() != null) {
-                        listeAttaquePossible.add(caseVerif);
-                    }
-                    listeAttaqueAire.add(caseVerif);
-                    listeOuverte.add(caseVerif);
-                }
-                caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() + 1);
-                if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-                        && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-                    if (caseVerif.getPion() != null) {
-                        listeAttaquePossible.add(caseVerif);
-                    }
-                    listeAttaqueAire.add(caseVerif);
-                    listeOuverte.add(caseVerif);
-                }
-                caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
-                if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-                        && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-                    if (caseVerif.getPion() != null) {
-                        listeAttaquePossible.add(caseVerif);
-                    }
-                    listeAttaqueAire.add(caseVerif);
-                    listeOuverte.add(caseVerif);
-                }
+                listeAttaqueAire.add(caseVerif);
+                listeOuverte.add(caseVerif);
             }
-            listeAttaquePossible.remove(c);
-
+            caseVerif = c.getPlateau().get(tmp.getLigne() - 1, tmp.getColonne());
+            if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+                    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+                if (caseVerif.getPion() != null) {
+                    listeAttaquePossible.add(caseVerif);
+                }
+                listeAttaqueAire.add(caseVerif);
+                listeOuverte.add(caseVerif);
+            }
+            caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() + 1);
+            if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+                    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+                if (caseVerif.getPion() != null) {
+                    listeAttaquePossible.add(caseVerif);
+                }
+                listeAttaqueAire.add(caseVerif);
+                listeOuverte.add(caseVerif);
+            }
+            caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
+            if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+                    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+                if (caseVerif.getPion() != null) {
+                    listeAttaquePossible.add(caseVerif);
+                }
+                listeAttaqueAire.add(caseVerif);
+                listeOuverte.add(caseVerif);
+            }
         }
+        listeAttaquePossible.remove(c);
     }
 
     private int distanceManhattan(Case c1) {
