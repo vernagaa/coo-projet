@@ -123,13 +123,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="Archer2" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Tacticien2" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Tank2" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Assassin2" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Guerrier2" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="Tank2" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -151,10 +149,9 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="Archer2" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="Tacticien2" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="Tank2" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="Assassin2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Guerrier2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="Assassin2" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="Guerrier2" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="Tank2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="Oiseau2" min="-2" max="-2" attributes="1"/>
@@ -182,6 +179,7 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Reptile : vie (+3), force (+2), vitesse (-2)"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -192,6 +190,9 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Reptile2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Oiseau2">
               <Properties>
@@ -200,6 +201,7 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Oiseau : pr&#xe9;cision (+3), vitesse (+2), d&#xe9;fense (-2)"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -210,6 +212,9 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Oiseau2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Felin2">
               <Properties>
@@ -218,6 +223,7 @@
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="F&#xe9;lin : d&#xe9;fense (+3), chance (+2), vie (-2)"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -228,10 +234,13 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Felin2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Archer2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton7"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -242,52 +251,13 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Assassin2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton8"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Guerrier2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton10"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Tacticien2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton9"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Archer2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Tank2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton11"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -298,6 +268,43 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Tank2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Assassin2">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[32, 32]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[32, 32]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[32, 32]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Assassin2ActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="Guerrier2">
+              <Properties>
+                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[32, 32]"/>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[32, 32]"/>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[32, 32]"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Guerrier2ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -389,7 +396,6 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="j2p12">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -397,7 +403,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p13">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -405,7 +410,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p14">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -413,7 +417,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -421,7 +424,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -429,7 +431,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -437,7 +438,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -445,7 +445,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p10">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -453,7 +452,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p11">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -461,7 +459,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p16">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -469,7 +466,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -477,7 +473,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -485,7 +480,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -493,7 +487,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -501,7 +494,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -509,7 +501,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j2p2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -579,14 +570,12 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="Assassin1" min="-2" pref="32" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Tacticien1" min="-2" max="-2" attributes="0"/>
+                              <Component id="Guerrier1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="Tank1" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Guerrier1" min="-2" pref="32" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="160" max="32767" attributes="0"/>
+                      <EmptySpace pref="177" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -608,9 +597,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="Archer1" alignment="3" max="32767" attributes="0"/>
                           <Component id="Assassin1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Tacticien1" alignment="3" max="32767" attributes="0"/>
-                          <Component id="Tank1" alignment="3" max="32767" attributes="0"/>
                           <Component id="Guerrier1" alignment="3" max="32767" attributes="0"/>
+                          <Component id="Tank1" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -640,10 +628,13 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reptile1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Archer1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton7"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -654,10 +645,13 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Archer1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Assassin1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton8"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -668,6 +662,9 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Assassin1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Oiseau1">
               <Properties>
@@ -686,6 +683,9 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Oiseau1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Felin1">
               <Properties>
@@ -704,6 +704,9 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Felin1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="pseudo1">
               <Properties>
@@ -712,7 +715,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="Guerrier1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton10"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -723,24 +726,13 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="Tacticien1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="jButton9"/>
-                <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[32, 32]"/>
-                </Property>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Guerrier1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="Tank1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="jButton11"/>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -751,6 +743,9 @@
                   <Dimension value="[32, 32]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Tank1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -847,7 +842,6 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="j1p11">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -855,7 +849,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p12">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -863,7 +856,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -871,7 +863,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p10">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -879,7 +870,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p15">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -887,7 +877,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p13">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -895,7 +884,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p14">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -903,7 +891,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p16">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -911,7 +898,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -919,7 +905,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -927,7 +912,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -935,7 +919,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -943,7 +926,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -951,7 +933,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -959,7 +940,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p8">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>
@@ -967,7 +947,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="j1p7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="a"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[32, 32]"/>
                 </Property>

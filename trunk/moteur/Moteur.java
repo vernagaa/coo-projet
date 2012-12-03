@@ -24,7 +24,9 @@ public class Moteur implements Runnable, Serializable {
 	private boolean finirTour;
 	private boolean attaqueEnCours;
 	private boolean capaciteActive;
-
+	private Joueur joueur1;
+	private Joueur joueur2;
+	
 	public Plateau getPlateau() {
 		return plateau;
 	}
@@ -35,7 +37,8 @@ public class Moteur implements Runnable, Serializable {
 
 	public Moteur() {
 		plateau = new Plateau("map/map4.map");
-
+		joueur1 = new Joueur("joueur1");
+		joueur2 = new Joueur("joueur2");
 	}
 
 	public static void main(String[] args) {
@@ -160,4 +163,22 @@ public class Moteur implements Runnable, Serializable {
 	void setAttaqueEnCours(boolean b) {
 		attaqueEnCours = b;
 	}
+
+	public Joueur getJoueur1() {
+		return joueur1;
+	}
+
+	public void setJoueur1(Joueur joueur1) {
+		this.joueur1 = joueur1;
+	}
+
+	public Joueur getJoueur2() {
+		return joueur2;
+	}
+
+	public void setJoueur2(Joueur joueur2) {
+		this.joueur2 = joueur2;
+	}
+	
+	
 }
