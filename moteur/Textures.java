@@ -1,5 +1,8 @@
 package moteur;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -11,10 +14,10 @@ import javax.imageio.ImageIO;
 public final class Textures {
 	/*
 	 * ------ Tile Eau nb : 16 dont 3 bordures ------ Ce sont des obstacles
-	 * indestructible
+	 * indestructibles
 	 */
-	// Les obstacle indestructibles
-
+	
+	// Les obstacles indestructibles
 	private static final String EAUPATH = "/images/eau.png";
 	private static final String EAUDROITPATH = "/images/eauDroit.png";
 	private static final String EAUFONDBASPATH = "/images/eauFondBas.png";
@@ -52,15 +55,15 @@ public final class Textures {
 	/*
 	 * ------ Tile Montagne nb : 9 ------ Ce sont des obstacles indestructibles
 	 */
-	public static final String MONTAGNEHAUTDROITPATH = "/images/montagneHautDroite.png";
-	public static final String MONTAGNEHAUTPATH = "/images/montagneHaut.png";
-	public static final String MONTAGNEHAUTGAUCHEPATH = "/images/montagneHautGauche.png";
-	public static final String MONTAGNECENTREDROITPATH = "/images/montagneCentreDroit.png";
-	public static final String MONTAGNECENTREPATH = "/images/montagneCentre.png";
-	public static final String MONTAGNECENTREGAUCHEPATH = "/images/montagneCentreGauche.png";
-	public static final String MONTAGNEBASGAUCHEPATH = "/images/montagneBasDroit.png";
-	public static final String MONTAGNEBASPATH = "/images/montagneBas.png";
-	public static final String MONTAGNEBASDROITPATH = "/images/montagneBasGauche.png";
+	private static final String MONTAGNEHAUTDROITPATH = "/images/montagneHautDroite.png";
+	private static final String MONTAGNEHAUTPATH = "/images/montagneHaut.png";
+	private static final String MONTAGNEHAUTGAUCHEPATH = "/images/montagneHautGauche.png";
+	private static final String MONTAGNECENTREDROITPATH = "/images/montagneCentreDroit.png";
+	private static final String MONTAGNECENTREPATH = "/images/montagneCentre.png";
+	private static final String MONTAGNECENTREGAUCHEPATH = "/images/montagneCentreGauche.png";
+	private static final String MONTAGNEBASGAUCHEPATH = "/images/montagneBasDroit.png";
+	private static final String MONTAGNEBASPATH = "/images/montagneBas.png";
+	private static final String MONTAGNEBASDROITPATH = "/images/montagneBasGauche.png";
 	public static final int MONTAGNEHAUTDROIT = 13;
 	public static final int MONTAGNEHAUT = 14;
 	public static final int MONTAGNEHAUTGAUCHE = 15;
@@ -73,15 +76,15 @@ public final class Textures {
 	/*
 	 * Tile Bordure Sable : 12
 	 */
-	public static final String BORDURESABLEBASPATH = "/images/bordureSableBas.png";
-	public static final String BORDURESABLEBASDROITPATH = "/images/bordureSableBasDroit.png";
-	public static final String BORDURESABLEBASGAUCHEPATH = "/images/bordureSableBasGauche.png";
-	public static final String BORDURESABLEDROITPATH = "/images/bordureSableDroit.png";
-	public static final String BORDURESABLEGAUCHEPATH = "/images/bordureSableGauche.png";
-	public static final String BORDURESABLEHAUTPATH = "/images/bordureSableHaut.png";
-	public static final String BORDURESABLEHAUTDROITPATH = "/images/bordureSableHautDroit.png";
-	public static final String BORDURESABLEHAUTGAUCHEPATH = "/images/bordureSableHautGauche.png";
-	public static final String BORDURESABLECOINBASDROITPATH = "/images/bordureSableCoinBasDroit.png";
+	private static final String BORDURESABLEBASPATH = "/images/bordureSableBas.png";
+	private static final String BORDURESABLEBASDROITPATH = "/images/bordureSableBasDroit.png";
+	private static final String BORDURESABLEBASGAUCHEPATH = "/images/bordureSableBasGauche.png";
+	private static final String BORDURESABLEDROITPATH = "/images/bordureSableDroit.png";
+	private static final String BORDURESABLEGAUCHEPATH = "/images/bordureSableGauche.png";
+	private static final String BORDURESABLEHAUTPATH = "/images/bordureSableHaut.png";
+	private static final String BORDURESABLEHAUTDROITPATH = "/images/bordureSableHautDroit.png";
+	private static final String BORDURESABLEHAUTGAUCHEPATH = "/images/bordureSableHautGauche.png";
+	private static final String BORDURESABLECOINBASDROITPATH = "/images/bordureSableCoinBasDroit.png";
 	public static final int BORDURESABLEBAS = 3;
 	public static final int BORDURESABLEBASDROIT = 4;
 	public static final int BORDURESABLEBASGAUCHE = 5;
@@ -129,13 +132,14 @@ public final class Textures {
 	public static final int TACTICIENREPTILE = 13;
 	public static final int TANKREPTILE = 14;
 	
-	private static final String ASSASSINOISEAUPATH = "/images/oiseau_test.png";
-	private static final String ASSASSINREPTILEPATH = "/images/reptile_test.png";
-	private static final String ASSASSINFELINPATH = "/images/felin_test.png";
+	private static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test.png";
+	private static final String ASSASSINREPTILEPATH = "/images/perso/reptile/reptile_test.png";
+	private static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
+	private static final String TANKFELINPATH = "/images/perso/felin/lion.png";
 	
 	private BufferedImage[] terrain = new BufferedImage[6];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
-	private BufferedImage[][] perso = new BufferedImage[15][4];//TODO les initialiser
+	private BufferedImage[][] perso = new BufferedImage[15][4];
 	private BufferedImage[] obstacle = new BufferedImage[22];
 
 	private static Textures singleton;
@@ -247,7 +251,7 @@ public final class Textures {
 		return bordureTerrain[numBordure];
 	}
 
-	/*
+	/**
 	 * Certaines de ces images qui servent a construire les plans d'eau sont
 	 * consideres comme de type HERBE et non EAU. Le type EAU est
 	 * infranchissable, contrairement au type HERBE
@@ -441,6 +445,7 @@ public final class Textures {
 
 	private void initPersos() {
 		//TODO textures personnages
+		// OISEAU
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINOISEAUPATH));
 			perso[ASSASSINOISEAU][1] = img.getSubimage(0, 192, 32, 32);
@@ -450,6 +455,8 @@ public final class Textures {
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
 		}
+		
+		// REPTILE
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINREPTILEPATH));
 			perso[ASSASSINREPTILE][1] = img.getSubimage(33, 0, 32, 32);
@@ -459,14 +466,65 @@ public final class Textures {
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINREPTILEPATH);
 		}
+		
+		// FÉLIN
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINFELINPATH));
+			
 			perso[ASSASSINFELIN][1] = img.getSubimage(224, 128, 32, 32);
 			perso[ASSASSINFELIN][2] = img.getSubimage(224, 160, 32, 32);
 			perso[ASSASSINFELIN][3] = img.getSubimage(224, 192, 32, 32);
 			perso[ASSASSINFELIN][0] = img.getSubimage(224, 224, 32, 32);
+			
+			perso[ARCHERFELIN][1] = img.getSubimage(32, 128, 32, 32);
+			perso[ARCHERFELIN][2] = img.getSubimage(32, 160, 32, 32);
+			perso[ARCHERFELIN][3] = img.getSubimage(32, 192, 32, 32);
+			perso[ARCHERFELIN][0] = img.getSubimage(32, 224, 32, 32);
+			
+			perso[GUERRIERFELIN][1] = img.getSubimage(128, 128, 32, 32);
+			perso[GUERRIERFELIN][2] = img.getSubimage(128, 160, 32, 32);
+			perso[GUERRIERFELIN][3] = img.getSubimage(128, 192, 32, 32);
+			perso[GUERRIERFELIN][0] = img.getSubimage(128, 224, 32, 32);
+			
+			perso[TACTICIENFELIN][1] = img.getSubimage(320, 128, 32, 32);
+			perso[TACTICIENFELIN][2] = img.getSubimage(320, 160, 32, 32);
+			perso[TACTICIENFELIN][3] = img.getSubimage(320, 192, 32, 32);
+			perso[TACTICIENFELIN][0] = img.getSubimage(320, 224, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINFELINPATH);
 		}
+		try {
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(TANKFELINPATH)),3*32,4*32);
+			
+			perso[TANKFELIN][1] = img.getSubimage(32, 0, 32, 32);
+			perso[TANKFELIN][2] = img.getSubimage(32, 32, 32, 32);
+			perso[TANKFELIN][3] = img.getSubimage(32, 64, 32, 32);
+			perso[TANKFELIN][0] = img.getSubimage(32, 96, 32, 32);
+			
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + TANKFELINPATH);
+		}
+	}
+	
+	/** 
+	 * Redimensionne une image.
+	 * 
+	 * @param source Image à redimensionner.
+	 * @param width Largeur de l'image cible.
+	 * @param height Hauteur de l'image cible.
+	 * @return Image redimensionnée.
+	 */
+	public static BufferedImage scale(Image source, int width, int height) {
+		/* On créé une nouvelle image aux bonnes dimensions. */
+		BufferedImage buf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+		/* On dessine sur le Graphics de l'image bufferisée. */
+		Graphics2D g = buf.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g.drawImage(source, 0, 0, width, height, null);
+		g.dispose();
+
+		/* On retourne l'image bufferisée, qui est une image. */
+		return buf;
 	}
 }

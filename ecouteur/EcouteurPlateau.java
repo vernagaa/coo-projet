@@ -20,7 +20,7 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 
     private Moteur moteur;
 
-    //TO DO Rajouter le moteur
+    //TODO Rajouter le moteur
     //Le moteur devra executer les actions
     public EcouteurPlateau(Moteur moteur) {
         this.moteur = moteur;
@@ -43,6 +43,7 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
         else if (e.getButton() == MouseEvent.BUTTON3) {
             moteur.caseCliqueBoutonDroit(c);
         }
+		mouseMoved(e);
     }
 
     @Override
@@ -73,6 +74,7 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
         int col = x / Case.TAILLE;
         int lig = y / Case.TAILLE;
 
+		//TODO ne pas rappeler cette fonction si même case
         moteur.caseSurvol(moteur.getPlateau().get(lig, col));
     }
 }
