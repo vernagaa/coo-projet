@@ -120,15 +120,15 @@ public class Moteur implements Runnable, Serializable {
 
     public void caseCliqueBoutonDroit(Case c) {
         if (c.getPion() != null) {
-		// On efface la fenetre
+			// On efface la fenetre
             fenetreChoixPion.effacerFenetre();
-		// On la place a l'endroit voulu
+			// On la place a l'endroit voulu
             fenetreChoixPion.placerFenetre(c);
-		// On specifie que le mouvement est termine
+			// On specifie que le mouvement est termine
             mouvementEnCours = false;
-		// On indique qu'il ne faut plus afficher les mouvements possibles
+			// On indique qu'il ne faut plus afficher les mouvements possibles
             aireDeJeu.afficherMouvement(mouvementEnCours, c);
-		// On memorise la case choisi lors du clique		
+			// On memorise la case choisie lors du clic
             caseAncienne = c;
         }
     }
@@ -158,6 +158,7 @@ public class Moteur implements Runnable, Serializable {
 	private void caseSurvolMouvement(Case c1) {
 		caseCourante.getPion().afficherDeplacement(c1);
 	}
+
 	private void caseSurvolAttaque(Case c1) {
 		aireDeJeu.suvolAfficherAttaque(c1);
 	}

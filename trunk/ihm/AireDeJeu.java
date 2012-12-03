@@ -98,7 +98,7 @@ public class AireDeJeu extends JComponent {
             afficherMouvementPossible(gd);
         }
 
-		if (caseSurvol != null) {
+		if (!attaqueEnCours && caseSurvol != null) {
 			gd.setColor(new Color(255, 255, 50, 100));
 			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 		}
@@ -161,22 +161,23 @@ public class AireDeJeu extends JComponent {
     }
 
     private void construireSurvolPion(Graphics gd) {
+		Case affVie;
         affichageVie = caseSurvol.getPion().getVieRestante();
         if (plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne()) == null) {
-            caseSurvol = plateau.get(caseSurvol.getLigne() + 1, caseSurvol.getColonne());
+            affVie = plateau.get(caseSurvol.getLigne() + 1, caseSurvol.getColonne());
         } else if (plateau.get(caseSurvol.getLigne() + 1, caseSurvol.getColonne()) == null) {
-            caseSurvol = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
+            affVie = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
         } else if (plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() + 1) == null) {
-            caseSurvol = plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() - 1);
+            affVie = plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() - 1);
         } else if (plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() - 1) == null) {
-            caseSurvol = plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() + 1);
+            affVie = plateau.get(caseSurvol.getLigne(), caseSurvol.getColonne() + 1);
         } else {
-            caseSurvol = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
+            affVie = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
         }
         gd.setColor(new Color(0, 255, 0, 200));
-        gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+        gd.fillRect(affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
         gd.setColor(Color.WHITE);
-        gd.drawString(affichageVie, caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE + 20);
+        gd.drawString(affichageVie, affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE + 20);
     }
 
 	public void setCaseSurvol(Case c) {

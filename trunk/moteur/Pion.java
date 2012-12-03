@@ -391,6 +391,6 @@ public abstract class Pion implements Serializable {
 
     public String getVieRestante() {
         //TODO A modifier
-        return vie + "/50";
+        return vie + "pv";
     }
 }
