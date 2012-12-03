@@ -32,6 +32,7 @@ public abstract class Pion implements Serializable {
     private ArrayList<Case> deplacement;
     private Noeud noeudContenu;
     private Case c;
+		
 
     public Pion(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
         this.vie = vie;
