@@ -61,6 +61,7 @@ public class FenetreAction extends JComponent implements MouseListener, MouseMot
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		Survol = null;
 	}
 
 	@Override
@@ -76,6 +77,7 @@ public class FenetreAction extends JComponent implements MouseListener, MouseMot
 		int lig = y / Case.TAILLE;
 
 		Survol = new Point(col, lig);
-		this.repaint();
+		//TODO éviter le repaint systématique
+		repaint();
 	}
 }

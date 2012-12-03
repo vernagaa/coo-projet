@@ -1,11 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ecouteur;
 
-import ihm.AireDeJeu;
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -18,63 +12,68 @@ import moteur.Moteur;
  */
 public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 
-    private Moteur moteur;
+	private Moteur moteur;
+	private int lastLig, lastCol;
 
-    //TODO Rajouter le moteur
-    //Le moteur devra executer les actions
-    public EcouteurPlateau(Moteur moteur) {
-        this.moteur = moteur;
-    }
+	public EcouteurPlateau(Moteur moteur) {
+		this.moteur = moteur;
+		lastLig = -1;
+		lastCol = -1;
+	}
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		int x = e.getX();
+		int y = e.getY();
 
-        int col = x / Case.TAILLE;
-        int lig = y / Case.TAILLE;
-        Case c = moteur.getPlateau().get(lig, col);
-        System.out.println("case :" + c);
-        System.out.println("lig " + lig + " col " + col);
+		int col = x / Case.TAILLE;
+		int lig = y / Case.TAILLE;
+		Case c = moteur.getPlateau().get(lig, col);
+		System.out.println("case : " + c);
 
-        if (e.getButton() == MouseEvent.BUTTON1) {
-            moteur.caseCliqueBoutonGauche(c);
-        }
-        else if (e.getButton() == MouseEvent.BUTTON3) {
-            moteur.caseCliqueBoutonDroit(c);
-        }
+		if (e.getButton() == MouseEvent.BUTTON1) {
+			moteur.caseCliqueBoutonGauche(c);
+		} else if (e.getButton() == MouseEvent.BUTTON3) {
+			moteur.caseCliqueBoutonDroit(c);
+		}
+		lastCol = -1;
 		mouseMoved(e);
-    }
+	}
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
+	@Override
+	public void mousePressed(MouseEvent e) {
+	}
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
+	@Override
+	public void mouseEntered(MouseEvent e) {
+	}
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
+	@Override
+	public void mouseExited(MouseEvent e) {
+		moteur.aireDeJeu.setCaseSurvol(null);
+		lastCol = -1;
+	}
 
-    @Override
-    public void mouseDragged(MouseEvent e) {
-    }
+	@Override
+	public void mouseDragged(MouseEvent e) {
+	}
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        int x = e.getX();
-        int y = e.getY();
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		int x = e.getX();
+		int y = e.getY();
 
-        int col = x / Case.TAILLE;
-        int lig = y / Case.TAILLE;
+		int col = x / Case.TAILLE;
+		int lig = y / Case.TAILLE;
 
-		//TODO ne pas rappeler cette fonction si même case
-        moteur.caseSurvol(moteur.getPlateau().get(lig, col));
-    }
+		if (col != lastCol || lig != lastLig) {
+			lastCol = col;
+			lastLig = lig;
+			moteur.caseSurvol(moteur.getPlateau().get(lig, col));
+		}
+	}
 }

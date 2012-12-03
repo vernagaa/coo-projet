@@ -198,7 +198,7 @@ public class Case implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return lig + "," + col;
+		return "("+col + "," + lig+")";
 	}
 
 	public boolean getSelect() {

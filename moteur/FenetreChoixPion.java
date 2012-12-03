@@ -33,7 +33,6 @@ public final class FenetreChoixPion extends FenetreAction {
 		gd.setColor(new Color(170, 170, 170, 100));
 		gd.fillRect(0, 0, largeur, hauteur);
 		m.aireDeJeu.setAfficherPorteeAttaque(false, c);
-		m.aireDeJeu.repaint();
 		gd.setColor(Color.WHITE);
 		if (Survol != null) {
 			gd.setColor(new Color(200, 200, 200, 100));
@@ -41,7 +40,6 @@ public final class FenetreChoixPion extends FenetreAction {
 			if (Survol.y == 0) {
 				c.getPion().attaque();
 				m.aireDeJeu.setAfficherPorteeAttaque(true, c);
-				m.aireDeJeu.repaint();
 				gd.setColor(Color.RED);
 			} else {
 				gd.setColor(Color.WHITE);
@@ -60,12 +58,7 @@ public final class FenetreChoixPion extends FenetreAction {
 			gd.drawString("Capacité", 0 + 10, Case.TAILLE + 20);
 
 		}
-
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		Survol = null;
+		m.aireDeJeu.repaint();
 	}
 
 	@Override
