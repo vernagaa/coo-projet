@@ -142,7 +142,7 @@ public final class Textures {
 	private BufferedImage[][] perso = new BufferedImage[15][4];
 	private BufferedImage[] obstacle = new BufferedImage[22];
 
-	private static Textures singleton;
+	private static Textures singleton = new Textures();
 	
 	public Textures() {
 		for (int i = 0; i < terrain.length; i++) {
@@ -197,9 +197,6 @@ public final class Textures {
 	}
 
 	public static BufferedImage getPersonnage(int numPerso, Orientation orientation) {
-		if(singleton == null) {
-			singleton = new Textures();
-		}
 		return singleton.getPerso(numPerso, orientation);
 	}
 	
@@ -219,9 +216,6 @@ public final class Textures {
 	}
 
 	public static BufferedImage getTerrain(int numTerrain) {
-		if(singleton == null) {
-			singleton = new Textures();
-		}
 		return singleton.getTerr(numTerrain);
 	}
 	
@@ -230,9 +224,6 @@ public final class Textures {
 	}
 
 	public static BufferedImage getObstacle(int numObstacle) {
-		if(singleton == null) {
-			singleton = new Textures();
-		}
 		return singleton.getObst(numObstacle);
 	}
 	
@@ -241,9 +232,6 @@ public final class Textures {
 	}
 
 	public static BufferedImage getBordure(int numBordure) {
-		if(singleton == null) {
-			singleton = new Textures();
-		}
 		return singleton.getBord(numBordure);
 	}
 

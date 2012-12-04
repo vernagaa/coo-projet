@@ -193,7 +193,7 @@ public abstract class Pion implements Serializable {
 
     @Override
     public String toString() {
-        return getNom() + " possède " + vie + ".";
+        return getNom() + " ("+getClass().getSimpleName()+", "+vie+"pv)";
     }
 
     public Case getCase() {
@@ -388,7 +388,6 @@ public abstract class Pion implements Serializable {
                 deplacement.add(c2);
             }
         }
-		System.out.println("Déplacement : "+deplacement);
     }
 
     public ArrayList<Case> getDeplacement() {
