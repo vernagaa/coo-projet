@@ -29,6 +29,7 @@ public final class Joueur {
     }
 
     public void setCommandant(Pion commandant) {
+	commandant.setCommandant(true);
         this.commandant = commandant;
     }
 
