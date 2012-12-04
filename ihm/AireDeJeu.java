@@ -29,7 +29,7 @@ public class AireDeJeu extends JComponent {
 	public AireDeJeu(Plateau plateau) {
 		setPreferredSize(new Dimension(plateau.getNbColonne() * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1));
 		this.plateau = plateau;
-		debutDePartie = false;
+		debutDePartie = true;
 		joueurCourant = true;
 	}
 
