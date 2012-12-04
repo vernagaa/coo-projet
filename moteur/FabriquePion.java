@@ -20,7 +20,7 @@ public class FabriquePion {
 	public static final int TACTICIEN = 3;
 	public static final int TANK = 4;
 	
-	public Pion getPion(int famille, int classe, Case c) {
+	public static Pion getPion(int famille, int classe, Case c) {
 		switch (famille) {
 			case FELIN:
 				return pionFelin(classe, c);
@@ -33,7 +33,7 @@ public class FabriquePion {
 		}
 	}
 
-	private Pion pionFelin(int classe, Case c) {
+	private static Pion pionFelin(int classe, Case c) {
 		switch (classe) {
 			case ARCHER:
 				return new ArcherFelin(c);
@@ -50,7 +50,7 @@ public class FabriquePion {
 		}
 	}
 
-	private Pion pionOiseau(int classe, Case c) {
+	private static Pion pionOiseau(int classe, Case c) {
 		switch (classe) {
 			case ARCHER:
 				return new ArcherOiseau(c);
@@ -67,7 +67,7 @@ public class FabriquePion {
 		}
 	}
 
-	private Pion pionReptile(int classe, Case c) {
+	private static Pion pionReptile(int classe, Case c) {
 		switch (classe) {
 			case ARCHER:
 				return new ArcherReptile(c);
