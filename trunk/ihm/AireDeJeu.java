@@ -137,9 +137,11 @@ public class AireDeJeu extends JComponent {
 		} else {
 		    gd.clearRect(0, 0, Case.TAILLE * 6, plateau.getNbLigne() * Case.TAILLE + 1);
 		}
-		for (Case c : listeCase) {
-		    gd.setColor(new Color(50, 255, 50, 100));
-		    gd.fillRect(c.getColonne() * Case.TAILLE, c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		if (listeCase != null) {
+		    for (Case c : listeCase) {
+			gd.setColor(new Color(50, 255, 50, 100));
+			gd.fillRect(c.getColonne() * Case.TAILLE, c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		    }
 		}
 	    } else {
 		gd.clearRect(0, 0, Case.TAILLE * 6, plateau.getNbLigne() * Case.TAILLE + 1);
