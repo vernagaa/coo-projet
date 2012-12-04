@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package moteur;
 
 import java.awt.*;
@@ -12,8 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import moteur.familles.reptile.ArcherReptile;
-import moteur.familles.reptile.GuerrierReptile;
 
 /**
  *
@@ -49,30 +43,6 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 	JButton felin2;
 	String famille2;
 
-	public class FabriquePion {
-
-		public Pion getPion(String famille, String classe, Case c) {
-			switch (famille) {
-				case "reptile":
-					return pionReptile(classe, c);
-				case "oiseau":
-					break;
-				case "felin":
-					break;
-			}
-			return null;
-		}
-
-		private Pion pionReptile(String classe, Case c) {
-			switch (classe) {
-				case "archer":
-					return new ArcherReptile(c);
-				case "guerrier":
-					return new GuerrierReptile(c);
-			}
-			return null;
-		}
-	}
 
 	public NouvellePartieGraphique(final Moteur m) {
 		this.m = m;
@@ -334,6 +304,7 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 		setSize(Case.TAILLE * 23, Case.TAILLE * 20);
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		g.fillRect(0, 0, Case.TAILLE * 23, Case.TAILLE * 20);
 		g.setColor(Color.GRAY);
