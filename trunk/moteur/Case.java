@@ -206,9 +206,12 @@ public class Case implements Serializable {
 	}
 
 	public boolean isObstacleDeplacement() {
-		return obstacle != null || pion != null;
+		return obstacle != null;
 	}
 
+	public boolean isOccupee(){
+		return pion != null;
+	}
 	public boolean isObstacleAttaque() {
 		return obstacle != null;
 	}

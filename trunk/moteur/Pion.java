@@ -29,9 +29,9 @@ public abstract class Pion implements Serializable {
     public ArrayList<Noeud> listeDeplacementPossible;
     public ArrayList<Case> listeAttaquePossible;
     public ArrayList<Case> listeAttaqueAire;
-    private ArrayList<Case> deplacement;
-    private Noeud noeudContenu;
-    private Case c;
+    protected ArrayList<Case> deplacement;
+    protected Noeud noeudContenu;
+    protected Case c;
 	private static final int BONUSKILL = 20;
 		
 
@@ -245,7 +245,7 @@ public abstract class Pion implements Serializable {
                     noeudContenu.cout = tmp2.cout;
                     noeudContenu.listeNoeud = tmp2.listeNoeud;
                 }
-            } else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !listeFerme.contains(tmp2)
+            } else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.isOccupee() && !listeFerme.contains(tmp2)
                     && !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
                 listeDeplacementPossible.add(tmp2);
                 listeOuverte.add(tmp2);
@@ -263,7 +263,7 @@ public abstract class Pion implements Serializable {
                     noeudContenu.cout = tmp2.cout;
                     noeudContenu.listeNoeud = tmp2.listeNoeud;
                 }
-            } else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !listeFerme.contains(tmp2)
+            } else if (caseVerif != null && !tmp2.c.isObstacleDeplacement()  && !tmp2.c.isOccupee() && !listeFerme.contains(tmp2)
                     && !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
                 listeDeplacementPossible.add(tmp2);
                 listeOuverte.add(tmp2);
@@ -281,7 +281,7 @@ public abstract class Pion implements Serializable {
                     noeudContenu.cout = tmp2.cout;
                     noeudContenu.listeNoeud = tmp2.listeNoeud;
                 }
-            } else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !listeFerme.contains(tmp2)
+            } else if (caseVerif != null && !tmp2.c.isObstacleDeplacement()  && !tmp2.c.isOccupee() && !listeFerme.contains(tmp2)
                     && !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
                 listeDeplacementPossible.add(tmp2);
                 listeOuverte.add(tmp2);
@@ -299,7 +299,7 @@ public abstract class Pion implements Serializable {
                     noeudContenu.cout = tmp2.cout;
                     noeudContenu.listeNoeud = tmp2.listeNoeud;
                 }
-            } else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !listeFerme.contains(tmp2)
+            } else if (caseVerif != null && !tmp2.c.isObstacleDeplacement()  && !tmp2.c.isOccupee() && !listeFerme.contains(tmp2)
                     && !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
                 listeDeplacementPossible.add(tmp2);
                 listeOuverte.add(tmp2);
@@ -363,11 +363,11 @@ public abstract class Pion implements Serializable {
         listeAttaquePossible.remove(c);
     }
 
-    private int distanceManhattan(Case c1) {
+    protected int distanceManhattan(Case c1) {
         return Math.abs(c1.getLigne() - c.getLigne()) + Math.abs(c1.getColonne() - c.getColonne());
     }
 
-    private boolean contient(Noeud n, ArrayList<Noeud> ln) {
+    protected boolean contient(Noeud n, ArrayList<Noeud> ln) {
         for (Noeud n1 : ln) {
             if (n1.c.compare(n.c)) {
                 noeudContenu = n1;
@@ -377,7 +377,7 @@ public abstract class Pion implements Serializable {
         return false;
     }
 
-    private void recopierNoeudDansNoeud(Noeud n1, Noeud n2) {
+    protected void recopierNoeudDansNoeud(Noeud n1, Noeud n2) {
         for (Noeud nk : n1.listeNoeud) {
             n2.listeNoeud.add(nk);
         }
@@ -423,7 +423,7 @@ public abstract class Pion implements Serializable {
 		c.setPion(null);
 	}
 	
-	private boolean estVivant(Pion p){
+	public boolean estVivant(Pion p){
 		return p.vie > 0;
 	}
 }
