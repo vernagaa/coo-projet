@@ -110,10 +110,6 @@ public class AireDeJeu extends JComponent {
             if (mouvementEnCours) {
                 afficherMouvementPossible(gd);
             }
-
-            if (caseSurvol != null && caseSurvol.getPion() != null) {
-                construireSurvolPion(gd);
-            }
         }
 
         // Permet d'afficher les pions		
@@ -124,6 +120,10 @@ public class AireDeJeu extends JComponent {
                 }
             }
         }
+
+            if (!debutDePartie && caseSurvol != null && caseSurvol.getPion() != null) {
+                construireSurvolPion(gd);
+            }
 
         if (!attaqueEnCours && caseSurvol != null) {
             gd.setColor(new Color(255, 255, 50, 100));
