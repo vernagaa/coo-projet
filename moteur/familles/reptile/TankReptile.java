@@ -25,5 +25,10 @@ public final class TankReptile extends Tank implements Reptile {
 		return Textures.getPersonnage(Textures.TANKREPTILE, orientation);
 	}
 
+	@Override
+	public void mue() {
+		vie += 7;
+	}
+
 	
 }
