@@ -1,5 +1,7 @@
 package moteur;
 
+import ihm.FenetreAction;
+import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;
 import ihm.FenetrePrincipale;
 import java.io.*;
@@ -41,7 +43,7 @@ public class Moteur implements Runnable, Serializable {
 		plateau = new Plateau("map/map4.map");
 		joueur1 = new Joueur("joueur1");
 		joueur2 = new Joueur("joueur2");
-		debutDePartie = true;
+		debutDePartie = false;
 	}
 
 	public static void main(String[] args) {
@@ -53,7 +55,7 @@ public class Moteur implements Runnable, Serializable {
 		fp = new FenetrePrincipale(this);
 		aireDeJeu = fp.getAireDeJeu();
 		fenetreChoixPion = new FenetreChoixPion(this);
-		nouvellePartie = new NouvellePartieGraphique(this);
+//		nouvellePartie = new NouvellePartieGraphique(this);
 	}
 
 	public void caseCliqueBoutonGauche(Case c1) {
