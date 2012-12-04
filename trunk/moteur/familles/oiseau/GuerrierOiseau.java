@@ -28,7 +28,7 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 
 	@Override
 	public BufferedImage getImage() {
-		return Textures.getPersonnage(Textures.ASSASSINOISEAU, orientation);
+		return Textures.getPersonnage(Textures.GUERRIEROISEAU, orientation);
 	}
 
 	@Override

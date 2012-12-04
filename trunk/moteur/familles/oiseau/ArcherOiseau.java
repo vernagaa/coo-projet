@@ -26,7 +26,7 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 
 	@Override
 	public BufferedImage getImage() {
-		return Textures.getPersonnage(Textures.ASSASSINOISEAU, orientation);
+		return Textures.getPersonnage(Textures.ARCHEROISEAU, orientation);
 	}
 
 	@Override

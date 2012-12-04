@@ -22,6 +22,6 @@ public final class GuerrierFelin extends Guerrier implements Felin {
 
 	@Override
 	public BufferedImage getImage() {
-		return Textures.getPersonnage(Textures.TANKFELIN, orientation);
+		return Textures.getPersonnage(Textures.GUERRIERFELIN, orientation);
 	}
 }
