@@ -25,4 +25,9 @@ public class AssassinReptile extends Assassin implements Reptile {
 		return Textures.getPersonnage(Textures.ASSASSINREPTILE, orientation);
 	}
 
+	@Override
+	public void mue() {
+		vie += 7;
+	}
+
 }

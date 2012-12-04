@@ -24,4 +24,9 @@ public final class GuerrierReptile extends Guerrier implements Reptile {
 	public BufferedImage getImage() {
 		return Textures.getPersonnage(Textures.GUERRIERREPTILE, orientation);
 	}
+
+	@Override
+	public void mue() {
+		vie += 7;
+	}
 }

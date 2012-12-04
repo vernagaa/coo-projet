@@ -23,5 +23,9 @@ public final class ArcherReptile extends Archer implements Reptile {
 	public BufferedImage getImage() {
 		return Textures.getPersonnage(Textures.ARCHERREPTILE, orientation);
 	}
-	
+
+	@Override
+	public void mue() {
+		vie += 7;
+	}
 }
