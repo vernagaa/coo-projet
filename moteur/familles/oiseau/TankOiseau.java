@@ -26,7 +26,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 
 	@Override
 	public BufferedImage getImage() {
-		return Textures.getPersonnage(Textures.ASSASSINOISEAU, orientation);
+		return Textures.getPersonnage(Textures.TANKOISEAU, orientation);
 	}
 
 	@Override
