@@ -776,31 +776,26 @@ public class NouvellePartie extends javax.swing.JDialog {
 	}//GEN-LAST:event_Archer1ActionPerformed
 
 	private void Assassin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Assassin1ActionPerformed
-		// TODO add your handling code here:
+		
 	}//GEN-LAST:event_Assassin1ActionPerformed
 
 	private void Guerrier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guerrier1ActionPerformed
-		// TODO add your handling code here:
+
 	}//GEN-LAST:event_Guerrier1ActionPerformed
 
 	private void Tank1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tank1ActionPerformed
-		// TODO add your handling code here:
 	}//GEN-LAST:event_Tank1ActionPerformed
 
 	private void Archer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Archer2ActionPerformed
-		// TODO add your handling code here:
 	}//GEN-LAST:event_Archer2ActionPerformed
 
 	private void Assassin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Assassin2ActionPerformed
-		// TODO add your handling code here:
 	}//GEN-LAST:event_Assassin2ActionPerformed
 
 	private void Guerrier2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guerrier2ActionPerformed
-		// TODO add your handling code here:
 	}//GEN-LAST:event_Guerrier2ActionPerformed
 
 	private void Tank2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Tank2ActionPerformed
-		// TODO add your handling code here:
 	}//GEN-LAST:event_Tank2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

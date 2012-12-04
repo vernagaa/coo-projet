@@ -32,6 +32,7 @@ public abstract class Pion implements Serializable {
     private ArrayList<Case> deplacement;
     private Noeud noeudContenu;
     private Case c;
+	private static final int BONUSKILL = 20;
 		
 
     public Pion(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
@@ -120,15 +121,19 @@ public abstract class Pion implements Serializable {
                 System.out.println("Attaque de 1");
                 p.recevoirDegat(1);
             }
-
-            p.attaque();
-            if (p.getListeAttaquePossible().contains(this.c)) {
-                System.out.println("Riposte");
-                if (aleaRiposte < tauxRiposte) {
-                    System.out.println("Il riposte");
-                    p.attaquerPion(this, tauxRiposte / 2);
-                }
-            }
+			if(estVivant(p)){
+				p.attaque();
+				if (p.getListeAttaquePossible().contains(this.c)) {
+					System.out.println("Riposte");
+					if (aleaRiposte < tauxRiposte) {
+						System.out.println("Il riposte");
+						p.attaquerPion(this, tauxRiposte / 2);
+					}
+				}
+			}else{
+				tuer(p);
+			}
+			
         } else {
             System.out.println("J'esquive");
         }
@@ -406,4 +411,19 @@ public abstract class Pion implements Serializable {
         //TODO affichage vie à modifier
         return vie + "pv";
     }
+	
+	public void tuer(Pion pion){
+		vie += BONUSKILL;
+		pion.meurt();
+		pion = null;
+	}
+
+	private void meurt() {
+		//TODO Animation
+		c.setPion(null);
+	}
+	
+	private boolean estVivant(Pion p){
+		return p.vie > 0;
+	}
 }

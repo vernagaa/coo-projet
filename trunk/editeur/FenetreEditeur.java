@@ -5,6 +5,7 @@ import ihm.AireDeJeu;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import moteur.Plateau;
 import moteur.Textures;
@@ -104,6 +105,16 @@ public class FenetreEditeur extends javax.swing.JFrame {
         jRadioButton26 = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jRadioButton27 = new javax.swing.JRadioButton();
+        jTabbedPane4 = new javax.swing.JTabbedPane();
+        jPanel9 = new javax.swing.JPanel();
+        jRadioButton42 = new javax.swing.JRadioButton();
+        jRadioButton43 = new javax.swing.JRadioButton();
+        jRadioButton44 = new javax.swing.JRadioButton();
+        jRadioButton45 = new javax.swing.JRadioButton();
+        jRadioButton46 = new javax.swing.JRadioButton();
+        jRadioButton47 = new javax.swing.JRadioButton();
+        jRadioButton48 = new javax.swing.JRadioButton();
+        jRadioButton49 = new javax.swing.JRadioButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         creerMap = new javax.swing.JMenuItem();
@@ -324,7 +335,6 @@ public class FenetreEditeur extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1041, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jRadioButton38)
@@ -332,7 +342,6 @@ public class FenetreEditeur extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 152, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jRadioButton38)
@@ -354,8 +363,6 @@ public class FenetreEditeur extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1041, Short.MAX_VALUE)
-            .addGap(0, 1041, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jRadioButton39)
@@ -363,8 +370,6 @@ public class FenetreEditeur extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 152, Short.MAX_VALUE)
-            .addGap(0, 152, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jRadioButton39)
@@ -804,6 +809,129 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Obstacle", jTabbedPane2);
 
+        buttonGroup1.add(jRadioButton42);
+        jRadioButton42.setBorderPainted(true);
+        jRadioButton42.setIcon(new ImageIcon(Textures.getObstacle(Textures.CHATEAU1HAUTGAUCHE)));
+        jRadioButton42.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton42ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton43);
+        jRadioButton43.setBorderPainted(true);
+        jRadioButton43.setIcon(new ImageIcon(Textures.getObstacle(Textures.CHATEAU1HAUTDROIT)));
+        jRadioButton43.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton43ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton44);
+        jRadioButton44.setBorderPainted(true);
+        jRadioButton44.setIcon(new ImageIcon(Textures.getObstacle(Textures.CHATEAU1BASGAUCHE)));
+        jRadioButton44.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton44ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton45);
+        jRadioButton45.setBorderPainted(true);
+        jRadioButton45.setIcon(new ImageIcon(Textures.getObstacle(Textures.CHATEAU1BASDROIT)));
+        jRadioButton45.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton45ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton46);
+        jRadioButton46.setBorderPainted(true);
+        jRadioButton46.setIcon(new ImageIcon(Textures.getObstacle(Textures.CHATEAU2HAUTGAUCHE)));
+        jRadioButton46.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton46ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton47);
+        jRadioButton47.setBorderPainted(true);
+        jRadioButton47.setIcon(new ImageIcon(Textures.getObstacle(Textures.CHATEAU2HAUTDROIT)));
+        jRadioButton47.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton47ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton48);
+        jRadioButton48.setBorderPainted(true);
+        jRadioButton48.setIcon(new ImageIcon(Textures.getObstacle(Textures.CHATEAU2BASGAUCHE)));
+        jRadioButton48.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton48ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jRadioButton49);
+        jRadioButton49.setBorderPainted(true);
+        jRadioButton49.setIcon(new ImageIcon(Textures.getObstacle(Textures.CHATEAU2BASDROIT)));
+        jRadioButton49.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton49ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton42)
+                    .addComponent(jRadioButton44))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton43)
+                    .addComponent(jRadioButton45))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton46)
+                    .addComponent(jRadioButton48))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRadioButton47)
+                    .addComponent(jRadioButton49))
+                .addContainerGap(915, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton46)
+                            .addComponent(jRadioButton47))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton49)
+                            .addComponent(jRadioButton48)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton42)
+                            .addComponent(jRadioButton43))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton45)
+                            .addComponent(jRadioButton44))))
+                .addContainerGap(92, Short.MAX_VALUE))
+        );
+
+        jTabbedPane4.addTab("Chateaux", jPanel9);
+
+        jTabbedPane1.addTab("Spécial", jTabbedPane4);
+
         jMenu1.setText("Fichier");
 
         creerMap.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
@@ -857,7 +985,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(aireDeJeu1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1253,6 +1381,62 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	    texture = Textures.GLACE;
 	}//GEN-LAST:event_jRadioButton41ActionPerformed
 
+	private void jRadioButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton42ActionPerformed
+		obstacle = true;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.CHATEAU1HAUTGAUCHE;
+	}//GEN-LAST:event_jRadioButton42ActionPerformed
+
+	private void jRadioButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton43ActionPerformed
+		obstacle = true;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.CHATEAU1HAUTDROIT;
+	}//GEN-LAST:event_jRadioButton43ActionPerformed
+
+	private void jRadioButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton44ActionPerformed
+		obstacle = true;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.CHATEAU1BASGAUCHE;
+	}//GEN-LAST:event_jRadioButton44ActionPerformed
+
+	private void jRadioButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton45ActionPerformed
+		obstacle = true;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.CHATEAU1BASDROIT;
+	}//GEN-LAST:event_jRadioButton45ActionPerformed
+
+	private void jRadioButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton46ActionPerformed
+		obstacle = true;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.CHATEAU2HAUTGAUCHE;
+	}//GEN-LAST:event_jRadioButton46ActionPerformed
+
+	private void jRadioButton47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton47ActionPerformed
+		obstacle = true;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.CHATEAU2HAUTDROIT;
+	}//GEN-LAST:event_jRadioButton47ActionPerformed
+
+	private void jRadioButton48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton48ActionPerformed
+		obstacle = true;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.CHATEAU2BASGAUCHE;
+	}//GEN-LAST:event_jRadioButton48ActionPerformed
+
+	private void jRadioButton49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton49ActionPerformed
+		obstacle = true;
+	    suppression = false;
+	    bordure = false;
+	    texture = Textures.CHATEAU2BASDROIT;
+	}//GEN-LAST:event_jRadioButton49ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ihm.AireDeJeu aireDeJeu1;
     public editeur.AireDeSelection aireDeSelection1;
@@ -1270,6 +1454,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton10;
     private javax.swing.JRadioButton jRadioButton11;
@@ -1306,6 +1491,14 @@ public class FenetreEditeur extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton40;
     private javax.swing.JRadioButton jRadioButton41;
+    private javax.swing.JRadioButton jRadioButton42;
+    private javax.swing.JRadioButton jRadioButton43;
+    private javax.swing.JRadioButton jRadioButton44;
+    private javax.swing.JRadioButton jRadioButton45;
+    private javax.swing.JRadioButton jRadioButton46;
+    private javax.swing.JRadioButton jRadioButton47;
+    private javax.swing.JRadioButton jRadioButton48;
+    private javax.swing.JRadioButton jRadioButton49;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JRadioButton jRadioButton7;
@@ -1314,6 +1507,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JMenuItem sauverMap;
     // End of variables declaration//GEN-END:variables
 
