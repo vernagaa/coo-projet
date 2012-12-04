@@ -460,8 +460,8 @@ public final class Textures {
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINREPTILEPATH));
 			perso[ASSASSINREPTILE][1] = img.getSubimage(33, 0, 32, 32);
-			perso[ASSASSINREPTILE][2] = img.getSubimage(33, 32, 32, 32);
-			perso[ASSASSINREPTILE][3] = img.getSubimage(33, 64, 32, 32);
+			perso[ASSASSINREPTILE][3] = img.getSubimage(33, 32, 32, 32);
+			perso[ASSASSINREPTILE][2] = img.getSubimage(33, 64, 32, 32);
 			perso[ASSASSINREPTILE][0] = img.getSubimage(33, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINREPTILEPATH);
@@ -472,23 +472,23 @@ public final class Textures {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINFELINPATH));
 			
 			perso[ASSASSINFELIN][1] = img.getSubimage(224, 130, 32, 30);
-			perso[ASSASSINFELIN][2] = img.getSubimage(224, 162, 32, 30);
-			perso[ASSASSINFELIN][3] = img.getSubimage(224, 194, 32, 30);
+			perso[ASSASSINFELIN][3] = img.getSubimage(224, 162, 32, 30);
+			perso[ASSASSINFELIN][2] = img.getSubimage(224, 194, 32, 30);
 			perso[ASSASSINFELIN][0] = img.getSubimage(224, 226, 32, 30);
 			
 			perso[ARCHERFELIN][1] = img.getSubimage(32, 130, 32, 30);
-			perso[ARCHERFELIN][2] = img.getSubimage(32, 162, 32, 30);
-			perso[ARCHERFELIN][3] = img.getSubimage(32, 194, 32, 30);
+			perso[ARCHERFELIN][3] = img.getSubimage(32, 162, 32, 30);
+			perso[ARCHERFELIN][2] = img.getSubimage(32, 194, 32, 30);
 			perso[ARCHERFELIN][0] = img.getSubimage(32, 226, 32, 30);
 			
 			perso[GUERRIERFELIN][1] = img.getSubimage(128, 130, 32, 30);
-			perso[GUERRIERFELIN][2] = img.getSubimage(128, 162, 32, 30);
-			perso[GUERRIERFELIN][3] = img.getSubimage(128, 194, 32, 30);
+			perso[GUERRIERFELIN][3] = img.getSubimage(128, 162, 32, 30);
+			perso[GUERRIERFELIN][2] = img.getSubimage(128, 194, 32, 30);
 			perso[GUERRIERFELIN][0] = img.getSubimage(128, 226, 32, 30);
 			
 			perso[TACTICIENFELIN][1] = img.getSubimage(320, 130, 32, 30);
-			perso[TACTICIENFELIN][2] = img.getSubimage(320, 162, 32, 30);
-			perso[TACTICIENFELIN][3] = img.getSubimage(320, 194, 32, 30);
+			perso[TACTICIENFELIN][3] = img.getSubimage(320, 162, 32, 30);
+			perso[TACTICIENFELIN][2] = img.getSubimage(320, 194, 32, 30);
 			perso[TACTICIENFELIN][0] = img.getSubimage(320, 226, 32, 30);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINFELINPATH);
@@ -497,8 +497,8 @@ public final class Textures {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(TANKFELINPATH)),3*32,4*32);
 			
 			perso[TANKFELIN][1] = img.getSubimage(32, 0, 32, 30);
-			perso[TANKFELIN][2] = img.getSubimage(32, 34, 32, 30);
-			perso[TANKFELIN][3] = img.getSubimage(32, 66, 32, 30);
+			perso[TANKFELIN][3] = img.getSubimage(32, 34, 32, 30);
+			perso[TANKFELIN][2] = img.getSubimage(32, 66, 32, 30);
 			perso[TANKFELIN][0] = img.getSubimage(32, 98, 32, 30);
 			
 		} catch (IOException ex) {
