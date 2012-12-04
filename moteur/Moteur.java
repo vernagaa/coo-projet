@@ -73,7 +73,7 @@ public class Moteur implements Runnable, Serializable {
 		nouvellePartie.setChoix(false);
 	    }
 
-	    if (nouvellePartie.getNbPions() == 2) {
+	    if (nouvellePartie.getNbPions() == 8) {
 		nouvellePartie.elireCommandant();
 	    }
 	} else if (nouvellePartie.getEtape() == 3) {
