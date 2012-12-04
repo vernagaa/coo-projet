@@ -50,28 +50,42 @@ public abstract class Pion implements Serializable {
         } else {
             orientation = Orientation.EST;
         }
-        //TODO pour les tests
-        orientation = Orientation.SUD;
         listeDeplacementPossible = new ArrayList<Noeud>();
         deplacement = new ArrayList<Case>();
         listeAttaquePossible = new ArrayList<Case>();
         listeAttaqueAire = new ArrayList<Case>();
 
+        //XXX orientation SUD pour les tests
+        orientation = Orientation.SUD;
     }
 
     public void deplacerPion(Case c1) {
         System.out.println("Je suis en " + c.toString());
         mouvement -= distanceManhattan(c1);
 
-        this.c.setPion(null);
+        c.setPion(null);
         c1.setPion(this);
-        this.c = c1;
+        c = c1;
+		// orientation
+		Case last = deplacement.get(deplacement.size()-2);
+		if(c1.getColonne() - last.getColonne() > 0) {
+			orientation = Orientation.EST;
+		}
+		else if(c1.getColonne() - last.getColonne() < 0) {
+			orientation = Orientation.OUEST;
+		}
+		else if(c1.getLigne() - last.getLigne() > 0) {
+			orientation = Orientation.SUD;
+		}
+		else if(c1.getLigne() - last.getLigne() < 0) {
+			orientation = Orientation.NORD;
+		}
         System.out.println("Je suis allé en " + c.toString() + " il me reste nb mouvement " + mouvement);
         listeAttaquePossible.clear();
         listeDeplacementPossible.clear();
         listeAttaqueAire.clear();
         deplacement.clear();
-        //TO DO Joueur.getPions().effacerTout();
+        //TODO Joueur.getPions().effacerTout();
 
     }
 
@@ -193,10 +207,8 @@ public abstract class Pion implements Serializable {
     public abstract BufferedImage getImage();
 
 
-    public boolean deplacementPossible(Case c2) {
-        calculDeplacementPossible();
-        //TODO modifier le return
-        return true;
+    public boolean deplacementPossible(Case c) {
+		return getDeplacement().contains(c);
     }
 
     public void calculDeplacementPossible() {
@@ -376,6 +388,7 @@ public abstract class Pion implements Serializable {
                 deplacement.add(c2);
             }
         }
+		System.out.println("Déplacement : "+deplacement);
     }
 
     public ArrayList<Case> getDeplacement() {
@@ -391,7 +404,7 @@ public abstract class Pion implements Serializable {
     }
 
     public String getVieRestante() {
-        //TODO A modifier
+        //TODO affichage vie à modifier
         return vie + "pv";
     }
 }

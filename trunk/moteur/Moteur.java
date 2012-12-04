@@ -97,14 +97,16 @@ public class Moteur implements Runnable, Serializable {
             } // Permet de gerer la fin de tour
             else if (finirTour) {
 //			changerJoueur();	
-                finirTour = false;
-            } // Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
-            else if (mouvementEnCours && caseAncienne.getPion().getDeplacement().contains(caseCourante)) {
-                caseAncienne.getPion().deplacerPion(caseCourante);
-                // On specifie que le mouvement est termine
-                mouvementEnCours = false;
-                // On indique qu'il ne faut plus afficher les mouvements possibles
-                aireDeJeu.afficherMouvement(mouvementEnCours, c1);
+				finirTour = false;
+			} // Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
+			else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
+				if (caseAncienne != caseCourante) {
+					caseAncienne.getPion().deplacerPion(caseCourante);
+				}
+				// On specifie que le mouvement est termine
+				mouvementEnCours = false;
+				// On indique qu'il ne faut plus afficher les mouvements possibles
+				aireDeJeu.afficherMouvement(mouvementEnCours, c1);
 
                 // Afficher Selection Orientation
                 //TODO Afficher Orientation
