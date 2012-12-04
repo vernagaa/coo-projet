@@ -43,7 +43,7 @@ public class Moteur implements Runnable, Serializable {
 		plateau = new Plateau("map/map4.map");
 		joueur1 = new Joueur("joueur1");
 		joueur2 = new Joueur("joueur2");
-		debutDePartie = false;
+		debutDePartie = true;
 	}
 
 	public static void main(String[] args) {
@@ -55,7 +55,7 @@ public class Moteur implements Runnable, Serializable {
 		fp = new FenetrePrincipale(this);
 		aireDeJeu = fp.getAireDeJeu();
 		fenetreChoixPion = new FenetreChoixPion(this);
-//		nouvellePartie = new NouvellePartieGraphique(this);
+		nouvellePartie = new NouvellePartieGraphique(this);
 	}
 
 	public void caseCliqueBoutonGauche(Case c1) {
