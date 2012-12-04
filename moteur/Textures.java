@@ -51,6 +51,17 @@ public final class Textures {
 	public static final int BORDUREEAUBAS = 0;
 	public static final int BORDUREEAUDROIT = 1;
 	public static final int BORDUREEAUGAUCHE = 2;
+	//Chateaux
+	private static final String CHATEAU1 = "/images/chateau1.png";
+	private static final String CHATEAU2 = "/images/chateau2.png";
+	public static final int CHATEAU1HAUTGAUCHE = 22;
+	public static final int CHATEAU1HAUTDROIT = 23;
+	public static final int CHATEAU1BASGAUCHE = 24;
+	public static final int CHATEAU1BASDROIT = 25;
+	public static final int CHATEAU2HAUTGAUCHE = 26;
+	public static final int CHATEAU2HAUTDROIT = 27;
+	public static final int CHATEAU2BASGAUCHE = 28;
+	public static final int CHATEAU2BASDROIT = 29;
 
 	/*
 	 * ------ Tile Montagne nb : 9 ------ Ce sont des obstacles indestructibles
@@ -140,7 +151,7 @@ public final class Textures {
 	private BufferedImage[] terrain = new BufferedImage[6];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][] perso = new BufferedImage[15][4];
-	private BufferedImage[] obstacle = new BufferedImage[22];
+	private BufferedImage[] obstacle = new BufferedImage[30];
 
 	private static Textures singleton = new Textures();
 	
@@ -192,7 +203,8 @@ public final class Textures {
 		tileEau();
 		tileMontagne();
 		tileSable();
-
+		tileChateau();
+		
 		initPersos();
 	}
 
@@ -327,6 +339,31 @@ public final class Textures {
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + EAUPATH);
 		}
+	}
+	
+	private void tileChateau() {
+
+		try {
+			BufferedImage img1 = ImageIO.read(getClass().getResource(CHATEAU1));
+			
+			obstacle[CHATEAU1HAUTGAUCHE] = img1.getSubimage(0, 0, 30, 30);
+			obstacle[CHATEAU1HAUTDROIT] = img1.getSubimage(30, 0, 30, 30);
+			obstacle[CHATEAU1BASGAUCHE] = img1.getSubimage(0, 30, 30, 30);
+			obstacle[CHATEAU1BASDROIT] = img1.getSubimage(30, 30, 30, 30);
+			
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + CHATEAU1);
+		}
+		try {
+			BufferedImage img2 = ImageIO.read(getClass().getResource(CHATEAU2));
+			obstacle[CHATEAU2HAUTGAUCHE] = img2.getSubimage(0, 0, 30, 30);
+			obstacle[CHATEAU2HAUTDROIT] = img2.getSubimage(30, 0, 30, 30);
+			obstacle[CHATEAU2BASGAUCHE] = img2.getSubimage(0, 30, 30, 30);
+			obstacle[CHATEAU2BASDROIT] = img2.getSubimage(30, 30, 30, 30);
+			
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + CHATEAU2);
+		}	
 	}
 
 	private void tileMontagne() {
