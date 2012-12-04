@@ -9,6 +9,10 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import moteur.classes.Archer;
+import moteur.classes.Assassin;
+import moteur.classes.Guerrier;
+import moteur.classes.Tacticien;
+import moteur.classes.Tank;
 import moteur.familles.felin.Felin;
 import moteur.familles.oiseau.Oiseau;
 import moteur.familles.reptile.Reptile;
@@ -514,6 +518,152 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
                 stat.add(Archer.MOUVEMENT + Felin.mouvementArcher);
                 break;
         }
+		
+		
+        return stat;
+    }
+	
+    private ArrayList<Integer> assassin(int famille){
+        ArrayList<Integer> stat = new ArrayList<Integer>();
+        switch(famille){
+            case FabriquePion.REPTILE:
+                stat.add(Assassin.VIE + Reptile.vieAssassin);
+                stat.add(Assassin.FORCE + Reptile.forceAssassin);
+                stat.add(Assassin.DEFENSE + Reptile.defenseAssassin);
+                stat.add(Assassin.VITESSE + Reptile.vitesseAssassin);
+                stat.add(Assassin.PRECISION + Reptile.precisionAssassin);
+                stat.add(Assassin.PORTEE + Reptile.porteeAssassin);
+                stat.add(Assassin.MOUVEMENT + Reptile.mouvementAssassin);
+                break;
+            case FabriquePion.OISEAU:
+                stat.add(Assassin.VIE + Oiseau.vieAssassin);
+                stat.add(Assassin.FORCE + Oiseau.forceAssassin);
+                stat.add(Assassin.DEFENSE + Oiseau.defenseAssassin);
+                stat.add(Assassin.VITESSE + Oiseau.vitesseAssassin);
+                stat.add(Assassin.PRECISION + Oiseau.precisionAssassin);
+                stat.add(Assassin.PORTEE + Oiseau.porteeAssassin);
+                stat.add(Assassin.MOUVEMENT + Oiseau.mouvementAssassin);
+                break;
+            case FabriquePion.FELIN:
+                stat.add(Assassin.VIE + Felin.vieAssassin);
+                stat.add(Assassin.FORCE + Felin.forceAssassin);
+                stat.add(Assassin.DEFENSE + Felin.defenseAssassin);
+                stat.add(Assassin.VITESSE + Felin.vitesseAssassin);
+                stat.add(Assassin.PRECISION + Felin.precisionAssassin);
+                stat.add(Assassin.PORTEE + Felin.porteeAssassin);
+                stat.add(Assassin.MOUVEMENT + Felin.mouvementAssassin);
+                break;
+        }
+		
+		
+        return stat;
+    }
+	
+    private ArrayList<Integer> guerrier(int famille){
+        ArrayList<Integer> stat = new ArrayList<Integer>();
+        switch(famille){
+            case FabriquePion.REPTILE:
+                stat.add(Guerrier.VIE + Reptile.vieGuerrier);
+                stat.add(Guerrier.FORCE + Reptile.forceGuerrier);
+                stat.add(Guerrier.DEFENSE + Reptile.defenseGuerrier);
+                stat.add(Guerrier.VITESSE + Reptile.vitesseGuerrier);
+                stat.add(Guerrier.PRECISION + Reptile.precisionGuerrier);
+                stat.add(Guerrier.PORTEE + Reptile.porteeGuerrier);
+                stat.add(Guerrier.MOUVEMENT + Reptile.mouvementGuerrier);
+                break;
+            case FabriquePion.OISEAU:
+                stat.add(Guerrier.VIE + Oiseau.vieGuerrier);
+                stat.add(Guerrier.FORCE + Oiseau.forceGuerrier);
+                stat.add(Guerrier.DEFENSE + Oiseau.defenseGuerrier);
+                stat.add(Guerrier.VITESSE + Oiseau.vitesseGuerrier);
+                stat.add(Guerrier.PRECISION + Oiseau.precisionGuerrier);
+                stat.add(Guerrier.PORTEE + Oiseau.porteeGuerrier);
+                stat.add(Guerrier.MOUVEMENT + Oiseau.mouvementGuerrier);
+                break;
+            case FabriquePion.FELIN:
+                stat.add(Guerrier.VIE + Felin.vieGuerrier);
+                stat.add(Guerrier.FORCE + Felin.forceGuerrier);
+                stat.add(Guerrier.DEFENSE + Felin.defenseGuerrier);
+                stat.add(Guerrier.VITESSE + Felin.vitesseGuerrier);
+                stat.add(Guerrier.PRECISION + Felin.precisionGuerrier);
+                stat.add(Guerrier.PORTEE + Felin.porteeGuerrier);
+                stat.add(Guerrier.MOUVEMENT + Felin.mouvementGuerrier);
+                break;
+        }
+		
+		
+        return stat;
+    }
+	
+    private ArrayList<Integer> tank(int famille){
+        ArrayList<Integer> stat = new ArrayList<Integer>();
+        switch(famille){
+            case FabriquePion.REPTILE:
+                stat.add(Tank.VIE + Reptile.vieTank);
+                stat.add(Tank.FORCE + Reptile.forceTank);
+                stat.add(Tank.DEFENSE + Reptile.defenseTank);
+                stat.add(Tank.VITESSE + Reptile.vitesseTank);
+                stat.add(Tank.PRECISION + Reptile.precisionTank);
+                stat.add(Tank.PORTEE + Reptile.porteeTank);
+                stat.add(Tank.MOUVEMENT + Reptile.mouvementTank);
+                break;
+            case FabriquePion.OISEAU:
+                stat.add(Tank.VIE + Oiseau.vieTank);
+                stat.add(Tank.FORCE + Oiseau.forceTank);
+                stat.add(Tank.DEFENSE + Oiseau.defenseTank);
+                stat.add(Tank.VITESSE + Oiseau.vitesseTank);
+                stat.add(Tank.PRECISION + Oiseau.precisionTank);
+                stat.add(Tank.PORTEE + Oiseau.porteeTank);
+                stat.add(Tank.MOUVEMENT + Oiseau.mouvementTank);
+                break;
+            case FabriquePion.FELIN:
+                stat.add(Tank.VIE + Felin.vieTank);
+                stat.add(Tank.FORCE + Felin.forceTank);
+                stat.add(Tank.DEFENSE + Felin.defenseTank);
+                stat.add(Tank.VITESSE + Felin.vitesseTank);
+                stat.add(Tank.PRECISION + Felin.precisionTank);
+                stat.add(Tank.PORTEE + Felin.porteeTank);
+                stat.add(Tank.MOUVEMENT + Felin.mouvementTank);
+                break;
+        }
+		
+		
+        return stat;
+    }
+	
+    private ArrayList<Integer> tacticien(int famille){
+        ArrayList<Integer> stat = new ArrayList<Integer>();
+        switch(famille){
+            case FabriquePion.REPTILE:
+                stat.add(Tacticien.VIE + Reptile.vieTacticien);
+                stat.add(Tacticien.FORCE + Reptile.forceTacticien);
+                stat.add(Tacticien.DEFENSE + Reptile.defenseTacticien);
+                stat.add(Tacticien.VITESSE + Reptile.vitesseTacticien);
+                stat.add(Tacticien.PRECISION + Reptile.precisionTacticien);
+                stat.add(Tacticien.PORTEE + Reptile.porteeTacticien);
+                stat.add(Tacticien.MOUVEMENT + Reptile.mouvementTacticien);
+                break;
+            case FabriquePion.OISEAU:
+                stat.add(Tacticien.VIE + Oiseau.vieTacticien);
+                stat.add(Tacticien.FORCE + Oiseau.forceTacticien);
+                stat.add(Tacticien.DEFENSE + Oiseau.defenseTacticien);
+                stat.add(Tacticien.VITESSE + Oiseau.vitesseTacticien);
+                stat.add(Tacticien.PRECISION + Oiseau.precisionTacticien);
+                stat.add(Tacticien.PORTEE + Oiseau.porteeTacticien);
+                stat.add(Tacticien.MOUVEMENT + Oiseau.mouvementTacticien);
+                break;
+            case FabriquePion.FELIN:
+                stat.add(Tacticien.VIE + Felin.vieTacticien);
+                stat.add(Tacticien.FORCE + Felin.forceTacticien);
+                stat.add(Tacticien.DEFENSE + Felin.defenseTacticien);
+                stat.add(Tacticien.VITESSE + Felin.vitesseTacticien);
+                stat.add(Tacticien.PRECISION + Felin.precisionTacticien);
+                stat.add(Tacticien.PORTEE + Felin.porteeTacticien);
+                stat.add(Tacticien.MOUVEMENT + Felin.mouvementTacticien);
+                break;
+        }
+		
+		
         return stat;
     }
 }
