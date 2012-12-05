@@ -43,12 +43,20 @@ public final class FenetreChoixPion extends JComponent {
     public void placerFenetre(Case c) {
 	this.c = c;
 	boolean cap = false;
+	Case placement = c;
+	if (placement.getPlateau().get(placement.getLigne(), placement.getColonne() + 3) == null) {
+	    placement = placement.getPlateau().get(placement.getLigne(), placement.getColonne() - 4);
+	}
 	setSize(Case.TAILLE * 3, Case.TAILLE * 1);
 	b.setPosition(0);
+
 	if (m.getJoueurCourant().getTacticien() != null) {
 	    setSize(Case.TAILLE * 3, Case.TAILLE * 2);
 	    capa.setPosition(1);
 	    cap = true;
+	    if (placement.getPlateau().get(placement.getLigne() + 1, placement.getColonne()) == null) {
+		placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
+	    }
 	} else {
 	    capa.setPosition(5);
 	}
@@ -56,27 +64,45 @@ public final class FenetreChoixPion extends JComponent {
 	    setSize(Case.TAILLE * 3, Case.TAILLE * 3);
 	    conq.setPosition(2);
 	    t.setPosition(3);
+	    if (placement.getPlateau().get(placement.getLigne() + 2, placement.getColonne()) == null) {
+		placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
+	    }
 	    if (c.getPion() == m.getJoueurCourant().getTacticien()) {
 		setSize(Case.TAILLE * 3, Case.TAILLE * 4);
+		if (placement.getPlateau().get(placement.getLigne() + 3, placement.getColonne()) == null) {
+		    placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
+		}
 	    }
 	} else if (c.getPion() == m.getJoueurCourant().getCommandant()) {
 	    setSize(Case.TAILLE * 3, Case.TAILLE * 2);
 	    conq.setPosition(1);
 	    t.setPosition(2);
+	    if (placement.getPlateau().get(placement.getLigne() + 2, placement.getColonne()) == null) {
+		placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
+	    }
 	    if (c.getPion() == m.getJoueurCourant().getTacticien()) {
 		setSize(Case.TAILLE * 3, Case.TAILLE * 3);
+		if (placement.getPlateau().get(placement.getLigne() + 3, placement.getColonne()) == null) {
+		    placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
+		}
 	    }
 	} else if (c.getPion() == m.getJoueurCourant().getTacticien() && cap) {
 	    setSize(Case.TAILLE * 3, Case.TAILLE * 3);
 	    t.setPosition(2);
 	    conq.setPosition(3);
+	    if (placement.getPlateau().get(placement.getLigne() + 2, placement.getColonne()) == null) {
+		placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
+	    }
 	} else if (c.getPion() == m.getJoueurCourant().getTacticien()) {
 	    setSize(Case.TAILLE * 3, Case.TAILLE * 2);
 	    t.setPosition(1);
 	    conq.setPosition(2);
+	    if (placement.getPlateau().get(placement.getLigne() + 2, placement.getColonne()) == null) {
+		placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
+	    }
 	}
 
-	setLocation((c.getColonne() + 1) * Case.TAILLE, c.getLigne() * Case.TAILLE);
+	setLocation((placement.getColonne() + 1) * Case.TAILLE, placement.getLigne() * Case.TAILLE);
 	setVisible(true);
 
     }
