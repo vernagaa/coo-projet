@@ -146,9 +146,10 @@ public final class Textures {
 	// Images des personages
 	private static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test2.png";
 	
+	private static final String ARCHERREPTILEPATH = "/images/perso/reptile/cameleon.png";
 	private static final String ASSASSINREPTILEPATH = "/images/perso/reptile/serpent.png";
 	private static final String GUERRIERREPTILEPATH = "/images/perso/reptile/crocodile2.png";
-	private static final String TANKREPTILEPATH = "/images/perso/reptile/reptile_test.png";
+	private static final String TANKREPTILEPATH = "/images/perso/reptile/tortue.png";
 	
 	private static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
 	private static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
@@ -521,11 +522,20 @@ public final class Textures {
 		
 		// REPTILE
 		try {
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(ARCHERREPTILEPATH)), 32*3, 32*4);
+			perso[ARCHERREPTILE][1] = img.getSubimage(32, 0, 32, 32);
+			perso[ARCHERREPTILE][3] = img.getSubimage(32, 32, 32, 32);
+			perso[ARCHERREPTILE][2] = img.getSubimage(32, 64, 32, 32);
+			perso[ARCHERREPTILE][0] = img.getSubimage(32, 96, 32, 32);
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + ARCHERREPTILEPATH);
+		}
+		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(TANKREPTILEPATH));
-			perso[TANKREPTILE][1] = img.getSubimage(33, 0, 32, 32);
-			perso[TANKREPTILE][3] = img.getSubimage(33, 32, 32, 32);
-			perso[TANKREPTILE][2] = img.getSubimage(33, 64, 32, 32);
-			perso[TANKREPTILE][0] = img.getSubimage(33, 96, 32, 32);
+			perso[TANKREPTILE][1] = img.getSubimage(0, 0, 32, 32);
+			perso[TANKREPTILE][0] = img.getSubimage(0, 32, 32, 32);
+			perso[TANKREPTILE][3] = img.getSubimage(32, 0, 32, 32);
+			perso[TANKREPTILE][2] = img.getSubimage(32, 32, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + TANKREPTILEPATH);
 		}
