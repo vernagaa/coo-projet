@@ -123,7 +123,11 @@ public final class FenetreChoixPion extends JComponent {
 	finDeTour.setPosition(0);
 	b.setPosition(2);
 	setSize(Case.TAILLE * 3, Case.TAILLE * 1);
-	setLocation((c.getColonne() + 1) * Case.TAILLE, c.getLigne() * Case.TAILLE);
+	Case placement = c;
+	if (placement.getPlateau().get(placement.getLigne(), placement.getColonne() + 3) == null) {
+	    placement = placement.getPlateau().get(placement.getLigne(), placement.getColonne() - 4);
+	}
+	setLocation((placement.getColonne() + 1) * Case.TAILLE, placement.getLigne() * Case.TAILLE);
 	setVisible(true);
     }
 

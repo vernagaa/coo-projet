@@ -19,7 +19,7 @@ import moteur.Moteur;
 public class BoutonAttaquer extends BoutonAction implements ActionListener {
 
     public BoutonAttaquer(final FenetreChoixPion fenetre) {
-	super("attaquer", 0, fenetre);
+	super("Attaquer", 0, fenetre);
 	addActionListener(this);
 	addMouseListener(new MouseAdapter() {
 

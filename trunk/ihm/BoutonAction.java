@@ -19,7 +19,7 @@ import moteur.Case;
 public abstract class BoutonAction extends JButton {
 
     protected boolean survol;
-    private String nom;
+    protected String nom;
     protected FenetreChoixPion fenetre;
 
     public BoutonAction(String nom, int numero, FenetreChoixPion fenetre) {

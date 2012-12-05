@@ -33,11 +33,12 @@ public abstract class Pion implements Serializable {
     protected ArrayList<Case> deplacement;
     protected Noeud noeudContenu;
     protected Case c;
-    private Joueur joueur;
+    protected Joueur joueur;
     private static final int BONUSKILL = 20;
     private int special;
     private int tourspecial;
     private int mouvementBase;
+    protected String nomCapaciteSpeciale;
 
     public Pion(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
 	this.vie = vie;
@@ -92,6 +93,16 @@ public abstract class Pion implements Serializable {
 	deplacement.clear();
 	//TODO Joueur.getPions().effacerTout();
 
+    }
+    
+    public void deplacerPionTeleportation(Case c1){
+	c.setPion(null);
+	c1.setPion(this);
+	c = c1;
+	listeAttaquePossible.clear();
+	listeDeplacementPossible.clear();
+	listeAttaqueAire.clear();
+	deplacement.clear();
     }
 
     /**
@@ -479,6 +490,10 @@ public abstract class Pion implements Serializable {
     
     public boolean capaciteActive(){
 	return special == 0;
+    }
+
+    public String getNomCapacite() {
+	return nomCapaciteSpeciale;
     }
     
 }

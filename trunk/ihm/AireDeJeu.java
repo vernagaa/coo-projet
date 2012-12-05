@@ -28,6 +28,7 @@ public class AireDeJeu extends JComponent {
     private boolean joueurCourant;
     private boolean firstTime;
     private ArrayList<Case> listeCase;
+    private boolean afficherPoseTeleporteur;
 
     public AireDeJeu(Plateau plateau) {
 	setPreferredSize(new Dimension(plateau.getNbColonne() * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1));
@@ -109,6 +110,22 @@ public class AireDeJeu extends JComponent {
 	    // Affiche le deplacement du pion en caseEnCours
 	    if (mouvementEnCours) {
 		afficherMouvementPossible(gd);
+	    }
+
+	    if (afficherPoseTeleporteur) {
+		gd.setColor(new Color(200,0,200, 150));
+		if (plateau.get(caseEnCours.getLigne() - 1, caseEnCours.getColonne()) != null) {
+		    gd.fillRect(caseEnCours.getColonne() * Case.TAILLE, (caseEnCours.getLigne() - 1) * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
+		if (plateau.get(caseEnCours.getLigne() + 1, caseEnCours.getColonne()) != null) {
+		    gd.fillRect(caseEnCours.getColonne() * Case.TAILLE, (caseEnCours.getLigne() + 1) * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
+		if (plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() - 1) != null) {
+		    gd.fillRect((caseEnCours.getColonne() - 1) * Case.TAILLE, caseEnCours.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
+		if (plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() + 1) != null) {
+		    gd.fillRect((caseEnCours.getColonne() + 1) * Case.TAILLE, caseEnCours.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
 	    }
 	}
 
@@ -223,7 +240,7 @@ public class AireDeJeu extends JComponent {
     private void afficherMouvementPossible(Graphics2D gd) {
 	int i = 0;
 	for (Noeud c2 : caseEnCours.getPion().listeDeplacementPossible) {
-	    gd.setColor(new Color(25, 150, 255, 255 - i * 3));
+	    gd.setColor(new Color(25, 150, 255, 255 - i * 2));
 	    gd.fillRect(c2.c.getColonne() * Case.TAILLE, c2.c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 	    i++;
 	}
@@ -250,5 +267,10 @@ public class AireDeJeu extends JComponent {
 
     public void setListeCase(ArrayList<Case> caseJoueur) {
 	listeCase = caseJoueur;
+    }
+
+   public void setAfficherPoseTeleporteur(boolean b, Case c) {
+	afficherPoseTeleporteur = b;
+	caseEnCours = c;
     }
 }

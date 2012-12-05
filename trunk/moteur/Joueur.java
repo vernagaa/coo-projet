@@ -16,6 +16,7 @@ public final class Joueur {
     private Pion commandant;
     private Pion tacticien;
     private ArrayList<Case> placesConquises;
+    private ArrayList<Case> teleporteur;
     private String nom;
     private String famille;
 
@@ -23,6 +24,7 @@ public final class Joueur {
 	this.nom = nom;
 	listeDePions = new ArrayList<Pion>();
 	placesConquises = new ArrayList<Case>();
+	teleporteur = new ArrayList<Case>();
     }
 
     public Pion getCommandant() {
@@ -30,7 +32,7 @@ public final class Joueur {
     }
 
     public void setCommandant(Pion commandant) {
-	System.out.println("Nomme commandant "+commandant);
+	System.out.println("Nomme commandant " + commandant);
 	this.commandant = commandant;
     }
 
@@ -44,6 +46,10 @@ public final class Joueur {
 
     public ArrayList<Case> getPlacesConquises() {
 	return placesConquises;
+    }
+
+    public ArrayList<Case> getTeleporteur() {
+	return teleporteur;
     }
 
     public String getFamille() {

@@ -17,6 +17,7 @@ public class AssassinOiseau extends Assassin implements Oiseau {
 	public AssassinOiseau(Case c) {
 		super(vieAssassin, forceAssassin, precisionAssassin, vitesseAssassin, defenseAssassin, chanceAssassin, porteeAssassin, mouvementAssassin, c);
 		vol = true;
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override

@@ -15,13 +15,14 @@ import moteur.Case;
 public class BoutonConquerir extends BoutonAction implements ActionListener {
 
     public BoutonConquerir(final FenetreChoixPion fenetre) {
-	super("conquerir", 2, fenetre);
+	super("Conquerir", 2, fenetre);
 	addActionListener(this);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+	nom = fenetre.c.getPion().getNomCapacite();
 	System.out.println("Conquerir");
 	fenetre.effacerFenetre();
     }

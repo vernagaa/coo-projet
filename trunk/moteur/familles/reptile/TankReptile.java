@@ -13,6 +13,7 @@ public final class TankReptile extends Tank implements Reptile {
 
 	public TankReptile(Case c) {
 		super(vieTank, forceTank, precisionTank, vitesseTank, defenseTank, chanceTank, porteeTank, mouvementTank, c);
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override

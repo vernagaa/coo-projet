@@ -16,6 +16,7 @@ public final class TankFelin extends Tank implements Felin {
 	public TankFelin(Case c) {
 		super(vieTank, forceTank, precisionTank, vitesseTank, defenseTank, chanceTank, porteeTank, mouvementTank, c);
 		enrage = false;
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override
