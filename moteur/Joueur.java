@@ -14,6 +14,7 @@ public final class Joueur {
 
     private ArrayList<Pion> listeDePions;
     private Pion commandant;
+	private Pion tacticien;
     private ArrayList<Case> placesConquises;
     private String nom;
 	private String famille;
@@ -60,4 +61,18 @@ public final class Joueur {
 	public void ajouterPion(Pion pion){
 		listeDePions.add(pion);
 	}
+	
+	public boolean tacticienEnVie(){
+		return tacticien != null;
+	}
+
+	public Pion getTacticien() {
+		return tacticien;
+	}
+
+	public void setTacticien(Pion tacticien) {
+		this.tacticien = tacticien;
+	}
+	
+	
 }
