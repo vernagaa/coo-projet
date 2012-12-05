@@ -143,11 +143,13 @@ public final class Textures {
 	public static final int TACTICIENREPTILE = 13;
 	public static final int TANKREPTILE = 14;
 	
+	// Images des personages
 	private static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test2.png";
 	private static final String ASSASSINREPTILEPATH = "/images/perso/reptile/reptile_test.png";
 	private static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
 	private static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
 	
+	// Attributs
 	private BufferedImage[] terrain = new BufferedImage[6];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][] perso = new BufferedImage[15][4];
@@ -210,6 +212,17 @@ public final class Textures {
 
 	public static BufferedImage getPersonnage(int numPerso, Orientation orientation) {
 		return singleton.getPerso(numPerso, orientation);
+	}
+
+	/**
+	 * 
+	 * @param famille Famille dans FabriquePion
+	 * @param classe Classe dans FabriquePion
+	 * @param orientation
+	 * @return 
+	 */
+	public static BufferedImage getPersonnage(int famille, int classe, Orientation orientation) {
+		return getPersonnage(famille * 5 + classe, orientation);
 	}
 	
 	private BufferedImage getPerso(int numPerso, Orientation orientation) {
