@@ -13,10 +13,12 @@ import moteur.classes.Archer;
  * @author vernagaa
  */
 public final class ArcherOiseau extends Archer implements Oiseau {
+
 	private boolean vol;
+
 	public ArcherOiseau(Case c) {
 		super(vieArcher, forceArcher, precisionArcher, vitesseArcher, defenseArcher, chanceArcher, porteeArcher, mouvementArcher, c);
-		vol = true;
+		vol = false;
 	}
 
 	@Override
@@ -53,6 +55,11 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 		tmp = new Noeud(c, 0);
 		listeOuverte.add(tmp);
 		listeDeplacementPossible.add(tmp);
+
+		if (getTourspecial() == 2 && !c.isObstacleDeplacement()) {
+			vol = false;
+		}
+
 		while (!listeOuverte.isEmpty()) {
 			tmp = listeOuverte.remove(0);
 			listeFerme.add(tmp);
@@ -137,5 +144,25 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void capaciteSpeciale() {
+		enEnvole();
+		specialIndispo();
+		setTourspecial(getTourspecial() + 1);
+	}
+
+	@Override
+	public void specialIndispo() {
+		setSpecial(cooldown);
+	}
+
+	@Override
+	public void finDeTour() {
+		if (getTourspecial() < 2) {
+			setTourspecial(getTourspecial() + 1);
+		}
+		setMouvement(getMouvementBase());
 	}
 }

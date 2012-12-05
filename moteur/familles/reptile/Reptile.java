@@ -58,5 +58,6 @@ public interface Reptile extends Famille {
 	public static final int porteeTacticien = 0;
 	public static final int mouvementTacticien = 0;
 	
+	public static final int cooldown = 3;
 	public void mue();
 }

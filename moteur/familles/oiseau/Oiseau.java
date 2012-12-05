@@ -58,6 +58,7 @@ public interface Oiseau extends Famille {
 	public static final int porteeTacticien = 0;
 	public static final int mouvementTacticien = 0;
 	
+	public static final int cooldown = 5;
 	public boolean isEnvole();
 	public void enEnvole();
 }

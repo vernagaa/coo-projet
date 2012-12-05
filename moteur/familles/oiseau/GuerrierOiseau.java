@@ -55,6 +55,11 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 		tmp = new Noeud(c, 0);
 		listeOuverte.add(tmp);
 		listeDeplacementPossible.add(tmp);
+		
+		if(getTourspecial()==2 && !c.isObstacleDeplacement()){
+			vol = false;
+		}
+		
 		while (!listeOuverte.isEmpty()) {
 			tmp = listeOuverte.remove(0);
 			listeFerme.add(tmp);
@@ -139,5 +144,22 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void capaciteSpeciale() {
+			enEnvole();
+			specialIndispo();
+	}
+
+	@Override
+	public void specialIndispo() {
+		setSpecial(cooldown);
+	}
+	
+	@Override
+	public void finDeTour(){
+		setTourspecial(getTourspecial()+1);
+		setMouvement(getMouvementBase());
 	}
 }

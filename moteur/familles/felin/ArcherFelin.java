@@ -10,8 +10,13 @@ import moteur.classes.Archer;
  * @author vernagaa
  */
 public final class ArcherFelin extends Archer implements Felin {
+
+	private boolean enrage;
+	int precisionBase;
+
 	public ArcherFelin(Case c) {
 		super(vieArcher, forceArcher, precisionArcher, vitesseArcher, defenseArcher, chanceArcher, porteeArcher, mouvementArcher, c);
+		enrage = false;
 	}
 
 	@Override
@@ -24,4 +29,38 @@ public final class ArcherFelin extends Archer implements Felin {
 		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation);
 	}
 
+	@Override
+	public void capaciteSpeciale() {
+		enrage();
+		specialIndispo();
+		setTourspecial(getTourspecial() + 1);
+	}
+
+	@Override
+	public void specialIndispo() {
+		setSpecial(cooldown);
+	}
+
+	@Override
+	public void enrage() {
+		enrage = true;
+	}
+
+	@Override
+	protected float coupCritiques() {
+		if (enrage) {
+			enrage = false;
+			return 9999 / 150;
+		} else {
+			if(getTourspecial()==1){
+				setTourspecial(getTourspecial()+1);
+				precisionBase = precision;
+				precision = 0;
+			}else if(getTourspecial() == 2){
+				precision = precisionBase;
+				setTourspecial(0);
+			}
+			return precision * 4 * vitesse / 150;
+		}
+	}
 }

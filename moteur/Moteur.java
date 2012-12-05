@@ -20,6 +20,7 @@ public class Moteur implements Runnable, Serializable {
     private FenetreAction fenetreChoixPion;
     NouvellePartieGraphique nouvellePartie;
     private boolean debutDePartie;
+	private int tour;
     /*
      * Gestion de la souris
      */
@@ -47,6 +48,7 @@ public class Moteur implements Runnable, Serializable {
 	joueur2 = new Joueur("joueur2");
 	debutDePartie = true;
 	joueurCourant = true;
+	tour = 0;
     }
 
     public static void main(String[] args) {
@@ -216,4 +218,11 @@ public class Moteur implements Runnable, Serializable {
     public void setJoueur2(Joueur joueur2) {
 	this.joueur2 = joueur2;
     }
+	
+	public void changementJoueur(){
+		joueurCourant = !joueurCourant;
+		if(joueurCourant){
+			tour++;
+		}
+	}
 }

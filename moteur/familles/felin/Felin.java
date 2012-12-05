@@ -57,4 +57,7 @@ public interface Felin extends Famille {
 	public static final int chanceTacticien = 2;
 	public static final int porteeTacticien = 0;
 	public static final int mouvementTacticien = 0;
+	
+	public static final int cooldown = 4;
+	public void enrage();
 }
