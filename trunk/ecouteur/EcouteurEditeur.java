@@ -4,6 +4,7 @@ import editeur.FenetreEditeur;
 import java.awt.event.*;
 import moteur.Bordure;
 import moteur.Case;
+import moteur.Destructible;
 import moteur.Indestructible;
 
 /**
@@ -66,7 +67,7 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		Case[][] c = fenetreEditeur.getAireDeJeu1().getPlateau().get();
 		for (int i = ligneMin; i <= ligneMax; i++) {
 			for (int j = colonneMin; j <= colonneMax; j++) {
-				if (fenetreEditeur.obstacle) {
+				if (fenetreEditeur.indestructible) {
 					Indestructible o = new Indestructible(fenetreEditeur.texture);
 					c[i][j].setObstacle(o);
 				} else if (fenetreEditeur.bordure) {
@@ -75,7 +76,10 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 				} else if (fenetreEditeur.suppression) {
 					c[i][j].setObstacle(null);
 					c[i][j].setBordure(null);
-				} else {
+				} else if (fenetreEditeur.destructible) {
+					Destructible o = new Destructible(fenetreEditeur.texture, 25);
+					c[i][j].setObstacle(o);
+				} else{
 					c[i][j].setTypeTerrain(fenetreEditeur.texture);
 				}
 			}

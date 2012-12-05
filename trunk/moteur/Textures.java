@@ -16,7 +16,7 @@ public final class Textures {
 	 * ------ Tile Eau nb : 16 dont 3 bordures ------ Ce sont des obstacles
 	 * indestructibles
 	 */
-	
+
 	// Les obstacles indestructibles
 	private static final String EAUPATH = "/images/eau.png";
 	private static final String EAUDROITPATH = "/images/eauDroit.png";
@@ -75,6 +75,8 @@ public final class Textures {
 	private static final String MONTAGNEBASGAUCHEPATH = "/images/montagneBasDroit.png";
 	private static final String MONTAGNEBASPATH = "/images/montagneBas.png";
 	private static final String MONTAGNEBASDROITPATH = "/images/montagneBasGauche.png";
+	private static final String MONTAGNECORNERDROITPATH = "/images/montagneCornerDroit.png";
+	private static final String MONTAGNECORNERGAUCHEPATH = "/images/montagneCornerGauche.png";
 	public static final int MONTAGNEHAUTDROIT = 13;
 	public static final int MONTAGNEHAUT = 14;
 	public static final int MONTAGNEHAUTGAUCHE = 15;
@@ -84,6 +86,8 @@ public final class Textures {
 	public static final int MONTAGNEBASGAUCHE = 19;
 	public static final int MONTAGNEBAS = 20;
 	public static final int MONTAGNEBASDROIT = 21;
+	public static final int MONTAGNECORNERDROIT = 30;
+	public static final int MONTAGNECORNERGAUCHE = 31;
 	/*
 	 * Tile Bordure Sable : 12
 	 */
@@ -114,7 +118,6 @@ public final class Textures {
 	private static final String HERBEPATH = "/images/herbemod.png";
 	private static final String NEIGEPATH = "/images/neige.png";
 	private static final String GLACEPATH = "/images/glace.png";
-	
 	public static final int ROC = 0;
 	public static final int ROUTE = 1;
 	public static final int SABLE = 2;
@@ -122,7 +125,31 @@ public final class Textures {
 	public static final int NEIGE = 4;
 	public static final int GLACE = 5;
 	public static final int TELEPORTEUR = 6;
-	
+	/**
+	 * Barriere
+	 */
+	private static final String BARRIERECOINBASDROITPATH = "/images/barriereCoinBasDroit.png";
+	private static final String BARRIERECOINHAUTDROITPATH = "/images/barriereCoinHautDroit.png";
+	private static final String BARRIERECOINFINDROITPATH = "/images/barriereCoinFinDroit.png";
+	private static final String BARRIEREFINDROITPATH = "/images/barriereDroitFin.png";
+	private static final String BARRIEREDROITPATH = "/images/barriereDroit.png";
+	private static final String BARRIEREGAUCHEFINPATH = "/images/barriereGaucheFin.png";
+	private static final String BARRIERECOINFINGAUCHEPATH = "/images/barriereCoinFinGauche.png";
+	private static final String BARRIEREBASPATH = "/images/barriereBas.png";
+	private static final String BARRIEREGAUCHEPATH = "/images/barriereGauche.png";
+	private static final String BARRIERECOINBASGAUCHEPATH = "/images/barriereCoinBasGauche.png";
+	private static final String BARRIERECOINHAUTGAUCHEPATH = "/images/barriereCoinHautGauche.png";
+	public static final int BARRIERECOINBASDROIT = 32;
+	public static final int BARRIERECOINHAUTDROIT = 33;
+	public static final int BARRIERECOINFINDROIT = 34;
+	public static final int BARRIEREFINDROIT = 35;
+	public static final int BARRIEREDROIT = 36;
+	public static final int BARRIEREGAUCHEFIN = 37;
+	public static final int BARRIERECOINFINGAUCHE = 38;
+	public static final int BARRIEREBAS = 39;
+	public static final int BARRIEREGAUCHE = 40;
+	public static final int BARRIERECOINBASGAUCHE = 41;
+	public static final int BARRIERECOINHAUTGAUCHE = 42;
 	/**
 	 * Personnages
 	 */
@@ -131,39 +158,32 @@ public final class Textures {
 	public static final int GUERRIERFELIN = 2;
 	public static final int TACTICIENFELIN = 3;
 	public static final int TANKFELIN = 4;
-	
 	public static final int ARCHEROISEAU = 5;
 	public static final int ASSASSINOISEAU = 6;
 	public static final int GUERRIEROISEAU = 7;
 	public static final int TACTICIENOISEAU = 8;
 	public static final int TANKOISEAU = 9;
-	
 	public static final int ARCHERREPTILE = 10;
 	public static final int ASSASSINREPTILE = 11;
 	public static final int GUERRIERREPTILE = 12;
 	public static final int TACTICIENREPTILE = 13;
 	public static final int TANKREPTILE = 14;
-	
 	// Images des personages
 	private static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test2.png";
-	
 	private static final String ARCHERREPTILEPATH = "/images/perso/reptile/cameleon.png";
 	private static final String ASSASSINREPTILEPATH = "/images/perso/reptile/serpent.png";
 	private static final String GUERRIERREPTILEPATH = "/images/perso/reptile/crocodile2.png";
 	private static final String TACTICIENREPTILEPATH = "/images/perso/reptile/grenouille.png";
 	private static final String TANKREPTILEPATH = "/images/perso/reptile/tortue.png";
-	
 	private static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
 	private static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
-	
 	// Attributs
 	private BufferedImage[] terrain = new BufferedImage[7];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][] perso = new BufferedImage[15][4];
-	private BufferedImage[] obstacle = new BufferedImage[30];
-
+	private BufferedImage[] obstacle = new BufferedImage[43];
 	private static Textures singleton = new Textures();
-	
+
 	public Textures() {
 		for (int i = 0; i < terrain.length; i++) {
 			terrain[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
@@ -179,6 +199,7 @@ public final class Textures {
 		for (int i = 0; i < obstacle.length; i++) {
 			obstacle[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
 		}
+
 
 
 
@@ -218,7 +239,7 @@ public final class Textures {
 		tileMontagne();
 		tileSable();
 		tileChateau();
-		
+		tileBarriere();
 		initPersos();
 	}
 
@@ -227,16 +248,16 @@ public final class Textures {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param famille Famille dans FabriquePion
 	 * @param classe Classe dans FabriquePion
 	 * @param orientation
-	 * @return 
+	 * @return
 	 */
 	public static BufferedImage getPersonnage(int famille, int classe, Orientation orientation) {
 		return getPersonnage(famille * 5 + classe, orientation);
 	}
-	
+
 	private BufferedImage getPerso(int numPerso, Orientation orientation) {
 		switch (orientation) {
 			case NORD:
@@ -255,7 +276,7 @@ public final class Textures {
 	public static BufferedImage getTerrain(int numTerrain) {
 		return singleton.getTerr(numTerrain);
 	}
-	
+
 	private BufferedImage getTerr(int numTerrain) {
 		return terrain[numTerrain];
 	}
@@ -263,7 +284,7 @@ public final class Textures {
 	public static BufferedImage getObstacle(int numObstacle) {
 		return singleton.getObst(numObstacle);
 	}
-	
+
 	private BufferedImage getObst(int numObstacle) {
 		return obstacle[numObstacle];
 	}
@@ -278,8 +299,8 @@ public final class Textures {
 
 	/**
 	 * Certaines de ces images qui servent a construire les plans d'eau sont
-	 * consideres comme de type HERBE et non EAU. Le type EAU est
-	 * infranchissable, contrairement au type HERBE
+	 * consideres comme de type HERBE et non EAU. Le type EAU est infranchissable,
+	 * contrairement au type HERBE
 	 */
 	private void tileEau() {
 
@@ -365,17 +386,17 @@ public final class Textures {
 			System.err.println("Image non trouvée : " + EAUPATH);
 		}
 	}
-	
+
 	private void tileChateau() {
 
 		try {
 			BufferedImage img1 = ImageIO.read(getClass().getResource(CHATEAU1));
-			
+
 			obstacle[CHATEAU1HAUTGAUCHE] = img1.getSubimage(0, 0, 30, 30);
 			obstacle[CHATEAU1HAUTDROIT] = img1.getSubimage(30, 0, 30, 30);
 			obstacle[CHATEAU1BASGAUCHE] = img1.getSubimage(0, 30, 30, 30);
 			obstacle[CHATEAU1BASDROIT] = img1.getSubimage(30, 30, 30, 30);
-			
+
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + CHATEAU1);
 		}
@@ -385,10 +406,10 @@ public final class Textures {
 			obstacle[CHATEAU2HAUTDROIT] = img2.getSubimage(30, 0, 30, 30);
 			obstacle[CHATEAU2BASGAUCHE] = img2.getSubimage(0, 30, 30, 30);
 			obstacle[CHATEAU2BASDROIT] = img2.getSubimage(30, 30, 30, 30);
-			
+
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + CHATEAU2);
-		}	
+		}
 	}
 
 	private void tileMontagne() {
@@ -436,6 +457,16 @@ public final class Textures {
 			obstacle[MONTAGNEBASGAUCHE] = ImageIO.read(getClass().getResource(MONTAGNEBASGAUCHEPATH));
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + MONTAGNEBASGAUCHEPATH);
+		}
+		try {
+			obstacle[MONTAGNECORNERGAUCHE] = ImageIO.read(getClass().getResource(MONTAGNECORNERGAUCHEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + MONTAGNECORNERGAUCHEPATH);
+		}
+		try {
+			obstacle[MONTAGNECORNERDROIT] = ImageIO.read(getClass().getResource(MONTAGNECORNERDROITPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + MONTAGNECORNERDROITPATH);
 		}
 	}
 
@@ -485,7 +516,7 @@ public final class Textures {
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + BORDURESABLEBASPATH);
 		}
-		
+
 		try {
 			terrain[SABLE] = ImageIO.read(getClass().getResource(SABLEPATH));
 		} catch (IOException ex) {
@@ -498,27 +529,27 @@ public final class Textures {
 		// OISEAU
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINOISEAUPATH));
-			
-			perso[ARCHEROISEAU][1] = img.getSubimage(32*7, 0, 32, 32);
-			perso[ARCHEROISEAU][3] = img.getSubimage(32*7, 32, 32, 32);
-			perso[ARCHEROISEAU][2] = img.getSubimage(32*7, 64, 32, 32);
-			perso[ARCHEROISEAU][0] = img.getSubimage(32*7, 96, 32, 32);
-			
+
+			perso[ARCHEROISEAU][1] = img.getSubimage(32 * 7, 0, 32, 32);
+			perso[ARCHEROISEAU][3] = img.getSubimage(32 * 7, 32, 32, 32);
+			perso[ARCHEROISEAU][2] = img.getSubimage(32 * 7, 64, 32, 32);
+			perso[ARCHEROISEAU][0] = img.getSubimage(32 * 7, 96, 32, 32);
+
 			perso[ASSASSINOISEAU][1] = img.getSubimage(128, 0, 32, 32);
 			perso[ASSASSINOISEAU][3] = img.getSubimage(128, 32, 32, 32);
 			perso[ASSASSINOISEAU][2] = img.getSubimage(128, 64, 32, 32);
 			perso[ASSASSINOISEAU][0] = img.getSubimage(128, 96, 32, 32);
-			
-			perso[GUERRIEROISEAU][1] = img.getSubimage(32*7, 128, 32, 32);
-			perso[GUERRIEROISEAU][3] = img.getSubimage(32*7, 160, 32, 32);
-			perso[GUERRIEROISEAU][2] = img.getSubimage(32*7, 192, 32, 32);
-			perso[GUERRIEROISEAU][0] = img.getSubimage(32*7, 224, 32, 32);
-			
+
+			perso[GUERRIEROISEAU][1] = img.getSubimage(32 * 7, 128, 32, 32);
+			perso[GUERRIEROISEAU][3] = img.getSubimage(32 * 7, 160, 32, 32);
+			perso[GUERRIEROISEAU][2] = img.getSubimage(32 * 7, 192, 32, 32);
+			perso[GUERRIEROISEAU][0] = img.getSubimage(32 * 7, 224, 32, 32);
+
 			perso[TACTICIENOISEAU][1] = img.getSubimage(32, 0, 32, 32);
 			perso[TACTICIENOISEAU][3] = img.getSubimage(32, 32, 32, 32);
 			perso[TACTICIENOISEAU][2] = img.getSubimage(32, 64, 32, 32);
 			perso[TACTICIENOISEAU][0] = img.getSubimage(32, 96, 32, 32);
-			
+
 			perso[TANKOISEAU][1] = img.getSubimage(128, 128, 32, 32);
 			perso[TANKOISEAU][3] = img.getSubimage(128, 160, 32, 32);
 			perso[TANKOISEAU][2] = img.getSubimage(128, 192, 32, 32);
@@ -526,10 +557,10 @@ public final class Textures {
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
 		}
-		
+
 		// REPTILE
 		try {
-			BufferedImage img = scale(ImageIO.read(getClass().getResource(ARCHERREPTILEPATH)), 32*3, 32*4);
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(ARCHERREPTILEPATH)), 32 * 3, 32 * 4);
 			perso[ARCHERREPTILE][1] = img.getSubimage(32, 0, 32, 32);
 			perso[ARCHERREPTILE][3] = img.getSubimage(32, 32, 32, 32);
 			perso[ARCHERREPTILE][2] = img.getSubimage(32, 64, 32, 32);
@@ -547,7 +578,7 @@ public final class Textures {
 			System.err.println("Image non trouvée : " + TANKREPTILEPATH);
 		}
 		try {
-			BufferedImage img = scale(ImageIO.read(getClass().getResource(GUERRIERREPTILEPATH)), 3*32, 4*32);
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(GUERRIERREPTILEPATH)), 3 * 32, 4 * 32);
 			perso[GUERRIERREPTILE][1] = img.getSubimage(0, 0, 32, 32);
 			perso[GUERRIERREPTILE][3] = img.getSubimage(0, 32, 32, 32);
 			perso[GUERRIERREPTILE][2] = img.getSubimage(0, 64, 32, 32);
@@ -573,26 +604,26 @@ public final class Textures {
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + TACTICIENREPTILEPATH);
 		}
-		
+
 		// FÉLIN
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINFELINPATH));
-			
+
 			perso[ASSASSINFELIN][1] = img.getSubimage(224, 2, 32, 30);
 			perso[ASSASSINFELIN][3] = img.getSubimage(224, 34, 32, 30);
 			perso[ASSASSINFELIN][2] = img.getSubimage(224, 66, 32, 30);
 			perso[ASSASSINFELIN][0] = img.getSubimage(224, 98, 32, 30);
-			
+
 			perso[ARCHERFELIN][1] = img.getSubimage(32, 2, 32, 30);
 			perso[ARCHERFELIN][3] = img.getSubimage(32, 34, 32, 30);
 			perso[ARCHERFELIN][2] = img.getSubimage(32, 66, 32, 30);
 			perso[ARCHERFELIN][0] = img.getSubimage(32, 98, 32, 30);
-			
+
 			perso[GUERRIERFELIN][1] = img.getSubimage(128, 2, 32, 30);
 			perso[GUERRIERFELIN][3] = img.getSubimage(128, 34, 32, 30);
 			perso[GUERRIERFELIN][2] = img.getSubimage(128, 66, 32, 30);
 			perso[GUERRIERFELIN][0] = img.getSubimage(128, 98, 32, 30);
-			
+
 			perso[TACTICIENFELIN][1] = img.getSubimage(320, 2, 32, 30);
 			perso[TACTICIENFELIN][3] = img.getSubimage(320, 34, 32, 30);
 			perso[TACTICIENFELIN][2] = img.getSubimage(320, 66, 32, 30);
@@ -601,37 +632,102 @@ public final class Textures {
 			System.err.println("Image non trouvée : " + ASSASSINFELINPATH);
 		}
 		try {
-			BufferedImage img = scale(ImageIO.read(getClass().getResource(TANKFELINPATH)),3*32,4*32);
-			
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(TANKFELINPATH)), 3 * 32, 4 * 32);
+
 			perso[TANKFELIN][1] = img.getSubimage(32, 0, 32, 30);
 			perso[TANKFELIN][3] = img.getSubimage(32, 34, 32, 30);
 			perso[TANKFELIN][2] = img.getSubimage(32, 66, 32, 30);
 			perso[TANKFELIN][0] = img.getSubimage(32, 98, 32, 30);
-			
+
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + TANKFELINPATH);
 		}
 	}
-	
-	/** 
+
+	/**
 	 * Redimensionne une image.
-	 * 
+	 *
 	 * @param source Image à redimensionner.
 	 * @param width Largeur de l'image cible.
 	 * @param height Hauteur de l'image cible.
 	 * @return Image redimensionnée.
 	 */
 	private static BufferedImage scale(Image source, int width, int height) {
-		/* On créé une nouvelle image aux bonnes dimensions. */
+		/*
+		 * On créé une nouvelle image aux bonnes dimensions.
+		 */
 		BufferedImage buf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
-		/* On dessine sur le Graphics de l'image bufferisée. */
+		/*
+		 * On dessine sur le Graphics de l'image bufferisée.
+		 */
 		Graphics2D g = buf.createGraphics();
 		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g.drawImage(source, 0, 0, width, height, null);
 		g.dispose();
 
-		/* On retourne l'image bufferisée, qui est une image. */
+		/*
+		 * On retourne l'image bufferisée, qui est une image.
+		 */
 		return buf;
+	}
+
+	private void tileBarriere() {
+		try {
+			obstacle[BARRIERECOINBASDROIT] = ImageIO.read(getClass().getResource(BARRIERECOINBASDROITPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIERECOINBASDROITPATH);
+		}
+		try {
+			obstacle[BARRIERECOINHAUTDROIT] = ImageIO.read(getClass().getResource(BARRIERECOINHAUTDROITPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIERECOINHAUTDROITPATH);
+		}
+		try {
+			obstacle[BARRIERECOINFINDROIT] = ImageIO.read(getClass().getResource(BARRIERECOINFINDROITPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIERECOINFINDROITPATH);
+		}
+		try {
+			obstacle[BARRIEREFINDROIT] = ImageIO.read(getClass().getResource(BARRIEREFINDROITPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIEREFINDROITPATH);
+		}
+		try {
+			obstacle[BARRIEREDROIT] = ImageIO.read(getClass().getResource(BARRIEREDROITPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIEREDROITPATH);
+		}
+		try {
+			obstacle[BARRIEREGAUCHEFIN] = ImageIO.read(getClass().getResource(BARRIEREGAUCHEFINPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIEREGAUCHEFINPATH);
+		}
+		try {
+			obstacle[BARRIERECOINFINGAUCHE] = ImageIO.read(getClass().getResource(BARRIERECOINFINGAUCHEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIERECOINFINGAUCHEPATH);
+		}
+		try {
+			obstacle[BARRIEREBAS] = ImageIO.read(getClass().getResource(BARRIEREBASPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIEREBASPATH);
+		}
+		try {
+			obstacle[BARRIEREGAUCHE] = ImageIO.read(getClass().getResource(BARRIEREGAUCHEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIEREGAUCHEPATH);
+		}
+		try {
+			obstacle[BARRIERECOINBASGAUCHE] = ImageIO.read(getClass().getResource(BARRIERECOINBASGAUCHEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIERECOINBASGAUCHEPATH);
+		}
+		try {
+			obstacle[BARRIERECOINHAUTGAUCHE] = ImageIO.read(getClass().getResource(BARRIERECOINHAUTGAUCHEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + BARRIERECOINHAUTGAUCHEPATH);
+		}
+
 	}
 }
