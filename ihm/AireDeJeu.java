@@ -112,18 +112,19 @@ public class AireDeJeu extends JComponent {
 	    }
 	}
 
-	// Permet d'afficher les pions		
+	if (!attaqueEnCours && caseSurvol != null) {
+	    gd.setColor(new Color(255, 255, 50, 100));
+	    gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+	}
+
+	// Permet d'afficher les pions	
+	//TODO ne pas parcourir toutes les cases du plateau
 	for (Case[] c : plateau.get()) {
 	    for (Case c1 : c) {
 		if (c1.getPion() != null) {
 		    gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
 		}
 	    }
-	}
-
-	if (!attaqueEnCours && caseSurvol != null) {
-	    gd.setColor(new Color(255, 255, 50, 100));
-	    gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 	}
 
 	if (caseSurvol != null && caseSurvol.getPion() != null) {
