@@ -4,76 +4,69 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
+import javax.swing.JComponent;
 import moteur.Case;
 import moteur.Moteur;
+import moteur.classes.Tacticien;
 
 /**
  *
  * @author Kévin
  */
-public final class FenetreChoixPion extends FenetreAction {
+public final class FenetreChoixPion extends JComponent {
 
-	public FenetreChoixPion(Moteur m) {
-		super(m);
-//		if(c.getPion().isTacticien() || c.getPion().isCommandant()){
-//			hauteur = Case.TAILLE*3;
-//			largeur = Case.TAILLE*3;
-//		} else {
-		hauteur = Case.TAILLE * 2;
-		largeur = Case.TAILLE * 3;
-//		}
-		setSize(largeur, hauteur);
+    private Case c;
+    protected Moteur m;
+    private BoutonTacticien t;
+    private BoutonConquerir conq;
+
+    public FenetreChoixPion(Moteur m) {
+	this.m = m;
+	setSize(Case.TAILLE * 3, Case.TAILLE * 2);
+	BoutonAttaquer b = new BoutonAttaquer(this);
+	add(b);
+	BoutonCapacite c = new BoutonCapacite(this);
+	add(c);
+	t = new BoutonTacticien(this);
+	add(t);
+	conq = new BoutonConquerir(this);
+	add(conq);
+	m.aireDeJeu.add(this);
+	setVisible(false);
+    }
+
+    public void placerFenetre(Case c) {
+	this.c = c;
+	setSize(Case.TAILLE * 3, Case.TAILLE * 2);
+	if (c.getPion() == m.getJoueurCourant().getCommandant()) {
+	    System.out.println("Je suis un commandant");
+	    setSize(Case.TAILLE * 3, Case.TAILLE * 3);
+	    conq.setPosition(2);
+	    t.setPosition(3);
+	    if (c.getPion() == m.getJoueurCourant().getTacticien()) {
+		System.out.println("Je suis un tacticien commandant");
+		setSize(Case.TAILLE * 3, Case.TAILLE * 4);
+	    }
+	} else if (c.getPion() == m.getJoueurCourant().getTacticien()) {
+	    System.out.println("Je suis un tacticien");
+	    setSize(Case.TAILLE * 3, Case.TAILLE * 3);
+	    t.setPosition(2);
+	    conq.setPosition(3);
 	}
+	setLocation((c.getColonne() + 1) * Case.TAILLE, c.getLigne() * Case.TAILLE);
+	setVisible(true);
 
-	@Override
-	public void paintComponent(Graphics g) {
-		Graphics2D gd = (Graphics2D) g;
-		gd.setColor(new Color(170, 170, 170, 100));
-		gd.fillRect(0, 0, largeur, hauteur);
-		m.aireDeJeu.setAfficherPorteeAttaque(false, c);
-		m.aireDeJeu.repaint();
-		gd.setColor(Color.WHITE);
-		if (Survol != null) {
-			gd.setColor(new Color(200, 200, 200, 100));
-			gd.fillRect(0, Survol.y * Case.TAILLE, Case.TAILLE * 3, Case.TAILLE);
-			if (Survol.y == 0) {
-				c.getPion().attaque();
-				m.aireDeJeu.setAfficherPorteeAttaque(true, c);
-				m.aireDeJeu.repaint();
-				gd.setColor(Color.RED);
-			} else {
-				gd.setColor(Color.WHITE);
-			}
-			gd.drawString("Attaquer", 0 + 10, 0 + 20);
-			if (Survol.y == 1) {
-				gd.setColor(Color.BLUE);
-			} else {
-				gd.setColor(Color.WHITE);
-			}
-			gd.drawString("Capacité", 0 + 10, Case.TAILLE + 20);
-		} else {
-			gd.setColor(Color.WHITE);
-			gd.drawString("Attaquer", 0 + 10, 0 + 20);
-			gd.drawString("Capacité", 0 + 10, Case.TAILLE + 20);
-		}
+    }
 
-	}
+    public void effacerFenetre() {
+	setVisible(false);
+    }
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		int y = e.getY();
-		int lig = y / Case.TAILLE;
-		// On indique qu'il ne faudra plus afficher la portee d'attaque du pion
-		m.aireDeJeu.setAfficherPorteeAttaque(false, c);
-		if (lig == 0) {
-			System.out.println("Attaquer");
-			m.setAttaqueEnCours(true);
-			m.aireDeJeu.setAttaqueEnCours(true);
-		} else if (lig == 1) {
-			System.out.println("Capacité");
-		} else if (lig == 2) {
-			System.out.println("Autres");
-		}
-		effacerFenetre();
-	}
+    public Moteur getMoteur() {
+	return m;
+    }
+
+    public Case getCase() {
+	return c;
+    }
 }
