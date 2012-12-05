@@ -4,6 +4,7 @@ import ihm.NouvellePartieGraphique;
 //import ihm.FenetreAction;
 import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;
+import ihm.BoutonFinDeTour;
 import ihm.FenetrePrincipale;
 import java.io.*;
 import javax.swing.SwingUtilities;
@@ -28,7 +29,6 @@ public class Moteur implements Runnable, Serializable {
     private Case caseCourante;
     private boolean mouvementEnCours;
     private Case caseAncienne;
-    private boolean finirTour;
     private boolean attaqueEnCours;
     private boolean capaciteActive;
     private Joueur joueur1;
@@ -109,6 +109,7 @@ public class Moteur implements Runnable, Serializable {
 	aireDeJeu.setCaseSurvol(null);
 //	fenetreChoixPion.effacerFenetre();
 	caseCourante = c1;
+	fenetreChoixPion.effacerinDeTour();
 	System.out.println("Clique gauche");
 	// Permet de gerer l'attaque d'une unite ennemie
 	if (attaqueEnCours) {
@@ -128,10 +129,6 @@ public class Moteur implements Runnable, Serializable {
 //                      choix.getPion().capaciteActive():
 	    // On signifie que la capacite a ete utilise
 	    capaciteActive = false;
-	} // Permet de gerer la fin de tour
-	else if (finirTour) {
-//                      changerJoueur();        
-	    finirTour = false;
 	} // Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
 	else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
 	    if (caseAncienne != caseCourante) {
@@ -172,22 +169,20 @@ public class Moteur implements Runnable, Serializable {
 	    }
 
 	} else {
+	    fenetreChoixPion.effacerFenetre();
 	    // On specifie que le mouvement est termine
 	    mouvementEnCours = false;
 	    // On indique qu'il ne faut plus afficher les mouvements possibles
+	    fenetreChoixPion.placerFinDeTour(caseCourante);
 	    aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
-	    finirTour = true;
-	    if (plateau.get(caseCourante.getLigne(), caseCourante.getColonne() + 2) == null) {
-		caseCourante = plateau.get(caseCourante.getLigne(), caseCourante.getColonne() - 2);
-	    }
-//                      aireDeJeu.affichageFinDuTour(caseCourante);
 	}
     }
 
     public void caseCliqueBoutonDroit(Case c) {
+	fenetreChoixPion.effacerinDeTour();
 	if (c.getPion() != null && getJoueurCourant() == c.getPion().getJoueur()) {
 	    // On efface la fenetre
-//	    fenetreChoixPion.effacerFenetre();
+	    fenetreChoixPion.effacerFenetre();
 	    // On la place a l'endroit voulu
 	    fenetreChoixPion.placerFenetre(c);
 	    // On specifie que le mouvement est termine
@@ -251,6 +246,9 @@ public class Moteur implements Runnable, Serializable {
 
     public void changementJoueur() {
 	joueurCourant = !joueurCourant;
+	for(Pion p : getJoueurCourant().getListeDePions()){
+	    p.finDeTour();
+	}
 	if (joueurCourant) {
 	    tour++;
 	}

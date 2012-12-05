@@ -15,7 +15,7 @@ public interface Oiseau extends Famille {
 	public static final int vitesseArcher = 2;
 	public static final int defenseArcher = -2;
 	public static final int chanceArcher = 0;
-	public static final int porteeArcher = 0;
+	public static final int porteeArcher = 1;
 	public static final int mouvementArcher = 0;
 	
 	public static final String nomGuerrier = "Aigle";
@@ -25,7 +25,7 @@ public interface Oiseau extends Famille {
 	public static final int vitesseGuerrier = 2;
 	public static final int defenseGuerrier = -2;
 	public static final int chanceGuerrier = 0;
-	public static final int porteeGuerrier = 0;
+	public static final int porteeGuerrier = 1;
 	public static final int mouvementGuerrier = 0;
 	
 	public static final String nomAssassin = "Faucon";
@@ -35,7 +35,7 @@ public interface Oiseau extends Famille {
 	public static final int vitesseAssassin = 2;
 	public static final int defenseAssassin = -2;
 	public static final int chanceAssassin = 0;
-	public static final int porteeAssassin = 0;
+	public static final int porteeAssassin = 1;
 	public static final int mouvementAssassin = 0;
 	
 	public static final String nomTank = "Condor";
@@ -45,7 +45,7 @@ public interface Oiseau extends Famille {
 	public static final int vitesseTank = 2;
 	public static final int defenseTank = -2;
 	public static final int chanceTank = 0;
-	public static final int porteeTank = 0;
+	public static final int porteeTank = 1;
 	public static final int mouvementTank = 0;
 	
 	public static final String nomTacticien = "Perroquet";
@@ -55,7 +55,7 @@ public interface Oiseau extends Famille {
 	public static final int vitesseTacticien = 2;
 	public static final int defenseTacticien = -2;
 	public static final int chanceTacticien = 0;
-	public static final int porteeTacticien = 0;
+	public static final int porteeTacticien = 1;
 	public static final int mouvementTacticien = 0;
 	
 	public static final int cooldown = 5;

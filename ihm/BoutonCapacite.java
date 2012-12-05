@@ -23,7 +23,9 @@ public class BoutonCapacite extends BoutonAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-	System.out.println("Capacite");
+	if(fenetre.getCase().getPion().capaciteActive()){
+	    fenetre.getCase().getPion().capaciteSpeciale();
+	}
 	fenetre.effacerFenetre();
     }
 }

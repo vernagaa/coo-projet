@@ -12,7 +12,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import moteur.Case;
 
-
 /**
  *
  * @author chappelk
@@ -59,5 +58,9 @@ public abstract class BoutonAction extends JButton {
 	gd.setColor(Color.WHITE);
 	//TODO Placer mieux
 	gd.drawString(nom, Case.TAILLE / 5, Case.TAILLE / 2);
+    }
+
+    public void setPosition(int numero) {
+	setBounds(0, Case.TAILLE * numero, Case.TAILLE * 3, Case.TAILLE);
     }
 }

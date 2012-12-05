@@ -33,7 +33,7 @@ public abstract class Pion implements Serializable {
     protected ArrayList<Case> deplacement;
     protected Noeud noeudContenu;
     protected Case c;
-    private Joueur Joueur;
+    private Joueur joueur;
     private static final int BONUSKILL = 20;
     private int special;
     private int tourspecial;
@@ -336,7 +336,8 @@ public abstract class Pion implements Serializable {
 	    caseVerif = c.getPlateau().get(tmp.getLigne() + 1, tmp.getColonne());
 
 	    if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-		    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+		    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee
+		    && !joueur.getListeDePions().contains(caseVerif.getPion())) {
 		if (caseVerif.getPion() != null) {
 		    listeAttaquePossible.add(caseVerif);
 		}
@@ -345,7 +346,8 @@ public abstract class Pion implements Serializable {
 	    }
 	    caseVerif = c.getPlateau().get(tmp.getLigne() - 1, tmp.getColonne());
 	    if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-		    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+		    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee
+		    && !joueur.getListeDePions().contains(caseVerif.getPion())) {
 		if (caseVerif.getPion() != null) {
 		    listeAttaquePossible.add(caseVerif);
 		}
@@ -354,7 +356,8 @@ public abstract class Pion implements Serializable {
 	    }
 	    caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() + 1);
 	    if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-		    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+		    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee
+		    && !joueur.getListeDePions().contains(caseVerif.getPion())) {
 		if (caseVerif.getPion() != null) {
 		    listeAttaquePossible.add(caseVerif);
 		}
@@ -363,7 +366,8 @@ public abstract class Pion implements Serializable {
 	    }
 	    caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
 	    if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
-		    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
+		    && !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee
+		    && !joueur.getListeDePions().contains(caseVerif.getPion())) {
 		if (caseVerif.getPion() != null) {
 		    listeAttaquePossible.add(caseVerif);
 		}
@@ -452,6 +456,9 @@ public abstract class Pion implements Serializable {
 
     public void finDeTour() {
 	mouvement = mouvementBase;
+	if(special > 0){
+	    special --;
+	}
     }
 
     public int getMouvementBase() {
@@ -463,11 +470,15 @@ public abstract class Pion implements Serializable {
     }
 
     public Joueur getJoueur() {
-	return Joueur;
+	return joueur;
     }
     
     public void setJoueur(Joueur joueur){
-	this.Joueur = joueur;
+	this.joueur = joueur;
+    }
+    
+    public boolean capaciteActive(){
+	return special == 0;
     }
     
 }
