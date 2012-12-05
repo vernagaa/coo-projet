@@ -1,5 +1,6 @@
 package moteur;
 
+import ihm.NouvellePartieGraphique;
 import ihm.FenetreAction;
 import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;

@@ -1,13 +1,11 @@
 package moteur;
 
-import editeur.FenetreEditeur;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import moteur.familles.felin.AssassinFelin;
-import moteur.familles.felin.TankFelin;
+import moteur.familles.felin.*;
 import moteur.familles.oiseau.*;
-import moteur.familles.reptile.AssassinReptile;
+import moteur.familles.reptile.*;
 
 /**
  *
@@ -70,15 +68,23 @@ public class Plateau implements Serializable {
             fis.close();
 
 //            //XXX Pions test à supprimer
-//            GuerrierOiseau o0 = new GuerrierOiseau(plateau[7][9]);
-//            ArcherOiseau o1 = new ArcherOiseau(plateau[12][7]);
-//            TacticienOiseau o2 = new TacticienOiseau(plateau[6][7]);
-//            TankOiseau o3 = new TankOiseau(plateau[5][6]);
-//            AssassinOiseau o4 = new AssassinOiseau(plateau[5][7]);
-//            AssassinOiseau o5 = new AssassinOiseau(plateau[8][11]);
-//            AssassinFelin o6 = new AssassinFelin(plateau[8][5]);
-//            AssassinReptile o7 = new AssassinReptile(plateau[10][10]);
-//            TankFelin o8 = new TankFelin(plateau[9][12]);
+//			new ArcherFelin(plateau[10][12]);
+//			new AssassinFelin(plateau[10][13]);
+//			new GuerrierFelin(plateau[10][14]);
+//			new TacticienFelin(plateau[10][15]);
+//			new TankFelin(plateau[10][16]);
+//
+//			new ArcherOiseau(plateau[11][12]);
+//			new AssassinOiseau(plateau[11][13]);
+//			new GuerrierOiseau(plateau[11][14]);
+//			new TacticienOiseau(plateau[11][15]);
+//			new TankOiseau(plateau[11][16]);
+//
+//			new ArcherReptile(plateau[12][12]);
+//			new AssassinReptile(plateau[12][13]);
+//			new GuerrierReptile(plateau[12][14]);
+//			new TacticienReptile(plateau[12][15]);
+//			new TankReptile(plateau[12][16]);
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Plateau.class.getName()).log(Level.SEVERE, null, ex);
