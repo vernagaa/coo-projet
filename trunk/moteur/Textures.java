@@ -145,7 +145,11 @@ public final class Textures {
 	
 	// Images des personages
 	private static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test2.png";
-	private static final String ASSASSINREPTILEPATH = "/images/perso/reptile/reptile_test.png";
+	
+	private static final String ASSASSINREPTILEPATH = "/images/perso/reptile/serpent.png";
+	private static final String GUERRIERREPTILEPATH = "/images/perso/reptile/crocodile2.png";
+	private static final String TANKREPTILEPATH = "/images/perso/reptile/reptile_test.png";
+	
 	private static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
 	private static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
 	
@@ -517,11 +521,29 @@ public final class Textures {
 		
 		// REPTILE
 		try {
+			BufferedImage img = ImageIO.read(getClass().getResource(TANKREPTILEPATH));
+			perso[TANKREPTILE][1] = img.getSubimage(33, 0, 32, 32);
+			perso[TANKREPTILE][3] = img.getSubimage(33, 32, 32, 32);
+			perso[TANKREPTILE][2] = img.getSubimage(33, 64, 32, 32);
+			perso[TANKREPTILE][0] = img.getSubimage(33, 96, 32, 32);
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + TANKREPTILEPATH);
+		}
+		try {
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(GUERRIERREPTILEPATH)), 3*32, 4*32);
+			perso[GUERRIERREPTILE][1] = img.getSubimage(0, 0, 32, 32);
+			perso[GUERRIERREPTILE][3] = img.getSubimage(0, 32, 32, 32);
+			perso[GUERRIERREPTILE][2] = img.getSubimage(0, 64, 32, 32);
+			perso[GUERRIERREPTILE][0] = img.getSubimage(0, 96, 32, 32);
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + GUERRIERREPTILEPATH);
+		}
+		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINREPTILEPATH));
-			perso[ASSASSINREPTILE][1] = img.getSubimage(33, 0, 32, 32);
-			perso[ASSASSINREPTILE][3] = img.getSubimage(33, 32, 32, 32);
-			perso[ASSASSINREPTILE][2] = img.getSubimage(33, 64, 32, 32);
-			perso[ASSASSINREPTILE][0] = img.getSubimage(33, 96, 32, 32);
+			perso[ASSASSINREPTILE][1] = img.getSubimage(0, 0, 32, 32);
+			perso[ASSASSINREPTILE][3] = img.getSubimage(0, 32, 32, 32);
+			perso[ASSASSINREPTILE][0] = img.getSubimage(0, 64, 32, 32);
+			perso[ASSASSINREPTILE][2] = img.getSubimage(0, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINREPTILEPATH);
 		}

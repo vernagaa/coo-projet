@@ -59,6 +59,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void initComponents() {
 
         aireDeJeu = new ihm.AireDeJeu(moteur.getPlateau());
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuBarFichier = new javax.swing.JMenu();
         menuNouvellePartie = new javax.swing.JMenuItem();
@@ -83,6 +86,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             aireDeJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 601, Short.MAX_VALUE)
         );
+
+        jLabel1.setText("Actions restantes : 5");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Joueur : Joureur_1");
+
+        jLabel3.setText("Tour : 8");
 
         menuBarFichier.setText("Fichier");
 
@@ -119,11 +129,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -145,6 +168,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	}//GEN-LAST:event_menuQuitterActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ihm.AireDeJeu aireDeJeu;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuBarFichier;
     private javax.swing.JMenu menuBarOption;
