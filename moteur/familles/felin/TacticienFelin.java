@@ -16,6 +16,7 @@ public final class TacticienFelin extends Tacticien implements Felin {
 	public TacticienFelin(Case c) {
 		super(vieTacticien, forceTacticien, precisionTacticien, vitesseTacticien, defenseTacticien, chanceTacticien, porteeTacticien, mouvementTacticien, c);
 		enrage = false;
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override

@@ -13,6 +13,7 @@ public final class TacticienReptile extends Tacticien implements Reptile {
 
 	public TacticienReptile(Case c) {
 		super(vieTacticien, forceTacticien, precisionTacticien, vitesseTacticien, defenseTacticien, chanceTacticien, porteeTacticien, mouvementTacticien, c);
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override

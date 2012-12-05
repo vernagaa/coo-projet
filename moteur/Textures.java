@@ -121,6 +121,7 @@ public final class Textures {
 	public static final int HERBE = 3;
 	public static final int NEIGE = 4;
 	public static final int GLACE = 5;
+	public static final int TELEPORTEUR = 6;
 	
 	/**
 	 * Personnages
@@ -156,7 +157,7 @@ public final class Textures {
 	private static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
 	
 	// Attributs
-	private BufferedImage[] terrain = new BufferedImage[6];
+	private BufferedImage[] terrain = new BufferedImage[7];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][] perso = new BufferedImage[15][4];
 	private BufferedImage[] obstacle = new BufferedImage[30];
@@ -204,6 +205,11 @@ public final class Textures {
 		}
 		try {
 			terrain[GLACE] = ImageIO.read(getClass().getResource(GLACEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + GLACEPATH);
+		}
+		try {
+			terrain[TELEPORTEUR] = ImageIO.read(getClass().getResource(GLACEPATH));
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + GLACEPATH);
 		}

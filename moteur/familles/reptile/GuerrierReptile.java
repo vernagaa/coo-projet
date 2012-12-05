@@ -13,6 +13,7 @@ public final class GuerrierReptile extends Guerrier implements Reptile {
 
 	public GuerrierReptile(Case c) {
 		super(vieGuerrier, forceGuerrier, precisionGuerrier, vitesseGuerrier, defenseGuerrier, chanceGuerrier, porteeGuerrier, mouvementGuerrier, c);
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override

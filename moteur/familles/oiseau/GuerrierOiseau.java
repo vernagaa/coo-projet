@@ -19,6 +19,7 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 	public GuerrierOiseau(Case c) {
 		super(vieGuerrier, forceGuerrier, precisionGuerrier, vitesseGuerrier, defenseGuerrier, chanceGuerrier, porteeGuerrier, mouvementGuerrier, c);
 		vol = false;
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override

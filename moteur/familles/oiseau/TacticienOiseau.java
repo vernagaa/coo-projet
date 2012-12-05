@@ -17,6 +17,7 @@ public final class TacticienOiseau extends Tacticien implements Oiseau {
 	public TacticienOiseau(Case c) {
 		super(vieTacticien, forceTacticien, precisionTacticien, vitesseTacticien, defenseTacticien, chanceTacticien, porteeTacticien, mouvementTacticien, c);
 		vol = false;
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override

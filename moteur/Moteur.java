@@ -5,6 +5,8 @@ import ihm.NouvellePartieGraphique;
 import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;
 import ihm.BoutonFinDeTour;
+import ihm.CompteurNombreAction;
+import ihm.CompteurTour;
 import ihm.FenetrePrincipale;
 import java.io.*;
 import javax.swing.SwingUtilities;
@@ -23,6 +25,8 @@ public class Moteur implements Runnable, Serializable {
     NouvellePartieGraphique nouvellePartie;
     private boolean debutDePartie;
     private int tour;
+    private CompteurTour compteurTour;
+    private CompteurNombreAction compteurAction;
     /*
      * Gestion de la souris
      */
@@ -31,9 +35,11 @@ public class Moteur implements Runnable, Serializable {
     private Case caseAncienne;
     private boolean attaqueEnCours;
     private boolean capaciteActive;
+    private boolean poserTeleporteur;
     private Joueur joueur1;
     private Joueur joueur2;
     private boolean joueurCourant;
+    private boolean teleportationEnCours;
 
     public Plateau getPlateau() {
 	return plateau;
@@ -62,6 +68,8 @@ public class Moteur implements Runnable, Serializable {
 	aireDeJeu = fp.getAireDeJeu();
 	fenetreChoixPion = new FenetreChoixPion(this);
 	nouvellePartie = new NouvellePartieGraphique(this);
+	compteurTour = new CompteurTour(this);
+	compteurAction = new CompteurNombreAction(this);
     }
 
     public void caseCliqueBoutonGaucheNouvellePartie(Case c1) {
@@ -125,12 +133,19 @@ public class Moteur implements Runnable, Serializable {
 	    // Et qu'il ne faut plus afficher la zone d'attaque
 	    aireDeJeu.setAttaqueEnCours(attaqueEnCours);
 	} // Permet de gerer l'utilisation d'une capaciteActive
-	else if (capaciteActive) {
-//                      choix.getPion().capaciteActive():
-	    // On signifie que la capacite a ete utilise
-	    capaciteActive = false;
-	} // Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
-	else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
+	// Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
+	else if (poserTeleporteur) {
+	    //TODO Cas a verifier ?
+	    System.out.println("Il faut poser un teleporteur");
+	    ((Tacticien) caseAncienne.getPion()).poserTeleporteur(caseCourante);
+	    poserTeleporteur = false;
+	    aireDeJeu.setAfficherPoseTeleporteur(false, caseCourante);
+	} else if(teleportationEnCours){
+	    if(getJoueurCourant().getTeleporteur().contains(caseCourante)){
+		caseAncienne.getPion().deplacerPionTeleportation(caseCourante);
+	    }
+	    teleportationEnCours = false;
+	} else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
 	    if (caseAncienne != caseCourante) {
 		caseAncienne.getPion().deplacerPion(caseCourante);
 	    }
@@ -138,7 +153,15 @@ public class Moteur implements Runnable, Serializable {
 	    mouvementEnCours = false;
 	    // On indique qu'il ne faut plus afficher les mouvements possibles
 	    aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
-
+	    
+	    //Si fin sur une case telportation
+	    if(caseCourante.isTeleporteur(getJoueurCourant())){
+		System.out.println("Je peux me teleporter");
+		//Surbrillance des cases teleportations
+		//teleportation en cours
+		caseAncienne = caseCourante;
+		teleportationEnCours = true;
+	    }
 	    // Afficher Selection Orientation
 	    //TODO Afficher Orientation
 	} // Selectionne un Pion pour le deplacer
@@ -181,6 +204,7 @@ public class Moteur implements Runnable, Serializable {
     public void caseCliqueBoutonDroit(Case c) {
 	fenetreChoixPion.effacerinDeTour();
 	if (c.getPion() != null && getJoueurCourant() == c.getPion().getJoueur()) {
+	    caseAncienne = c;
 	    // On efface la fenetre
 	    fenetreChoixPion.effacerFenetre();
 	    // On la place a l'endroit voulu
@@ -228,6 +252,10 @@ public class Moteur implements Runnable, Serializable {
 	attaqueEnCours = b;
     }
 
+    public void setPoseTeleporteur(boolean b) {
+	poserTeleporteur = b;
+    }
+
     public Joueur getJoueur1() {
 	return joueur1;
     }
@@ -246,7 +274,7 @@ public class Moteur implements Runnable, Serializable {
 
     public void changementJoueur() {
 	joueurCourant = !joueurCourant;
-	for(Pion p : getJoueurCourant().getListeDePions()){
+	for (Pion p : getJoueurCourant().getListeDePions()) {
 	    p.finDeTour();
 	}
 	if (joueurCourant) {

@@ -16,6 +16,7 @@ public final class GuerrierFelin extends Guerrier implements Felin {
 	public GuerrierFelin(Case c) {
 		super(vieGuerrier, forceGuerrier, precisionGuerrier, vitesseGuerrier, defenseGuerrier, chanceGuerrier, porteeGuerrier, mouvementGuerrier, c);
 		enrage = false;
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override

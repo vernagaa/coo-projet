@@ -19,6 +19,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 	public TankOiseau(Case c) {
 		super(vieTank, forceTank, precisionTank, vitesseTank, defenseTank, chanceTank, porteeTank, mouvementTank, c);
 		vol = false;
+		nomCapaciteSpeciale = nomCapacite;
 	}
 
 	@Override
