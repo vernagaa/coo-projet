@@ -25,8 +25,4 @@ public class BoutonTacticien extends BoutonAction implements ActionListener {
 	System.out.println("Placer Teleporteur");
 	fenetre.effacerFenetre();
     }
-    
-    public void setPosition(int numero){
-	setBounds(0, Case.TAILLE * numero, Case.TAILLE * 3, Case.TAILLE);
-    }
 }

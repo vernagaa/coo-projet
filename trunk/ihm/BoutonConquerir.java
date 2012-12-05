@@ -25,8 +25,4 @@ public class BoutonConquerir extends BoutonAction implements ActionListener {
 	System.out.println("Conquerir");
 	fenetre.effacerFenetre();
     }
-
-    public void setPosition(int numero) {
-	setBounds(0, Case.TAILLE * numero, Case.TAILLE * 3, Case.TAILLE);
-    }
 }
