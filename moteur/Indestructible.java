@@ -10,12 +10,12 @@ package moteur;
  */
 public final class Indestructible extends Obstacle {
 
-    public Indestructible(int typeObstacle) {
-	super(typeObstacle);
-    }
+	public Indestructible(int typeObstacle) {
+		super(typeObstacle);
+	}
 
-    @Override
-    public boolean isDestructible() {
-	return false;
-    }
+	@Override
+	public boolean isDestructible() {
+		return false;
+	}
 }
