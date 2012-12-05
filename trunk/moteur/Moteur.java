@@ -71,14 +71,14 @@ public class Moteur implements Runnable, Serializable {
 				Pion pion = FabriquePion.getPion(nouvellePartie.getFamille1(), nouvellePartie.getClasse(), c1);
 				joueur1.ajouterPion(pion);
 				nouvellePartie.pionAjouteJoueur1();
-				if(pion instanceof Tacticien){
+				if (pion instanceof Tacticien) {
 					joueur1.setTacticien(pion);
 				}
 				nouvellePartie.setChoix(false);
 			} else if (nouvellePartie.choixPossible(c1)) {
 				Pion pion = FabriquePion.getPion(nouvellePartie.getFamille2(), nouvellePartie.getClasse(), c1);
 				joueur2.ajouterPion(pion);
-				if(pion instanceof Tacticien){
+				if (pion instanceof Tacticien) {
 					joueur2.setTacticien(pion);
 				}
 				nouvellePartie.pionAjouteJoueur2();
@@ -234,6 +234,12 @@ public class Moteur implements Runnable, Serializable {
 			tour++;
 		}
 	}
-	
-	
+
+	public Joueur getJoueurCourant() {
+		if (joueurCourant) {
+			return joueur1;
+		} else {
+			return joueur2;
+		}
+	}
 }
