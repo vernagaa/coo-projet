@@ -149,6 +149,7 @@ public final class Textures {
 	private static final String ARCHERREPTILEPATH = "/images/perso/reptile/cameleon.png";
 	private static final String ASSASSINREPTILEPATH = "/images/perso/reptile/serpent.png";
 	private static final String GUERRIERREPTILEPATH = "/images/perso/reptile/crocodile2.png";
+	private static final String TACTICIENREPTILEPATH = "/images/perso/reptile/grenouille.png";
 	private static final String TANKREPTILEPATH = "/images/perso/reptile/tortue.png";
 	
 	private static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
@@ -556,6 +557,15 @@ public final class Textures {
 			perso[ASSASSINREPTILE][2] = img.getSubimage(0, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINREPTILEPATH);
+		}
+		try {
+			BufferedImage img = ImageIO.read(getClass().getResource(TACTICIENREPTILEPATH));
+			perso[TACTICIENREPTILE][1] = img.getSubimage(32, 0, 32, 32);
+			perso[TACTICIENREPTILE][3] = img.getSubimage(32, 32, 32, 32);
+			perso[TACTICIENREPTILE][2] = img.getSubimage(32, 64, 32, 32);
+			perso[TACTICIENREPTILE][0] = img.getSubimage(32, 96, 32, 32);
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + TACTICIENREPTILEPATH);
 		}
 		
 		// FÉLIN
