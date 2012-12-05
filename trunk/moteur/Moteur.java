@@ -44,7 +44,7 @@ public class Moteur implements Runnable, Serializable {
     }
 
     public Moteur() {
-	plateau = new Plateau("map/map4.map");
+	plateau = new Plateau("map/map3.map");
 	joueur1 = new Joueur("joueur1");
 	joueur2 = new Joueur("joueur2");
 	debutDePartie = true;
