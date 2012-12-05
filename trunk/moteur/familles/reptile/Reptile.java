@@ -48,7 +48,7 @@ public interface Reptile extends Famille {
 	public static final int porteeTank = 0;
 	public static final int mouvementTank = 0;
 	
-	public static final String nomTacticien = "Salamandre";
+	public static final String nomTacticien = "Grenouille";
 	public static final int vieTacticien = 5;
 	public static final int forceTacticien = 3;
 	public static final int precisionTacticien = 0;
