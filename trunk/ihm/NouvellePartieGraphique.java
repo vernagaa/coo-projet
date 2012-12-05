@@ -26,7 +26,7 @@ import moteur.familles.reptile.Reptile;
  *
  * @author chappelk
  */
-//FIXME implements utile ?
+// implements utile pour empêcher l'aireDeJeu de reçevoir les clics
 public class NouvellePartieGraphique extends JComponent implements MouseListener, MouseMotionListener {
 	
 	private static final String FELIN_DESCR = "<html><p align=\"justify\">Les félins procurent un bonus en défense et en chance, et un malus en vie."
@@ -92,7 +92,7 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 	private JLabel portee2;
 	private JLabel mouvement2;
 	private int nbPions;
-	private int classe;
+	private int classeSelect;
 	private boolean choix;
 	private JLabel afficherInfo2;
 	
@@ -108,7 +108,6 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 		
 		caseJoueur = new ArrayList<Case>();
 
-		//TODO idem pour les boutons de classe
 		class EcouteurBoutonFamille extends MouseAdapter implements ActionListener {
 
 			private boolean joueur;
@@ -142,6 +141,40 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 //				if (joueur == joueurCourant && etape == 1) {
 				if(e.getComponent().isEnabled()) {
 					cacherFamille(joueur);
+				}
+			}
+		}
+
+		class EcouteurBoutonClasse extends MouseAdapter implements ActionListener {
+
+			private int famille;
+			private int classe;
+
+			public EcouteurBoutonClasse(int famille, int classe) {
+				this.famille = famille;
+				this.classe = classe;
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				classeSelect = classe;
+				choix = true;
+				setListeAireDejeu();
+				m.aireDeJeu.repaint();
+				getParent().repaint();
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				if (!choix && e.getComponent().isEnabled()) {
+					afficherStatPerso(famille, classe);
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (!choix && e.getComponent().isEnabled()) {
+					cacherStatPerso();
 				}
 			}
 		}
@@ -274,231 +307,78 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 		choixClasse2.setBounds(Case.TAILLE * 3 + Case.TAILLE * 12, Case.TAILLE * 8 + Case.TAILLE / 2, Case.TAILLE * 6, Case.TAILLE);
 		add(choixClasse2);
 		
+		EcouteurBoutonClasse ebc;
+		
 		archer1 = new JButton();
 		archer1.setBounds(Case.TAILLE, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
-		archer1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.ARCHER;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-			}
-		});
-		archer1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					archer(famille1);
-				}
-			}
-		});
-		
+		ebc = new EcouteurBoutonClasse(famille1, FabriquePion.ARCHER);
+		archer1.addActionListener(ebc);
+		archer1.addMouseListener(ebc);
 		archer1.setEnabled(false);
 		add(archer1);
 		guerrier1 = new JButton();
 		guerrier1.setBounds(Case.TAILLE * 3, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
-		guerrier1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.GUERRIER;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-				
-			}
-		});
-		guerrier1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					guerrier(famille1);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille1, FabriquePion.GUERRIER);
+		guerrier1.addActionListener(ebc);
+		guerrier1.addMouseListener(ebc);
 		guerrier1.setEnabled(false);
 		add(guerrier1);
 		tank1 = new JButton();
 		tank1.setBounds(Case.TAILLE * 5, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
-		tank1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.TANK;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-			}
-		});
-		tank1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					tank(famille1);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille1, FabriquePion.TANK);
+		tank1.addActionListener(ebc);
+		tank1.addMouseListener(ebc);
 		tank1.setEnabled(false);
 		add(tank1);
 		assassin1 = new JButton();
 		assassin1.setBounds(Case.TAILLE * 7, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
 		assassin1.setEnabled(false);
-		assassin1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.ASSASSIN;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-			}
-		});
-		assassin1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					assassin(famille1);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille1, FabriquePion.ASSASSIN);
+		assassin1.addActionListener(ebc);
+		assassin1.addMouseListener(ebc);
 		add(assassin1);
 		tacticien1 = new JButton();
 		tacticien1.setBounds(Case.TAILLE * 9, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
-		tacticien1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.TACTICIEN;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-			}
-		});
-		tacticien1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					tacticien(famille1);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille1, FabriquePion.TACTICIEN);
+		tacticien1.addActionListener(ebc);
+		tacticien1.addMouseListener(ebc);
 		tacticien1.setEnabled(false);
 		add(tacticien1);
 		
 		
 		archer2 = new JButton();
 		archer2.setBounds(Case.TAILLE + Case.TAILLE * 12, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
-		archer2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.ARCHER;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-			}
-		});
-		archer2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					archer(famille2);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille2, FabriquePion.ARCHER);
+		archer2.addActionListener(ebc);
+		archer2.addMouseListener(ebc);
 		archer2.setEnabled(false);
 		add(archer2);
 		guerrier2 = new JButton();
 		guerrier2.setBounds(Case.TAILLE * 3 + Case.TAILLE * 12, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
-		guerrier2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.GUERRIER;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-				
-			}
-		});
-		guerrier2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					guerrier(famille2);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille2, FabriquePion.GUERRIER);
+		guerrier2.addActionListener(ebc);
+		guerrier2.addMouseListener(ebc);
 		guerrier2.setEnabled(false);
 		add(guerrier2);
 		tank2 = new JButton();
 		tank2.setBounds(Case.TAILLE * 5 + Case.TAILLE * 12, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
-		tank2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.TANK;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-				
-			}
-		});
-		guerrier1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					tank(famille2);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille2, FabriquePion.TANK);
+		tank2.addActionListener(ebc);
+		guerrier1.addMouseListener(ebc);
 		tank2.setEnabled(false);
 		add(tank2);
 		assassin2 = new JButton();
 		assassin2.setBounds(Case.TAILLE * 7 + Case.TAILLE * 12, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
 		assassin2.setEnabled(false);
-		assassin2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.ASSASSIN;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-				
-			}
-		});
-		assassin2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					assassin(famille2);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille2, FabriquePion.ASSASSIN);
+		assassin2.addActionListener(ebc);
+		assassin2.addMouseListener(ebc);
 		add(assassin2);
 		tacticien2 = new JButton();
 		tacticien2.setBounds(Case.TAILLE * 9 + Case.TAILLE * 12, Case.TAILLE * 9 + Case.TAILLE / 2, Case.TAILLE, Case.TAILLE);
-		tacticien2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				classe = FabriquePion.TACTICIEN;
-				choix = true;
-				setListeAireDejeu();
-				m.aireDeJeu.repaint();
-				getParent().repaint();
-			}
-		});
-		tacticien2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				if (!choix) {
-					tacticien(famille2);
-				}
-			}
-		});
+		ebc = new EcouteurBoutonClasse(famille2, FabriquePion.TACTICIEN);
+		tacticien2.addActionListener(ebc);
+		tacticien2.addMouseListener(ebc);
 		tacticien2.setEnabled(false);
 		add(tacticien2);
 		
@@ -745,7 +625,27 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 	}
 	
 	public int getClasse() {
-		return classe;
+		return classeSelect;
+	}
+	
+	private void afficherStatPerso(int famille, int classe) {
+		switch(classe) {
+			case FabriquePion.ARCHER:
+				archer(famille);
+				break;
+			case FabriquePion.ASSASSIN:
+				assassin(famille);
+				break;
+			case FabriquePion.GUERRIER:
+				guerrier(famille);
+				break;
+			case FabriquePion.TACTICIEN:
+				tacticien(famille);
+				break;
+			case FabriquePion.TANK:
+				tank(famille);
+				break;
+		}
 	}
 	
 	private void archer(int famille) {
@@ -929,7 +829,7 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 		
 	}
 	
-	public void afficherStat(boolean joueurCourant, ArrayList<Integer> stat) {
+	private void afficherStat(boolean joueurCourant, ArrayList<Integer> stat) {
 		if (joueurCourant) {
 			vie1.setText("Vie : " + stat.get(0));
 			attaque1.setText("Attaque : " + stat.get(1));
@@ -947,6 +847,27 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 			vitesse2.setText("Vitesse : " + stat.get(4));
 			portee2.setText("Portee : " + stat.get(5));
 			mouvement2.setText("Attaque : " + stat.get(6));
+		}
+	}
+	
+	private void cacherStatPerso() {
+		if (joueurCourant) {
+			vie1.setText("");
+			attaque1.setText("");
+			defense1.setText("");
+			precision1.setText("");
+			vitesse1.setText("");
+			portee1.setText("");
+			mouvement1.setText("");
+		}
+		else {
+			vie2.setText("");
+			attaque2.setText("");
+			defense2.setText("");
+			precision2.setText("");
+			vitesse2.setText("");
+			portee2.setText("");
+			mouvement2.setText("");
 		}
 	}
 	
