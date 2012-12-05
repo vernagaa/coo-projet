@@ -1,4 +1,4 @@
-package moteur;
+package ihm;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,6 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import moteur.Case;
+import moteur.FabriquePion;
+import moteur.Moteur;
+import moteur.Orientation;
+import moteur.Textures;
 import moteur.classes.Archer;
 import moteur.classes.Assassin;
 import moteur.classes.Guerrier;
