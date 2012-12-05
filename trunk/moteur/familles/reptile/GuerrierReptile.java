@@ -29,4 +29,15 @@ public final class GuerrierReptile extends Guerrier implements Reptile {
 	public void mue() {
 		vie += 7;
 	}
+	
+	@Override
+	public void capaciteSpeciale() {
+		mue();
+		specialIndispo();
+	}
+
+	@Override
+	public void specialIndispo() {
+		setSpecial(cooldown);
+	}
 }

@@ -13,7 +13,9 @@ import moteur.classes.Tank;
  * @author Kévin
  */
 public final class TankOiseau extends Tank implements Oiseau {
+
 	private boolean vol;
+
 	public TankOiseau(Case c) {
 		super(vieTank, forceTank, precisionTank, vitesseTank, defenseTank, chanceTank, porteeTank, mouvementTank, c);
 		vol = false;
@@ -33,7 +35,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 	public boolean isEnvole() {
 		return vol;
 	}
-	
+
 	@Override
 	public void enEnvole() {
 		vol = true;
@@ -53,6 +55,11 @@ public final class TankOiseau extends Tank implements Oiseau {
 		tmp = new Noeud(c, 0);
 		listeOuverte.add(tmp);
 		listeDeplacementPossible.add(tmp);
+		
+		if(getTourspecial()==2 && !c.isObstacleDeplacement()){
+			vol = false;
+		}
+		
 		while (!listeOuverte.isEmpty()) {
 			tmp = listeOuverte.remove(0);
 			listeFerme.add(tmp);
@@ -137,5 +144,22 @@ public final class TankOiseau extends Tank implements Oiseau {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void capaciteSpeciale() {
+		enEnvole();
+		specialIndispo();
+	}
+
+	@Override
+	public void specialIndispo() {
+		setSpecial(cooldown);
+	}
+	
+	@Override
+	public void finDeTour(){
+		setTourspecial(getTourspecial()+1);
+		setMouvement(getMouvementBase());
 	}
 }
