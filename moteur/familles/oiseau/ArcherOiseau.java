@@ -58,6 +58,7 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 
 		if (getTourspecial() == 2 && !c.isObstacleDeplacement()) {
 			vol = false;
+			setTourspecial(0);
 		}
 
 		while (!listeOuverte.isEmpty()) {
