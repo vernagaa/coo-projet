@@ -5,8 +5,6 @@ import ihm.NouvellePartieGraphique;
 import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;
 import ihm.BoutonFinDeTour;
-import ihm.CompteurNombreAction;
-import ihm.CompteurTour;
 import ihm.FenetrePrincipale;
 import java.io.*;
 import javax.swing.SwingUtilities;
@@ -25,8 +23,6 @@ public class Moteur implements Runnable, Serializable {
     NouvellePartieGraphique nouvellePartie;
     private boolean debutDePartie;
     private int tour;
-    private CompteurTour compteurTour;
-    private CompteurNombreAction compteurAction;
     /*
      * Gestion de la souris
      */
@@ -68,8 +64,6 @@ public class Moteur implements Runnable, Serializable {
 	aireDeJeu = fp.getAireDeJeu();
 	fenetreChoixPion = new FenetreChoixPion(this);
 	nouvellePartie = new NouvellePartieGraphique(this);
-	compteurTour = new CompteurTour(this);
-	compteurAction = new CompteurNombreAction(this);
     }
 
     public void caseCliqueBoutonGaucheNouvellePartie(Case c1) {
@@ -277,6 +271,9 @@ public class Moteur implements Runnable, Serializable {
 	for (Pion p : getJoueurCourant().getListeDePions()) {
 	    p.finDeTour();
 	}
+	if(getJoueurCourant().getTacticien() != null){
+	    ((Tacticien) getJoueurCourant().getTacticien()).decrementerCDTeleporteur();
+	}
 	if (joueurCourant) {
 	    tour++;
 	}
@@ -289,4 +286,9 @@ public class Moteur implements Runnable, Serializable {
 	    return joueur2;
 	}
     }
+    
+    //TODO Gestion du nombre d'actions
+    //TODO Gestion du rajout de nombre d'actions
+    //TODO RAJOUTER DES TEXTURES
+    //TODO Actuellement teleporteur incompatible avec les bordures, changer comportement en cas de bordure
 }
