@@ -1,5 +1,6 @@
 package moteur;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -11,17 +12,17 @@ public class Teleporteur {
 	private Joueur joueur;
 	private Case c;
 	private int vie;
-	private int typeTeleporteur;
 
 	public Teleporteur(Joueur joueur, Case c) {
 		this.joueur = joueur;
 		vie = 50;
 		this.c = c;
-		if (true) {
-			typeTeleporteur = Textures.SABLE;
-		} else {
-			typeTeleporteur = Textures.GLACE;
-		}
+		
+		c.setTeleporteur(this);
+		System.out.println(joueur.getTeleporteur());
+		joueur.ajouterTeleporteur(this);
+		System.out.println("Liste des teleporteurs " + joueur.getTeleporteur());
+
 		//TODO Image differente selon teleporteur
 	}
 
@@ -37,10 +38,6 @@ public class Teleporteur {
 		return joueur.getTeleporteur();
 	}
 
-	public int getTypeTeleporteur() {
-		return typeTeleporteur;
-	}
-
 	@Override
 	public String toString() {
 		return c.toString();
@@ -52,5 +49,9 @@ public class Teleporteur {
 
 	public boolean isDisponible() {
 		return c.getPion() == null;
+	}
+	
+	public BufferedImage getImage() {
+		return Textures.getObstacle(joueur.getBoolValue() ? Textures.TELEPORTEUR1 : Textures.TELEPORTEUR2);
 	}
 }

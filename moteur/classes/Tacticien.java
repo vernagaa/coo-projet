@@ -34,11 +34,7 @@ public abstract class Tacticien extends Pion {
 			System.out.println("Je pose un teleporteur en " + c);
 			if (distanceManhattan(c) == 1 && c.getPion() == null && c.getObstacle() == null) {
 				System.out.println("Pose possible");
-				Teleporteur teleporteur = new Teleporteur(joueur, c);
-				c.setTeleporteur(teleporteur);
-				System.out.println(joueur.getTeleporteur());
-				joueur.ajouterTeleporteur(teleporteur);
-				System.out.println("Liste des teleporteurs " + joueur.getTeleporteur());
+				new Teleporteur(joueur, c);
 				cooldownTeleporteur = 1;
 			}
 			//TODO Ajouter un cooldown à la pose?
