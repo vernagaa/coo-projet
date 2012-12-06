@@ -34,6 +34,7 @@ public class Moteur implements Runnable, Serializable {
 	private Joueur joueur2;
 	private boolean joueurCourant;
 	private boolean teleportationEnCours;
+	private String mapPath;
 
 	public Plateau getPlateau() {
 		return plateau;
@@ -44,7 +45,8 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	public Moteur() {
-		plateau = new Plateau("map/map5.map");
+		mapPath = "map/map5.map";
+		plateau = new Plateau(mapPath);
 		joueur1 = new Joueur("joueur1", true);
 		joueur2 = new Joueur("joueur2", false);
 		debutDePartie = true;
@@ -332,8 +334,32 @@ public class Moteur implements Runnable, Serializable {
 		fp.setLabelJoueur(getJoueurCourant().getNom());
 		fp.setLabelAction(getJoueurCourant().getNbActions());
 	}
+	
+	
 	//TODO Gestion du nombre d'actions
 	//TODO Gestion du rajout de nombre d'actions
 	//TODO RAJOUTER DES TEXTURES
 	//TODO Actuellement teleporteur incompatible avec les bordures, changer comportement en cas de bordure
+
+	public void setDebutDePartie(boolean debutDePartie) {
+		this.debutDePartie = debutDePartie;
+	}
+
+	public void setNouvellePartie(NouvellePartieGraphique nouvellePartie) {
+		this.nouvellePartie = nouvellePartie;
+	}
+
+	public void nouvellePartie() {
+		if(isDebutDePartie()){
+			nouvellePartie.setVisible(false);
+		}
+		debutDePartie = true;
+		plateau.init(mapPath);
+		aireDeJeu.nouvellePartie();
+		tour = 0;
+		joueur2.setNbActions(0);
+		nouvellePartie = new NouvellePartieGraphique(this);
+	}
+	
+	
 }

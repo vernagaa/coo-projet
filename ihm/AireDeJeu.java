@@ -35,9 +35,8 @@ public class AireDeJeu extends JComponent {
 	public AireDeJeu(Plateau plateau) {
 		setPreferredSize(new Dimension(plateau.getNbColonne() * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1));
 		this.plateau = plateau;
-		debutDePartie = true;
 		joueurCourant = true;
-		firstTime = true;
+		nouvellePartie();
 	}
 
 	public AireDeJeu() {
@@ -307,5 +306,11 @@ public class AireDeJeu extends JComponent {
 		this.teleportationEnCours = teleportationEnCours;
 		caseEnCours = c;
 
+	}
+	
+	public final void nouvellePartie(){
+		setDebutDePartie(true);
+		firstTime = true;
+		repaint();
 	}
 }

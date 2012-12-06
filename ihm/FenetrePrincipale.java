@@ -1,6 +1,7 @@
 package ihm;
 
 import ecouteur.EcouteurPlateau;
+import javax.swing.JOptionPane;
 import moteur.Moteur;
 
 /**
@@ -85,10 +86,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGap(0, 601, Short.MAX_VALUE)
         );
 
-        labelAction.setText("Actions restantes : 5");
+        labelAction.setText("Actions restantes : 0");
 
         labelJoueur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelJoueur.setText("Joueur : Joureur_1");
+        labelJoueur.setText("Joueur : Joueur 1");
 
         labelTour.setText("Tour : 0");
 
@@ -153,7 +154,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void menuNouvellePartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouvellePartieActionPerformed
-//		moteur.getPlateau().vider();
+		int confirm = JOptionPane.showConfirmDialog(this,
+				"Voulez-vous vraiment recommencer une partie d'Animosity ?",
+				"Nouvelle Partie",
+				JOptionPane.YES_NO_OPTION);
+
+		if (confirm == JOptionPane.YES_OPTION) {
+			moteur.nouvellePartie();
+		}
 	}//GEN-LAST:event_menuNouvellePartieActionPerformed
 
 	private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
