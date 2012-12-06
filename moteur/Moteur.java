@@ -336,8 +336,6 @@ public class Moteur implements Runnable, Serializable {
 	}
 	
 	
-	//TODO Gestion du nombre d'actions
-	//TODO Gestion du rajout de nombre d'actions
 	//TODO RAJOUTER DES TEXTURES
 	//TODO Actuellement teleporteur incompatible avec les bordures, changer comportement en cas de bordure
 
@@ -360,6 +358,7 @@ public class Moteur implements Runnable, Serializable {
 		joueur2.setNbActions(0);
 		nouvellePartie = new NouvellePartieGraphique(this);
 	}
+	//TODO Conquerir
 	
 	
 }
