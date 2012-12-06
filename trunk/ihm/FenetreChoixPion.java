@@ -1,13 +1,8 @@
 package ihm;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
 import moteur.Case;
 import moteur.Moteur;
-import moteur.classes.Tacticien;
 
 /**
  *
@@ -42,7 +37,6 @@ public final class FenetreChoixPion extends JComponent {
 
 	public void placerFenetre(Case c) {
 		this.c = c;
-		boolean cap = false;
 		int i = 0;
 		Case placement = c;
 		if (!c.isObstacleDeplacement()) {
@@ -57,7 +51,6 @@ public final class FenetreChoixPion extends JComponent {
 		if (m.getJoueurCourant().getTacticien() != null) {
 			setSize(Case.TAILLE * 3, Case.TAILLE * (i+1));
 			capa.setPosition(i++);
-			cap = true;
 			if (placement.getPlateau().get(placement.getLigne() + 1, placement.getColonne()) == null) {
 				placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 			}
@@ -67,15 +60,18 @@ public final class FenetreChoixPion extends JComponent {
 		if (c.getPion() == m.getJoueurCourant().getCommandant()) {
 			setSize(Case.TAILLE * 3, Case.TAILLE * (i+1));
 			conq.setPosition(i++);
-			t.setPosition(i++);
 			if (placement.getPlateau().get(placement.getLigne() + 2, placement.getColonne()) == null) {
 				placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 			}
 			if (c.getPion() == m.getJoueurCourant().getTacticien()) {
 				setSize(Case.TAILLE * 3, Case.TAILLE * (i+1));
+				t.setPosition(i++);
 				if (placement.getPlateau().get(placement.getLigne() + 3, placement.getColonne()) == null) {
 					placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 				}
+			}
+			else{
+				t.setPosition(6);
 			}
 		} else if (c.getPion() == m.getJoueurCourant().getTacticien()) {
 			setSize(Case.TAILLE * 3, Case.TAILLE * (i+1));
@@ -84,7 +80,15 @@ public final class FenetreChoixPion extends JComponent {
 			if (placement.getPlateau().get(placement.getLigne() + 2, placement.getColonne()) == null) {
 				placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 			}
-		} 
+		}else{
+			conq.setPosition(6);
+			t.setPosition(6);
+		}
+		setSize(Case.TAILLE * 3, Case.TAILLE * (i+1));
+		finDeTour.setPosition(i++);
+		if (placement.getPlateau().get(placement.getLigne(), placement.getColonne() + 3) == null) {
+			placement = placement.getPlateau().get(placement.getLigne(), placement.getColonne() - 4);
+		}
 
 		setLocation((placement.getColonne() + 1) * Case.TAILLE, placement.getLigne() * Case.TAILLE);
 		setVisible(true);

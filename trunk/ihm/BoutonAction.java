@@ -22,9 +22,9 @@ public abstract class BoutonAction extends JButton {
     protected String nom;
     protected FenetreChoixPion fenetre;
 
-    public BoutonAction(String nom, int numero, FenetreChoixPion fenetre) {
+    public BoutonAction(String nom, int numero, FenetreChoixPion f) {
 	super(nom);
-	this.fenetre = fenetre;
+	this.fenetre = f;
 	this.nom = nom;
 	survol = false;
 	setBounds(0, Case.TAILLE * numero, Case.TAILLE * 3, Case.TAILLE);
@@ -34,13 +34,13 @@ public abstract class BoutonAction extends JButton {
 	    @Override
 	    public void mouseEntered(MouseEvent e) {
 		survol = true;
-		repaint();
+		fenetre.getMoteur().aireDeJeu.repaint();
 	    }
 
 	    @Override
 	    public void mouseExited(MouseEvent e) {
 		survol = false;
-		repaint();
+		fenetre.getMoteur().aireDeJeu.repaint();
 	    }
 	});
     }
