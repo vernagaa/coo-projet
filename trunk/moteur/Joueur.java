@@ -19,9 +19,11 @@ public final class Joueur {
     private ArrayList<Case> teleporteur;
     private String nom;
     private String famille;
+	private final boolean boolValue;
 
-    public Joueur(String nom) {
+    public Joueur(String nom, boolean boolValue) {
 	this.nom = nom;
+	this.boolValue = boolValue;
 	listeDePions = new ArrayList<Pion>();
 	placesConquises = new ArrayList<Case>();
 	teleporteur = new ArrayList<Case>();
@@ -80,4 +82,8 @@ public final class Joueur {
     public void setTacticien(Pion tacticien) {
 	this.tacticien = tacticien;
     }
+
+	public boolean getBoolValue() {
+		return boolValue;
+	}
 }

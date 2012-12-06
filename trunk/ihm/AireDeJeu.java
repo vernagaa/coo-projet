@@ -61,10 +61,6 @@ public class AireDeJeu extends JComponent {
 				if (c1.getBordure() != null) {
 					gd.drawImage(Textures.getBordure(c1.getBordure().getTypeBordure()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
 				}
-				if (c1.getObstacle() != null) {
-					gd.drawImage(Textures.getObstacle(c1.getObstacle().getTypeObstacle()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
-				}
-
 			}
 		}
 //		if (finDeDeplacement) {
@@ -135,10 +131,16 @@ public class AireDeJeu extends JComponent {
 		}
 
 		// Permet d'afficher les pions	
-		//TODO ne pas parcourir toutes les cases du plateau
 		for (Case[] c : plateau.get()) {
 			for (Case c1 : c) {
+				if (c1.getObstacle() != null) {
+					gd.drawImage(Textures.getObstacle(c1.getObstacle().getTypeObstacle()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+				}
 				if (c1.getPion() != null) {
+					if(!debutDePartie && c1.getPion().getJoueur().getBoolValue() == joueurCourant) {
+						gd.setColor(new Color(0, 255, 0, 100));
+						gd.fillRect(c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+					}
 					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
 				}
 			}
