@@ -70,6 +70,11 @@ public final class Joueur {
 	listeDePions.add(pion);
 	pion.setJoueur(this);
     }
+  
+	public void enleverPion(Pion pion) {
+	listeDePions.remove(pion);
+	pion = null;
+    }
 
     public boolean tacticienEnVie() {
 	return tacticien != null;

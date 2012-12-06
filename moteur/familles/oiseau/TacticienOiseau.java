@@ -159,7 +159,9 @@ public final class TacticienOiseau extends Tacticien implements Oiseau {
 	
 	@Override
 	public void finDeTour(){
-		setTourspecial(getTourspecial()+1);
+	if (getTourspecial() < 2) {
+	    setTourspecial(getTourspecial() + 1);
+	}
 		setMouvement(getMouvementBase());
 	}
 }

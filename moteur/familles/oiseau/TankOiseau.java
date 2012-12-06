@@ -161,7 +161,9 @@ public final class TankOiseau extends Tank implements Oiseau {
 	
 	@Override
 	public void finDeTour(){
-		setTourspecial(getTourspecial()+1);
+	if (getTourspecial() < 2) {
+	    setTourspecial(getTourspecial() + 1);
+	}
 		setMouvement(getMouvementBase());
 	}
 }
