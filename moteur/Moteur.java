@@ -102,6 +102,9 @@ public class Moteur implements Runnable, Serializable {
 				aireDeJeu.setJoueurCourant(joueurCourant);
 			}
 		}
+		getJoueurCourant().setNbActions(10);
+		fp.setLabelTour(tour);
+		majInfosTour();
 	}
 
 	public boolean isDebutDePartie() {
@@ -112,8 +115,9 @@ public class Moteur implements Runnable, Serializable {
 		aireDeJeu.setCaseSurvol(null);
 //	fenetreChoixPion.effacerFenetre();
 		caseCourante = c1;
-		fenetreChoixPion.effacerinDeTour();
+		fenetreChoixPion.effacerFinDeTour();
 		System.out.println("Clique gauche");
+		if(getJoueurCourant().actionPossibles()){
 		// Permet de gerer l'attaque d'une unite ennemie
 		if (attaqueEnCours) {
 			// On verifie que le case cible est attaquable par le pion et que le pion sur cette case est un pion ennemi
@@ -126,6 +130,7 @@ public class Moteur implements Runnable, Serializable {
 				} else if(caseCourante.getObstacle() != null && caseCourante.getObstacle().isDestructible()){
 					caseAncienne.getPion().attaquerObstacle(caseCourante);
 				}
+				utiliserAction();
 			}
 			// On signifie que l'attaque est fini
 			attaqueEnCours = false;
@@ -139,14 +144,17 @@ public class Moteur implements Runnable, Serializable {
 			((Tacticien) caseAncienne.getPion()).poserTeleporteur(caseCourante);
 			poserTeleporteur = false;
 			aireDeJeu.setAfficherPoseTeleporteur(false, caseCourante);
+			utiliserAction();
 		} else if (teleportationEnCours) {
 			if (getJoueurCourant().getTeleporteur().contains(caseCourante)) {
 				caseAncienne.getPion().deplacerPionTeleportation(caseCourante);
+				utiliserAction();
 			}
 			teleportationEnCours = false;
 		} else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
 			if (caseAncienne != caseCourante) {
 				caseAncienne.getPion().deplacerPion(caseCourante);
+				utiliserAction();
 			}
 			// On specifie que le mouvement est termine
 			mouvementEnCours = false;
@@ -199,11 +207,19 @@ public class Moteur implements Runnable, Serializable {
 			aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
 		}
 		
+		}else {
+			fenetreChoixPion.effacerFenetre();
+			// On specifie que le mouvement est termine
+			mouvementEnCours = false;
+			// On indique qu'il ne faut plus afficher les mouvements possibles
+			fenetreChoixPion.placerFinDeTour(caseCourante);
+			aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
+		}
 		aireDeJeu.repaint();
 	}
 
 	public void caseCliqueBoutonDroit(Case c) {
-		fenetreChoixPion.effacerinDeTour();
+		fenetreChoixPion.effacerFinDeTour();
 		if (c.getPion() != null && getJoueurCourant() == c.getPion().getJoueur()) {
 			caseAncienne = c;
 			// On efface la fenetre
@@ -277,15 +293,16 @@ public class Moteur implements Runnable, Serializable {
 		joueurCourant = !joueurCourant;
 		aireDeJeu.setJoueurCourant(joueurCourant);
 		
-		for (Pion p : getJoueurCourant().getListeDePions()) {
-			p.finDeTour();
-		}
+		getJoueurCourant().finDeTour();
+		
 		if (getJoueurCourant().getTacticien() != null) {
 			((Tacticien) getJoueurCourant().getTacticien()).decrementerCDTeleporteur();
 		}
 		if (joueurCourant) {
 			tour++;
+			fp.setLabelTour(tour);
 		}
+		majInfosTour();
 	}
 
 	public Joueur getJoueurCourant() {
@@ -294,6 +311,16 @@ public class Moteur implements Runnable, Serializable {
 		} else {
 			return joueur2;
 		}
+	}
+	
+	public void utiliserAction(){
+		getJoueurCourant().utiliserAction();
+		fp.setLabelAction(getJoueurCourant().getNbActions());
+	}
+	
+	public void majInfosTour(){
+		fp.setLabelJoueur(getJoueurCourant().getNom());
+		fp.setLabelAction(getJoueurCourant().getNbActions());
 	}
 	//TODO Gestion du nombre d'actions
 	//TODO Gestion du rajout de nombre d'actions
