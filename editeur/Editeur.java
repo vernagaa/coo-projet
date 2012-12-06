@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package editeur;
 
 import javax.swing.SwingUtilities;
@@ -12,6 +8,7 @@ import moteur.Plateau;
  * @author disavinr
  */
 public class Editeur implements Runnable {
+
 	FenetreEditeur fe;
 	Plateau plateau;
 
@@ -22,7 +19,7 @@ public class Editeur implements Runnable {
 	public void setPlateau(Plateau plateau) {
 		this.plateau = plateau;
 	}
-	
+
 	public Editeur() {
 		plateau = new Plateau();
 	}

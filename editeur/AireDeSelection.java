@@ -12,11 +12,12 @@ import moteur.Case;
  * @author Kévin
  */
 public class AireDeSelection extends JComponent {
+
 	EcouteurEditeur p;
-	
-	public AireDeSelection(){
+
+	public AireDeSelection() {
 	}
-	
+
 	public AireDeSelection(EcouteurEditeur p) {
 		this.p = p;
 	}
@@ -24,9 +25,9 @@ public class AireDeSelection extends JComponent {
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;
-		if(p != null && p.c1 != null){
+		if (p != null && p.c1 != null) {
 			gd.setColor(new Color(255, 0, 0, 40));
-			gd.fillRect(p.colonneMin*Case.TAILLE, p.ligneMin*Case.TAILLE, (p.colonneMax-p.colonneMin+1)*Case.TAILLE, (p.ligneMax-p.ligneMin+1)*Case.TAILLE);
+			gd.fillRect(p.colonneMin * Case.TAILLE, p.ligneMin * Case.TAILLE, (p.colonneMax - p.colonneMin + 1) * Case.TAILLE, (p.ligneMax - p.ligneMin + 1) * Case.TAILLE);
 		}
 
 	}

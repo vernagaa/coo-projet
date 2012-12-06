@@ -10,6 +10,7 @@ import moteur.classes.Archer;
  * @author vernagaa
  */
 public final class ArcherReptile extends Archer implements Reptile {
+
 	public ArcherReptile(Case c) {
 		super(vieArcher, forceArcher, precisionArcher, vitesseArcher, defenseArcher, chanceArcher, porteeArcher, mouvementArcher, c);
 		nomCapaciteSpeciale = nomCapacite;
@@ -29,13 +30,13 @@ public final class ArcherReptile extends Archer implements Reptile {
 	public void mue() {
 		vie += 7;
 	}
-	
+
 	@Override
 	public void capaciteSpeciale() {
 		mue();
 		specialIndispo();
 	}
-	
+
 	@Override
 	public void specialIndispo() {
 		setSpecial(cooldown);

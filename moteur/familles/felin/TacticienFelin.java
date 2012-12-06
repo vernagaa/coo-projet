@@ -10,6 +10,7 @@ import moteur.classes.Tacticien;
  * @author Kévin
  */
 public final class TacticienFelin extends Tacticien implements Felin {
+
 	public boolean enrage;
 	int precisionBase;
 
@@ -44,18 +45,18 @@ public final class TacticienFelin extends Tacticien implements Felin {
 	public void enrage() {
 		enrage = true;
 	}
-	
+
 	@Override
 	protected float coupCritiques() {
 		if (enrage) {
 			enrage = false;
 			return 9999 / 150;
 		} else {
-			if(getTourspecial()==1){
-				setTourspecial(getTourspecial()+1);
+			if (getTourspecial() == 1) {
+				setTourspecial(getTourspecial() + 1);
 				precisionBase = precision;
 				precision = 0;
-			}else if(getTourspecial() == 2){
+			} else if (getTourspecial() == 2) {
 				precision = precisionBase;
 				setTourspecial(0);
 			}

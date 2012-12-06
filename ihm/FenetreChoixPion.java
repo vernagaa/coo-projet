@@ -87,7 +87,7 @@ public final class FenetreChoixPion extends JComponent {
 			setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 			finDeTour.setPosition(i++);
 			if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
-					placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
+				placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 			}
 		} else {
 			setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
