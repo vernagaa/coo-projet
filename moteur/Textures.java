@@ -18,19 +18,19 @@ public final class Textures {
 	 */
 
 	// Les obstacles indestructibles
-	private static final String EAUPATH = "/images/eau.png";
-	private static final String EAUDROITPATH = "/images/eauDroit.png";
-	private static final String EAUFONDBASPATH = "/images/eauFondBas.png";
-	private static final String EAUFONDDROITPATH = "/images/eauFondDroit.png";
-	private static final String EAUFONDGAUCHEPATH = "/images/eauFondGauche.png";
-	private static final String EAUGAUCHEPATH = "/images/eauGauche.png";
-	private static final String EAUHAUTPATH = "/images/eauHaut.png";
-	private static final String EAUHAUTDROITPATH = "/images/eauHautDroit.png";
-	private static final String EAUHAUTGAUCHEPATH = "/images/eauHautGauche.png";
-	private static final String EAUVIRAGEBASDROITPATH = "/images/eauVirageBasDroit.png";
-	private static final String EAUVIRAGEBASGAUCHEPATH = "/images/eauVirageBasGauche.png";
-	private static final String EAUVIRAGEHAUTDROITPATH = "/images/eauVirageHautDroit.png";
-	private static final String EAUVIRAGEHAUTGAUCHEPATH = "/images/eauVirageHautGauche.png";
+	public static final String EAUPATH = "/images/obstacle/eau/eau.png";
+	public static final String EAUDROITPATH = "/images/obstacle/eau/eauDroit.png";
+	public static final String EAUFONDBASPATH = "/images/obstacle/eau/eauFondBas.png";
+	public static final String EAUFONDDROITPATH = "/images/obstacle/eau/eauFondDroit.png";
+	public static final String EAUFONDGAUCHEPATH = "/images/obstacle/eau/eauFondGauche.png";
+	public static final String EAUGAUCHEPATH = "/images/obstacle/eau/eauGauche.png";
+	public static final String EAUHAUTPATH = "/images/obstacle/eau/eauHaut.png";
+	public static final String EAUHAUTDROITPATH = "/images/obstacle/eau/eauHautDroit.png";
+	public static final String EAUHAUTGAUCHEPATH = "/images/obstacle/eau/eauHautGauche.png";
+	public static final String EAUVIRAGEBASDROITPATH = "/images/obstacle/eau/eauVirageBasDroit.png";
+	public static final String EAUVIRAGEBASGAUCHEPATH = "/images/obstacle/eau/eauVirageBasGauche.png";
+	public static final String EAUVIRAGEHAUTDROITPATH = "/images/obstacle/eau/eauVirageHautDroit.png";
+	public static final String EAUVIRAGEHAUTGAUCHEPATH = "/images/obstacle/eau/eauVirageHautGauche.png";
 	public static final int EAU = 0;
 	public static final int EAUDROIT = 1;
 	public static final int EAUFONDBAS = 2;
@@ -45,15 +45,15 @@ public final class Textures {
 	public static final int EAUVIRAGEHAUTDROIT = 11;
 	public static final int EAUVIRAGEHAUTGAUCHE = 12;
 	//Bordures
-	private static final String BORDUREEAUBASPATH = "/images/bordureEauBas.png";
-	private static final String BORDUREEAUDROITPATH = "/images/bordureEauDroit.png";
-	private static final String BORDUREEAUGAUCHEPATH = "/images/bordureEauGauche.png";
+	public static final String BORDUREEAUBASPATH = "/images/texture/bordureEauBas.png";
+	public static final String BORDUREEAUDROITPATH = "/images/texture/bordureEauDroit.png";
+	public static final String BORDUREEAUGAUCHEPATH = "/images/texture/bordureEauGauche.png";
 	public static final int BORDUREEAUBAS = 0;
 	public static final int BORDUREEAUDROIT = 1;
 	public static final int BORDUREEAUGAUCHE = 2;
 	//Chateaux
-	private static final String CHATEAU1 = "/images/chateau1.png";
-	private static final String CHATEAU2 = "/images/chateau2.png";
+	public static final String CHATEAU1 = "/images/obstacle/chateau/chateau1.png";
+	public static final String CHATEAU2 = "/images/obstacle/chateau/chateau2.png";
 	public static final int CHATEAU1HAUTGAUCHE = 22;
 	public static final int CHATEAU1HAUTDROIT = 23;
 	public static final int CHATEAU1BASGAUCHE = 24;
@@ -66,17 +66,17 @@ public final class Textures {
 	/*
 	 * ------ Tile Montagne nb : 9 ------ Ce sont des obstacles indestructibles
 	 */
-	private static final String MONTAGNEHAUTDROITPATH = "/images/montagneHautDroite.png";
-	private static final String MONTAGNEHAUTPATH = "/images/montagneHaut.png";
-	private static final String MONTAGNEHAUTGAUCHEPATH = "/images/montagneHautGauche.png";
-	private static final String MONTAGNECENTREDROITPATH = "/images/montagneCentreDroit.png";
-	private static final String MONTAGNECENTREPATH = "/images/montagneCentre.png";
-	private static final String MONTAGNECENTREGAUCHEPATH = "/images/montagneCentreGauche.png";
-	private static final String MONTAGNEBASGAUCHEPATH = "/images/montagneBasDroit.png";
-	private static final String MONTAGNEBASPATH = "/images/montagneBas.png";
-	private static final String MONTAGNEBASDROITPATH = "/images/montagneBasGauche.png";
-	private static final String MONTAGNECORNERDROITPATH = "/images/montagneCornerDroit.png";
-	private static final String MONTAGNECORNERGAUCHEPATH = "/images/montagneCornerGauche.png";
+	public static final String MONTAGNEHAUTDROITPATH = "/images/obstacle/montagne/montagneHautDroite.png";
+	public static final String MONTAGNEHAUTPATH = "/images/obstacle/montagne/montagneHaut.png";
+	public static final String MONTAGNEHAUTGAUCHEPATH = "/images/obstacle/montagne/montagneHautGauche.png";
+	public static final String MONTAGNECENTREDROITPATH = "/images/obstacle/montagne/montagneCentreDroit.png";
+	public static final String MONTAGNECENTREPATH = "/images/obstacle/montagne/montagneCentre.png";
+	public static final String MONTAGNECENTREGAUCHEPATH = "/images/obstacle/montagne/montagneCentreGauche.png";
+	public static final String MONTAGNEBASGAUCHEPATH = "/images/obstacle/montagne/montagneBasDroit.png";
+	public static final String MONTAGNEBASPATH = "/images/obstacle/montagne/montagneBas.png";
+	public static final String MONTAGNEBASDROITPATH = "/images/obstacle/montagne/montagneBasGauche.png";
+	public static final String MONTAGNECORNERDROITPATH = "/images/obstacle/montagne/montagneCornerDroit.png";
+	public static final String MONTAGNECORNERGAUCHEPATH = "/images/obstacle/montagne/montagneCornerGauche.png";
 	public static final int MONTAGNEHAUTDROIT = 13;
 	public static final int MONTAGNEHAUT = 14;
 	public static final int MONTAGNEHAUTGAUCHE = 15;
@@ -91,15 +91,15 @@ public final class Textures {
 	/*
 	 * Tile Bordure Sable : 12
 	 */
-	private static final String BORDURESABLEBASPATH = "/images/bordureSableBas.png";
-	private static final String BORDURESABLEBASDROITPATH = "/images/bordureSableBasDroit.png";
-	private static final String BORDURESABLEBASGAUCHEPATH = "/images/bordureSableBasGauche.png";
-	private static final String BORDURESABLEDROITPATH = "/images/bordureSableDroit.png";
-	private static final String BORDURESABLEGAUCHEPATH = "/images/bordureSableGauche.png";
-	private static final String BORDURESABLEHAUTPATH = "/images/bordureSableHaut.png";
-	private static final String BORDURESABLEHAUTDROITPATH = "/images/bordureSableHautDroit.png";
-	private static final String BORDURESABLEHAUTGAUCHEPATH = "/images/bordureSableHautGauche.png";
-	private static final String BORDURESABLECOINBASDROITPATH = "/images/bordureSableCoinBasDroit.png";
+	public static final String BORDURESABLEBASPATH = "/images/texture/bordureSableBas.png";
+	public static final String BORDURESABLEBASDROITPATH = "/images/texture/bordureSableBasDroit.png";
+	public static final String BORDURESABLEBASGAUCHEPATH = "/images/texture/bordureSableBasGauche.png";
+	public static final String BORDURESABLEDROITPATH = "/images/texture/bordureSableDroit.png";
+	public static final String BORDURESABLEGAUCHEPATH = "/images/texture/bordureSableGauche.png";
+	public static final String BORDURESABLEHAUTPATH = "/images/texture/bordureSableHaut.png";
+	public static final String BORDURESABLEHAUTDROITPATH = "/images/texture/bordureSableHautDroit.png";
+	public static final String BORDURESABLEHAUTGAUCHEPATH = "/images/texture/bordureSableHautGauche.png";
+	public static final String BORDURESABLECOINBASDROITPATH = "/images/texture/bordureSableCoinBasDroit.png";
 	public static final int BORDURESABLEBAS = 3;
 	public static final int BORDURESABLEBASDROIT = 4;
 	public static final int BORDURESABLEBASGAUCHE = 5;
@@ -112,12 +112,12 @@ public final class Textures {
 	/*
 	 * Terrain
 	 */
-	private static final String ROCPATH = "/images/roc.png";
-	private static final String ROUTEPATH = "/images/route.png";
-	private static final String SABLEPATH = "/images/sableCentre.png";
-	private static final String HERBEPATH = "/images/herbemod.png";
-	private static final String NEIGEPATH = "/images/neige.png";
-	private static final String GLACEPATH = "/images/glace.png";
+	public static final String ROCPATH = "/images/texture/roc.png";
+	public static final String ROUTEPATH = "/images/texture/route.png";
+	public static final String SABLEPATH = "/images/texture/sableCentre.png";
+	public static final String HERBEPATH = "/images/texture/herbemod.png";
+	public static final String NEIGEPATH = "/images/texture/neige.png";
+	public static final String GLACEPATH = "/images/texture/glace.png";
 	public static final int ROC = 0;
 	public static final int ROUTE = 1;
 	public static final int SABLE = 2;
@@ -128,17 +128,17 @@ public final class Textures {
 	/**
 	 * Barriere
 	 */
-	private static final String BARRIERECOINBASDROITPATH = "/images/barriereCoinBasDroit.png";
-	private static final String BARRIERECOINHAUTDROITPATH = "/images/barriereCoinHautDroit.png";
-	private static final String BARRIERECOINFINDROITPATH = "/images/barriereCoinFinDroit.png";
-	private static final String BARRIEREFINDROITPATH = "/images/barriereDroitFin.png";
-	private static final String BARRIEREDROITPATH = "/images/barriereDroit.png";
-	private static final String BARRIEREGAUCHEFINPATH = "/images/barriereGaucheFin.png";
-	private static final String BARRIERECOINFINGAUCHEPATH = "/images/barriereCoinFinGauche.png";
-	private static final String BARRIEREBASPATH = "/images/barriereBas.png";
-	private static final String BARRIEREGAUCHEPATH = "/images/barriereGauche.png";
-	private static final String BARRIERECOINBASGAUCHEPATH = "/images/barriereCoinBasGauche.png";
-	private static final String BARRIERECOINHAUTGAUCHEPATH = "/images/barriereCoinHautGauche.png";
+	public static final String BARRIERECOINBASDROITPATH = "/images/obstacle/barriere/barriereCoinBasDroit.png";
+	public static final String BARRIERECOINHAUTDROITPATH = "/images/obstacle/barriere/barriereCoinHautDroit.png";
+	public static final String BARRIERECOINFINDROITPATH = "/images/obstacle/barriere/barriereCoinFinDroit.png";
+	public static final String BARRIEREDROITFINPATH = "/images/obstacle/barriere/barriereDroitFin.png";
+	public static final String BARRIEREDROITPATH = "/images/obstacle/barriere/barriereDroit.png";
+	public static final String BARRIEREGAUCHEFINPATH = "/images/obstacle/barriere/barriereGaucheFin.png";
+	public static final String BARRIERECOINFINGAUCHEPATH = "/images/obstacle/barriere/barriereCoinFinGauche.png";
+	public static final String BARRIEREBASPATH = "/images/obstacle/barriere/barriereBas.png";
+	public static final String BARRIEREGAUCHEPATH = "/images/obstacle/barriere/barriereGauche.png";
+	public static final String BARRIERECOINBASGAUCHEPATH = "/images/obstacle/barriere/barriereCoinBasGauche.png";
+	public static final String BARRIERECOINHAUTGAUCHEPATH = "/images/obstacle/barriere/barriereCoinHautGauche.png";
 	public static final int BARRIERECOINBASDROIT = 32;
 	public static final int BARRIERECOINHAUTDROIT = 33;
 	public static final int BARRIERECOINFINDROIT = 34;
@@ -169,20 +169,20 @@ public final class Textures {
 	public static final int TACTICIENREPTILE = 13;
 	public static final int TANKREPTILE = 14;
 	// Images des personages
-	private static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test2.png";
-	private static final String ARCHERREPTILEPATH = "/images/perso/reptile/cameleon.png";
-	private static final String ASSASSINREPTILEPATH = "/images/perso/reptile/serpent.png";
-	private static final String GUERRIERREPTILEPATH = "/images/perso/reptile/crocodile2.png";
-	private static final String TACTICIENREPTILEPATH = "/images/perso/reptile/grenouille.png";
-	private static final String TANKREPTILEPATH = "/images/perso/reptile/tortue.png";
-	private static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
-	private static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
+	public static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test2.png";
+	public static final String ARCHERREPTILEPATH = "/images/perso/reptile/cameleon.png";
+	public static final String ASSASSINREPTILEPATH = "/images/perso/reptile/serpent.png";
+	public static final String GUERRIERREPTILEPATH = "/images/perso/reptile/crocodile2.png";
+	public static final String TACTICIENREPTILEPATH = "/images/perso/reptile/grenouille.png";
+	public static final String TANKREPTILEPATH = "/images/perso/reptile/tortue.png";
+	public static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
+	public static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
 	// Attributs
 	private BufferedImage[] terrain = new BufferedImage[7];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][] perso = new BufferedImage[15][4];
 	private BufferedImage[] obstacle = new BufferedImage[43];
-	private static Textures singleton = new Textures();
+	public static Textures singleton = new Textures();
 
 	public Textures() {
 		for (int i = 0; i < terrain.length; i++) {
@@ -689,9 +689,9 @@ public final class Textures {
 			System.err.println("Image non trouvée : " + BARRIERECOINFINDROITPATH);
 		}
 		try {
-			obstacle[BARRIEREFINDROIT] = ImageIO.read(getClass().getResource(BARRIEREFINDROITPATH));
+			obstacle[BARRIEREFINDROIT] = ImageIO.read(getClass().getResource(BARRIEREDROITFINPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIEREFINDROITPATH);
+			System.err.println("Image non trouvée : " + BARRIEREDROITFINPATH);
 		}
 		try {
 			obstacle[BARRIEREDROIT] = ImageIO.read(getClass().getResource(BARRIEREDROITPATH));
