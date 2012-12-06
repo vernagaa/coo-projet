@@ -40,10 +40,10 @@ public final class FenetreChoixPion extends JComponent {
 		int i = 0;
 		Case placement = c;
 		if (m.getJoueurCourant().actionPossibles()) {
+			if (placement.getPlateau().get(placement.getLigne(), placement.getColonne() + 3) == null) {
+				placement = placement.getPlateau().get(placement.getLigne(), placement.getColonne() - 4);
+			}
 			if (!c.isObstacleDeplacement()) {
-				if (placement.getPlateau().get(placement.getLigne(), placement.getColonne() + 3) == null) {
-					placement = placement.getPlateau().get(placement.getLigne(), placement.getColonne() - 4);
-				}
 				setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 				b.setPosition(i++);
 			} else {
@@ -52,7 +52,7 @@ public final class FenetreChoixPion extends JComponent {
 			if (m.getJoueurCourant().getTacticien() != null) {
 				setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 				capa.setPosition(i++);
-				if (placement.getPlateau().get(placement.getLigne() + 1, placement.getColonne()) == null) {
+				if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
 					placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 				}
 			} else {
@@ -61,13 +61,13 @@ public final class FenetreChoixPion extends JComponent {
 			if (c.getPion() == m.getJoueurCourant().getCommandant()) {
 				setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 				conq.setPosition(i++);
-				if (placement.getPlateau().get(placement.getLigne() + 2, placement.getColonne()) == null) {
+				if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
 					placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 				}
 				if (c.getPion() == m.getJoueurCourant().getTacticien()) {
 					setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 					t.setPosition(i++);
-					if (placement.getPlateau().get(placement.getLigne() + 3, placement.getColonne()) == null) {
+					if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
 						placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 					}
 				} else {
@@ -77,7 +77,7 @@ public final class FenetreChoixPion extends JComponent {
 				setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 				t.setPosition(i++);
 				conq.setPosition(6);
-				if (placement.getPlateau().get(placement.getLigne() + 2, placement.getColonne()) == null) {
+				if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
 					placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 				}
 			} else {
@@ -86,8 +86,8 @@ public final class FenetreChoixPion extends JComponent {
 			}
 			setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 			finDeTour.setPosition(i++);
-			if (placement.getPlateau().get(placement.getLigne(), placement.getColonne() + 3) == null) {
-				placement = placement.getPlateau().get(placement.getLigne(), placement.getColonne() - 4);
+			if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
+					placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 			}
 		} else {
 			setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
@@ -96,9 +96,6 @@ public final class FenetreChoixPion extends JComponent {
 			t.setPosition(6);
 			conq.setPosition(6);
 			capa.setPosition(6);
-			if (placement.getPlateau().get(placement.getLigne(), placement.getColonne() + 3) == null) {
-				placement = placement.getPlateau().get(placement.getLigne(), placement.getColonne() - 4);
-			}
 		}
 		setLocation((placement.getColonne() + 1) * Case.TAILLE, placement.getLigne() * Case.TAILLE);
 		setVisible(true);
