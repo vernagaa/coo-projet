@@ -20,6 +20,7 @@ public final class Joueur {
     private String nom;
     private String famille;
 	private final boolean boolValue;
+	private int nbActions;
 
     public Joueur(String nom, boolean boolValue) {
 	this.nom = nom;
@@ -27,6 +28,7 @@ public final class Joueur {
 	listeDePions = new ArrayList<Pion>();
 	placesConquises = new ArrayList<Case>();
 	teleporteur = new ArrayList<Case>();
+	nbActions = 0;
     }
 
     public Pion getCommandant() {
@@ -91,4 +93,29 @@ public final class Joueur {
 	public boolean getBoolValue() {
 		return boolValue;
 	}
+	
+	public void finDeTour(){
+		nbActions +=10;
+		for(Pion p : listeDePions){
+			p.finDeTour();
+		}
+	}
+	
+	public void utiliserAction(){
+		nbActions--;
+	}
+	
+	public boolean actionPossibles(){
+		return nbActions > 0;
+	}
+
+	public int getNbActions() {
+		return nbActions;
+	}
+
+	public void setNbActions(int nbActions) {
+		this.nbActions = nbActions;
+	}
+	
+	
 }

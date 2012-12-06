@@ -1,6 +1,7 @@
 package ihm;
 
 import ecouteur.EcouteurPlateau;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import moteur.Moteur;
 
@@ -59,9 +60,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void initComponents() {
 
         aireDeJeu = new ihm.AireDeJeu(moteur.getPlateau());
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelAction = new javax.swing.JLabel();
+        labelJoueur = new javax.swing.JLabel();
+        labelTour = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuBarFichier = new javax.swing.JMenu();
         menuNouvellePartie = new javax.swing.JMenuItem();
@@ -87,12 +88,12 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGap(0, 601, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Actions restantes : 5");
+        labelAction.setText("Actions restantes : 5");
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Joueur : Joureur_1");
+        labelJoueur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelJoueur.setText("Joueur : Joureur_1");
 
-        jLabel3.setText("Tour : 8");
+        labelTour.setText("Tour : 0");
 
         menuBarFichier.setText("Fichier");
 
@@ -131,11 +132,11 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(labelAction)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addComponent(labelJoueur, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(labelTour)
                 .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
@@ -143,9 +144,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
+                    .addComponent(labelAction)
+                    .addComponent(labelTour)
+                    .addComponent(labelJoueur))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -168,10 +169,10 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	}//GEN-LAST:event_menuQuitterActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ihm.AireDeJeu aireDeJeu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel labelAction;
+    private javax.swing.JLabel labelJoueur;
+    private javax.swing.JLabel labelTour;
     private javax.swing.JMenu menuBarFichier;
     private javax.swing.JMenu menuBarOption;
     private javax.swing.JMenuItem menuNouvellePartie;
@@ -181,4 +182,24 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	public Moteur getMoteur() {
 		return moteur;
 	}
+
+	public void setLabelTour(int tour) {
+		labelTour.setText("Tour : "+tour);
+	}
+
+	public void setLabelAction(int actions) {
+		if(actions==0){
+			labelAction.setText("Action restante : "+ actions);
+		}
+		else{
+			labelAction.setText("Actions restantes : "+ actions);
+		}
+	}
+
+	public void setLabelJoueur(String joueur) {
+		labelJoueur.setText("Joueur : "+joueur);
+	}
+	
+	
+	
 }
