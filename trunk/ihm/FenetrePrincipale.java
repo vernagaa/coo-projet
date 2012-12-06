@@ -91,6 +91,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         labelJoueur.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelJoueur.setText("Joueur : Joueur 1");
 
+        labelTour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTour.setText("Tour : 0");
 
         menuBarFichier.setText("Fichier");
@@ -128,13 +129,13 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(labelAction)
+                .addComponent(labelAction, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(labelJoueur, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+                .addComponent(labelJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(labelTour)
+                .addComponent(labelTour, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(131, 131, 131))
         );
         layout.setVerticalGroup(
@@ -192,11 +193,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	}
 
 	public void setLabelAction(int actions) {
-		if (actions == 0) {
-			labelAction.setText("Action restante : " + actions);
-		} else {
 			labelAction.setText("Actions restantes : " + actions);
-		}
 	}
 
 	public void setLabelJoueur(String joueur) {

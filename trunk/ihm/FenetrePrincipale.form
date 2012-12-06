@@ -72,13 +72,13 @@
               <Component id="aireDeJeu" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Component id="labelAction" min="-2" max="-2" attributes="0"/>
+              <Component id="labelAction" pref="176" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="labelJoueur" pref="658" max="32767" attributes="0"/>
+              <Component id="labelJoueur" min="-2" pref="519" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="labelTour" min="-2" max="-2" attributes="0"/>
+              <Component id="labelTour" min="-2" pref="163" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -131,6 +131,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelTour">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Tour : 0"/>
       </Properties>
     </Component>
