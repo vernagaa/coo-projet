@@ -17,7 +17,6 @@ public class BoutonConquerir extends BoutonAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		nom = fenetre.c.getPion().getNomCapacite();
 		System.out.println("Conquerir");
 		fenetre.effacerFenetre();
 	}
