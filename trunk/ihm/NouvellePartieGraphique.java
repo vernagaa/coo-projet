@@ -1070,4 +1070,8 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 	public boolean choixPossible(Case c) {
 		return caseJoueur.contains(c);
 	}
+	
+	public void setEtape(int e){
+		etape = e;
+	}
 }

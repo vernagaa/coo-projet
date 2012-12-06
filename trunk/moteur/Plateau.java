@@ -47,6 +47,10 @@ public class Plateau implements Serializable {
 	 */
 	public Plateau(String str) {
 		plateau = new Case[ligne][colonne];
+		init(str);
+	}
+
+	public final void init(String str) {
 		try {
 			FileInputStream fis = new FileInputStream(str);
 			ObjectInputStream ois = null;

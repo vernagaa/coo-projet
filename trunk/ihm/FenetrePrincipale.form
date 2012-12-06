@@ -120,13 +120,13 @@
     </Container>
     <Component class="javax.swing.JLabel" name="labelAction">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Actions restantes : 5"/>
+        <Property name="text" type="java.lang.String" value="Actions restantes : 0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelJoueur">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Joueur : Joureur_1"/>
+        <Property name="text" type="java.lang.String" value="Joueur : Joueur 1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelTour">
