@@ -124,7 +124,8 @@ public final class Textures {
 	public static final int HERBE = 3;
 	public static final int NEIGE = 4;
 	public static final int GLACE = 5;
-	public static final int TELEPORTEUR = 6;
+	
+	// Les obstacles destructibles
 	/**
 	 * Barriere
 	 */
@@ -150,6 +151,13 @@ public final class Textures {
 	public static final int BARRIEREGAUCHE = 40;
 	public static final int BARRIERECOINBASGAUCHE = 41;
 	public static final int BARRIERECOINHAUTGAUCHE = 42;
+	/**
+	 * Téléporteur
+	 */
+	public static final String TELEPORTEURPATH = "/images/obstacle/teleporteur/portal.png";
+	public static final int TELEPORTEUR1 = 43;
+	public static final int TELEPORTEUR2 = 44;
+
 	/**
 	 * Personnages
 	 */
@@ -181,24 +189,24 @@ public final class Textures {
 	private BufferedImage[] terrain = new BufferedImage[7];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][] perso = new BufferedImage[15][4];
-	private BufferedImage[] obstacle = new BufferedImage[43];
-	public static Textures singleton = new Textures();
+	private BufferedImage[] obstacle = new BufferedImage[45];
+	private static Textures singleton = new Textures();
 
 	public Textures() {
-		for (int i = 0; i < terrain.length; i++) {
-			terrain[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		}
-		for (int i = 0; i < bordureTerrain.length; i++) {
-			bordureTerrain[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		}
-		for (int i = 0; i < perso.length; i++) {
-			for (int j = 0; j < perso[i].length; j++) {
-				perso[i][j] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-			}
-		}
-		for (int i = 0; i < obstacle.length; i++) {
-			obstacle[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
-		}
+//		for (int i = 0; i < terrain.length; i++) {
+//			terrain[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+//		}
+//		for (int i = 0; i < bordureTerrain.length; i++) {
+//			bordureTerrain[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+//		}
+//		for (int i = 0; i < perso.length; i++) {
+//			for (int j = 0; j < perso[i].length; j++) {
+//				perso[i][j] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+//			}
+//		}
+//		for (int i = 0; i < obstacle.length; i++) {
+//			obstacle[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
+//		}
 
 
 
@@ -230,9 +238,11 @@ public final class Textures {
 			System.err.println("Image non trouvée : " + GLACEPATH);
 		}
 		try {
-			terrain[TELEPORTEUR] = ImageIO.read(getClass().getResource(GLACEPATH));
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(TELEPORTEURPATH)), 2*32, 32);
+			obstacle[TELEPORTEUR1] = img.getSubimage(0, 0, 32, 32);
+			obstacle[TELEPORTEUR2] = img.getSubimage(32, 0, 32, 32);
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + GLACEPATH);
+			System.err.println("Image non trouvée : " + TELEPORTEURPATH);
 		}
 
 		tileEau();
