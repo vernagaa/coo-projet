@@ -47,8 +47,8 @@ public class Moteur implements Runnable, Serializable {
 
 	public Moteur() {
 		plateau = new Plateau("map/map5.map");
-		joueur1 = new Joueur("joueur1");
-		joueur2 = new Joueur("joueur2");
+		joueur1 = new Joueur("joueur1", true);
+		joueur2 = new Joueur("joueur2", false);
 		debutDePartie = true;
 		joueurCourant = true;
 		tour = 0;
@@ -99,6 +99,7 @@ public class Moteur implements Runnable, Serializable {
 				aireDeJeu.setDebutDePartie(false);
 				debutDePartie = false;
 				aireDeJeu.remove(nouvellePartie);
+				aireDeJeu.setJoueurCourant(joueurCourant);
 			}
 		}
 	}
@@ -274,6 +275,8 @@ public class Moteur implements Runnable, Serializable {
 
 	public void changementJoueur() {
 		joueurCourant = !joueurCourant;
+		aireDeJeu.setJoueurCourant(joueurCourant);
+		
 		for (Pion p : getJoueurCourant().getListeDePions()) {
 			p.finDeTour();
 		}
