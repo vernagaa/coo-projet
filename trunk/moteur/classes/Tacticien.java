@@ -35,7 +35,7 @@ public abstract class Tacticien extends Pion {
 	    System.out.println("Je pose un teleporteur en " + c);
 	    if (distanceManhattan(c) == 1) {
 			//TODO changer
-			c.setTypeTerrain(Textures.TELEPORTEUR);
+			c.setTypeTerrain(Textures.GLACE);
 	    }
 	    joueur.getTeleporteur().add(c);
 	    cooldownTeleporteur = 2;
