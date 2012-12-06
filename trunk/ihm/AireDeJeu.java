@@ -17,7 +17,7 @@ import moteur.Textures;
  * @author disavinr
  */
 public class AireDeJeu extends JComponent {
-
+	//TODO constantes pour les couleurs
 	private Plateau plateau;
 	private boolean attaqueEnCours;
 	private boolean afficherPorteeAttaque;
@@ -61,13 +61,6 @@ public class AireDeJeu extends JComponent {
 				if (c1.getBordure() != null) {
 					gd.drawImage(Textures.getBordure(c1.getBordure().getTypeBordure()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
 				}
-				if (c1.getObstacle() != null) {
-					gd.drawImage(Textures.getObstacle(c1.getObstacle().getTypeObstacle()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
-				}
-				if (c1.getTeleporteur() != null) {
-					gd.drawImage(Textures.getTerrain(c1.getTeleporteur().getTypeTeleporteur()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
-				}
-
 			}
 		}
 //		if (finDeDeplacement) {
@@ -141,11 +134,14 @@ public class AireDeJeu extends JComponent {
 				}
 			}
 
+			// Mise en valeur des téléporteurs communiquants
 			if (teleportationEnCours) {
+				gd.setColor(new Color(200, 0, 200, 100));
 				for (Teleporteur t : caseEnCours.getTeleporteur().getListeTeleporteur()) {
-					System.out.println("teleporteur en " + t);
-					gd.setColor(new Color(200, 0, 200, 100));
-					gd.fillRect((t.getCase().getColonne()) * Case.TAILLE, t.getCase().getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+					// On ne met pas en valeur le téléporteur courant
+					if (t != caseEnCours.getTeleporteur()) {
+						gd.fillRect((t.getCase().getColonne()) * Case.TAILLE, t.getCase().getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+					}
 				}
 			}
 		}
@@ -159,14 +155,21 @@ public class AireDeJeu extends JComponent {
 		//TODO ne pas parcourir toutes les cases du plateau
 		for (Case[] c : plateau.get()) {
 			for (Case c1 : c) {
+				// Affichage des obstacles
 				if (c1.getObstacle() != null) {
-					gd.drawImage(Textures.getObstacle(c1.getObstacle().getTypeObstacle()), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+					gd.drawImage(c1.getObstacle().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
 				}
-				if (c1.getPion() != null) {
-					if (!debutDePartie && c1.getPion().getJoueur().getBoolValue() == joueurCourant) {
+				// Affichage de la couleur des pions alliés
+				if (c1.getPion() != null && !debutDePartie && c1.getPion().getJoueur().getBoolValue() == joueurCourant) {
 						gd.setColor(new Color(0, 255, 0, 100));
 						gd.fillRect(c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-					}
+				}
+				// Affichage des téléporteurs
+				if (c1.getTeleporteur() != null) {
+					gd.drawImage(c1.getTeleporteur().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+				}
+				// Affichage des pions
+				if (c1.getPion() != null) {
 					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
 				}
 			}
@@ -199,6 +202,7 @@ public class AireDeJeu extends JComponent {
 
 //	Les methodes suivantes concernent l'affichage de l'attaque
 	private void afficherPorteAttaque(Graphics2D gd) {
+		//FIXME Portée incorrecte par rapport à afficherAttaquePossible
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeAttaqueAire()) {
 			gd.setColor(new Color(255, 0, 0, 150));

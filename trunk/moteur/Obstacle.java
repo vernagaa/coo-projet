@@ -1,5 +1,6 @@
 package moteur;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 /**
@@ -9,6 +10,7 @@ import java.io.Serializable;
 public abstract class Obstacle implements Serializable {
 
 	int typeObstacle;
+	protected static final long serialVersionUID = -3397531558194008923L;
 
 	public Obstacle(int typeObstacle) {
 		this.typeObstacle = typeObstacle;
@@ -20,6 +22,10 @@ public abstract class Obstacle implements Serializable {
 
 	public int getTypeObstacle() {
 		return typeObstacle;
+	}
+
+	public BufferedImage getImage() {
+		return Textures.getObstacle(typeObstacle);
 	}
 
 	public abstract boolean isDestructible();
