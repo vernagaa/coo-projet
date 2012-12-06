@@ -178,11 +178,14 @@ public final class Textures {
 	public static final int TANKREPTILE = 14;
 	// Images des personages
 	public static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test2.png";
+	public static final String TACTICIENOISEAUPATH = "/images/perso/oiseau/grand_oiseau.png";
+	
 	public static final String ARCHERREPTILEPATH = "/images/perso/reptile/cameleon.png";
 	public static final String ASSASSINREPTILEPATH = "/images/perso/reptile/serpent.png";
 	public static final String GUERRIERREPTILEPATH = "/images/perso/reptile/crocodile2.png";
 	public static final String TACTICIENREPTILEPATH = "/images/perso/reptile/grenouille.png";
 	public static final String TANKREPTILEPATH = "/images/perso/reptile/tortue.png";
+	
 	public static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
 	public static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
 	// Attributs
@@ -555,15 +558,20 @@ public final class Textures {
 			perso[GUERRIEROISEAU][2] = img.getSubimage(32 * 7, 192, 32, 32);
 			perso[GUERRIEROISEAU][0] = img.getSubimage(32 * 7, 224, 32, 32);
 
-			perso[TACTICIENOISEAU][1] = img.getSubimage(32, 0, 32, 32);
-			perso[TACTICIENOISEAU][3] = img.getSubimage(32, 32, 32, 32);
-			perso[TACTICIENOISEAU][2] = img.getSubimage(32, 64, 32, 32);
-			perso[TACTICIENOISEAU][0] = img.getSubimage(32, 96, 32, 32);
-
 			perso[TANKOISEAU][1] = img.getSubimage(128, 128, 32, 32);
 			perso[TANKOISEAU][3] = img.getSubimage(128, 160, 32, 32);
 			perso[TANKOISEAU][2] = img.getSubimage(128, 192, 32, 32);
 			perso[TANKOISEAU][0] = img.getSubimage(128, 224, 32, 32);
+		} catch (IOException ex) {
+			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
+		}
+		try {
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(TACTICIENOISEAUPATH)), 32*3, 32*4);
+
+			perso[TACTICIENOISEAU][1] = img.getSubimage(32, 0, 32, 32);
+			perso[TACTICIENOISEAU][3] = img.getSubimage(32, 32, 32, 32);
+			perso[TACTICIENOISEAU][2] = img.getSubimage(32, 64, 32, 32);
+			perso[TACTICIENOISEAU][0] = img.getSubimage(32, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
 		}
@@ -654,35 +662,7 @@ public final class Textures {
 		}
 	}
 
-	/**
-	 * Redimensionne une image.
-	 *
-	 * @param source Image à redimensionner.
-	 * @param width Largeur de l'image cible.
-	 * @param height Hauteur de l'image cible.
-	 * @return Image redimensionnée.
-	 */
-	private static BufferedImage scale(Image source, int width, int height) {
-		/*
-		 * On créé une nouvelle image aux bonnes dimensions.
-		 */
-		BufferedImage buf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-
-		/*
-		 * On dessine sur le Graphics de l'image bufferisée.
-		 */
-		Graphics2D g = buf.createGraphics();
-		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-		g.drawImage(source, 0, 0, width, height, null);
-		g.dispose();
-
-		/*
-		 * On retourne l'image bufferisée, qui est une image.
-		 */
-		return buf;
-	}
-
-	private void tileBarriere() {
+		private void tileBarriere() {
 		try {
 			obstacle[BARRIERECOINBASDROIT] = ImageIO.read(getClass().getResource(BARRIERECOINBASDROITPATH));
 		} catch (IOException ex) {
@@ -739,5 +719,33 @@ public final class Textures {
 			System.err.println("Image non trouvée : " + BARRIERECOINHAUTGAUCHEPATH);
 		}
 
+	}
+
+	/**
+	 * Redimensionne une image.
+	 *
+	 * @param source Image à redimensionner.
+	 * @param width Largeur de l'image cible.
+	 * @param height Hauteur de l'image cible.
+	 * @return Image redimensionnée.
+	 */
+	private static BufferedImage scale(Image source, int width, int height) {
+		/*
+		 * On créé une nouvelle image aux bonnes dimensions.
+		 */
+		BufferedImage buf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		if (source.getWidth(null) != width || source.getHeight(null) != height) {
+			/*
+			 * On dessine sur le Graphics de l'image bufferisée.
+			 */
+			Graphics2D g = buf.createGraphics();
+			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+			g.drawImage(source, 0, 0, width, height, null);
+			g.dispose();
+		}
+		/*
+		 * On retourne l'image bufferisée, qui est une image.
+		 */
+		return buf;
 	}
 }
