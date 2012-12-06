@@ -152,6 +152,8 @@ public class AssassinOiseau extends Assassin implements Oiseau {
 	public void capaciteSpeciale() {
 		enEnvole();
 		specialIndispo();
+		setTourspecial(getTourspecial() + 1);
+		calculDeplacementPossible();
 	}
 
 	@Override
@@ -161,9 +163,10 @@ public class AssassinOiseau extends Assassin implements Oiseau {
 
 	@Override
 	public void finDeTour() {
-		if (getTourspecial() < 2) {
+		if (vol && getTourspecial() < 2) {
 			setTourspecial(getTourspecial() + 1);
 		}
 		setMouvement(getMouvementBase());
+		recuperationCapacite();
 	}
 }
