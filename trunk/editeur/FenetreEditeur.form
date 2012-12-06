@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
@@ -91,7 +91,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="aireDeJeu1" min="-2" max="-2" attributes="0"/>
+              <Component id="aireDeJeu1" min="-2" pref="601" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jTabbedPane1" pref="206" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -172,7 +172,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jRadioButton5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="992" max="32767" attributes="0"/>
+                          <EmptySpace pref="1008" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -181,7 +181,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jRadioButton5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="100" max="32767" attributes="0"/>
+                          <EmptySpace pref="119" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -193,8 +193,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/herbe.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.HERBEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -244,7 +244,7 @@
                               <Component id="jRadioButton30" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton33" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="857" max="32767" attributes="0"/>
+                          <EmptySpace pref="927" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -252,27 +252,31 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButton28" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton29" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton30" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButton31" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="jRadioButton32" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jRadioButton37" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jRadioButton28" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jRadioButton29" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jRadioButton30" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jRadioButton31" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jRadioButton32" alignment="0" max="32767" attributes="1"/>
+                                          <Component id="jRadioButton33" alignment="0" max="32767" attributes="1"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jRadioButton35" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jRadioButton34" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jRadioButton36" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="jRadioButton33" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButton37" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton36" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton35" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton34" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -284,8 +288,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/sableCentre.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.SABLEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -298,8 +302,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableHautGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLEHAUTGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -312,8 +316,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableHaut.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLEHAUTPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -326,8 +330,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableHautDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLEHAUTDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -340,8 +344,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLEGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -354,8 +358,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLEDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -368,8 +372,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableBasGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLEBASGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -382,8 +386,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableBas.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLEBASPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -396,8 +400,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableBasDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLEBASDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -410,8 +414,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureSableCoinBasDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDURESABLECOINBASDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -435,7 +439,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jRadioButton38" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="992" max="32767" attributes="0"/>
+                          <EmptySpace pref="1008" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -444,7 +448,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jRadioButton38" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="100" max="32767" attributes="0"/>
+                          <EmptySpace pref="119" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -456,8 +460,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/route.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.ROUTEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -481,7 +485,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jRadioButton39" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="992" max="32767" attributes="0"/>
+                          <EmptySpace pref="1008" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -490,7 +494,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jRadioButton39" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="100" max="32767" attributes="0"/>
+                          <EmptySpace pref="119" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -502,8 +506,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/roc.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.ROCPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -529,7 +533,7 @@
                           <Component id="jRadioButton40" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jRadioButton41" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="935" max="32767" attributes="0"/>
+                          <EmptySpace pref="969" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -541,7 +545,7 @@
                               <Component id="jRadioButton41" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton40" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="100" max="32767" attributes="0"/>
+                          <EmptySpace pref="119" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -553,8 +557,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/neige.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.NEIGEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -567,8 +571,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/glace.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.GLACEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -623,7 +627,7 @@
                               <Component id="jRadioButton47" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton49" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="917" max="32767" attributes="0"/>
+                          <EmptySpace pref="915" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -655,7 +659,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="91" max="32767" attributes="0"/>
+                          <EmptySpace pref="92" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -821,25 +825,6 @@
                                           <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jRadioButton12" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton14" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton11" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton15" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="jRadioButton10" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton13" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jRadioButton16" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jRadioButton9" min="-2" max="-2" attributes="0"/>
@@ -849,7 +834,29 @@
                                   <Component id="jRadioButton8" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="722" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jRadioButton10" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jRadioButton13" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jRadioButton12" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jRadioButton14" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jRadioButton16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jRadioButton11" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jRadioButton15" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace pref="846" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -858,43 +865,49 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jRadioButton11" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jRadioButton16" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="1">
-                                  <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="jRadioButton6" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRadioButton11" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                                  <Component id="jRadioButton16" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jRadioButton15" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jRadioButton17" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton12" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton14" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jRadioButton4" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="1">
+                                              <Component id="jRadioButton3" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="jRadioButton6" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jRadioButton17" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jRadioButton12" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jRadioButton14" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jRadioButton10" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jRadioButton13" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton10" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton13" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jRadioButton8" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jRadioButton7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jRadioButton9" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jRadioButton9" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton7" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton8" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -906,8 +919,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauHautGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUHAUTGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -920,8 +933,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -934,8 +947,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauHautDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUHAUTDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -948,8 +961,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -962,8 +975,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauHaut.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUHAUTPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -976,8 +989,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauFondBas.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUFONDBASPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -990,8 +1003,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauFondDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUFONDDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1004,8 +1017,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauVirageHautDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUVIRAGEHAUTDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1018,8 +1031,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauVirageHautGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUVIRAGEHAUTGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1032,8 +1045,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauFondGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUFONDGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1046,8 +1059,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eau.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1060,8 +1073,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauVirageBasDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUVIRAGEBASDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1074,8 +1087,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/eauVirageBasGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.EAUVIRAGEBASGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1088,8 +1101,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureEauGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDUREEAUGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1102,8 +1115,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureEauBas.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDUREEAUBASPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1116,8 +1129,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/bordureEauDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BORDUREEAUDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1167,7 +1180,7 @@
                                   <Component id="jRadioButton26" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="857" max="32767" attributes="0"/>
+                          <EmptySpace pref="927" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1196,7 +1209,7 @@
                               <Component id="jRadioButton19" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton26" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="65" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1208,8 +1221,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneHautGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNEHAUTGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1222,8 +1235,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneCentreGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNECENTREGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1236,8 +1249,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneBasGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNEBASGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1250,8 +1263,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneBas.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNEBASPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1264,8 +1277,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneHaut.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNEHAUTPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1278,8 +1291,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneCentre.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNECENTREPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1292,8 +1305,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneHautDroite.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNEHAUTDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1306,8 +1319,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneCentreDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNECENTREDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1320,8 +1333,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneBasDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNEBASDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1334,8 +1347,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneCornerDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNECORNERDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1348,8 +1361,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/montagneCornerGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.MONTAGNECORNERGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1373,7 +1386,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jRadioButton27" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="992" max="32767" attributes="0"/>
+                          <EmptySpace pref="991" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1382,7 +1395,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jRadioButton27" max="32767" attributes="1"/>
-                          <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1451,13 +1464,13 @@
                                   <Component id="jRadioButton61" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jRadioButton57" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton56" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jRadioButton56" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                   <Component id="jRadioButton62" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="701" max="32767" attributes="0"/>
+                          <EmptySpace pref="822" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1471,17 +1484,17 @@
                               <Component id="jRadioButton59" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton58" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButton62" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton57" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton55" min="-2" max="-2" attributes="0"/>
-                              <Component id="jRadioButton54" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButton57" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButton62" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButton55" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jRadioButton54" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton53" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton61" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton56" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1493,8 +1506,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereCoinHautGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIERECOINHAUTGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1507,8 +1520,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIEREGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1521,8 +1534,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereCoinBasGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIERECOINBASGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1535,8 +1548,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereCoinBasDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIERECOINBASDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1549,8 +1562,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereBas.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIEREBASPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1563,8 +1576,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereCoinFinGauche.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIERECOINFINGAUCHEPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1577,8 +1590,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereDroitFin.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIEREDROITFINPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1591,8 +1604,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereGaucheFin.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIEREGAUCHEFINPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1605,8 +1618,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereCoinHautDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIERECOINHAUTDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1619,8 +1632,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIEREDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -1633,8 +1646,8 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="borderPainted" type="boolean" value="true"/>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/images/barriereCoinFinDroit.png"/>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new javax.swing.ImageIcon(getClass().getResource(Textures.BARRIERECOINFINDROITPATH))" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
