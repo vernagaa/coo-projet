@@ -450,7 +450,11 @@ public abstract class Pion implements Serializable {
 
 	private void meurt() {
 		//TODO Animation
+		if(this == joueur.getTacticien()){
+			joueur.setTacticien(null);
+		}
 		c.setPion(null);
+		joueur.enleverPion(this);
 	}
 
 	public boolean estVivant(Pion p) {
