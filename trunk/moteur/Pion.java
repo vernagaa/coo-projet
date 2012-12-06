@@ -474,13 +474,17 @@ public abstract class Pion implements Serializable {
 	return tourspecial;
     }
 
-    public void finDeTour() {
-	mouvement = mouvementBase;
-	if (special > 0) {
-	    special--;
-	}
-    }
 
+	public void finDeTour() {
+		mouvement = mouvementBase;
+		recuperationCapacite();
+	}
+
+	public void recuperationCapacite(){
+		if (special > 0) {
+			special--;
+		}
+    }
     public int getMouvementBase() {
 	return mouvementBase;
     }
