@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package moteur;
 
 import java.io.Serializable;
@@ -12,18 +8,18 @@ import java.io.Serializable;
  */
 public final class Bordure implements Serializable {
 
-    protected static final long serialVersionUID = 1L;
-    private int typeBordure;
+	protected static final long serialVersionUID = 1L;
+	private int typeBordure;
 
-    public Bordure(int typeBordure) {
-        this.typeBordure = typeBordure;
-    }
+	public Bordure(int typeBordure) {
+		this.typeBordure = typeBordure;
+	}
 
-    public void setTypeBordure(int typeBordure) {
-        this.typeBordure = typeBordure;
-    }
+	public void setTypeBordure(int typeBordure) {
+		this.typeBordure = typeBordure;
+	}
 
-    public int getTypeBordure() {
-        return typeBordure;
-    }
+	public int getTypeBordure() {
+		return typeBordure;
+	}
 }

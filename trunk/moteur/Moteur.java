@@ -1,10 +1,8 @@
 package moteur;
 
 import ihm.NouvellePartieGraphique;
-//import ihm.FenetreAction;
 import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;
-import ihm.BoutonFinDeTour;
 import ihm.FenetrePrincipale;
 import java.io.*;
 import javax.swing.SwingUtilities;
@@ -129,6 +127,9 @@ public class Moteur implements Runnable, Serializable {
 						caseAncienne.getPion().attaquerPion(caseCourante.getPion());
 					} else if (caseCourante.getObstacle() != null && caseCourante.getObstacle().isDestructible()) {
 						caseAncienne.getPion().attaquerObstacle(caseCourante);
+					} else if (caseCourante.contientTeleporteur(getJoueurAdverse())) {
+						System.out.println("TELEPORTEUR EN COURS DE DECES");
+						caseAncienne.getPion().attaquerTeleporteur(caseCourante);
 					}
 					utiliserAction();
 				}
@@ -311,6 +312,14 @@ public class Moteur implements Runnable, Serializable {
 			return joueur1;
 		} else {
 			return joueur2;
+		}
+	}
+
+	public Joueur getJoueurAdverse() {
+		if (joueurCourant) {
+			return joueur2;
+		} else {
+			return joueur1;
 		}
 	}
 

@@ -13,13 +13,12 @@ public class FabriquePion {
 	public static final int FELIN = 0;
 	public static final int OISEAU = 1;
 	public static final int REPTILE = 2;
-	
 	public static final int ARCHER = 0;
 	public static final int ASSASSIN = 1;
 	public static final int GUERRIER = 2;
 	public static final int TACTICIEN = 3;
 	public static final int TANK = 4;
-	
+
 	public static Pion getPion(int famille, int classe, Case c) {
 		switch (famille) {
 			case FELIN:

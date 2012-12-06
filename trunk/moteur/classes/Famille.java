@@ -1,7 +1,5 @@
 package moteur.classes;
 
-//import moteur.Case;
-
 /**
  *
  * @author vernagaa

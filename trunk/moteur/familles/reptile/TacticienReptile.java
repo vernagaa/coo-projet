@@ -30,7 +30,7 @@ public final class TacticienReptile extends Tacticien implements Reptile {
 	public void mue() {
 		vie += 7;
 	}
-	
+
 	@Override
 	public void capaciteSpeciale() {
 		mue();

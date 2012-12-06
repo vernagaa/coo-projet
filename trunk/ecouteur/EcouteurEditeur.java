@@ -41,10 +41,10 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
 		c1 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
-		ligneMin=c1.getLigne();
-		ligneMax=c1.getLigne();
-		colonneMin=c1.getColonne();
-		colonneMax=c1.getColonne();
+		ligneMin = c1.getLigne();
+		ligneMax = c1.getLigne();
+		colonneMin = c1.getColonne();
+		colonneMax = c1.getColonne();
 		fenetreEditeur.getAire().repaint();
 
 	}
@@ -56,8 +56,8 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
 		c2 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
-		if(c2==null){
-		    c2 = c2old;
+		if (c2 == null) {
+			c2 = c2old;
 		}
 		ligneMin = Math.min(c1.getLigne(), c2.getLigne());
 		ligneMax = Math.max(c1.getLigne(), c2.getLigne());
@@ -79,14 +79,14 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 				} else if (fenetreEditeur.destructible) {
 					Destructible o = new Destructible(fenetreEditeur.texture, 25);
 					c[i][j].setObstacle(o);
-				} else{
+				} else {
 					c[i][j].setTypeTerrain(fenetreEditeur.texture);
 				}
 			}
 		}
-		c1=null;
-		c2=null;
-		c2old=null;
+		c1 = null;
+		c2 = null;
+		c2old = null;
 		fenetreEditeur.getAireDeJeu1().repaint();
 		fenetreEditeur.getAire().repaint();
 	}
@@ -103,15 +103,15 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int lig = y / Case.TAILLE;
 		c2 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
 
-		if(c1!=null && c2!=null && (c2old == null || c2old.getLigne()!=c2.getLigne() || c2old.getColonne()!=c2.getColonne())){
-		ligneMin = Math.min(c1.getLigne(), c2.getLigne());
-		ligneMax = Math.max(c1.getLigne(), c2.getLigne());
-		colonneMin = Math.min(c1.getColonne(), c2.getColonne());
-		colonneMax = Math.max(c1.getColonne(), c2.getColonne());
-		fenetreEditeur.getAire().repaint();
+		if (c1 != null && c2 != null && (c2old == null || c2old.getLigne() != c2.getLigne() || c2old.getColonne() != c2.getColonne())) {
+			ligneMin = Math.min(c1.getLigne(), c2.getLigne());
+			ligneMax = Math.max(c1.getLigne(), c2.getLigne());
+			colonneMin = Math.min(c1.getColonne(), c2.getColonne());
+			colonneMax = Math.max(c1.getColonne(), c2.getColonne());
+			fenetreEditeur.getAire().repaint();
 		}
-		if(c2!=null){
-		    c2old = c2;
+		if (c2 != null) {
+			c2old = c2;
 		}
 	}
 
@@ -123,17 +123,17 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
 		c1 = fenetreEditeur.getAireDeJeu1().getPlateau().get(lig, col);
-		
-		if(c1 != null&& (c1old == null || c1old.getLigne()!=c1.getLigne() || c1old.getColonne()!=c1.getColonne())) {
-			ligneMin=c1.getLigne();
-			ligneMax=c1.getLigne();
-			colonneMin=c1.getColonne();
-			colonneMax=c1.getColonne();
-		fenetreEditeur.getAire().repaint();
+
+		if (c1 != null && (c1old == null || c1old.getLigne() != c1.getLigne() || c1old.getColonne() != c1.getColonne())) {
+			ligneMin = c1.getLigne();
+			ligneMax = c1.getLigne();
+			colonneMin = c1.getColonne();
+			colonneMax = c1.getColonne();
+			fenetreEditeur.getAire().repaint();
 		}
-		
+
 		c1old = c1;
-		
+
 	}
 
 	@Override
