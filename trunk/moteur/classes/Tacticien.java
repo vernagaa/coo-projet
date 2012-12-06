@@ -3,6 +3,7 @@ package moteur.classes;
 import moteur.Case;
 import moteur.Joueur;
 import moteur.Pion;
+import moteur.Teleporteur;
 import moteur.Textures;
 
 /**
@@ -33,12 +34,15 @@ public abstract class Tacticien extends Pion {
     public void poserTeleporteur(Case c) {
 	if (cooldownTeleporteur == 0) {
 	    System.out.println("Je pose un teleporteur en " + c);
-	    if (distanceManhattan(c) == 1) {
-			//TODO changer
-			c.setTypeTerrain(Textures.GLACE);
+	    if (distanceManhattan(c) == 1 &&  c.getPion() == null && c.getObstacle() == null) {
+		System.out.println("Pose possible");
+		Teleporteur teleporteur = new Teleporteur(joueur, c);
+		c.setTeleporteur(teleporteur);
+		System.out.println(joueur.getTeleporteur());
+		joueur.ajouterTeleporteur(teleporteur);
+		System.out.println("Liste des teleporteurs "+joueur.getTeleporteur());
+		cooldownTeleporteur = 1;
 	    }
-	    joueur.getTeleporteur().add(c);
-	    cooldownTeleporteur = 2;
 	    //TODO Ajouter un cooldown à la pose?
 	}
     }
