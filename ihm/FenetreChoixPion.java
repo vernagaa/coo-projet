@@ -64,24 +64,16 @@ public final class FenetreChoixPion extends JComponent {
 				if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
 					placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 				}
-				if (c.getPion() == m.getJoueurCourant().getTacticien()) {
-					setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
-					t.setPosition(i++);
-					if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
-						placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
-					}
-				} else {
-					t.setPosition(6);
-				}
-			} else if (c.getPion() == m.getJoueurCourant().getTacticien()) {
+			} else {
+				conq.setPosition(6);
+			}
+			if (c.getPion() == m.getJoueurCourant().getTacticien()) {
 				setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 				t.setPosition(i++);
-				conq.setPosition(6);
 				if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
 					placement = placement.getPlateau().get(placement.getLigne() - 1, placement.getColonne());
 				}
 			} else {
-				conq.setPosition(6);
 				t.setPosition(6);
 			}
 			setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
