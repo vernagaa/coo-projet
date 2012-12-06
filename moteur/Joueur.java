@@ -16,10 +16,10 @@ public final class Joueur {
     private Pion commandant;
     private Pion tacticien;
     private ArrayList<Case> placesConquises;
-    private ArrayList<Case> teleporteur;
+    private ArrayList<Teleporteur> teleporteur;
     private String nom;
     private String famille;
-	private final boolean boolValue;
+    private final boolean boolValue;
 	private int nbActions;
 
     public Joueur(String nom, boolean boolValue) {
@@ -27,7 +27,7 @@ public final class Joueur {
 	this.boolValue = boolValue;
 	listeDePions = new ArrayList<Pion>();
 	placesConquises = new ArrayList<Case>();
-	teleporteur = new ArrayList<Case>();
+	teleporteur = new ArrayList<Teleporteur>();
 	nbActions = 0;
     }
 
@@ -52,7 +52,7 @@ public final class Joueur {
 	return placesConquises;
     }
 
-    public ArrayList<Case> getTeleporteur() {
+    public ArrayList<Teleporteur> getTeleporteur() {
 	return teleporteur;
     }
 
@@ -72,8 +72,8 @@ public final class Joueur {
 	listeDePions.add(pion);
 	pion.setJoueur(this);
     }
-  
-	public void enleverPion(Pion pion) {
+
+    public void enleverPion(Pion pion) {
 	listeDePions.remove(pion);
 	pion = null;
     }
@@ -90,9 +90,17 @@ public final class Joueur {
 	this.tacticien = tacticien;
     }
 
-	public boolean getBoolValue() {
-		return boolValue;
-	}
+    public void ajouterTeleporteur(Teleporteur teleporteur) {
+	this.teleporteur.add(teleporteur);
+    }
+
+    public void enleverTeleporteur(Teleporteur teleporteur) {
+	this.teleporteur.remove(teleporteur);
+    }
+
+    public boolean getBoolValue() {
+	return boolValue;
+    }
 	
 	public void finDeTour(){
 		nbActions +=10;

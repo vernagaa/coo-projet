@@ -157,7 +157,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
 	private void menuNouvellePartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNouvellePartieActionPerformed
 //		moteur.getPlateau().vider();
-            new NouvellePartie(this, true);
 	}//GEN-LAST:event_menuNouvellePartieActionPerformed
 
 	private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
