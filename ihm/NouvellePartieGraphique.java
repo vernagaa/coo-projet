@@ -128,7 +128,6 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-//				if (joueur == joueurCourant && etape == 1) {
 				if (e.getComponent().isEnabled()) {
 					afficherFamille(joueur, famille);
 				}
@@ -136,7 +135,6 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-//				if (joueur == joueurCourant && etape == 1) {
 				if (e.getComponent().isEnabled()) {
 					cacherFamille(joueur);
 				}
@@ -191,6 +189,8 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 			public void actionPerformed(ActionEvent e) {
 				nomJoueur1.setEditable(false);
 				validez1.setEnabled(false);
+				nomJoueur2.setEditable(true);
+				validez2.setEnabled(true);
 				joueurCourant = !joueurCourant;
 				m.getJoueur1().setNom(nomJoueur1.getText());
 				System.out.println(m.getJoueur1().getNom());
@@ -204,10 +204,12 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 		joueur2.setBounds(Case.TAILLE * 3 + Case.TAILLE * 12, 3 * Case.TAILLE / 4, Case.TAILLE * 5, Case.TAILLE);
 		add(joueur2);
 		nomJoueur2 = new JTextField("Joueur 2");
+		nomJoueur2.setEditable(false);
 		nomJoueur2.setMargin(new Insets(0, 5, 0, 5));
 		nomJoueur2.setBounds(Case.TAILLE * 2 + Case.TAILLE * 12, Case.TAILLE * 2, Case.TAILLE * 5, Case.TAILLE);
 		add(nomJoueur2);
 		validez2 = new JButton("Ok");
+		validez2.setEnabled(false);
 		validez2.addActionListener(new ActionListener() {
 
 			@Override
