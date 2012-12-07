@@ -374,10 +374,9 @@ public abstract class Pion implements Serializable {
 				if (caseVerif.getPion() != null || (caseVerif.getObstacle() != null && caseVerif.getObstacle().isDestructible())
 						|| (caseVerif.getTeleporteur() != null && !joueur.getTeleporteur().contains(caseVerif.getTeleporteur()))) {
 					listeAttaquePossible.add(caseVerif);
-				} else {
-					listeAttaqueAire.add(caseVerif);
-					listeOuverte.add(caseVerif);
 				}
+				listeAttaqueAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
 			}
 			caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
 			if (caseVerif != null && !caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
@@ -457,6 +456,9 @@ public abstract class Pion implements Serializable {
 		//TODO Animation
 		if (this == joueur.getTacticien()) {
 			joueur.setTacticien(null);
+		}
+		if(this == joueur.getCommandant()){
+			joueur.setCommandant(null);
 		}
 		c.setPion(null);
 		joueur.enleverPion(this);

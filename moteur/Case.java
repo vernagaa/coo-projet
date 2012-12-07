@@ -245,4 +245,8 @@ public class Case implements Serializable {
 		}
 		return false;
 	}
+
+	boolean contientPion() {
+		return pion != null;
+	}
 }

@@ -18,6 +18,9 @@ public class BoutonConquerir extends BoutonAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Conquerir");
+		//TODO Conquerir Chateau
+		//TODO Creer classe chateau extends Obstacle
+		//TODO Comment conquerir et defendre
 		fenetre.effacerFenetre();
 	}
 }

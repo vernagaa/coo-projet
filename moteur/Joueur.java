@@ -100,7 +100,11 @@ public final class Joueur {
 	}
 
 	public void finDeTour() {
+		
 		nbActions += 10;
+		if(nbActions >= 30){
+			nbActions = 30;
+		}
 		for (Pion p : listeDePions) {
 			p.finDeTour();
 		}
@@ -120,5 +124,13 @@ public final class Joueur {
 
 	public void setNbActions(int nbActions) {
 		this.nbActions = nbActions;
+	}
+
+	boolean commandantMort() {
+		return commandant == null;
+	}
+
+	boolean possede(Pion pion) {
+		return listeDePions.contains(pion);
 	}
 }

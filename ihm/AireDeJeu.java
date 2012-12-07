@@ -18,6 +18,7 @@ import moteur.Textures;
  */
 public class AireDeJeu extends JComponent {
 	//TODO constantes pour les couleurs
+
 	private Plateau plateau;
 	private boolean attaqueEnCours;
 	private boolean afficherPorteeAttaque;
@@ -91,6 +92,7 @@ public class AireDeJeu extends JComponent {
 //			construireSurvolPion(gd);
 //		}
 
+
 		if (!debutDePartie) {
 			// Affiche les pions attaquable par le pion en caseEnCours, et affiche aussi le survol d'un pion attaquable
 			if (attaqueEnCours) {
@@ -102,7 +104,38 @@ public class AireDeJeu extends JComponent {
 			if (afficherPorteeAttaque) {
 				afficherPorteAttaque(gd);
 			}
+		}
 
+		if (!attaqueEnCours && caseSurvol != null) {
+			gd.setColor(new Color(255, 255, 50, 100));
+			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
+
+		// Permet d'afficher les pions	
+		//TODO ne pas parcourir toutes les cases du plateau
+		for (Case[] c : plateau.get()) {
+			for (Case c1 : c) {
+				// Affichage des obstacles
+				if (c1.getObstacle() != null) {
+					gd.drawImage(c1.getObstacle().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+				}
+				// Affichage de la couleur des pions alliés
+				if (c1.getPion() != null && !debutDePartie && c1.getPion().getJoueur().getBoolValue() == joueurCourant) {
+					gd.setColor(new Color(0, 255, 0, 100));
+					gd.fillRect(c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+				}
+				// Affichage des téléporteurs
+				if (c1.getTeleporteur() != null) {
+					gd.drawImage(c1.getTeleporteur().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+				}
+				// Affichage des pions
+				if (c1.getPion() != null) {
+					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+				}
+			}
+		}
+
+		if (!debutDePartie) {
 			// Affiche le deplacement du pion en caseEnCours
 			if (mouvementEnCours) {
 				afficherMouvementPossible(gd);
@@ -146,34 +179,6 @@ public class AireDeJeu extends JComponent {
 			}
 		}
 
-		if (!attaqueEnCours && caseSurvol != null) {
-			gd.setColor(new Color(255, 255, 50, 100));
-			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-		}
-
-		// Permet d'afficher les pions	
-		//TODO ne pas parcourir toutes les cases du plateau
-		for (Case[] c : plateau.get()) {
-			for (Case c1 : c) {
-				// Affichage des obstacles
-				if (c1.getObstacle() != null) {
-					gd.drawImage(c1.getObstacle().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
-				}
-				// Affichage de la couleur des pions alliés
-				if (c1.getPion() != null && !debutDePartie && c1.getPion().getJoueur().getBoolValue() == joueurCourant) {
-						gd.setColor(new Color(0, 255, 0, 100));
-						gd.fillRect(c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-				}
-				// Affichage des téléporteurs
-				if (c1.getTeleporteur() != null) {
-					gd.drawImage(c1.getTeleporteur().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
-				}
-				// Affichage des pions
-				if (c1.getPion() != null) {
-					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
-				}
-			}
-		}
 
 		if (caseSurvol != null && caseSurvol.getPion() != null) {
 			construireSurvolPion(gd);
@@ -311,8 +316,8 @@ public class AireDeJeu extends JComponent {
 		caseEnCours = c;
 
 	}
-	
-	public final void nouvellePartie(){
+
+	public final void nouvellePartie() {
 		setDebutDePartie(true);
 		firstTime = true;
 		repaint();
