@@ -27,6 +27,10 @@ public abstract class Obstacle implements Serializable {
 	public BufferedImage getImage() {
 		return Textures.getObstacle(typeObstacle);
 	}
+	
+	public boolean isChateau(){
+		return false;
+	}
 
 	public abstract boolean isDestructible();
 }

@@ -23,7 +23,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	EcouteurEditeur ecouteur;
 	public boolean indestructible;
 	public boolean destructible;
-
+	public boolean chateau; 
 	/**
 	 * Creates new form FenetreEditeur
 	 */
@@ -1363,42 +1363,42 @@ public class FenetreEditeur extends javax.swing.JFrame {
 	}//GEN-LAST:event_jRadioButton41ActionPerformed
 
 	private void jRadioButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton42ActionPerformed
-		indestructible();
+		chateau();
 		texture = Textures.CHATEAU1HAUTGAUCHE;
 	}//GEN-LAST:event_jRadioButton42ActionPerformed
 
 	private void jRadioButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton43ActionPerformed
-		indestructible();
+		chateau();
 		texture = Textures.CHATEAU1HAUTDROIT;
 	}//GEN-LAST:event_jRadioButton43ActionPerformed
 
 	private void jRadioButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton44ActionPerformed
-		indestructible();
+		chateau();
 		texture = Textures.CHATEAU1BASGAUCHE;
 	}//GEN-LAST:event_jRadioButton44ActionPerformed
 
 	private void jRadioButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton45ActionPerformed
-		indestructible();
+		chateau();
 		texture = Textures.CHATEAU1BASDROIT;
 	}//GEN-LAST:event_jRadioButton45ActionPerformed
 
 	private void jRadioButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton46ActionPerformed
-		indestructible();
+		chateau();
 		texture = Textures.CHATEAU2HAUTGAUCHE;
 	}//GEN-LAST:event_jRadioButton46ActionPerformed
 
 	private void jRadioButton47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton47ActionPerformed
-		indestructible();
+		chateau();
 		texture = Textures.CHATEAU2HAUTDROIT;
 	}//GEN-LAST:event_jRadioButton47ActionPerformed
 
 	private void jRadioButton48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton48ActionPerformed
-		indestructible();
+		chateau();
 		texture = Textures.CHATEAU2BASGAUCHE;
 	}//GEN-LAST:event_jRadioButton48ActionPerformed
 
 	private void jRadioButton49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton49ActionPerformed
-		indestructible();
+		chateau();
 		texture = Textures.CHATEAU2BASDROIT;
 	}//GEN-LAST:event_jRadioButton49ActionPerformed
 
@@ -1598,6 +1598,14 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
 	public void indestructible() {
 		indestructible = true;
+		chateau = false;
+		suppression = false;
+		bordure = false;
+		destructible = false;
+	}
+	public void chateau() {
+		indestructible = false;
+		chateau = true;
 		suppression = false;
 		bordure = false;
 		destructible = false;
@@ -1605,6 +1613,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
 	public void suppression() {
 		indestructible = false;
+		chateau = false;
 		suppression = true;
 		bordure = false;
 		destructible = false;
@@ -1612,6 +1621,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
 	public void bordure() {
 		indestructible = false;
+		chateau = false;
 		suppression = false;
 		bordure = true;
 		destructible = false;
@@ -1619,6 +1629,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
 	public void destructible() {
 		indestructible = false;
+		chateau = false;
 		suppression = false;
 		bordure = false;
 		destructible = true;
@@ -1626,6 +1637,7 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
 	public void terrain() {
 		indestructible = false;
+		chateau = false;
 		suppression = false;
 		bordure = false;
 		destructible = false;

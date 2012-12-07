@@ -2,6 +2,7 @@ package moteur;
 
 import exception.MapException;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -149,5 +150,20 @@ public class Plateau implements Serializable {
 
 	public int getNbLigne() {
 		return ligne;
+	}
+	
+	public ArrayList<Case> listeChateaux(){
+		ArrayList<Case> l = new ArrayList<Case>();
+		for(int i=0;i<colonne;i++){
+			for(int j=0;j<ligne;j++){
+				if(plateau[j][i].getObstacle()!=null && plateau[j][i].getObstacle().isChateau()){
+					l.add(plateau[j][i]);
+				}
+				if(i==6){
+					i=colonne-7;
+				}
+			}
+		}
+		return l;
 	}
 }

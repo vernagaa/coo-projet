@@ -30,6 +30,8 @@ public abstract class Pion implements Serializable {
 	public ArrayList<Noeud> listeDeplacementPossible;
 	public ArrayList<Case> listeAttaquePossible;
 	public ArrayList<Case> listeAttaqueAire;
+	public ArrayList<Case> listeConquetePossible;
+	public ArrayList<Case> listeConqueteAire;
 	protected ArrayList<Case> deplacement;
 	protected Noeud noeudContenu;
 	protected Case c;
@@ -60,6 +62,8 @@ public abstract class Pion implements Serializable {
 		deplacement = new ArrayList<Case>();
 		listeAttaquePossible = new ArrayList<Case>();
 		listeAttaqueAire = new ArrayList<Case>();
+		listeConquetePossible = new ArrayList<Case>();
+		listeConqueteAire = new ArrayList<Case>();
 
 	}
 
@@ -391,6 +395,67 @@ public abstract class Pion implements Serializable {
 		}
 		listeAttaquePossible.remove(c);
 	}
+	
+	public void conquerir() {
+		//TODO verifier que le chateau n'est pas déjà conquis
+		listeConquetePossible.clear();
+		listeConqueteAire.clear();
+		ArrayList<Case> listeFerme = new ArrayList<Case>();
+		ArrayList<Case> listeOuverte = new ArrayList<Case>();
+
+		Case tmp;
+		Case caseVerif;
+
+		tmp = c;
+		listeOuverte.add(tmp);
+		listeConquetePossible.add(tmp);
+		while (!listeOuverte.isEmpty()) {
+			tmp = listeOuverte.remove(0);
+			listeFerme.add(tmp);
+			caseVerif = c.getPlateau().get(tmp.getLigne() + 1, tmp.getColonne());
+
+			if (caseVerif != null && caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+					&& !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee
+					&& !joueur.chateauPresent(caseVerif)) {
+				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau()) {
+					listeConquetePossible.add(caseVerif);
+				}
+				listeConqueteAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
+			}
+			caseVerif = c.getPlateau().get(tmp.getLigne() - 1, tmp.getColonne());
+			if (caseVerif != null && caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+					&& !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee
+					&&  !joueur.chateauPresent(caseVerif)) {
+				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau()) {
+					listeConquetePossible.add(caseVerif);
+				}
+				listeConqueteAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
+			}
+			caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() + 1);
+			if (caseVerif != null && caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+					&& !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee
+					&& !joueur.chateauPresent(caseVerif)) {
+				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau()) {
+					listeConquetePossible.add(caseVerif);
+				}
+				listeConqueteAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
+			}
+			caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
+			if (caseVerif != null && caseVerif.isObstacleAttaque() && !listeFerme.contains(caseVerif)
+					&& !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee
+					&& !joueur.chateauPresent(caseVerif)) {
+				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau()) {
+					listeConquetePossible.add(caseVerif);
+				}
+				listeConqueteAire.add(caseVerif);
+				listeOuverte.add(caseVerif);
+			}
+		}
+		listeConquetePossible.remove(c);
+	}
 
 	protected int distanceManhattan(Case c1) {
 		return Math.abs(c1.getLigne() - c.getLigne()) + Math.abs(c1.getColonne() - c.getColonne());
@@ -519,4 +584,18 @@ public abstract class Pion implements Serializable {
 	public void attaquerTeleporteur(Case c) {
 		c.getTeleporteur().diminuerVie(force / 2);
 	}
+
+	public ArrayList<Case> getListeConquetePossible() {
+		return listeConquetePossible;
+	}
+
+	public ArrayList<Case> getListeConqueteAire() {
+		return listeConqueteAire;
+	}
+
+	public boolean conquetePossible(){
+		conquerir();
+		return !listeConquetePossible.isEmpty();
+	}
+
 }

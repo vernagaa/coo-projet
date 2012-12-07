@@ -7,6 +7,7 @@ import ihm.AireDeJeu;
 import ihm.FenetrePrincipale;
 import ihm.NouvellePartiePanel;
 import java.io.*;
+import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import moteur.classes.Tacticien;
 
@@ -30,6 +31,7 @@ public class Moteur implements Runnable, Serializable {
 	private boolean mouvementEnCours;
 	private Case caseAncienne;
 	private boolean attaqueEnCours;
+	private boolean conqueteEnCours;
 	private boolean poserTeleporteur;
 	private Joueur joueur1;
 	private Joueur joueur2;
@@ -62,6 +64,7 @@ public class Moteur implements Runnable, Serializable {
 
 	@Override
 	public void run() {
+		lierChateaux();
 		fp = new FenetrePrincipale(this);
 		aireDeJeu = fp.getAireDeJeu();
 		fenetreChoixPion = new FenetreChoixPion(this);
@@ -107,11 +110,11 @@ public class Moteur implements Runnable, Serializable {
 				debutDePartie = false;
 				aireDeJeu.remove(nouvellePartie);
 				aireDeJeu.setJoueurCourant(joueurCourant);
-				
-				for(Pion p : joueur1.getListeDePions()) {
+
+				for (Pion p : joueur1.getListeDePions()) {
 					p.setOrientation(Orientation.EST);
 				}
-				for(Pion p : joueur2.getListeDePions()) {
+				for (Pion p : joueur2.getListeDePions()) {
 					p.setOrientation(Orientation.OUEST);
 				}
 			}
@@ -164,7 +167,19 @@ public class Moteur implements Runnable, Serializable {
 				attaqueEnCours = false;
 				// Et qu'il ne faut plus afficher la zone d'attaque
 				aireDeJeu.setAttaqueEnCours(attaqueEnCours);
-			} // Permet de gerer l'utilisation d'une capaciteActive
+			} else if (conqueteEnCours) {
+				// On verifie que le case cible peut etre conquise par le pion et que le chateau est un chateau ennemi
+				if (caseAncienne.getPion().getListeConquetePossible().contains(caseCourante) /*
+						 * &&
+						 * joueurOppose().geListeDePions().contains(caseCourante.getPion())
+						 */) {
+					getJoueurAdverse().conquerir(caseCourante);
+
+					utiliserAction();
+				}
+				conqueteEnCours = false;
+				aireDeJeu.setConqueteEnCours(conqueteEnCours);
+			}// Permet de gerer l'utilisation d'une capaciteActive
 			// Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
 			else if (poserTeleporteur) {
 				//TODO Cas a verifier ?
@@ -239,22 +254,22 @@ public class Moteur implements Runnable, Serializable {
 			fenetreChoixPion.effacerFenetre();
 			// On la place a l'endroit voulu
 			fenetreChoixPion.placerFenetre(c);
-			
+
 			// On specifie que le mouvement est terminé
 			mouvementEnCours = false;
 			// On indique qu'il ne faut plus afficher les mouvements possibles
 			aireDeJeu.afficherMouvement(mouvementEnCours, c);
-			
+
 			// On specifie que la téléportation est terminée
 			teleportationEnCours = false;
 			// On indique qu'il ne faut plus afficher les téléporteurs disponibles
 			aireDeJeu.afficherTeleporteurDisponible(false, c);
-			
+
 			// On specifie que l'attaque est terminée
 			attaqueEnCours = false;
 			// On indique qu'il ne faut plus afficher les attaques possibles
 			aireDeJeu.setAttaqueEnCours(false);
-			
+
 			// On memorise la case choisie lors du clic
 			caseAncienne = c;
 		}
@@ -267,6 +282,8 @@ public class Moteur implements Runnable, Serializable {
 				caseSurvolMouvement(c1);
 			} else if (attaqueEnCours) {
 				caseSurvolAttaque(c1);
+			} else if (conqueteEnCours) {
+				caseSurvolConquete(c1);
 			} else if (c1.contientPion()) {
 				caseSurvolPion(c1);
 			} else {
@@ -284,6 +301,10 @@ public class Moteur implements Runnable, Serializable {
 
 	private void caseSurvolAttaque(Case c1) {
 		aireDeJeu.suvolAfficherAttaque(c1);
+	}
+
+	private void caseSurvolConquete(Case c1) {
+		aireDeJeu.suvolAfficherConquete(c1);
 	}
 
 	private void caseSurvolPion(Case c1) {
@@ -380,6 +401,55 @@ public class Moteur implements Runnable, Serializable {
 		} catch (MapException ex) {
 		}
 	}
+
+	public void lierChateaux() {
+		ArrayList<Case> l = plateau.listeChateaux();
+		ArrayList<Case> chateau1 = new ArrayList<Case>();
+		ArrayList<Case> chateau2 = new ArrayList<Case>();
+		int i = 0;
+		int j = 0;
+		for (Case c : l) {
+			if (c.getColonne() <= 6) {
+				if (i < 2) {
+					i++;
+					chateau1.add(c);
+				} else {
+					i++;
+					chateau2.add(c);
+					if (i == 4) {
+						i = 0;
+					}
+				}
+
+			} else {
+				if (j == 0) {
+					joueur1.lierChateaux(chateau1);
+					joueur1.lierChateaux(chateau2);
+					j++;
+					i = 0;
+					chateau1.clear();
+					chateau2.clear();
+				}
+				if (i < 2) {
+					i++;
+					chateau1.add(c);
+				} else {
+					i++;
+					chateau2.add(c);
+					if (i == 4) {
+						i = 0;
+					}
+				}
+			}
+		}
+		joueur2.lierChateaux(chateau1);
+		joueur2.lierChateaux(chateau2);
+
+	}
 	//TODO Conquerir
 	//TODO Conquerir
+
+	public void setConqueteEnCours(boolean b) {
+		conqueteEnCours = b;
+	}
 }
