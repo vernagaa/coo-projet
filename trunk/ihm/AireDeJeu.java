@@ -23,7 +23,6 @@ public class AireDeJeu extends JComponent {
 	private boolean attaqueEnCours;
 	private boolean afficherPorteeAttaque;
 	private boolean mouvementEnCours;
-	private String affichageVie;
 	private Case caseEnCours;
 	public Case caseSurvol;
 	private boolean debutDePartie;
@@ -251,7 +250,8 @@ public class AireDeJeu extends JComponent {
 
 	private void construireSurvolPion(Graphics gd) {
 		Case affVie;
-		affichageVie = caseSurvol.getPion().getVieRestante();
+		String affichageVie = caseSurvol.getPion().getVieRestante()+"pv";
+		int vie = caseSurvol.getPion().getVieRestante();
 		if (plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne()) == null) {
 			affVie = plateau.get(caseSurvol.getLigne() + 1, caseSurvol.getColonne());
 		} else if (plateau.get(caseSurvol.getLigne() + 1, caseSurvol.getColonne()) == null) {
@@ -263,8 +263,14 @@ public class AireDeJeu extends JComponent {
 		} else {
 			affVie = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
 		}
-		gd.setColor(new Color(0, 255, 0, 200));
-		gd.fillRect(affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		if(vie>20){
+			gd.setColor(new Color(0, 255, 68, 200));
+		}else if(vie>10){
+			gd.setColor(new Color(255, 204, 68, 200));	
+		}else{
+			gd.setColor(new Color(255, 34, 17, 200));
+		}
+		gd.fillRect(affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE, vie, 5);
 		gd.setColor(Color.WHITE);
 		gd.drawString(affichageVie, affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE + 20);
 	}

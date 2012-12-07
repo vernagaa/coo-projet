@@ -440,9 +440,8 @@ public abstract class Pion implements Serializable {
 		return listeAttaqueAire;
 	}
 
-	public String getVieRestante() {
-		//TODO affichage vie à modifier
-		return vie + "pv";
+	public int getVieRestante() {
+		return vie;
 	}
 
 	public void tuer(Pion pion) {
