@@ -53,19 +53,14 @@ public abstract class Pion implements Serializable {
 		this.c = c;
 		this.special = 0;
 		this.tourspecial = 0;
+		orientation = Orientation.SUD;
+		
 		c.getPlateau().get(c).setPion(this);
-		if (c.getColonne() < 5) {
-			orientation = Orientation.OUEST;
-		} else {
-			orientation = Orientation.EST;
-		}
 		listeDeplacementPossible = new ArrayList<Noeud>();
 		deplacement = new ArrayList<Case>();
 		listeAttaquePossible = new ArrayList<Case>();
 		listeAttaqueAire = new ArrayList<Case>();
 
-		//XXX orientation SUD pour les tests
-		orientation = Orientation.SUD;
 	}
 
 	public void deplacerPion(Case c1) {
@@ -230,6 +225,10 @@ public abstract class Pion implements Serializable {
 
 	public Orientation getOrientation() {
 		return orientation;
+	}
+
+	public void setOrientation(Orientation orientation) {
+		this.orientation = orientation;
 	}
 
 	public abstract BufferedImage getImage();
