@@ -5,10 +5,7 @@ import ihm.NouvellePartieGraphique;
 import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;
 import ihm.FenetrePrincipale;
-import ihm.NouvellePartiePanel;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import moteur.classes.Tacticien;
 
@@ -28,6 +25,7 @@ public class Moteur implements Runnable, Serializable {
 	/*
 	 * Gestion de la souris
 	 */
+	private Case caseCourante;
 	private boolean mouvementEnCours;
 	private Case caseAncienne;
 	private boolean attaqueEnCours;
@@ -121,35 +119,36 @@ public class Moteur implements Runnable, Serializable {
 
 	public void caseCliqueBoutonGauche(Case c1) {
 		aireDeJeu.setCaseSurvol(null);
+//	fenetreChoixPion.effacerFenetre();
+		caseCourante = c1;
 		fenetreChoixPion.effacerFinDeTour();
 		System.out.println("Clique gauche");
 		if (elireCommandant) {
-			if(c1.contientPion() && getJoueurCourant().possede(c1.getPion())){
+			if (c1.contientPion() && getJoueurCourant().possede(c1.getPion())) {
 				getJoueurCourant().setCommandant(c1.getPion());
 				elireCommandant = false;
 				//TODO Affichage
 			}
-			
 		} else if (getJoueurCourant().actionPossibles()) {
 			// Permet de gerer l'attaque d'une unite ennemie
 			if (attaqueEnCours) {
 				// On verifie que le case cible est attaquable par le pion et que le pion sur cette case est un pion ennemi
-				if (caseAncienne.getPion().getListeAttaquePossible().contains(c1) /*
+				if (caseAncienne.getPion().getListeAttaquePossible().contains(caseCourante) /*
 						 * &&
 						 * joueurOppose().geListeDePions().contains(caseCourante.getPion())
 						 */) {
-					if (c1.contientPion()) {
-						caseAncienne.getPion().attaquerPion(c1.getPion());
+					if (caseCourante.contientPion()) {
+						caseAncienne.getPion().attaquerPion(caseCourante.getPion());
 						if (getJoueurCourant().commandantMort()) {
 							//TODO Elire un nouveau commandant
 							elireCommandant = true;
 							System.out.println("Commandant Mort");
 						}
-					} else if (c1.getObstacle() != null && c1.getObstacle().isDestructible()) {
-						caseAncienne.getPion().attaquerObstacle(c1);
-					} else if (c1.contientTeleporteur(getJoueurAdverse())) {
+					} else if (caseCourante.getObstacle() != null && caseCourante.getObstacle().isDestructible()) {
+						caseAncienne.getPion().attaquerObstacle(caseCourante);
+					} else if (caseCourante.contientTeleporteur(getJoueurAdverse())) {
 						System.out.println("TELEPORTEUR EN COURS DE DECES");
-						caseAncienne.getPion().attaquerTeleporteur(c1);
+						caseAncienne.getPion().attaquerTeleporteur(caseCourante);
 					}
 					utiliserAction();
 				}
@@ -162,57 +161,57 @@ public class Moteur implements Runnable, Serializable {
 			else if (poserTeleporteur) {
 				//TODO Cas a verifier ?
 				System.out.println("Il faut poser un teleporteur");
-				((Tacticien) caseAncienne.getPion()).poserTeleporteur(c1);
+				((Tacticien) caseAncienne.getPion()).poserTeleporteur(caseCourante);
 				poserTeleporteur = false;
-				aireDeJeu.setAfficherPoseTeleporteur(false, c1);
+				aireDeJeu.setAfficherPoseTeleporteur(false, caseCourante);
 				utiliserAction();
 			} else if (teleportationEnCours) {
-				if (getJoueurCourant().getTeleporteur().contains(c1.getTeleporteur())
-						&& c1.contientPion()) {
-					caseAncienne.getPion().deplacerPionTeleportation(c1);
+				if (getJoueurCourant().getTeleporteur().contains(caseCourante.getTeleporteur())
+						&& !caseCourante.contientPion()) {
+					caseAncienne.getPion().deplacerPionTeleportation(caseCourante);
 					utiliserAction();
 				}
 				teleportationEnCours = false;
-				aireDeJeu.afficherTeleporteurDisponible(teleportationEnCours, c1);
-			} else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(c1)) {
-				if (caseAncienne != c1) {
-					caseAncienne.getPion().deplacerPion(c1);
+				aireDeJeu.afficherTeleporteurDisponible(teleportationEnCours, caseCourante);
+			} else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
+				if (caseAncienne != caseCourante) {
+					caseAncienne.getPion().deplacerPion(caseCourante);
 					utiliserAction();
 				}
 				// On specifie que le mouvement est termine
 				mouvementEnCours = false;
 				// On indique qu'il ne faut plus afficher les mouvements possibles
-				aireDeJeu.afficherMouvement(mouvementEnCours, c1);
+				aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
 
 				//Si fin sur une case telportation
-				if (c1.getTeleporteur() != null) {
+				if (caseCourante.getTeleporteur() != null) {
 					System.out.println("Je peux me teleporter");
 					//Surbrillance des cases teleportations
 					//teleportation en cours
-					caseAncienne = c1;
+					caseAncienne = caseCourante;
 					teleportationEnCours = true;
-					aireDeJeu.afficherTeleporteurDisponible(teleportationEnCours, c1);
+					aireDeJeu.afficherTeleporteurDisponible(teleportationEnCours, caseCourante);
 				}
 				// Afficher Selection Orientation
 				//TODO Afficher Orientation
 			} // Selectionne un Pion pour le deplacer
-			else if (c1.contientPion()) {
-				if (getJoueurCourant().getListeDePions().contains(c1.getPion())) {
+			else if (caseCourante.contientPion()) {
+				if (getJoueurCourant().getListeDePions().contains(caseCourante.getPion())) {
 					// On specifie qu'un mouvement est en cours
 					mouvementEnCours = true;
 					// On indique qu'il faut afficher les mouvements possibles
-					aireDeJeu.afficherMouvement(mouvementEnCours, c1);
+					aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
 					// On calcul les deplacements possible                  
-					c1.getPion().calculDeplacementPossible();
+					caseCourante.getPion().calculDeplacementPossible();
 					// On memorise la case ou se trouve le pion a deplacer
-					caseAncienne = c1;
+					caseAncienne = caseCourante;
 				}
 			} else {
 				fenetreChoixPion.effacerFenetre();
 				// On specifie que le mouvement est termine
 				mouvementEnCours = false;
 				// On indique qu'il ne faut plus afficher les mouvements possibles
-				aireDeJeu.afficherMouvement(mouvementEnCours, c1);
+				aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
 			}
 
 		} else {
@@ -220,7 +219,7 @@ public class Moteur implements Runnable, Serializable {
 			// On specifie que le mouvement est termine
 			mouvementEnCours = false;
 			// On indique qu'il ne faut plus afficher les mouvements possibles
-			aireDeJeu.afficherMouvement(mouvementEnCours, c1);
+			aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
 		}
 		aireDeJeu.repaint();
 	}
@@ -228,15 +227,26 @@ public class Moteur implements Runnable, Serializable {
 	public void caseCliqueBoutonDroit(Case c) {
 		fenetreChoixPion.effacerFinDeTour();
 		if (c.contientPion() && getJoueurCourant() == c.getPion().getJoueur()) {
-			caseAncienne = c;
 			// On efface la fenetre
 			fenetreChoixPion.effacerFenetre();
 			// On la place a l'endroit voulu
 			fenetreChoixPion.placerFenetre(c);
-			// On specifie que le mouvement est termine
+			
+			// On specifie que le mouvement est terminé
 			mouvementEnCours = false;
 			// On indique qu'il ne faut plus afficher les mouvements possibles
 			aireDeJeu.afficherMouvement(mouvementEnCours, c);
+			
+			// On specifie que la téléportation est terminée
+			teleportationEnCours = false;
+			// On indique qu'il ne faut plus afficher les téléporteurs disponibles
+			aireDeJeu.afficherTeleporteurDisponible(false, c);
+			
+			// On specifie que l'attaque est terminée
+			attaqueEnCours = false;
+			// On indique qu'il ne faut plus afficher les attaques possibles
+			aireDeJeu.setAttaqueEnCours(false);
+			
 			// On memorise la case choisie lors du clic
 			caseAncienne = c;
 		}
@@ -261,7 +271,7 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	private void caseSurvolMouvement(Case c1) {
-		c1.getPion().afficherDeplacement(c1);
+		caseCourante.getPion().afficherDeplacement(c1);
 	}
 
 	private void caseSurvolAttaque(Case c1) {
