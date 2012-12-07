@@ -23,7 +23,7 @@ public class BoutonCapacite extends BoutonAction implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (fenetre.getCase().getPion().capaciteActive()) {
 			fenetre.getCase().getPion().capaciteSpeciale();
-			fenetre.getCase().getPion().getJoueur().utiliserAction();
+			fenetre.getMoteur().utiliserAction();
 		}
 		fenetre.effacerFenetre();
 	}
