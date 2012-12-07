@@ -5,6 +5,7 @@ import ihm.NouvellePartieGraphique;
 import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;
 import ihm.FenetrePrincipale;
+import ihm.NouvellePartiePanel;
 import java.io.*;
 import javax.swing.SwingUtilities;
 import moteur.classes.Tacticien;
