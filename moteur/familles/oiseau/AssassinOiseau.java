@@ -57,9 +57,10 @@ public class AssassinOiseau extends Assassin implements Oiseau {
 		listeOuverte.add(tmp);
 		listeDeplacementPossible.add(tmp);
 
-		if (getTourspecial() == 2 && !c.isObstacleDeplacement()) {
+		if (getTourspecial() == 3 && !c.isObstacleDeplacement()) {
 			vol = false;
 			setTourspecial(0);
+			specialIndispo();
 		}
 
 		while (!listeOuverte.isEmpty()) {
@@ -163,7 +164,7 @@ public class AssassinOiseau extends Assassin implements Oiseau {
 
 	@Override
 	public void finDeTour() {
-		if (vol && getTourspecial() < 2) {
+		if (vol && getTourspecial() < 3) {
 			setTourspecial(getTourspecial() + 1);
 		}
 		setMouvement(getMouvementBase());

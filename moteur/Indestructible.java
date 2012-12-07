@@ -4,8 +4,9 @@ package moteur;
  *
  * @author Kévin
  */
-public final class Indestructible extends Obstacle {
+public class Indestructible extends Obstacle {
 
+	protected final static long serialVersionUID = -4286231189299464343L;
 	public Indestructible(int typeObstacle) {
 		super(typeObstacle);
 	}

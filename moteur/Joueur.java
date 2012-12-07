@@ -11,7 +11,7 @@ public final class Joueur {
 	private ArrayList<Pion> listeDePions;
 	private Pion commandant;
 	private Pion tacticien;
-	private ArrayList<Case> placesConquises;
+	private ArrayList<ArrayList<Case>> chateaux;
 	private ArrayList<Teleporteur> teleporteur;
 	private String nom;
 	private String famille;
@@ -22,7 +22,7 @@ public final class Joueur {
 		this.nom = nom;
 		this.boolValue = boolValue;
 		listeDePions = new ArrayList<Pion>();
-		placesConquises = new ArrayList<Case>();
+		chateaux = new ArrayList<ArrayList<Case>>();
 		teleporteur = new ArrayList<Teleporteur>();
 		nbActions = 0;
 	}
@@ -44,8 +44,8 @@ public final class Joueur {
 		return nom;
 	}
 
-	public ArrayList<Case> getPlacesConquises() {
-		return placesConquises;
+	public ArrayList<ArrayList<Case>> getChateaux() {
+		return chateaux;
 	}
 
 	public ArrayList<Teleporteur> getTeleporteur() {
@@ -132,5 +132,37 @@ public final class Joueur {
 
 	boolean possede(Pion pion) {
 		return listeDePions.contains(pion);
+	}
+	
+	public void lierChateaux(ArrayList<Case> l){
+		ArrayList<Case> chateau = new ArrayList<Case>();
+		chateau.addAll(l);
+		chateaux.add(chateau);
+	}
+	
+	public boolean toutConquis(){
+		Chateau c1 = (Chateau)chateaux.get(0).get(0).getObstacle();
+		Chateau c2 = (Chateau)chateaux.get(1).get(0).getObstacle();
+		return c1.isConquis()&&c2.isConquis();
+	}
+	
+	public void conquerir(Case c){
+		for(ArrayList<Case> l : chateaux){
+			if(l.contains(c)){
+				for(Case c1 : l){
+					((Chateau)c1.getObstacle()).conquerir();
+				}
+				break;
+			}
+		}
+	}
+	
+	public boolean chateauPresent(Case c){
+		for(ArrayList<Case> l : chateaux){
+			if(l.contains(c)){
+				return true;
+			}
+		}
+		return false;
 	}
 }

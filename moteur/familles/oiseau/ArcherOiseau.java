@@ -57,9 +57,10 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 		listeOuverte.add(tmp);
 		listeDeplacementPossible.add(tmp);
 
-		if (getTourspecial() == 2 && !c.isObstacleDeplacement()) {
+		if (getTourspecial() == 3 && !c.isObstacleDeplacement()) {
 			vol = false;
 			setTourspecial(0);
+			specialIndispo();
 		}
 
 		while (!listeOuverte.isEmpty()) {
@@ -145,6 +146,7 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 					listeDeplacementPossible.remove(n);
 				}
 			}
+			specialIndispo();
 		}
 	}
 
@@ -163,7 +165,7 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 
 	@Override
 	public void finDeTour() {
-		if (vol && getTourspecial() < 2) {
+		if (vol && getTourspecial() < 3) {
 			setTourspecial(getTourspecial() + 1);
 		}
 		setMouvement(getMouvementBase());

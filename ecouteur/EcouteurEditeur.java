@@ -4,6 +4,7 @@ import editeur.FenetreEditeur;
 import java.awt.event.*;
 import moteur.Bordure;
 import moteur.Case;
+import moteur.Chateau;
 import moteur.Destructible;
 import moteur.Indestructible;
 
@@ -69,6 +70,9 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 			for (int j = colonneMin; j <= colonneMax; j++) {
 				if (fenetreEditeur.indestructible) {
 					Indestructible o = new Indestructible(fenetreEditeur.texture);
+					c[i][j].setObstacle(o);
+				} else if (fenetreEditeur.chateau) {
+					Chateau o = new Chateau(fenetreEditeur.texture);
 					c[i][j].setObstacle(o);
 				} else if (fenetreEditeur.bordure) {
 					Bordure b = new Bordure(fenetreEditeur.texture);

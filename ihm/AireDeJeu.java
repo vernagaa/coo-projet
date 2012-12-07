@@ -21,7 +21,9 @@ public class AireDeJeu extends JComponent {
 
 	private Plateau plateau;
 	private boolean attaqueEnCours;
+	private boolean conqueteEnCours;
 	private boolean afficherPorteeAttaque;
+	private boolean afficherPorteeConquerir;
 	private boolean mouvementEnCours;
 	private Case caseEnCours;
 	public Case caseSurvol;
@@ -98,10 +100,19 @@ public class AireDeJeu extends JComponent {
 				afficherAttaquePossible(gd);
 				construireSurvolAttaque(gd);
 			}
+			
+			if(conqueteEnCours){
+				afficherConquetePossible(gd);
+				construireSurvolConquete(gd);
+			}
 
 			// Affiche la porte d'attaque du pion en caseEnCours
 			if (afficherPorteeAttaque) {
 				afficherPorteAttaque(gd);
+			}
+
+			if (afficherPorteeConquerir) {
+				afficherPorteConquerir(gd);
 			}
 		}
 
@@ -215,6 +226,16 @@ public class AireDeJeu extends JComponent {
 		}
 	}
 
+	private void afficherPorteConquerir(Graphics2D gd) {
+		//FIXME ListeAir sert à quoi ???
+		int i = 0;
+		for (Case c : caseEnCours.getPion().getListeConquetePossible()) {
+			gd.setColor(new Color(255, 0, 255, 150));
+			gd.fillRect(c.getColonne() * Case.TAILLE, c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+			i++;
+		}
+	}
+
 	private void afficherAttaquePossible(Graphics2D gd) {
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeAttaquePossible()) {
@@ -223,10 +244,25 @@ public class AireDeJeu extends JComponent {
 			i++;
 		}
 	}
+	private void afficherConquetePossible(Graphics2D gd) {
+		int i = 0;
+		for (Case c : caseEnCours.getPion().getListeConquetePossible()) {
+			gd.setColor(new Color(255, 0, 255, 150));
+			gd.fillRect(c.getColonne() * Case.TAILLE, c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+			i++;
+		}
+	}
 
 	private void construireSurvolAttaque(Graphics2D gd) {
 		gd.setColor(new Color(255, 0, 0, 200));
 		if (caseEnCours.getPion().getListeAttaquePossible().contains(caseSurvol)) {
+			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+		}
+	}
+	
+	private void construireSurvolConquete(Graphics2D gd) {
+		gd.setColor(new Color(255, 0, 255, 200));
+		if (caseEnCours.getPion().getListeConquetePossible().contains(caseSurvol)) {
 			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 		}
 	}
@@ -244,13 +280,18 @@ public class AireDeJeu extends JComponent {
 		caseEnCours = c;
 	}
 
+	public void setAfficherPorteeConquerir(boolean b, Case c) {
+		afficherPorteeConquerir = b;
+		caseEnCours = c;
+	}
+
 	public void survolPion(Case c1) {
 		caseSurvol = c1;
 	}
 
 	private void construireSurvolPion(Graphics gd) {
 		Case affVie;
-		String affichageVie = caseSurvol.getPion().getVieRestante()+"pv";
+		String affichageVie = caseSurvol.getPion().getVieRestante() + "pv";
 		int vie = caseSurvol.getPion().getVieRestante();
 		if (plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne()) == null) {
 			affVie = plateau.get(caseSurvol.getLigne() + 1, caseSurvol.getColonne());
@@ -263,11 +304,11 @@ public class AireDeJeu extends JComponent {
 		} else {
 			affVie = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
 		}
-		if(vie>20){
+		if (vie > 20) {
 			gd.setColor(new Color(0, 255, 68, 200));
-		}else if(vie>10){
-			gd.setColor(new Color(255, 204, 68, 200));	
-		}else{
+		} else if (vie > 10) {
+			gd.setColor(new Color(255, 204, 68, 200));
+		} else {
 			gd.setColor(new Color(255, 34, 17, 200));
 		}
 		gd.fillRect(affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE, vie, 5);
@@ -327,5 +368,13 @@ public class AireDeJeu extends JComponent {
 		setDebutDePartie(true);
 		firstTime = true;
 		repaint();
+	}
+
+	public void setConqueteEnCours(boolean b) {
+		conqueteEnCours = b;
+	}
+
+	public void suvolAfficherConquete(Case c1) {
+		caseSurvol = c1;
 	}
 }
