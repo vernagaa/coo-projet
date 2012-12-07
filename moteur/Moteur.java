@@ -106,6 +106,13 @@ public class Moteur implements Runnable, Serializable {
 				debutDePartie = false;
 				aireDeJeu.remove(nouvellePartie);
 				aireDeJeu.setJoueurCourant(joueurCourant);
+				
+				for(Pion p : joueur1.getListeDePions()) {
+					p.setOrientation(Orientation.EST);
+				}
+				for(Pion p : joueur2.getListeDePions()) {
+					p.setOrientation(Orientation.OUEST);
+				}
 			}
 		}
 		getJoueurCourant().setNbActions(10);
