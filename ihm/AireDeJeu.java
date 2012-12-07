@@ -182,7 +182,7 @@ public class AireDeJeu extends JComponent {
 		if (debutDePartie) {
 			if (!firstTime) {
 				if (joueurCourant) {
-					gd.clearRect(Case.TAILLE * (plateau.getNbColonne() - 6) + 1, 0, 6 * Case.TAILLE, plateau.getNbLigne() * Case.TAILLE + 1);
+					gd.clearRect(Case.TAILLE * (plateau.getNbColonne() - 6), 0, 6 * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1);
 				} else {
 					gd.clearRect(0, 0, Case.TAILLE * 6, plateau.getNbLigne() * Case.TAILLE + 1);
 				}
@@ -194,7 +194,7 @@ public class AireDeJeu extends JComponent {
 				}
 			} else {
 				gd.clearRect(0, 0, Case.TAILLE * 6, plateau.getNbLigne() * Case.TAILLE + 1);
-				gd.clearRect(Case.TAILLE * (plateau.getNbColonne() - 6) + 1, 0, 6 * Case.TAILLE, plateau.getNbLigne() * Case.TAILLE + 1);
+				gd.clearRect(Case.TAILLE * (plateau.getNbColonne() - 6), 0, 6 * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1);
 			}
 		}
 
