@@ -49,7 +49,7 @@ public final class FenetreChoixPion extends JComponent {
 			} else {
 				b.setPosition(6);
 			}
-			if (m.getJoueurCourant().getTacticien() != null) {
+			if (m.getJoueurCourant().getTacticien() != null && c.getPion().capaciteActive()) {
 				setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 				capa.setPosition(i++);
 				if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
