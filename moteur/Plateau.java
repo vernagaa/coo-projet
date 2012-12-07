@@ -1,5 +1,6 @@
 package moteur;
 
+import exception.MapException;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,11 +47,13 @@ public class Plateau implements Serializable {
 	 * @param f
 	 */
 	public Plateau(String str) {
-		plateau = new Case[ligne][colonne];
-		init(str);
+		try {
+			plateau = new Case[ligne][colonne];
+			init(str);
+		} catch (MapException ex) {}
 	}
 
-	public final void init(String str) {
+	public final void init(String str) throws MapException{
 		try {
 			FileInputStream fis = new FileInputStream(str);
 			ObjectInputStream ois = null;
@@ -89,7 +92,7 @@ public class Plateau implements Serializable {
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(Plateau.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
-			Logger.getLogger(Plateau.class.getName()).log(Level.SEVERE, null, ex);
+				throw new MapException(str);
 		}
 	}
 

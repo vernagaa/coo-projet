@@ -1,11 +1,14 @@
 package moteur;
 
+import exception.MapException;
 import ihm.NouvellePartieGraphique;
 import ihm.FenetreChoixPion;
 import ihm.AireDeJeu;
 import ihm.FenetrePrincipale;
 import ihm.NouvellePartiePanel;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import moteur.classes.Tacticien;
 
@@ -354,16 +357,20 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	public void nouvellePartie() {
-		if(isDebutDePartie()){
-			nouvellePartie.setVisible(false);
+		try {
+			if(isDebutDePartie()){
+				nouvellePartie.setVisible(false);
+			}
+			debutDePartie = true;
+			plateau.init(mapPath);
+			aireDeJeu.nouvellePartie();
+			tour = 0;
+			joueur2.setNbActions(0);
+			nouvellePartie = new NouvellePartieGraphique(this);
 		}
-		debutDePartie = true;
-		plateau.init(mapPath);
-		aireDeJeu.nouvellePartie();
-		tour = 0;
-		joueur2.setNbActions(0);
-		nouvellePartie = new NouvellePartieGraphique(this);
+		catch (MapException ex) {}
 	}
+		//TODO Conquerir
 	//TODO Conquerir
 	
 	
