@@ -12,7 +12,7 @@ import moteur.classes.Assassin;
  *
  * @author Kévin
  */
-public class AssassinOiseau extends Assassin implements Oiseau {
+public final class AssassinOiseau extends Assassin implements Oiseau {
 
 	private boolean vol;
 
@@ -169,5 +169,10 @@ public class AssassinOiseau extends Assassin implements Oiseau {
 		}
 		setMouvement(getMouvementBase());
 		recuperationCapacite();
+	}
+
+	@Override
+	public BufferedImage getImageMouvement(int i) {
+		return Textures.getPersonnage(Textures.ASSASSINOISEAU, orientation, i);
 	}
 }

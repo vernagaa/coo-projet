@@ -124,7 +124,6 @@ public final class Textures {
 	public static final int HERBE = 3;
 	public static final int NEIGE = 4;
 	public static final int GLACE = 5;
-	
 	// Les obstacles destructibles
 	/**
 	 * Barriere
@@ -157,7 +156,6 @@ public final class Textures {
 	public static final String TELEPORTEURPATH = "/images/obstacle/teleporteur/portal.png";
 	public static final int TELEPORTEUR1 = 43;
 	public static final int TELEPORTEUR2 = 44;
-
 	/**
 	 * Personnages
 	 */
@@ -179,19 +177,17 @@ public final class Textures {
 	// Images des personages
 	public static final String ASSASSINOISEAUPATH = "/images/perso/oiseau/oiseau_test2.png";
 	public static final String TACTICIENOISEAUPATH = "/images/perso/oiseau/grand_oiseau.png";
-	
 	public static final String ARCHERREPTILEPATH = "/images/perso/reptile/cameleon.png";
 	public static final String ASSASSINREPTILEPATH = "/images/perso/reptile/serpent.png";
 	public static final String GUERRIERREPTILEPATH = "/images/perso/reptile/crocodile2.png";
 	public static final String TACTICIENREPTILEPATH = "/images/perso/reptile/grenouille.png";
 	public static final String TANKREPTILEPATH = "/images/perso/reptile/tortue.png";
-	
 	public static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
 	public static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
 	// Attributs
 	private BufferedImage[] terrain = new BufferedImage[7];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
-	private BufferedImage[][] perso = new BufferedImage[15][4];
+	private BufferedImage[][][] perso = new BufferedImage[15][4][3];
 	private BufferedImage[] obstacle = new BufferedImage[45];
 	private static Textures singleton = new Textures();
 
@@ -241,7 +237,7 @@ public final class Textures {
 			System.err.println("Image non trouvée : " + GLACEPATH);
 		}
 		try {
-			BufferedImage img = scale(ImageIO.read(getClass().getResource(TELEPORTEURPATH)), 2*32, 32);
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(TELEPORTEURPATH)), 2 * 32, 32);
 			obstacle[TELEPORTEUR1] = img.getSubimage(0, 0, 32, 32);
 			obstacle[TELEPORTEUR2] = img.getSubimage(32, 0, 32, 32);
 		} catch (IOException ex) {
@@ -260,6 +256,10 @@ public final class Textures {
 		return singleton.getPerso(numPerso, orientation);
 	}
 
+	public static BufferedImage getPersonnage(int numPerso, Orientation orientation, int i) {
+		return singleton.getPerso(numPerso, orientation, i);
+	}
+
 	/**
 	 *
 	 * @param famille Famille dans FabriquePion
@@ -271,16 +271,35 @@ public final class Textures {
 		return getPersonnage(famille * 5 + classe, orientation);
 	}
 
+	public static BufferedImage getPersonnage(int famille, int classe, Orientation orientation, int i) {
+		return getPersonnage(famille * 5 + classe, orientation, i);
+	}
+
 	private BufferedImage getPerso(int numPerso, Orientation orientation) {
 		switch (orientation) {
 			case NORD:
-				return perso[numPerso][0];
+				return perso[numPerso][0][0];
 			case SUD:
-				return perso[numPerso][1];
+				return perso[numPerso][1][0];
 			case EST:
-				return perso[numPerso][2];
+				return perso[numPerso][2][0];
 			case OUEST:
-				return perso[numPerso][3];
+				return perso[numPerso][3][0];
+			default:
+				return null;
+		}
+	}
+
+	private BufferedImage getPerso(int numPerso, Orientation orientation, int i) {
+		switch (orientation) {
+			case NORD:
+				return perso[numPerso][0][i];
+			case SUD:
+				return perso[numPerso][1][i];
+			case EST:
+				return perso[numPerso][2][i];
+			case OUEST:
+				return perso[numPerso][3][i];
 			default:
 				return null;
 		}
@@ -312,8 +331,8 @@ public final class Textures {
 
 	/**
 	 * Certaines de ces images qui servent a construire les plans d'eau sont
-	 * consideres comme de type HERBE et non EAU. Le type EAU est infranchissable,
-	 * contrairement au type HERBE
+	 * consideres comme de type HERBE et non EAU. Le type EAU est
+	 * infranchissable, contrairement au type HERBE
 	 */
 	private void tileEau() {
 
@@ -543,35 +562,37 @@ public final class Textures {
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINOISEAUPATH));
 
-			perso[ARCHEROISEAU][1] = img.getSubimage(32 * 7, 0, 32, 32);
-			perso[ARCHEROISEAU][3] = img.getSubimage(32 * 7, 32, 32, 32);
-			perso[ARCHEROISEAU][2] = img.getSubimage(32 * 7, 64, 32, 32);
-			perso[ARCHEROISEAU][0] = img.getSubimage(32 * 7, 96, 32, 32);
+			for (int i = 0; i < 3; i++) {
+				perso[ARCHEROISEAU][1][i] = img.getSubimage(32 * 6 + 32 * i, 0, 32, 32);
+				perso[ARCHEROISEAU][3][i] = img.getSubimage(32 * 6 + 32 * i, 32, 32, 32);
+				perso[ARCHEROISEAU][2][i] = img.getSubimage(32 * 6 + 32 * i, 64, 32, 32);
+				perso[ARCHEROISEAU][0][i] = img.getSubimage(32 * 6 + 32 * i, 96, 32, 32);
 
-			perso[ASSASSINOISEAU][1] = img.getSubimage(128, 0, 32, 32);
-			perso[ASSASSINOISEAU][3] = img.getSubimage(128, 32, 32, 32);
-			perso[ASSASSINOISEAU][2] = img.getSubimage(128, 64, 32, 32);
-			perso[ASSASSINOISEAU][0] = img.getSubimage(128, 96, 32, 32);
+				perso[ASSASSINOISEAU][1][i] = img.getSubimage(32 * 3 + 32 * i, 0, 32, 32);
+				perso[ASSASSINOISEAU][3][i] = img.getSubimage(32 * 3 + 32 * i, 32, 32, 32);
+				perso[ASSASSINOISEAU][2][i] = img.getSubimage(32 * 3 + 32 * i, 64, 32, 32);
+				perso[ASSASSINOISEAU][0][i] = img.getSubimage(32 * 3 + 32 * i, 96, 32, 32);
 
-			perso[GUERRIEROISEAU][1] = img.getSubimage(32 * 7, 128, 32, 32);
-			perso[GUERRIEROISEAU][3] = img.getSubimage(32 * 7, 160, 32, 32);
-			perso[GUERRIEROISEAU][2] = img.getSubimage(32 * 7, 192, 32, 32);
-			perso[GUERRIEROISEAU][0] = img.getSubimage(32 * 7, 224, 32, 32);
+				perso[GUERRIEROISEAU][1][i] = img.getSubimage(32 * 6 + 32 * i, 128, 32, 32);
+				perso[GUERRIEROISEAU][3][i] = img.getSubimage(32 * 6 + 32 * i, 160, 32, 32);
+				perso[GUERRIEROISEAU][2][i] = img.getSubimage(32 * 6 + 32 * i, 192, 32, 32);
+				perso[GUERRIEROISEAU][0][i] = img.getSubimage(32 * 6 + 32 * i, 224, 32, 32);
 
-			perso[TANKOISEAU][1] = img.getSubimage(128, 128, 32, 32);
-			perso[TANKOISEAU][3] = img.getSubimage(128, 160, 32, 32);
-			perso[TANKOISEAU][2] = img.getSubimage(128, 192, 32, 32);
-			perso[TANKOISEAU][0] = img.getSubimage(128, 224, 32, 32);
+				perso[TANKOISEAU][1][i] = img.getSubimage(32 * 3 + 32 * i, 128, 32, 32);
+				perso[TANKOISEAU][3][i] = img.getSubimage(32 * 3 + 32 * i, 160, 32, 32);
+				perso[TANKOISEAU][2][i] = img.getSubimage(32 * 3 + 32 * i, 192, 32, 32);
+				perso[TANKOISEAU][0][i] = img.getSubimage(32 * 3 + 32 * i, 224, 32, 32);
+			}
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
 		}
 		try {
-			BufferedImage img = scale(ImageIO.read(getClass().getResource(TACTICIENOISEAUPATH)), 32*3, 32*4);
+			BufferedImage img = scale(ImageIO.read(getClass().getResource(TACTICIENOISEAUPATH)), 32 * 3, 32 * 4);
 
-			perso[TACTICIENOISEAU][1] = img.getSubimage(32, 0, 32, 32);
-			perso[TACTICIENOISEAU][3] = img.getSubimage(32, 32, 32, 32);
-			perso[TACTICIENOISEAU][2] = img.getSubimage(32, 64, 32, 32);
-			perso[TACTICIENOISEAU][0] = img.getSubimage(32, 96, 32, 32);
+			perso[TACTICIENOISEAU][1][0] = img.getSubimage(32, 0, 32, 32);
+			perso[TACTICIENOISEAU][3][0] = img.getSubimage(32, 32, 32, 32);
+			perso[TACTICIENOISEAU][2][0] = img.getSubimage(32, 64, 32, 32);
+			perso[TACTICIENOISEAU][0][0] = img.getSubimage(32, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
 		}
@@ -579,46 +600,46 @@ public final class Textures {
 		// REPTILE
 		try {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(ARCHERREPTILEPATH)), 32 * 3, 32 * 4);
-			perso[ARCHERREPTILE][1] = img.getSubimage(32, 0, 32, 32);
-			perso[ARCHERREPTILE][3] = img.getSubimage(32, 32, 32, 32);
-			perso[ARCHERREPTILE][2] = img.getSubimage(32, 64, 32, 32);
-			perso[ARCHERREPTILE][0] = img.getSubimage(32, 96, 32, 32);
+			perso[ARCHERREPTILE][1][0] = img.getSubimage(32, 0, 32, 32);
+			perso[ARCHERREPTILE][3][0] = img.getSubimage(32, 32, 32, 32);
+			perso[ARCHERREPTILE][2][0] = img.getSubimage(32, 64, 32, 32);
+			perso[ARCHERREPTILE][0][0] = img.getSubimage(32, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ARCHERREPTILEPATH);
 		}
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(TANKREPTILEPATH));
-			perso[TANKREPTILE][1] = img.getSubimage(0, 0, 32, 32);
-			perso[TANKREPTILE][0] = img.getSubimage(0, 32, 32, 32);
-			perso[TANKREPTILE][3] = img.getSubimage(32, 0, 32, 32);
-			perso[TANKREPTILE][2] = img.getSubimage(32, 32, 32, 32);
+			perso[TANKREPTILE][1][0] = img.getSubimage(0, 0, 32, 32);
+			perso[TANKREPTILE][0][0] = img.getSubimage(0, 32, 32, 32);
+			perso[TANKREPTILE][3][0] = img.getSubimage(32, 0, 32, 32);
+			perso[TANKREPTILE][2][0] = img.getSubimage(32, 32, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + TANKREPTILEPATH);
 		}
 		try {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(GUERRIERREPTILEPATH)), 3 * 32, 4 * 32);
-			perso[GUERRIERREPTILE][1] = img.getSubimage(0, 0, 32, 32);
-			perso[GUERRIERREPTILE][3] = img.getSubimage(0, 32, 32, 32);
-			perso[GUERRIERREPTILE][2] = img.getSubimage(0, 64, 32, 32);
-			perso[GUERRIERREPTILE][0] = img.getSubimage(0, 96, 32, 32);
+			perso[GUERRIERREPTILE][1][0] = img.getSubimage(0, 0, 32, 32);
+			perso[GUERRIERREPTILE][3][0] = img.getSubimage(0, 32, 32, 32);
+			perso[GUERRIERREPTILE][2][0] = img.getSubimage(0, 64, 32, 32);
+			perso[GUERRIERREPTILE][0][0] = img.getSubimage(0, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + GUERRIERREPTILEPATH);
 		}
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINREPTILEPATH));
-			perso[ASSASSINREPTILE][1] = img.getSubimage(0, 0, 32, 32);
-			perso[ASSASSINREPTILE][3] = img.getSubimage(0, 32, 32, 32);
-			perso[ASSASSINREPTILE][0] = img.getSubimage(0, 64, 32, 32);
-			perso[ASSASSINREPTILE][2] = img.getSubimage(0, 96, 32, 32);
+			perso[ASSASSINREPTILE][1][0] = img.getSubimage(0, 0, 32, 32);
+			perso[ASSASSINREPTILE][3][0] = img.getSubimage(0, 32, 32, 32);
+			perso[ASSASSINREPTILE][0][0] = img.getSubimage(0, 64, 32, 32);
+			perso[ASSASSINREPTILE][2][0] = img.getSubimage(0, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINREPTILEPATH);
 		}
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(TACTICIENREPTILEPATH));
-			perso[TACTICIENREPTILE][1] = img.getSubimage(32, 0, 32, 32);
-			perso[TACTICIENREPTILE][3] = img.getSubimage(32, 32, 32, 32);
-			perso[TACTICIENREPTILE][2] = img.getSubimage(32, 64, 32, 32);
-			perso[TACTICIENREPTILE][0] = img.getSubimage(32, 96, 32, 32);
+			perso[TACTICIENREPTILE][1][0] = img.getSubimage(32, 0, 32, 32);
+			perso[TACTICIENREPTILE][3][0] = img.getSubimage(32, 32, 32, 32);
+			perso[TACTICIENREPTILE][2][0] = img.getSubimage(32, 64, 32, 32);
+			perso[TACTICIENREPTILE][0][0] = img.getSubimage(32, 96, 32, 32);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + TACTICIENREPTILEPATH);
 		}
@@ -627,42 +648,42 @@ public final class Textures {
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINFELINPATH));
 
-			perso[ASSASSINFELIN][1] = img.getSubimage(224, 2, 32, 30);
-			perso[ASSASSINFELIN][3] = img.getSubimage(224, 34, 32, 30);
-			perso[ASSASSINFELIN][2] = img.getSubimage(224, 66, 32, 30);
-			perso[ASSASSINFELIN][0] = img.getSubimage(224, 98, 32, 30);
+			perso[ASSASSINFELIN][1][0] = img.getSubimage(224, 2, 32, 30);
+			perso[ASSASSINFELIN][3][0] = img.getSubimage(224, 34, 32, 30);
+			perso[ASSASSINFELIN][2][0] = img.getSubimage(224, 66, 32, 30);
+			perso[ASSASSINFELIN][0][0] = img.getSubimage(224, 98, 32, 30);
 
-			perso[ARCHERFELIN][1] = img.getSubimage(32, 2, 32, 30);
-			perso[ARCHERFELIN][3] = img.getSubimage(32, 34, 32, 30);
-			perso[ARCHERFELIN][2] = img.getSubimage(32, 66, 32, 30);
-			perso[ARCHERFELIN][0] = img.getSubimage(32, 98, 32, 30);
+			perso[ARCHERFELIN][1][0] = img.getSubimage(32, 2, 32, 30);
+			perso[ARCHERFELIN][3][0] = img.getSubimage(32, 34, 32, 30);
+			perso[ARCHERFELIN][2][0] = img.getSubimage(32, 66, 32, 30);
+			perso[ARCHERFELIN][0][0] = img.getSubimage(32, 98, 32, 30);
 
-			perso[GUERRIERFELIN][1] = img.getSubimage(128, 2, 32, 30);
-			perso[GUERRIERFELIN][3] = img.getSubimage(128, 34, 32, 30);
-			perso[GUERRIERFELIN][2] = img.getSubimage(128, 66, 32, 30);
-			perso[GUERRIERFELIN][0] = img.getSubimage(128, 98, 32, 30);
+			perso[GUERRIERFELIN][1][0] = img.getSubimage(128, 2, 32, 30);
+			perso[GUERRIERFELIN][3][0] = img.getSubimage(128, 34, 32, 30);
+			perso[GUERRIERFELIN][2][0] = img.getSubimage(128, 66, 32, 30);
+			perso[GUERRIERFELIN][0][0] = img.getSubimage(128, 98, 32, 30);
 
-			perso[TACTICIENFELIN][1] = img.getSubimage(320, 2, 32, 30);
-			perso[TACTICIENFELIN][3] = img.getSubimage(320, 34, 32, 30);
-			perso[TACTICIENFELIN][2] = img.getSubimage(320, 66, 32, 30);
-			perso[TACTICIENFELIN][0] = img.getSubimage(320, 98, 32, 30);
+			perso[TACTICIENFELIN][1][0] = img.getSubimage(320, 2, 32, 30);
+			perso[TACTICIENFELIN][3][0] = img.getSubimage(320, 34, 32, 30);
+			perso[TACTICIENFELIN][2][0] = img.getSubimage(320, 66, 32, 30);
+			perso[TACTICIENFELIN][0][0] = img.getSubimage(320, 98, 32, 30);
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + ASSASSINFELINPATH);
 		}
 		try {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(TANKFELINPATH)), 3 * 32, 4 * 32);
 
-			perso[TANKFELIN][1] = img.getSubimage(32, 0, 32, 30);
-			perso[TANKFELIN][3] = img.getSubimage(32, 34, 32, 30);
-			perso[TANKFELIN][2] = img.getSubimage(32, 66, 32, 30);
-			perso[TANKFELIN][0] = img.getSubimage(32, 98, 32, 30);
+			perso[TANKFELIN][1][0] = img.getSubimage(32, 0, 32, 30);
+			perso[TANKFELIN][3][0] = img.getSubimage(32, 34, 32, 30);
+			perso[TANKFELIN][2][0] = img.getSubimage(32, 66, 32, 30);
+			perso[TANKFELIN][0][0] = img.getSubimage(32, 98, 32, 30);
 
 		} catch (IOException ex) {
 			System.err.println("Image non trouvée : " + TANKFELINPATH);
 		}
 	}
 
-		private void tileBarriere() {
+	private void tileBarriere() {
 		try {
 			obstacle[BARRIERECOINBASDROIT] = ImageIO.read(getClass().getResource(BARRIERECOINBASDROITPATH));
 		} catch (IOException ex) {

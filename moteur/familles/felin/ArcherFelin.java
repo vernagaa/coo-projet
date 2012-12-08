@@ -64,4 +64,8 @@ public final class ArcherFelin extends Archer implements Felin {
 			return precision * 4 * vitesse / 150;
 		}
 	}
+	
+	public BufferedImage getImageMouvement(int i) {
+		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
+	}
 }

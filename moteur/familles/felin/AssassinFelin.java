@@ -63,4 +63,8 @@ public class AssassinFelin extends Assassin implements Felin {
 	public void enrage() {
 		enrage = true;
 	}
+
+	public BufferedImage getImageMouvement(int i) {
+		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
+	}
 }

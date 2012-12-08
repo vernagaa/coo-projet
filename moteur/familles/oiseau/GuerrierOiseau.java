@@ -170,4 +170,9 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 		setMouvement(getMouvementBase());
 		recuperationCapacite();
 	}
+
+	@Override
+	public BufferedImage getImageMouvement(int i) {
+		return Textures.getPersonnage(Textures.GUERRIEROISEAU, orientation, i);
+	}
 }

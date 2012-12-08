@@ -171,4 +171,9 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 		setMouvement(getMouvementBase());
 		recuperationCapacite();
 	}
+
+	@Override
+	public BufferedImage getImageMouvement(int i) {
+		return Textures.getPersonnage(Textures.ARCHEROISEAU, orientation, i);
+	}
 }
