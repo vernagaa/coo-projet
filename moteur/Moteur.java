@@ -378,6 +378,9 @@ public class Moteur implements Runnable, Serializable {
 	public void utiliserAction() {
 		getJoueurCourant().utiliserAction();
 		fp.setLabelAction(getJoueurCourant().getNbActions());
+		if(getJoueurAdverse().toutConquis() || getJoueurAdverse().tousMort()){
+			victoire();
+		}
 	}
 
 	public void majInfosTour() {
@@ -457,5 +460,10 @@ public class Moteur implements Runnable, Serializable {
 
 	public void setConqueteEnCours(boolean b) {
 		conqueteEnCours = b;
+	}
+
+	private void victoire() {
+		//TODO Victoire graphique
+		System.out.println("Victoire "+getJoueurCourant().getNom()+" !!!");
 	}
 }
