@@ -1,5 +1,6 @@
 package moteur;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -41,6 +42,8 @@ public abstract class Pion implements Serializable {
 	private int tourspecial;
 	private int mouvementBase;
 	protected String nomCapaciteSpeciale;
+	public ArrayList<Integer> degatsCombat;
+	protected Point id;
 
 	public Pion(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
 		this.vie = vie;
@@ -56,12 +59,13 @@ public abstract class Pion implements Serializable {
 		this.special = 0;
 		this.tourspecial = 0;
 		orientation = Orientation.SUD;
-		
+
 		c.getPlateau().get(c).setPion(this);
 		listeDeplacementPossible = new ArrayList<Noeud>();
 		deplacement = new ArrayList<Case>();
 		listeAttaquePossible = new ArrayList<Case>();
 		listeAttaqueAire = new ArrayList<Case>();
+		degatsCombat = new ArrayList<Integer>();
 		listeConquetePossible = new ArrayList<Case>();
 		listeConqueteAire = new ArrayList<Case>();
 
@@ -108,10 +112,13 @@ public abstract class Pion implements Serializable {
 	 *
 	 */
 	public void attaquerPion(Pion p) {
+		degatsCombat.clear();
+		p.degatsCombat.clear();
 		attaquerPion(p, TAUXRIPOSTE);
 	}
 
 	private void attaquerPion(Pion p, int tauxRiposte) {
+		System.out.println(degatsCombat);
 		float orient = dosCoteFace(p);
 		int degatInflige = (int) ((force + (int) (force * janken(p))) * orient);
 		int seDefend = p.seDefendre(p);
@@ -120,21 +127,23 @@ public abstract class Pion implements Serializable {
 		int aleaEsquive = (int) (Math.random() * (101));
 		int aleaRiposte = (int) (Math.random() * (101));
 		int aleaCoupCritique = (int) (Math.random() * (101));
+		int coupReel;
 		System.out.println(this.toString() + " attaque " + p.toString());
 		System.out.println("Il a %chance de toucher " + (hit - esquive));
 		if (esquive < 100 && aleaEsquive < (hit - esquive)) {
 			System.out.println("%chance coup critique " + coupCritiques());
 			if (aleaCoupCritique < coupCritiques()) {
 				System.out.println("Coup Critique");
-				System.out.println("J'attaque avec " + (1.2 * degatInflige - seDefend));
-				p.recevoirDegat((int) 1.2 * degatInflige - seDefend);
+				System.out.println("J'attaque avec " + (int) (1.2 * degatInflige - seDefend));
+				p.recevoirDegat(coupReel = (int) (1.2 * degatInflige - seDefend));
 			} else if (degatInflige > seDefend) {
 				System.out.println("J'attaque avec " + (degatInflige - seDefend));
-				p.recevoirDegat(degatInflige - seDefend);
+				p.recevoirDegat(coupReel = (degatInflige - seDefend));
 			} else {
 				System.out.println("Attaque de 1");
-				p.recevoirDegat(1);
+				p.recevoirDegat(coupReel = 1);
 			}
+			degatsCombat.add(new Integer((int) (coupReel)));
 			if (estVivant(p)) {
 				p.attaque();
 				if (p.getListeAttaquePossible().contains(this.c)) {
@@ -144,10 +153,7 @@ public abstract class Pion implements Serializable {
 						p.attaquerPion(this, tauxRiposte / 2);
 					}
 				}
-			} else {
-				tuer(p);
 			}
-
 		} else {
 			System.out.println("J'esquive");
 		}
@@ -514,13 +520,13 @@ public abstract class Pion implements Serializable {
 		pion.meurt();
 		pion = null;
 	}
-
-	private void meurt() {
+	
+	public void meurt() {
 		//TODO Animation
 		if (this == joueur.getTacticien()) {
 			joueur.setTacticien(null);
 		}
-		if(this == joueur.getCommandant()){
+		if (this == joueur.getCommandant()) {
 			joueur.setCommandant(null);
 		}
 		c.setPion(null);
@@ -529,6 +535,10 @@ public abstract class Pion implements Serializable {
 
 	public boolean estVivant(Pion p) {
 		return p.vie > 0;
+	}
+
+	public boolean estVivant() {
+		return vie > 0;
 	}
 
 	public void setTourspecial(int tourspecial) {
@@ -596,6 +606,10 @@ public abstract class Pion implements Serializable {
 	public boolean conquetePossible(){
 		conquerir();
 		return !listeConquetePossible.isEmpty();
+	}
+
+	public Point getId() {
+		return id;
 	}
 
 }

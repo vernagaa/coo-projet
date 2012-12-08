@@ -11,6 +11,17 @@ import moteur.Moteur;
 public class FenetrePrincipale extends javax.swing.JFrame {
 
 	private Moteur moteur;
+	private EcouteurPlateau ecouterPlateau;
+
+	public AireDAnimation getAireDAnimation1() {
+		return aireDAnimation1;
+	}
+
+	public EcouteurPlateau getEcouterPlateau() {
+		return ecouterPlateau;
+	}
+	
+	
 
 	/** Creates new form FenetrePrincipale */
 	public FenetrePrincipale(Moteur m) {
@@ -20,7 +31,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 		//position
 		setLocationRelativeTo(getParent());
 		//écouteur sur l'aire de jeu
-		EcouteurPlateau ecouterPlateau = new EcouteurPlateau(moteur);
+		ecouterPlateau = new EcouteurPlateau(moteur);
 		aireDeJeu.addMouseListener(ecouterPlateau);
 		aireDeJeu.addMouseMotionListener(ecouterPlateau);
 		setVisible(true);
@@ -58,6 +69,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private void initComponents() {
 
         aireDeJeu = new ihm.AireDeJeu(moteur.getPlateau());
+        aireDAnimation1 = new ihm.AireDAnimation(moteur);
         labelAction = new javax.swing.JLabel();
         labelJoueur = new javax.swing.JLabel();
         labelTour = new javax.swing.JLabel();
@@ -75,15 +87,26 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout aireDAnimation1Layout = new javax.swing.GroupLayout(aireDAnimation1);
+        aireDAnimation1.setLayout(aireDAnimation1Layout);
+        aireDAnimation1Layout.setHorizontalGroup(
+            aireDAnimation1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1051, Short.MAX_VALUE)
+        );
+        aireDAnimation1Layout.setVerticalGroup(
+            aireDAnimation1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 601, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout aireDeJeuLayout = new javax.swing.GroupLayout(aireDeJeu);
         aireDeJeu.setLayout(aireDeJeuLayout);
         aireDeJeuLayout.setHorizontalGroup(
             aireDeJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1051, Short.MAX_VALUE)
+            .addComponent(aireDAnimation1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         aireDeJeuLayout.setVerticalGroup(
             aireDeJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addComponent(aireDAnimation1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         labelAction.setText("Actions restantes : 0");
@@ -125,18 +148,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(labelAction, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .addComponent(labelAction, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(labelJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelTour, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(131, 131, 131))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +169,9 @@ public class FenetrePrincipale extends javax.swing.JFrame {
                     .addComponent(labelAction)
                     .addComponent(labelTour)
                     .addComponent(labelJoueur))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -173,6 +196,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 		quitterApplication();
 	}//GEN-LAST:event_menuQuitterActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private ihm.AireDAnimation aireDAnimation1;
     private ihm.AireDeJeu aireDeJeu;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel labelAction;

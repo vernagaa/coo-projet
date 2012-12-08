@@ -14,9 +14,11 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 
 	private Moteur moteur;
 	private int lastLig, lastCol;
+	private boolean active;
 
 	public EcouteurPlateau(Moteur moteur) {
 		this.moteur = moteur;
+		active = true;
 		lastLig = -1;
 		lastCol = -1;
 	}
@@ -31,7 +33,7 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 		Case c = moteur.getPlateau().get(lig, col);
 		System.out.println("case : " + c);
 
-		if (c != null) {
+		if (c != null && active) {
 			if (moteur.isDebutDePartie()) {
 				moteur.caseCliqueBoutonGaucheNouvellePartie(c);
 			} else if (e.getButton() == MouseEvent.BUTTON1) {
@@ -74,12 +76,20 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
 
-		if (moteur.getPlateau().get(lig, col) != null) {
+		if (moteur.getPlateau().get(lig, col) != null && active) {
 			if (col != lastCol || lig != lastLig) {
 				lastCol = col;
 				lastLig = lig;
 				moteur.caseSurvol(moteur.getPlateau().get(lig, col));
 			}
 		}
+	}
+
+	public void desactiverEcouteur() {
+		active = false;
+	}
+
+	public void activerEcouteur() {
+		active = true;
 	}
 }
