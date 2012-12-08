@@ -1,5 +1,6 @@
 package moteur.classes;
 
+import java.awt.Point;
 import moteur.Case;
 import moteur.Pion;
 
@@ -19,6 +20,8 @@ public abstract class Tank extends Pion {
 
 	public Tank(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
 		super(vie + VIE, force + FORCE, precision + PRECISION, vitesse + VITESSE, defense + DEFENSE, bonusChance, portee + PORTEE, mouvement + MOUVEMENT, c);
+		id = new Point(1, 1);
+
 	}
 
 	@Override

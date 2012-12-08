@@ -19,6 +19,7 @@ public class BoutonFinDeTour extends BoutonAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		fenetre.m.changementJoueur();
+		fenetre.m.animation.animerFinDeTour();
 		fenetre.effacerFenetre();
 	}
 

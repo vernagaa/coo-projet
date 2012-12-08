@@ -1,15 +1,14 @@
 package moteur;
 
 import exception.MapException;
-import ihm.NouvellePartieGraphique;
-import ihm.FenetreChoixPion;
-import ihm.AireDeJeu;
-import ihm.FenetrePrincipale;
-import ihm.NouvellePartiePanel;
+import ihm.*;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import moteur.classes.Tacticien;
+import moteur.familles.oiseau.Oiseau;
 
 /**
  *
@@ -20,6 +19,7 @@ public class Moteur implements Runnable, Serializable {
 	private FenetrePrincipale fp;
 	private Plateau plateau;
 	public AireDeJeu aireDeJeu;
+	public Animation animation;
 	private FenetreChoixPion fenetreChoixPion;
 	NouvellePartieGraphique nouvellePartie;
 	private boolean debutDePartie;
@@ -27,7 +27,7 @@ public class Moteur implements Runnable, Serializable {
 	/*
 	 * Gestion de la souris
 	 */
-	private Case caseCourante;
+	public Case caseCourante;
 	private boolean mouvementEnCours;
 	private Case caseAncienne;
 	private boolean attaqueEnCours;
@@ -69,6 +69,7 @@ public class Moteur implements Runnable, Serializable {
 		aireDeJeu = fp.getAireDeJeu();
 		fenetreChoixPion = new FenetreChoixPion(this);
 		nouvellePartie = new NouvellePartieGraphique(this);
+		animation = new Animation(fp.getAireDAnimation1(), this, fp.getEcouterPlateau());
 //		NouvellePartiePanel np = new NouvellePartiePanel();
 //		aireDeJeu.add(np);
 //		np.setLocation(Case.TAILLE * 6, 0);
@@ -97,7 +98,7 @@ public class Moteur implements Runnable, Serializable {
 				nouvellePartie.setChoix(false);
 			}
 
-			if (nouvellePartie.getNbPions() == 8) {
+			if (nouvellePartie.getNbPions() == 4) {
 				nouvellePartie.elireCommandant();
 			}
 		} else if (nouvellePartie.getEtape() == 3) {
@@ -144,17 +145,20 @@ public class Moteur implements Runnable, Serializable {
 			// Permet de gerer l'attaque d'une unite ennemie
 			if (attaqueEnCours) {
 				// On verifie que le case cible est attaquable par le pion et que le pion sur cette case est un pion ennemi
-				if (caseAncienne.getPion().getListeAttaquePossible().contains(caseCourante) /*
-						 * &&
-						 * joueurOppose().geListeDePions().contains(caseCourante.getPion())
-						 */) {
+				if (caseAncienne.getPion().getListeAttaquePossible().contains(caseCourante)) {
 					if (caseCourante.contientPion()) {
 						caseAncienne.getPion().attaquerPion(caseCourante.getPion());
-						if (getJoueurCourant().commandantMort()) {
-							//TODO Elire un nouveau commandant
-							elireCommandant = true;
-							System.out.println("Commandant Mort");
+						animation.animerAttaquePion(caseAncienne.getPion(), caseCourante.getPion());
+						if (!caseCourante.getPion().estVivant()) {
+							System.out.println("Il meurt");
+							caseAncienne.getPion().tuer(caseCourante.getPion());
 						}
+
+//						if (getJoueurCourant().commandantMort()) {
+//							//TODO Elire un nouveau commandant
+//							elireCommandant = true;
+//							System.out.println("Commandant Mort");
+//						}
 					} else if (caseCourante.getObstacle() != null && caseCourante.getObstacle().isDestructible()) {
 						caseAncienne.getPion().attaquerObstacle(caseCourante);
 					} else if (caseCourante.contientTeleporteur(getJoueurAdverse())) {
@@ -174,7 +178,7 @@ public class Moteur implements Runnable, Serializable {
 						 * joueurOppose().geListeDePions().contains(caseCourante.getPion())
 						 */) {
 					getJoueurAdverse().conquerir(caseCourante);
-
+					System.out.println(getJoueurAdverse().toutConquis());
 					utiliserAction();
 				}
 				conqueteEnCours = false;
@@ -198,8 +202,18 @@ public class Moteur implements Runnable, Serializable {
 				aireDeJeu.afficherTeleporteurDisponible(teleportationEnCours, caseCourante);
 			} else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
 				if (caseAncienne != caseCourante) {
-					caseAncienne.getPion().deplacerPion(caseCourante);
-					utiliserAction();
+					if (caseAncienne.getPion() instanceof Oiseau && !(caseAncienne.getPion() instanceof Tacticien)) {
+						System.out.println("Oiseau en mouvement");
+						try {
+							animation.animerMouvement(caseAncienne.getPion());
+							caseAncienne.setPion(null);
+						} catch (IOException ex) {
+							Logger.getLogger(Moteur.class.getName()).log(Level.SEVERE, null, ex);
+						}
+					} else {
+						caseAncienne.getPion().deplacerPion(caseCourante);
+						utiliserAction();
+					}
 				}
 				// On specifie que le mouvement est termine
 				mouvementEnCours = false;
