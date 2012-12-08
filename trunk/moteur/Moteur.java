@@ -202,17 +202,11 @@ public class Moteur implements Runnable, Serializable {
 				aireDeJeu.afficherTeleporteurDisponible(teleportationEnCours, caseCourante);
 			} else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
 				if (caseAncienne != caseCourante) {
-					if (caseAncienne.getPion() instanceof Oiseau && !(caseAncienne.getPion() instanceof Tacticien)) {
-						System.out.println("Oiseau en mouvement");
-						try {
-							animation.animerMouvement(caseAncienne.getPion());
-							caseAncienne.setPion(null);
-						} catch (IOException ex) {
-							Logger.getLogger(Moteur.class.getName()).log(Level.SEVERE, null, ex);
-						}
-					} else {
-						caseAncienne.getPion().deplacerPion(caseCourante);
-						utiliserAction();
+					try {
+						animation.animerMouvement(caseAncienne.getPion());
+						caseAncienne.setPion(null);
+					} catch (IOException ex) {
+						Logger.getLogger(Moteur.class.getName()).log(Level.SEVERE, null, ex);
 					}
 				}
 				// On specifie que le mouvement est termine

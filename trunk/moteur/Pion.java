@@ -239,7 +239,7 @@ public abstract class Pion implements Serializable {
 		this.orientation = orientation;
 	}
 
-	public abstract BufferedImage getImage();
+	
 
 	public boolean deplacementPossible(Case c) {
 		return getDeplacement().contains(c);
@@ -594,5 +594,8 @@ public abstract class Pion implements Serializable {
 	public Point getId() {
 		return id;
 	}
-
+	
+	public abstract BufferedImage getImageMouvement(int i);
+	
+	public abstract BufferedImage getImage();
 }

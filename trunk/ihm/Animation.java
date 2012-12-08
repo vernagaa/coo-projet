@@ -137,6 +137,7 @@ public class Animation {
 			aire.animationDeplacement = true;
 			aire.position.x = p.getCase().getColonne() * 30;
 			aire.position.y = p.getCase().getLigne() * 30;
+			aire.imageEnCours = p.getImageMouvement(1);
 			timer = new Timer(42, new ActionListener() {
 
 				int deplacementCase = 15;
@@ -144,7 +145,6 @@ public class Animation {
 				int caseEnCours = 0;
 				Case caseTemp;
 				Case caseSuiv;
-				BufferedImage imageTotale = ImageIO.read(getClass().getResource(Textures.ASSASSINOISEAUPATH));
 				int compteurImage = 0;
 				int idPion = 2;
 				boolean initialisation = true;
@@ -170,19 +170,23 @@ public class Animation {
 								if (caseSuiv.getColonne() - caseTemp.getColonne() > 0) {
 									orientation = 2;
 //									orientation = Orientation.EST;
+									p.setOrientation(Orientation.EST);
 								} else if (caseSuiv.getColonne() - caseTemp.getColonne() < 0) {
 									orientation = 1;
+									p.setOrientation(Orientation.OUEST);
 //									orientation = Orientation.OUEST;
 								} else if (caseSuiv.getLigne() - caseTemp.getLigne() > 0) {
 									orientation = 0;
 									//orientation = Orientation.SUD;
+									p.setOrientation(Orientation.SUD);
 								} else if (caseSuiv.getLigne() - caseTemp.getLigne() < 0) {
 									orientation = 3;
+									p.setOrientation(Orientation.NORD);
 //									orientation = Orientation.NORD;
 								}
 							}
 						} else {
-							aire.imageEnCours = imageTotale.getSubimage(32 * (compteurMouvement % 3) + 96 * p.getId().x, 32 * orientation + 128 * p.getId().y, 32, 32);
+							aire.imageEnCours = p.getImageMouvement(compteurMouvement % 3);
 							switch (orientation) {
 								case (0):
 									aire.position.y += pixelDeplacement;
@@ -198,7 +202,7 @@ public class Animation {
 									break;
 							}
 							deplacementEnCours++;
-							if (deplacementEnCours % 2 == 0) {
+							if (deplacementEnCours % 3 == 0) {
 								compteurMouvement++;
 							}
 							if (deplacementEnCours == deplacementCase) {

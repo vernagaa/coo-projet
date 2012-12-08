@@ -170,4 +170,9 @@ public final class TankOiseau extends Tank implements Oiseau {
 		setMouvement(getMouvementBase());
 		recuperationCapacite();
 	}
+
+	@Override
+	public BufferedImage getImageMouvement(int i) {
+		return Textures.getPersonnage(Textures.TANKOISEAU, orientation, i);
+	}
 }

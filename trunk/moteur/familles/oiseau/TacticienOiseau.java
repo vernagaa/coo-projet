@@ -170,4 +170,9 @@ public final class TacticienOiseau extends Tacticien implements Oiseau {
 		setMouvement(getMouvementBase());
 		recuperationCapacite();
 	}
+
+	@Override
+	public BufferedImage getImageMouvement(int i) {
+		return Textures.getPersonnage(Textures.TACTICIENOISEAU, orientation, i);
+	}
 }

@@ -41,4 +41,9 @@ public class AssassinReptile extends Assassin implements Reptile {
 	public void specialIndispo() {
 		setSpecial(cooldown);
 	}
+
+	@Override
+	public BufferedImage getImageMouvement(int i) {
+		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
+	}
 }
