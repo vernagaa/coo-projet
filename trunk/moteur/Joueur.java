@@ -146,6 +146,10 @@ public final class Joueur {
 		return c1.isConquis()&&c2.isConquis();
 	}
 	
+	public boolean tousMort(){
+		return listeDePions.isEmpty();
+	}
+	
 	public void conquerir(Case c){
 		for(ArrayList<Case> l : chateaux){
 			if(l.contains(c)){
