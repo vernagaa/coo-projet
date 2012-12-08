@@ -460,8 +460,6 @@ public class Moteur implements Runnable, Serializable {
 		joueur2.lierChateaux(chateau2);
 
 	}
-	//TODO Conquerir
-	//TODO Conquerir
 
 	public void setConqueteEnCours(boolean b) {
 		conqueteEnCours = b;

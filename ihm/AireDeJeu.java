@@ -227,7 +227,6 @@ public class AireDeJeu extends JComponent {
 	}
 
 	private void afficherPorteConquerir(Graphics2D gd) {
-		//FIXME ListeAir sert à quoi ???
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeConquetePossible()) {
 			gd.setColor(new Color(255, 0, 255, 150));

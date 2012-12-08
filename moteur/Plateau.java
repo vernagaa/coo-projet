@@ -71,25 +71,6 @@ public class Plateau implements Serializable {
 			ois.close();
 			fis.close();
 
-//            //XXX Pions test à supprimer
-//			new ArcherFelin(plateau[10][12]);
-//			new AssassinFelin(plateau[10][13]);
-//			new GuerrierFelin(plateau[10][14]);
-//			new TacticienFelin(plateau[10][15]);
-//			new TankFelin(plateau[10][16]);
-//
-//			new ArcherOiseau(plateau[11][12]);
-//			new AssassinOiseau(plateau[11][13]);
-//			new GuerrierOiseau(plateau[11][14]);
-//			new TacticienOiseau(plateau[11][15]);
-//			new TankOiseau(plateau[11][16]);
-//
-//			new ArcherReptile(plateau[12][12]);
-//			new AssassinReptile(plateau[12][13]);
-//			new GuerrierReptile(plateau[12][14]);
-//			new TacticienReptile(plateau[12][15]);
-//			new TankReptile(plateau[12][16]);
-
 		} catch (ClassNotFoundException ex) {
 			Logger.getLogger(Plateau.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
