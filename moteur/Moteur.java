@@ -422,23 +422,44 @@ public class Moteur implements Runnable, Serializable {
 		ArrayList<Case> l = plateau.listeChateaux();
 		System.out.println(l);
 		ArrayList<Case> chateau = new ArrayList<Case>();
+		ArrayList<ArrayList<Case>> listeChateau = new ArrayList<ArrayList<Case>>();
 		int i = 0;
+		int lchInt = 0;
+		int lchSave = 0;
+		boolean trouve = false;
+		boolean ajoute = false;
 		for (Case c : l) {
-			System.out.println(" " + ((Chateau) (c.getObstacle())).isJoueur1() + " " + c + " " + i);
-			if (i < 3) {
-				chateau.add(c);
-				i++;
+			if (trouve) {
+				listeChateau.get(lchSave).add(c);
+				trouve = false;
 			} else {
-				chateau.add(c);
-				if (((Chateau) (chateau.get(0).getObstacle())).isJoueur1()) {
-					joueur1.lierChateaux(chateau);
-				} else {
-					joueur2.lierChateaux(chateau);
+				ajoute = false;
+				for (ArrayList<Case> lch : listeChateau) {
+					if (lch.get(0).getColonne() == c.getColonne() - 1 && lch.get(0).getLigne() == c.getLigne()
+							|| lch.get(0).getColonne() == c.getColonne() - 1 && lch.get(0).getLigne() + 1 == c.getLigne()) {
+						lch.add(c);
+						ajoute = true;
+					}
 				}
-				chateau.clear();
-				i = 0;
+				if (!ajoute) {
+					chateau = new ArrayList<Case>();
+					chateau.add(c);
+					listeChateau.add(chateau);
+					trouve = true;
+					lchSave = lchInt;
+					lchInt++;
+				}
 			}
 		}
+
+		for (ArrayList<Case> lch : listeChateau) {
+			if (((Chateau) lch.get(0).getObstacle()).isJoueur1()) {
+				joueur1.lierChateaux(lch);
+			} else {
+				joueur2.lierChateaux(lch);
+			}
+		}
+
 		System.out.println(joueur1.getChateaux());
 		System.out.println(joueur2.getChateaux());
 	}
@@ -449,6 +470,7 @@ public class Moteur implements Runnable, Serializable {
 
 	private void victoire() {
 		//TODO Victoire graphique
+		animation.animerFinDePartie();
 		System.out.println("Victoire " + getJoueurCourant().getNom() + " !!!");
 	}
 }
