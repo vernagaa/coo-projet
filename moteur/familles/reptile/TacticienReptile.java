@@ -7,7 +7,7 @@ import moteur.classes.Tacticien;
 
 /**
  *
- * @author Kévin
+ * @author KÃ©vin
  */
 public final class TacticienReptile extends Tacticien implements Reptile {
 
@@ -44,6 +44,6 @@ public final class TacticienReptile extends Tacticien implements Reptile {
 
 	@Override
 	public BufferedImage getImageMouvement(int i) {
-		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
+		return Textures.getPersonnage(Textures.TACTICIENREPTILE, orientation, i);
 	}
 }

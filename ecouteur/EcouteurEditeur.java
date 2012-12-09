@@ -2,11 +2,7 @@ package ecouteur;
 
 import editeur.FenetreEditeur;
 import java.awt.event.*;
-import moteur.Bordure;
-import moteur.Case;
-import moteur.Chateau;
-import moteur.Destructible;
-import moteur.Indestructible;
+import moteur.*;
 
 /**
  *
@@ -72,8 +68,17 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 					Indestructible o = new Indestructible(fenetreEditeur.texture);
 					c[i][j].setObstacle(o);
 				} else if (fenetreEditeur.chateau) {
-					Chateau o = new Chateau(fenetreEditeur.texture);
-					c[i][j].setObstacle(o);
+					if (fenetreEditeur.texture == Textures.CHATEAU1BASDROIT
+							|| fenetreEditeur.texture == Textures.CHATEAU1BASGAUCHE
+							|| fenetreEditeur.texture == Textures.CHATEAU1HAUTDROIT
+							|| fenetreEditeur.texture == Textures.CHATEAU1HAUTGAUCHE) {
+						Chateau o = new Chateau(fenetreEditeur.texture, true);
+						c[i][j].setObstacle(o);
+					} else {
+						Chateau o = new Chateau(fenetreEditeur.texture, false);
+						c[i][j].setObstacle(o);
+					}
+
 				} else if (fenetreEditeur.bordure) {
 					Bordure b = new Bordure(fenetreEditeur.texture);
 					c[i][j].setBordure(b);

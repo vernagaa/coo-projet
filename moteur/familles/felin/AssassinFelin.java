@@ -7,7 +7,7 @@ import moteur.classes.Assassin;
 
 /**
  *
- * @author Kévin
+ * @author KÃ©vin
  */
 public class AssassinFelin extends Assassin implements Felin {
 
@@ -65,6 +65,6 @@ public class AssassinFelin extends Assassin implements Felin {
 	}
 
 	public BufferedImage getImageMouvement(int i) {
-		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
+		return Textures.getPersonnage(Textures.ASSASSINFELIN, orientation, i);
 	}
 }

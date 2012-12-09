@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Kévin
+ * @author KÃ©vin
  */
 public class Plateau implements Serializable {
 
@@ -43,7 +43,7 @@ public class Plateau implements Serializable {
 	}
 
 	/**
-	 * Constructeur avec une carte prédéfinie
+	 * Constructeur avec une carte prÃ©dÃ©finie
 	 *
 	 * @param f
 	 */
@@ -79,10 +79,10 @@ public class Plateau implements Serializable {
 	}
 
 	/**
-	 * Retourne la case situé à la même position, c'est-à-dire même ligne et
-	 * même colonne.
+	 * Retourne la case situÃ© Ã  la mÃªme position, c'est-Ã -dire mÃªme ligne et
+	 * mÃªme colonne.
 	 *
-	 * @param c Case qui est retournée
+	 * @param c Case qui est retournÃ©e
 	 * @return Retourne la case c.
 	 */
 	public Case get(Case c) {
@@ -93,11 +93,11 @@ public class Plateau implements Serializable {
 	}
 
 	/**
-	 * Retourne la case se situant à la ligne l,et à la colonne c.
+	 * Retourne la case se situant Ã  la ligne l,et Ã  la colonne c.
 	 *
 	 * @param l ligne de la case.
 	 * @param c colonne de la case.
-	 * @return Case situé en position l,c
+	 * @return Case situÃ© en position l,c
 	 */
 	public Case get(int l, int c) {
 		//Arguments sont valides
@@ -139,9 +139,6 @@ public class Plateau implements Serializable {
 			for(int j=0;j<ligne;j++){
 				if(plateau[j][i].getObstacle()!=null && plateau[j][i].getObstacle().isChateau()){
 					l.add(plateau[j][i]);
-				}
-				if(i==6){
-					i=colonne-7;
 				}
 			}
 		}

@@ -141,9 +141,11 @@ public final class Joueur {
 	}
 	
 	public boolean toutConquis(){
-		Chateau c1 = (Chateau)chateaux.get(0).get(0).getObstacle();
-		Chateau c2 = (Chateau)chateaux.get(1).get(0).getObstacle();
-		return c1.isConquis()&&c2.isConquis();
+		boolean resultat = true;
+		for(ArrayList<Case> lc : chateaux){
+			resultat = resultat && ((Chateau)lc.get(0).getObstacle()).isConquis();
+		}
+		return resultat;
 	}
 	
 	public boolean tousMort(){
