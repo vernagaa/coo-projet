@@ -16,7 +16,7 @@ import moteur.*;
 
 /**
  *
- * @author Kévin
+ * @author KÃ©vin
  */
 public class Animation {
 
@@ -138,7 +138,7 @@ public class Animation {
 			aire.position.x = p.getCase().getColonne() * 30;
 			aire.position.y = p.getCase().getLigne() * 30;
 			aire.imageEnCours = p.getImageMouvement(1);
-			timer = new Timer(42, new ActionListener() {
+			timer = new Timer(21, new ActionListener() {
 
 				int deplacementCase = 15;
 				int deplacementEnCours = 0;

@@ -12,7 +12,7 @@ import moteur.familles.oiseau.Oiseau;
 
 /**
  *
- * @author Kévin
+ * @author KÃ©vin
  */
 public class Moteur implements Runnable, Serializable {
 
@@ -98,7 +98,7 @@ public class Moteur implements Runnable, Serializable {
 				nouvellePartie.setChoix(false);
 			}
 
-			if (nouvellePartie.getNbPions() == 4) {
+			if (nouvellePartie.getNbPions() == 2) {
 				nouvellePartie.elireCommandant();
 			}
 		} else if (nouvellePartie.getEtape() == 3) {
@@ -152,6 +152,8 @@ public class Moteur implements Runnable, Serializable {
 						if (!caseCourante.getPion().estVivant()) {
 							System.out.println("Il meurt");
 							caseAncienne.getPion().tuer(caseCourante.getPion());
+						} else if (!caseAncienne.getPion().estVivant()) {
+							caseCourante.getPion().tuer(caseAncienne.getPion());
 						}
 
 //						if (getJoueurCourant().commandantMort()) {
@@ -263,17 +265,17 @@ public class Moteur implements Runnable, Serializable {
 			// On la place a l'endroit voulu
 			fenetreChoixPion.placerFenetre(c);
 
-			// On specifie que le mouvement est terminé
+			// On specifie que le mouvement est terminÃ©
 			mouvementEnCours = false;
 			// On indique qu'il ne faut plus afficher les mouvements possibles
 			aireDeJeu.afficherMouvement(mouvementEnCours, c);
 
-			// On specifie que la téléportation est terminée
+			// On specifie que la tÃ©lÃ©portation est terminÃ©e
 			teleportationEnCours = false;
-			// On indique qu'il ne faut plus afficher les téléporteurs disponibles
+			// On indique qu'il ne faut plus afficher les tÃ©lÃ©porteurs disponibles
 			aireDeJeu.afficherTeleporteurDisponible(false, c);
 
-			// On specifie que l'attaque est terminée
+			// On specifie que l'attaque est terminÃ©e
 			attaqueEnCours = false;
 			// On indique qu'il ne faut plus afficher les attaques possibles
 			aireDeJeu.setAttaqueEnCours(false);
@@ -378,7 +380,10 @@ public class Moteur implements Runnable, Serializable {
 	public void utiliserAction() {
 		getJoueurCourant().utiliserAction();
 		fp.setLabelAction(getJoueurCourant().getNbActions());
-		if(getJoueurAdverse().toutConquis() || getJoueurAdverse().tousMort()){
+		if (getJoueurCourant().getNbActions() == 0) {
+			changementJoueur();
+		}
+		if (getJoueurAdverse().toutConquis() || getJoueurAdverse().tousMort()) {
 			victoire();
 		}
 	}
@@ -415,47 +420,27 @@ public class Moteur implements Runnable, Serializable {
 
 	public void lierChateaux() {
 		ArrayList<Case> l = plateau.listeChateaux();
-		ArrayList<Case> chateau1 = new ArrayList<Case>();
-		ArrayList<Case> chateau2 = new ArrayList<Case>();
+		System.out.println(l);
+		ArrayList<Case> chateau = new ArrayList<Case>();
 		int i = 0;
-		int j = 0;
 		for (Case c : l) {
-			if (c.getColonne() <= 6) {
-				if (i < 2) {
-					i++;
-					chateau1.add(c);
-				} else {
-					i++;
-					chateau2.add(c);
-					if (i == 4) {
-						i = 0;
-					}
-				}
-
+			System.out.println(" " + ((Chateau) (c.getObstacle())).isJoueur1() + " " + c + " " + i);
+			if (i < 3) {
+				chateau.add(c);
+				i++;
 			} else {
-				if (j == 0) {
-					joueur1.lierChateaux(chateau1);
-					joueur1.lierChateaux(chateau2);
-					j++;
-					i = 0;
-					chateau1.clear();
-					chateau2.clear();
-				}
-				if (i < 2) {
-					i++;
-					chateau1.add(c);
+				chateau.add(c);
+				if (((Chateau) (chateau.get(0).getObstacle())).isJoueur1()) {
+					joueur1.lierChateaux(chateau);
 				} else {
-					i++;
-					chateau2.add(c);
-					if (i == 4) {
-						i = 0;
-					}
+					joueur2.lierChateaux(chateau);
 				}
+				chateau.clear();
+				i = 0;
 			}
 		}
-		joueur2.lierChateaux(chateau1);
-		joueur2.lierChateaux(chateau2);
-
+		System.out.println(joueur1.getChateaux());
+		System.out.println(joueur2.getChateaux());
 	}
 
 	public void setConqueteEnCours(boolean b) {
@@ -464,6 +449,6 @@ public class Moteur implements Runnable, Serializable {
 
 	private void victoire() {
 		//TODO Victoire graphique
-		System.out.println("Victoire "+getJoueurCourant().getNom()+" !!!");
+		System.out.println("Victoire " + getJoueurCourant().getNom() + " !!!");
 	}
 }

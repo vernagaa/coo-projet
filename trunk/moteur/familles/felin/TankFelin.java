@@ -7,7 +7,7 @@ import moteur.classes.Tank;
 
 /**
  *
- * @author Kévin
+ * @author KÃ©vin
  */
 public final class TankFelin extends Tank implements Felin {
 
@@ -65,6 +65,6 @@ public final class TankFelin extends Tank implements Felin {
 	}
 
 	public BufferedImage getImageMouvement(int i) {
-		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
+		return Textures.getPersonnage(Textures.TANKFELIN, orientation, i);
 	}
 }

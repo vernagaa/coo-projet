@@ -7,7 +7,7 @@ import moteur.classes.Tank;
 
 /**
  *
- * @author Kévin
+ * @author KÃ©vin
  */
 public final class TankReptile extends Tank implements Reptile {
 
@@ -44,6 +44,6 @@ public final class TankReptile extends Tank implements Reptile {
 
 	@Override
 	public BufferedImage getImageMouvement(int i) {
-		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
+		return Textures.getPersonnage(Textures.TANKREPTILE, orientation, i);
 	}
 }

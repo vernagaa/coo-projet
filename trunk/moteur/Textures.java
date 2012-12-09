@@ -151,7 +151,7 @@ public final class Textures {
 	public static final int BARRIERECOINBASGAUCHE = 41;
 	public static final int BARRIERECOINHAUTGAUCHE = 42;
 	/**
-	 * Téléporteur
+	 * TÃ©lÃ©porteur
 	 */
 	public static final String TELEPORTEURPATH = "/images/obstacle/teleporteur/portal.png";
 	public static final int TELEPORTEUR1 = 43;
@@ -213,35 +213,35 @@ public final class Textures {
 		try {
 			terrain[ROC] = ImageIO.read(getClass().getResource(ROCPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + ROCPATH);
+			System.err.println("Image non trouvÃ©e : " + ROCPATH);
 		}
 		try {
 			terrain[ROUTE] = ImageIO.read(getClass().getResource(ROUTEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + ROUTEPATH);
+			System.err.println("Image non trouvÃ©e : " + ROUTEPATH);
 		}
 
 		try {
 			terrain[HERBE] = ImageIO.read(getClass().getResource(HERBEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + HERBEPATH);
+			System.err.println("Image non trouvÃ©e : " + HERBEPATH);
 		}
 		try {
 			terrain[NEIGE] = ImageIO.read(getClass().getResource(NEIGEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + NEIGEPATH);
+			System.err.println("Image non trouvÃ©e : " + NEIGEPATH);
 		}
 		try {
 			terrain[GLACE] = ImageIO.read(getClass().getResource(GLACEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + GLACEPATH);
+			System.err.println("Image non trouvÃ©e : " + GLACEPATH);
 		}
 		try {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(TELEPORTEURPATH)), 2 * 32, 32);
 			obstacle[TELEPORTEUR1] = img.getSubimage(0, 0, 32, 32);
 			obstacle[TELEPORTEUR2] = img.getSubimage(32, 0, 32, 32);
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + TELEPORTEURPATH);
+			System.err.println("Image non trouvÃ©e : " + TELEPORTEURPATH);
 		}
 
 		tileEau();
@@ -278,13 +278,13 @@ public final class Textures {
 	private BufferedImage getPerso(int numPerso, Orientation orientation) {
 		switch (orientation) {
 			case NORD:
-				return perso[numPerso][0][0];
+				return perso[numPerso][0][1];
 			case SUD:
-				return perso[numPerso][1][0];
+				return perso[numPerso][1][1];
 			case EST:
-				return perso[numPerso][2][0];
+				return perso[numPerso][2][1];
 			case OUEST:
-				return perso[numPerso][3][0];
+				return perso[numPerso][3][1];
 			default:
 				return null;
 		}
@@ -339,83 +339,83 @@ public final class Textures {
 		try {
 			bordureTerrain[BORDUREEAUBAS] = ImageIO.read(getClass().getResource(BORDUREEAUBASPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDUREEAUBASPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDUREEAUBASPATH);
 		}
 		try {
 			bordureTerrain[BORDUREEAUGAUCHE] = ImageIO.read(getClass().getResource(BORDUREEAUGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDUREEAUGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDUREEAUGAUCHEPATH);
 		}
 		try {
 			bordureTerrain[BORDUREEAUDROIT] = ImageIO.read(getClass().getResource(BORDUREEAUDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDUREEAUDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDUREEAUDROITPATH);
 		}
 
 		try {
 			obstacle[EAUVIRAGEHAUTGAUCHE] = ImageIO.read(getClass().getResource(EAUVIRAGEHAUTGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUVIRAGEHAUTGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUVIRAGEHAUTGAUCHEPATH);
 		}
 		try {
 			obstacle[EAUVIRAGEHAUTDROIT] = ImageIO.read(getClass().getResource(EAUVIRAGEHAUTDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUVIRAGEHAUTDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUVIRAGEHAUTDROITPATH);
 		}
 		try {
 			obstacle[EAUVIRAGEBASGAUCHE] = ImageIO.read(getClass().getResource(EAUVIRAGEBASGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUVIRAGEBASGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUVIRAGEBASGAUCHEPATH);
 		}
 		try {
 			obstacle[EAUVIRAGEBASDROIT] = ImageIO.read(getClass().getResource(EAUVIRAGEBASDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUVIRAGEBASDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUVIRAGEBASDROITPATH);
 		}
 		try {
 			obstacle[EAUHAUTGAUCHE] = ImageIO.read(getClass().getResource(EAUHAUTGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUHAUTGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUHAUTGAUCHEPATH);
 		}
 		try {
 			obstacle[EAUHAUTDROIT] = ImageIO.read(getClass().getResource(EAUHAUTDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUHAUTDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUHAUTDROITPATH);
 		}
 		try {
 			obstacle[EAUHAUT] = ImageIO.read(getClass().getResource(EAUHAUTPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUHAUTPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUHAUTPATH);
 		}
 		try {
 			obstacle[EAUGAUCHE] = ImageIO.read(getClass().getResource(EAUGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUGAUCHEPATH);
 		}
 		try {
 			obstacle[EAUFONDGAUCHE] = ImageIO.read(getClass().getResource(EAUFONDGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUFONDGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUFONDGAUCHEPATH);
 		}
 		try {
 			obstacle[EAUFONDDROIT] = ImageIO.read(getClass().getResource(EAUFONDDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUFONDDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUFONDDROITPATH);
 		}
 		try {
 			obstacle[EAUFONDBAS] = ImageIO.read(getClass().getResource(EAUFONDBASPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUFONDBASPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUFONDBASPATH);
 		}
 		try {
 			obstacle[EAUDROIT] = ImageIO.read(getClass().getResource(EAUDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUDROITPATH);
 		}
 		try {
 			obstacle[EAU] = ImageIO.read(getClass().getResource(EAUPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + EAUPATH);
+			System.err.println("Image non trouvÃ©e : " + EAUPATH);
 		}
 	}
 
@@ -430,7 +430,7 @@ public final class Textures {
 			obstacle[CHATEAU1BASDROIT] = img1.getSubimage(30, 30, 30, 30);
 
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + CHATEAU1);
+			System.err.println("Image non trouvÃ©e : " + CHATEAU1);
 		}
 		try {
 			BufferedImage img2 = ImageIO.read(getClass().getResource(CHATEAU2));
@@ -440,7 +440,7 @@ public final class Textures {
 			obstacle[CHATEAU2BASDROIT] = img2.getSubimage(30, 30, 30, 30);
 
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + CHATEAU2);
+			System.err.println("Image non trouvÃ©e : " + CHATEAU2);
 		}
 	}
 
@@ -448,57 +448,57 @@ public final class Textures {
 		try {
 			obstacle[MONTAGNEHAUTDROIT] = ImageIO.read(getClass().getResource(MONTAGNEHAUTDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNEHAUTDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNEHAUTDROITPATH);
 		}
 		try {
 			obstacle[MONTAGNEHAUT] = ImageIO.read(getClass().getResource(MONTAGNEHAUTPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNEHAUTPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNEHAUTPATH);
 		}
 		try {
 			obstacle[MONTAGNEHAUTGAUCHE] = ImageIO.read(getClass().getResource(MONTAGNEHAUTGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNEHAUTGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNEHAUTGAUCHEPATH);
 		}
 		try {
 			obstacle[MONTAGNECENTREDROIT] = ImageIO.read(getClass().getResource(MONTAGNECENTREDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNECENTREDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNECENTREDROITPATH);
 		}
 		try {
 			obstacle[MONTAGNECENTRE] = ImageIO.read(getClass().getResource(MONTAGNECENTREPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNECENTREPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNECENTREPATH);
 		}
 		try {
 			obstacle[MONTAGNECENTREGAUCHE] = ImageIO.read(getClass().getResource(MONTAGNECENTREGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNECENTREGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNECENTREGAUCHEPATH);
 		}
 		try {
 			obstacle[MONTAGNEBASDROIT] = ImageIO.read(getClass().getResource(MONTAGNEBASDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNEBASDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNEBASDROITPATH);
 		}
 		try {
 			obstacle[MONTAGNEBAS] = ImageIO.read(getClass().getResource(MONTAGNEBASPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNEBASPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNEBASPATH);
 		}
 		try {
 			obstacle[MONTAGNEBASGAUCHE] = ImageIO.read(getClass().getResource(MONTAGNEBASGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNEBASGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNEBASGAUCHEPATH);
 		}
 		try {
 			obstacle[MONTAGNECORNERGAUCHE] = ImageIO.read(getClass().getResource(MONTAGNECORNERGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNECORNERGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNECORNERGAUCHEPATH);
 		}
 		try {
 			obstacle[MONTAGNECORNERDROIT] = ImageIO.read(getClass().getResource(MONTAGNECORNERDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + MONTAGNECORNERDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + MONTAGNECORNERDROITPATH);
 		}
 	}
 
@@ -506,53 +506,53 @@ public final class Textures {
 		try {
 			bordureTerrain[BORDURESABLECOINBASDROIT] = ImageIO.read(getClass().getResource(BORDURESABLECOINBASDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLECOINBASDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLECOINBASDROITPATH);
 		}
 		try {
 			bordureTerrain[BORDURESABLEHAUTGAUCHE] = ImageIO.read(getClass().getResource(BORDURESABLEHAUTGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLEHAUTGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLEHAUTGAUCHEPATH);
 		}
 		try {
 			bordureTerrain[BORDURESABLEHAUTDROIT] = ImageIO.read(getClass().getResource(BORDURESABLEHAUTDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLEHAUTDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLEHAUTDROITPATH);
 		}
 		try {
 			bordureTerrain[BORDURESABLEHAUT] = ImageIO.read(getClass().getResource(BORDURESABLEHAUTPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLEHAUTPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLEHAUTPATH);
 		}
 		try {
 			bordureTerrain[BORDURESABLEGAUCHE] = ImageIO.read(getClass().getResource(BORDURESABLEGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLEGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLEGAUCHEPATH);
 		}
 		try {
 			bordureTerrain[BORDURESABLEDROIT] = ImageIO.read(getClass().getResource(BORDURESABLEDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLEDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLEDROITPATH);
 		}
 		try {
 			bordureTerrain[BORDURESABLEBASGAUCHE] = ImageIO.read(getClass().getResource(BORDURESABLEBASGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLEBASGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLEBASGAUCHEPATH);
 		}
 		try {
 			bordureTerrain[BORDURESABLEBASDROIT] = ImageIO.read(getClass().getResource(BORDURESABLEBASDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLEBASDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLEBASDROITPATH);
 		}
 		try {
 			bordureTerrain[BORDURESABLEBAS] = ImageIO.read(getClass().getResource(BORDURESABLEBASPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BORDURESABLEBASPATH);
+			System.err.println("Image non trouvÃ©e : " + BORDURESABLEBASPATH);
 		}
 
 		try {
 			terrain[SABLE] = ImageIO.read(getClass().getResource(SABLEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + SABLEPATH);
+			System.err.println("Image non trouvÃ©e : " + SABLEPATH);
 		}
 	}
 
@@ -584,102 +584,115 @@ public final class Textures {
 				perso[TANKOISEAU][0][i] = img.getSubimage(32 * 3 + 32 * i, 224, 32, 32);
 			}
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
+			System.err.println("Image non trouvÃ©e : " + ASSASSINOISEAUPATH);
 		}
 		try {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(TACTICIENOISEAUPATH)), 32 * 3, 32 * 4);
-
-			perso[TACTICIENOISEAU][1][0] = img.getSubimage(32, 0, 32, 32);
-			perso[TACTICIENOISEAU][3][0] = img.getSubimage(32, 32, 32, 32);
-			perso[TACTICIENOISEAU][2][0] = img.getSubimage(32, 64, 32, 32);
-			perso[TACTICIENOISEAU][0][0] = img.getSubimage(32, 96, 32, 32);
+			for (int i = 0; i < 3; i++) {
+				perso[TACTICIENOISEAU][1][i] = img.getSubimage(32 * i, 0, 32, 32);
+				perso[TACTICIENOISEAU][3][i] = img.getSubimage(32 * i, 32, 32, 32);
+				perso[TACTICIENOISEAU][2][i] = img.getSubimage(32 * i, 64, 32, 32);
+				perso[TACTICIENOISEAU][0][i] = img.getSubimage(32 * i, 96, 32, 32);
+			}
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + ASSASSINOISEAUPATH);
+			System.err.println("Image non trouvÃ©e : " + ASSASSINOISEAUPATH);
 		}
 
 		// REPTILE
 		try {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(ARCHERREPTILEPATH)), 32 * 3, 32 * 4);
-			perso[ARCHERREPTILE][1][0] = img.getSubimage(32, 0, 32, 32);
-			perso[ARCHERREPTILE][3][0] = img.getSubimage(32, 32, 32, 32);
-			perso[ARCHERREPTILE][2][0] = img.getSubimage(32, 64, 32, 32);
-			perso[ARCHERREPTILE][0][0] = img.getSubimage(32, 96, 32, 32);
+			for (int i = 0; i < 3; i++) {
+				perso[ARCHERREPTILE][1][i] = img.getSubimage(32 * i, 0, 32, 32);
+				perso[ARCHERREPTILE][3][i] = img.getSubimage(32 * i, 32, 32, 32);
+				perso[ARCHERREPTILE][2][i] = img.getSubimage(32 * i, 64, 32, 32);
+				perso[ARCHERREPTILE][0][i] = img.getSubimage(32 * i, 96, 32, 32);
+			}
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + ARCHERREPTILEPATH);
+			System.err.println("Image non trouvÃ©e : " + ARCHERREPTILEPATH);
 		}
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(TANKREPTILEPATH));
-			perso[TANKREPTILE][1][0] = img.getSubimage(0, 0, 32, 32);
-			perso[TANKREPTILE][0][0] = img.getSubimage(0, 32, 32, 32);
-			perso[TANKREPTILE][3][0] = img.getSubimage(32, 0, 32, 32);
-			perso[TANKREPTILE][2][0] = img.getSubimage(32, 32, 32, 32);
+			for (int i = 0; i < 3; i++) {
+				perso[TANKREPTILE][1][i] = img.getSubimage(0, 0, 32, 32);
+				perso[TANKREPTILE][0][i] = img.getSubimage(0, 32, 32, 32);
+				perso[TANKREPTILE][3][i] = img.getSubimage(32, 0, 32, 32);
+				perso[TANKREPTILE][2][i] = img.getSubimage(32, 32, 32, 32);
+			}
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + TANKREPTILEPATH);
+			System.err.println("Image non trouvÃ©e : " + TANKREPTILEPATH);
 		}
 		try {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(GUERRIERREPTILEPATH)), 3 * 32, 4 * 32);
-			perso[GUERRIERREPTILE][1][0] = img.getSubimage(0, 0, 32, 32);
-			perso[GUERRIERREPTILE][3][0] = img.getSubimage(0, 32, 32, 32);
-			perso[GUERRIERREPTILE][2][0] = img.getSubimage(0, 64, 32, 32);
-			perso[GUERRIERREPTILE][0][0] = img.getSubimage(0, 96, 32, 32);
+			for (int i = 0; i < 3; i++) {
+				perso[GUERRIERREPTILE][1][i] = img.getSubimage(32 * i, 0, 32, 32);
+				perso[GUERRIERREPTILE][3][i] = img.getSubimage(32 * i, 32, 32, 32);
+				perso[GUERRIERREPTILE][2][i] = img.getSubimage(32 * i, 64, 32, 32);
+				perso[GUERRIERREPTILE][0][i] = img.getSubimage(32 * i, 96, 32, 32);
+			}
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + GUERRIERREPTILEPATH);
+			System.err.println("Image non trouvÃ©e : " + GUERRIERREPTILEPATH);
 		}
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINREPTILEPATH));
-			perso[ASSASSINREPTILE][1][0] = img.getSubimage(0, 0, 32, 32);
-			perso[ASSASSINREPTILE][3][0] = img.getSubimage(0, 32, 32, 32);
-			perso[ASSASSINREPTILE][0][0] = img.getSubimage(0, 64, 32, 32);
-			perso[ASSASSINREPTILE][2][0] = img.getSubimage(0, 96, 32, 32);
+			for (int i = 0; i < 3; i++) {
+				perso[ASSASSINREPTILE][1][i] = img.getSubimage(32 * i, 0, 32, 32);
+				perso[ASSASSINREPTILE][3][i] = img.getSubimage(32 * i, 32, 32, 32);
+				perso[ASSASSINREPTILE][0][i] = img.getSubimage(32 * i, 64, 32, 32);
+				perso[ASSASSINREPTILE][2][i] = img.getSubimage(32 * i, 96, 32, 32);
+			}
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + ASSASSINREPTILEPATH);
+			System.err.println("Image non trouvÃ©e : " + ASSASSINREPTILEPATH);
 		}
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(TACTICIENREPTILEPATH));
-			perso[TACTICIENREPTILE][1][0] = img.getSubimage(32, 0, 32, 32);
-			perso[TACTICIENREPTILE][3][0] = img.getSubimage(32, 32, 32, 32);
-			perso[TACTICIENREPTILE][2][0] = img.getSubimage(32, 64, 32, 32);
-			perso[TACTICIENREPTILE][0][0] = img.getSubimage(32, 96, 32, 32);
+			for (int i = 0; i < 3; i++) {
+				perso[TACTICIENREPTILE][1][i] = img.getSubimage(32 * i, 0, 32, 32);
+				perso[TACTICIENREPTILE][3][i] = img.getSubimage(32 * i, 32, 32, 32);
+				perso[TACTICIENREPTILE][2][i] = img.getSubimage(32 * i, 64, 32, 32);
+				perso[TACTICIENREPTILE][0][i] = img.getSubimage(32 * i, 96, 32, 32);
+			}
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + TACTICIENREPTILEPATH);
+			System.err.println("Image non trouvÃ©e : " + TACTICIENREPTILEPATH);
 		}
 
-		// FÉLIN
+		// FÃ‰LIN
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINFELINPATH));
+			for (int i = 0; i < 3; i++) {
+				perso[ASSASSINFELIN][1][i] = img.getSubimage(192 + 32 * i, 2, 32, 30);
+				perso[ASSASSINFELIN][3][i] = img.getSubimage(192 + 32 * i, 34, 32, 30);
+				perso[ASSASSINFELIN][2][i] = img.getSubimage(192 + 32 * i, 66, 32, 30);
+				perso[ASSASSINFELIN][0][i] = img.getSubimage(192 + 32 * i, 98, 32, 30);
 
-			perso[ASSASSINFELIN][1][0] = img.getSubimage(224, 2, 32, 30);
-			perso[ASSASSINFELIN][3][0] = img.getSubimage(224, 34, 32, 30);
-			perso[ASSASSINFELIN][2][0] = img.getSubimage(224, 66, 32, 30);
-			perso[ASSASSINFELIN][0][0] = img.getSubimage(224, 98, 32, 30);
+				perso[ARCHERFELIN][1][i] = img.getSubimage(32 * i, 2, 32, 30);
+				perso[ARCHERFELIN][3][i] = img.getSubimage(32 * i, 34, 32, 30);
+				perso[ARCHERFELIN][2][i] = img.getSubimage(32 * i, 66, 32, 30);
+				perso[ARCHERFELIN][0][i] = img.getSubimage(32 * i, 98, 32, 30);
 
-			perso[ARCHERFELIN][1][0] = img.getSubimage(32, 2, 32, 30);
-			perso[ARCHERFELIN][3][0] = img.getSubimage(32, 34, 32, 30);
-			perso[ARCHERFELIN][2][0] = img.getSubimage(32, 66, 32, 30);
-			perso[ARCHERFELIN][0][0] = img.getSubimage(32, 98, 32, 30);
+				perso[GUERRIERFELIN][1][i] = img.getSubimage(96 + 32 * i, 2, 32, 30);
+				perso[GUERRIERFELIN][3][i] = img.getSubimage(96 + 32 * i, 34, 32, 30);
+				perso[GUERRIERFELIN][2][i] = img.getSubimage(96 + 32 * i, 66, 32, 30);
+				perso[GUERRIERFELIN][0][i] = img.getSubimage(96 + 32 * i, 98, 32, 30);
 
-			perso[GUERRIERFELIN][1][0] = img.getSubimage(128, 2, 32, 30);
-			perso[GUERRIERFELIN][3][0] = img.getSubimage(128, 34, 32, 30);
-			perso[GUERRIERFELIN][2][0] = img.getSubimage(128, 66, 32, 30);
-			perso[GUERRIERFELIN][0][0] = img.getSubimage(128, 98, 32, 30);
-
-			perso[TACTICIENFELIN][1][0] = img.getSubimage(320, 2, 32, 30);
-			perso[TACTICIENFELIN][3][0] = img.getSubimage(320, 34, 32, 30);
-			perso[TACTICIENFELIN][2][0] = img.getSubimage(320, 66, 32, 30);
-			perso[TACTICIENFELIN][0][0] = img.getSubimage(320, 98, 32, 30);
+				perso[TACTICIENFELIN][1][i] = img.getSubimage(288 + 32 * i, 2, 32, 30);
+				perso[TACTICIENFELIN][3][i] = img.getSubimage(288 + 32 * i, 34, 32, 30);
+				perso[TACTICIENFELIN][2][i] = img.getSubimage(288 + 32 * i, 66, 32, 30);
+				perso[TACTICIENFELIN][0][i] = img.getSubimage(288 + 32 * i, 98, 32, 30);
+			}
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + ASSASSINFELINPATH);
+			System.err.println("Image non trouvÃ©e : " + ASSASSINFELINPATH);
 		}
 		try {
 			BufferedImage img = scale(ImageIO.read(getClass().getResource(TANKFELINPATH)), 3 * 32, 4 * 32);
-
-			perso[TANKFELIN][1][0] = img.getSubimage(32, 0, 32, 30);
-			perso[TANKFELIN][3][0] = img.getSubimage(32, 34, 32, 30);
-			perso[TANKFELIN][2][0] = img.getSubimage(32, 66, 32, 30);
-			perso[TANKFELIN][0][0] = img.getSubimage(32, 98, 32, 30);
+			for (int i = 0; i < 3; i++) {
+				perso[TANKFELIN][1][i] = img.getSubimage(32 * i, 0, 32, 30);
+				perso[TANKFELIN][3][i] = img.getSubimage(32 * i, 34, 32, 30);
+				perso[TANKFELIN][2][i] = img.getSubimage(32 * i, 66, 32, 30);
+				perso[TANKFELIN][0][i] = img.getSubimage(32 * i, 98, 32, 30);
+			}
 
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + TANKFELINPATH);
+			System.err.println("Image non trouvÃ©e : " + TANKFELINPATH);
 		}
 	}
 
@@ -687,57 +700,57 @@ public final class Textures {
 		try {
 			obstacle[BARRIERECOINBASDROIT] = ImageIO.read(getClass().getResource(BARRIERECOINBASDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIERECOINBASDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIERECOINBASDROITPATH);
 		}
 		try {
 			obstacle[BARRIERECOINHAUTDROIT] = ImageIO.read(getClass().getResource(BARRIERECOINHAUTDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIERECOINHAUTDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIERECOINHAUTDROITPATH);
 		}
 		try {
 			obstacle[BARRIERECOINFINDROIT] = ImageIO.read(getClass().getResource(BARRIERECOINFINDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIERECOINFINDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIERECOINFINDROITPATH);
 		}
 		try {
 			obstacle[BARRIEREFINDROIT] = ImageIO.read(getClass().getResource(BARRIEREDROITFINPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIEREDROITFINPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIEREDROITFINPATH);
 		}
 		try {
 			obstacle[BARRIEREDROIT] = ImageIO.read(getClass().getResource(BARRIEREDROITPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIEREDROITPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIEREDROITPATH);
 		}
 		try {
 			obstacle[BARRIEREGAUCHEFIN] = ImageIO.read(getClass().getResource(BARRIEREGAUCHEFINPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIEREGAUCHEFINPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIEREGAUCHEFINPATH);
 		}
 		try {
 			obstacle[BARRIERECOINFINGAUCHE] = ImageIO.read(getClass().getResource(BARRIERECOINFINGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIERECOINFINGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIERECOINFINGAUCHEPATH);
 		}
 		try {
 			obstacle[BARRIEREBAS] = ImageIO.read(getClass().getResource(BARRIEREBASPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIEREBASPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIEREBASPATH);
 		}
 		try {
 			obstacle[BARRIEREGAUCHE] = ImageIO.read(getClass().getResource(BARRIEREGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIEREGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIEREGAUCHEPATH);
 		}
 		try {
 			obstacle[BARRIERECOINBASGAUCHE] = ImageIO.read(getClass().getResource(BARRIERECOINBASGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIERECOINBASGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIERECOINBASGAUCHEPATH);
 		}
 		try {
 			obstacle[BARRIERECOINHAUTGAUCHE] = ImageIO.read(getClass().getResource(BARRIERECOINHAUTGAUCHEPATH));
 		} catch (IOException ex) {
-			System.err.println("Image non trouvée : " + BARRIERECOINHAUTGAUCHEPATH);
+			System.err.println("Image non trouvÃ©e : " + BARRIERECOINHAUTGAUCHEPATH);
 		}
 
 	}
@@ -745,19 +758,19 @@ public final class Textures {
 	/**
 	 * Redimensionne une image.
 	 *
-	 * @param source Image à redimensionner.
+	 * @param source Image Ã Â redimensionner.
 	 * @param width Largeur de l'image cible.
 	 * @param height Hauteur de l'image cible.
-	 * @return Image redimensionnée.
+	 * @return Image redimensionnÃ©e.
 	 */
 	private static BufferedImage scale(Image source, int width, int height) {
 		/*
-		 * On créé une nouvelle image aux bonnes dimensions.
+		 * On crÃ©Ã© une nouvelle image aux bonnes dimensions.
 		 */
 		BufferedImage buf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		if (source.getWidth(null) != width || source.getHeight(null) != height) {
 			/*
-			 * On dessine sur le Graphics de l'image bufferisée.
+			 * On dessine sur le Graphics de l'image bufferisÃ©e.
 			 */
 			Graphics2D g = buf.createGraphics();
 			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -765,7 +778,7 @@ public final class Textures {
 			g.dispose();
 		}
 		/*
-		 * On retourne l'image bufferisée, qui est une image.
+		 * On retourne l'image bufferisÃ©e, qui est une image.
 		 */
 		return buf;
 	}
