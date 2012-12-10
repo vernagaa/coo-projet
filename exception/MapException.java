@@ -10,6 +10,10 @@ package exception;
  */
 public class MapException extends Exception{
 
+	/**
+	 * Constructeur de l'exception lorsque la carte n'est pas trouvée
+	 * @param str
+	 */
 	public MapException(String str) {
 		System.err.println("La map "+ str +" n'a pas été trouvée");
 	}
