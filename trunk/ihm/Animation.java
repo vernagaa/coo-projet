@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.Timer;
 import moteur.*;
 
@@ -19,10 +20,12 @@ public class Animation {
 	private boolean animationEnCours;
 	private Timer timer;
 	private EcouteurPlateau ecouteur;
+	private ArrayList<Integer> listeAnimation;
 
 	public Animation(AireDAnimation aire, Moteur m, EcouteurPlateau ecouteur) {
 		this.aire = aire;
 		animationEnCours = false;
+		listeAnimation = new ArrayList<Integer>();
 		this.ecouteur = ecouteur;
 		this.m = m;
 	}
@@ -35,14 +38,15 @@ public class Animation {
 			timer = new Timer(42, new ActionListener() {
 
 				int compteurInterne = 0;
+				int temps = 12;
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (compteurInterne == 0 && aire.compteurFinDeTour < 12) {
+					if (compteurInterne == 0 && aire.compteurFinDeTour < temps / 2) {
 						aire.compteurFinDeTour++;
-					} else if (compteurInterne < 24 && aire.compteurFinDeTour == 12) {
+					} else if (compteurInterne < temps && aire.compteurFinDeTour == temps / 2) {
 						compteurInterne++;
-					} else if (compteurInterne == 24 && aire.compteurFinDeTour > 0) {
+					} else if (compteurInterne == temps && aire.compteurFinDeTour > 0) {
 						aire.compteurFinDeTour--;
 					} else {
 						aire.compteurFinDeTour = 0;
@@ -50,11 +54,14 @@ public class Animation {
 						animationEnCours = false;
 						aire.animationFinDeTour = false;
 						timer.stop();
+						lancerAnimation();
 					}
 					aire.repaint();
 				}
 			});
 			timer.start();
+		} else {
+			listeAnimation.add(new Integer(0));
 		}
 	}
 
@@ -74,10 +81,11 @@ public class Animation {
 
 				int compteurInterne = 0;
 				int tourAttaque = 0;
+				int temps = 72;
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if (compteurInterne < 36) {
+					if (compteurInterne < temps / 2) {
 						if (!pionA.degatsCombat.isEmpty()) {
 							aire.esquive = false;
 							aire.attaquant = true;
@@ -88,9 +96,10 @@ public class Animation {
 							animationEnCours = false;
 							aire.animationAttaque = false;
 							timer.stop();
+							lancerAnimation();
 						}
-					} else if (compteurInterne < 72) {
-						if (compteurInterne == 36) {
+					} else if (compteurInterne < temps) {
+						if (compteurInterne == temps / 2) {
 							aire.attaquant = false;
 							if (!pionA.degatsCombat.isEmpty()) {
 								pionA.degatsCombat.remove(0);
@@ -104,6 +113,8 @@ public class Animation {
 							animationEnCours = false;
 							aire.animationAttaque = false;
 							timer.stop();
+							lancerAnimation();
+
 						}
 					} else {
 						if (!pionD.degatsCombat.isEmpty()) {
@@ -115,6 +126,7 @@ public class Animation {
 							animationEnCours = false;
 							aire.animationAttaque = false;
 							timer.stop();
+							lancerAnimation();
 						}
 					}
 					aire.repaint();
@@ -132,9 +144,9 @@ public class Animation {
 			aire.position.x = p.getCase().getColonne() * 30;
 			aire.position.y = p.getCase().getLigne() * 30;
 			aire.imageEnCours = p.getImageMouvement(1);
-			timer = new Timer(21, new ActionListener() {
+			timer = new Timer(42, new ActionListener() {
 
-				int deplacementCase = 15;
+				int deplacementCase = 6;
 				int deplacementEnCours = 0;
 				int caseEnCours = 0;
 				Case caseTemp;
@@ -144,7 +156,7 @@ public class Animation {
 				boolean initialisation = true;
 				int orientation;
 				int compteurMouvement = 0;
-				int pixelDeplacement = 2;
+				int pixelDeplacement = 5;
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -212,13 +224,13 @@ public class Animation {
 						p.deplacerPion(m.caseCourante);
 						m.utiliserAction();
 						timer.stop();
+						lancerAnimation();
 					}
 					aire.repaint();
 				}
 			});
 			timer.start();
 		}
-
 	}
 
 	public boolean animationPossible() {
@@ -226,7 +238,83 @@ public class Animation {
 	}
 
 	public void animerFinDePartie() {
-		//TODO animerFinDePartie()
-		throw new UnsupportedOperationException("Not yet implemented");
+		if (!animationEnCours) {
+			animationEnCours = true;
+			ecouteur.desactiverEcouteur();
+			aire.animationFin = true;
+			timer = new Timer(42, new ActionListener() {
+
+				int compteurInterne = 0;
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (compteurInterne < 60) {
+						compteurInterne++;
+					} else {
+						ecouteur.activerEcouteur();
+						animationEnCours = false;
+						aire.animationFin = false;
+						timer.stop();
+						m.nouvellePartie();
+						listeAnimation.clear();
+					}
+					aire.repaint();
+				}
+			});
+			timer.start();
+		} else {
+			listeAnimation.add(new Integer(1));
+		}
+	}
+
+	public void animerElireCommandant() {
+		if (!animationEnCours) {
+			animationEnCours = true;
+			ecouteur.desactiverEcouteur();
+			aire.animationElire = true;
+			System.out.println("J'anime");
+			timer = new Timer(42, new ActionListener() {
+
+				int compteurInterne = 0;
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (compteurInterne < 40) {
+						compteurInterne++;
+						aire.compteurFinDeTour++;
+					} else {
+						ecouteur.activerEcouteur();
+						animationEnCours = false;
+						aire.animationElire = false;
+						aire.compteurFinDeTour = 0;
+						m.aireDeJeu.elireUnCommandant(m.getJoueurElireCommandant(), true);
+						m.aireDeJeu.repaint();
+						timer.stop();
+						lancerAnimation();
+					}
+					aire.repaint();
+				}
+			});
+			timer.start();
+		} else {
+			listeAnimation.add(new Integer(2));
+		}
+	}
+
+	private void lancerAnimation() {
+		if (!listeAnimation.isEmpty()) {
+			switch (listeAnimation.get(0)) {
+				case 0:
+					animerFinDeTour();
+					break;
+				case 1:
+					animerFinDePartie();
+					break;
+				case 2:
+					animerElireCommandant();
+					break;
+			}
+			listeAnimation.remove(0);
+		}
 	}
 }

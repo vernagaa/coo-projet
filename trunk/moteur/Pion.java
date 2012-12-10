@@ -501,10 +501,12 @@ public abstract class Pion implements Serializable {
 		return vie;
 	}
 
-	public void tuer(Pion pion) {
+	public boolean tuer(Pion pion) {
+		boolean tmp = pion.isCommandant();
 		vie += BONUSKILL;
 		pion.meurt();
 		pion = null;
+		return tmp;
 	}
 	
 	public void meurt() {
@@ -598,4 +600,8 @@ public abstract class Pion implements Serializable {
 	public abstract BufferedImage getImageMouvement(int i);
 	
 	public abstract BufferedImage getImage();
+
+	public boolean isCommandant() {
+		return commandant;
+	}
 }

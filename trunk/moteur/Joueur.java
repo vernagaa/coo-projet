@@ -33,6 +33,9 @@ public final class Joueur {
 
 	public void setCommandant(Pion commandant) {
 		System.out.println("Nomme commandant " + commandant);
+		if (commandant != null) {
+			commandant.setCommandant(true);
+		}
 		this.commandant = commandant;
 	}
 
@@ -100,9 +103,9 @@ public final class Joueur {
 	}
 
 	public void finDeTour() {
-		
+
 		nbActions += 10;
-		if(nbActions >= 30){
+		if (nbActions >= 30) {
 			nbActions = 30;
 		}
 		for (Pion p : listeDePions) {
@@ -133,39 +136,39 @@ public final class Joueur {
 	boolean possede(Pion pion) {
 		return listeDePions.contains(pion);
 	}
-	
-	public void lierChateaux(ArrayList<Case> l){
+
+	public void lierChateaux(ArrayList<Case> l) {
 		ArrayList<Case> chateau = new ArrayList<Case>();
 		chateau.addAll(l);
 		chateaux.add(chateau);
 	}
-	
-	public boolean toutConquis(){
+
+	public boolean toutConquis() {
 		boolean resultat = true;
-		for(ArrayList<Case> lc : chateaux){
-			resultat = resultat && ((Chateau)lc.get(0).getObstacle()).isConquis();
+		for (ArrayList<Case> lc : chateaux) {
+			resultat = resultat && ((Chateau) lc.get(0).getObstacle()).isConquis();
 		}
 		return resultat;
 	}
-	
-	public boolean tousMort(){
+
+	public boolean tousMort() {
 		return listeDePions.isEmpty();
 	}
-	
-	public void conquerir(Case c){
-		for(ArrayList<Case> l : chateaux){
-			if(l.contains(c)){
-				for(Case c1 : l){
-					((Chateau)c1.getObstacle()).conquerir();
+
+	public void conquerir(Case c) {
+		for (ArrayList<Case> l : chateaux) {
+			if (l.contains(c)) {
+				for (Case c1 : l) {
+					((Chateau) c1.getObstacle()).conquerir();
 				}
 				break;
 			}
 		}
 	}
-	
-	public boolean chateauPresent(Case c){
-		for(ArrayList<Case> l : chateaux){
-			if(l.contains(c)){
+
+	public boolean chateauPresent(Case c) {
+		for (ArrayList<Case> l : chateaux) {
+			if (l.contains(c)) {
 				return true;
 			}
 		}

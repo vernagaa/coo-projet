@@ -38,4 +38,8 @@ public final class Chateau extends Indestructible {
 	boolean isJoueur1() {
 		return joueur1;
 	}
+
+	public int getConquerir() {
+		return conquerir;
+	}
 }
