@@ -22,14 +22,27 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 	public int x;
 	public int y;
 
+	/**
+	 * Constructeur de l'écouteur de l'éditeur
+	 * @param fe Fenetre de l'éditeur
+	 */
 	public EcouteurEditeur(FenetreEditeur fe) {
 		this.fenetreEditeur = fe;
 	}
 
+	/**
+	 * Evenement d'un simple clic neutralisé
+	 * @param e 
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
 
+	/**
+	 * Evenement lorsqu'un bouton de la souris est enfoncé
+	 * Retiens la case cliquée
+	 * @param e 
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 		x = e.getX();
@@ -46,6 +59,12 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 
 	}
 
+	/**
+	 * Evenement lorsqu'un bouton est relaché
+	 * Récupère le coin haut gauche et le coin bas droit du rectangle de selection
+	 * Demande le changement de texture pour ces cases
+	 * @param e 
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		x = e.getX();
@@ -100,10 +119,19 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		fenetreEditeur.getAire().repaint();
 	}
 
+	/**
+	 * Evenement lorsque la souris entre dans l'aire d'édition
+	 * @param e 
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
 
+	/**
+	 * Evenement lorsque la souris bouge avec le clic enfoncé
+	 * Calcule le rectangle de selection et l'affiche
+	 * @param e 
+	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		x = e.getX();
@@ -124,6 +152,11 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 		}
 	}
 
+	/**
+	 * Evenement lorsque la souris bouge sur l'aire d'édition
+	 * Met en valeur la case pointé par le curseur
+	 * @param e 
+	 */
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		x = e.getX();
@@ -145,6 +178,10 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 
 	}
 
+	/**
+	 * Evenement lorsque la souris quitte l'aire de sélection
+	 * @param e 
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}
