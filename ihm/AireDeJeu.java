@@ -147,6 +147,7 @@ public class AireDeJeu extends JComponent {
 
 		if (!debutDePartie) {
 			// Affiche le deplacement du pion en caseEnCours
+			//FIXME l'affichage des déplacements masque les téléporteurs : les rendre moins opaques
 			if (mouvementEnCours) {
 				afficherMouvementPossible(gd);
 			}
@@ -178,6 +179,7 @@ public class AireDeJeu extends JComponent {
 			}
 
 			// Mise en valeur des téléporteurs communiquants
+			//FIXME ne rien mettre en valeur si on est sur un téléporteur ennemi
 			if (teleportationEnCours) {
 				gd.setColor(new Color(200, 0, 200, 100));
 				for (Teleporteur t : caseEnCours.getTeleporteur().getListeTeleporteur()) {
@@ -217,7 +219,6 @@ public class AireDeJeu extends JComponent {
 
 //	Les methodes suivantes concernent l'affichage de l'attaque
 	private void afficherPorteAttaque(Graphics2D gd) {
-		//FIXME Portée incorrecte par rapport à afficherAttaquePossible
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeAttaqueAire()) {
 			gd.setColor(new Color(255, 0, 0, 150));

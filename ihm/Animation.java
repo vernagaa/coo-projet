@@ -1,16 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ihm;
 
 import ecouteur.EcouteurPlateau;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.Timer;
 import moteur.*;
 
@@ -229,5 +223,10 @@ public class Animation {
 
 	public boolean animationPossible() {
 		return !animationEnCours;
+	}
+
+	public void animerFinDePartie() {
+		//TODO animerFinDePartie()
+		throw new UnsupportedOperationException("Not yet implemented");
 	}
 }

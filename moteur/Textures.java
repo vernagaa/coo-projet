@@ -557,7 +557,6 @@ public final class Textures {
 	}
 
 	private void initPersos() {
-		//TODO textures personnages
 		// OISEAU
 		try {
 			BufferedImage img = ImageIO.read(getClass().getResource(ASSASSINOISEAUPATH));

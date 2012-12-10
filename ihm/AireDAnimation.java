@@ -51,6 +51,7 @@ public class AireDAnimation extends JComponent {
 		position = new Point();
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;
 		if (animationLancement) {
@@ -68,6 +69,7 @@ public class AireDAnimation extends JComponent {
 		} else if (animationDeplacement) {		
 			gd.drawImage(imageEnCours, position.x, position.y, null);
 		} else if (animationFinDeTour) {
+			//FIXME pas de transition si fin de tour auto
 			gd.setColor(new Color(0, 0, 0, 15 + 6 * compteurFinDeTour));
 			gd.fillRect(0, 0, getWidth(), getHeight());
 			gd.setColor(new Color(255, 255, 255, 15 + 6 * compteurFinDeTour));
