@@ -15,13 +15,24 @@ public class AireDeSelection extends JComponent {
 
 	EcouteurEditeur p;
 
+	/**
+	 * Constructeur sans paramètres pour le java FORM
+	 */
 	public AireDeSelection() {
 	}
 
+	/**
+	 * Constructeur avec l'écouteur de l'éditeur
+	 * @param p
+	 */
 	public AireDeSelection(EcouteurEditeur p) {
 		this.p = p;
 	}
 
+	/**
+	 * Dessine le rectangle de selection
+	 * @param g 
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;

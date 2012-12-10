@@ -17,15 +17,23 @@ import moteur.Textures;
 public class FenetreEditeur extends javax.swing.JFrame {
 
 	private Editeur editeur;
+
 	public int texture;
+
 	public boolean suppression;
+
 	public boolean bordure;
 	EcouteurEditeur ecouteur;
+
 	public boolean indestructible;
+
 	public boolean destructible;
+
 	public boolean chateau; 
 	/**
-	 * Creates new form FenetreEditeur
+	 * Crée un nouveau form FenetreEditeur
+	 * 
+	 * @param e 
 	 */
 	public FenetreEditeur(Editeur e) {
 		editeur = e;
@@ -1190,9 +1198,14 @@ public class FenetreEditeur extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	/**
+	 * Accesseur de l'aire de selection
+	 * @return aire de sélection
+	 */
 	public AireDeSelection getAire() {
 		return aireDeSelection1;
 	}
+	
     private void sauverMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sauverMapActionPerformed
 		JFileChooser fc = new JFileChooser();
 		if (fc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -1596,6 +1609,9 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		texture = Textures.BARRIERECOINFINDROIT;
 	}//GEN-LAST:event_jRadioButton62ActionPerformed
 
+	/**
+	 * Cas d'un obstacle indestructible
+	 */
 	public void indestructible() {
 		indestructible = true;
 		chateau = false;
@@ -1603,6 +1619,9 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		bordure = false;
 		destructible = false;
 	}
+	/**
+	 * Cas d'un chateau
+	 */
 	public void chateau() {
 		indestructible = false;
 		chateau = true;
@@ -1611,6 +1630,9 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		destructible = false;
 	}
 
+	/**
+	 * Cas de la suppression d'un élément
+	 */
 	public void suppression() {
 		indestructible = false;
 		chateau = false;
@@ -1619,6 +1641,9 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		destructible = false;
 	}
 
+	/**
+	 * Cas d'une bordure
+	 */
 	public void bordure() {
 		indestructible = false;
 		chateau = false;
@@ -1627,6 +1652,9 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		destructible = false;
 	}
 
+	/**
+	 * cas d'un obstacle destructible
+	 */
 	public void destructible() {
 		indestructible = false;
 		chateau = false;
@@ -1635,6 +1663,9 @@ public class FenetreEditeur extends javax.swing.JFrame {
 		destructible = true;
 	}
 
+	/**
+	 * cas d'un terrain
+	 */
 	public void terrain() {
 		indestructible = false;
 		chateau = false;
@@ -1731,6 +1762,10 @@ public class FenetreEditeur extends javax.swing.JFrame {
     private javax.swing.JMenuItem sauverMap;
     // End of variables declaration//GEN-END:variables
 
+	/**
+	 * Accesseur de l'aire de jeu
+	 * @return aire de jeu
+	 */
 	public AireDeJeu getAireDeJeu1() {
 		return aireDeJeu1;
 	}
