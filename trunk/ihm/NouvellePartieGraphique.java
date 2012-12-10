@@ -26,6 +26,8 @@ import moteur.familles.reptile.Reptile;
  *
  * @author chappelk
  */
+
+//XXX NouvellePartieGraphique n'est plus utilisée, à supprimer prochainement
 // implements utile pour empêcher l'aireDeJeu de reçevoir les clics
 public class NouvellePartieGraphique extends JComponent implements MouseListener, MouseMotionListener {
 
@@ -1022,50 +1024,38 @@ public class NouvellePartieGraphique extends JComponent implements MouseListener
 		repaint();
 	}
 
-	public void setListeAireDejeu() {
+	private void setListeAireDejeu() {
 		caseJoueur.clear();
+		final int jmin, jmax;
 		if (joueurCourant) {
-			if (etape == 2) {
-				for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
-					for (int j = 0; j < 6; j++) {
-						if (!m.getPlateau().get(i, j).isObstacleDeplacement()
-								&& !m.getPlateau().get(i, j).isOccupee()) {
-							caseJoueur.add(m.getPlateau().get(i, j));
-						}
-					}
-				}
-			}
-			if (etape == 3) {
-				for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
-					for (int j = 0; j < 6; j++) {
-						if (m.getPlateau().get(i, j).getPion() != null) {
-							caseJoueur.add(m.getPlateau().get(i, j));
-						}
-					}
-				}
-			}
-		} else {
-			if (etape == 2) {
-				for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
-					for (int j = m.getPlateau().getNbColonne() - 6; j < m.getPlateau().getNbColonne(); j++) {
-						if (!m.getPlateau().get(i, j).isObstacleDeplacement()
-								&& !m.getPlateau().get(i, j).isOccupee()) {
-							caseJoueur.add(m.getPlateau().get(i, j));
-						}
-					}
-				}
-			}
-			if (etape == 3) {
-				for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
-					for (int j = m.getPlateau().getNbColonne() - 6; j < m.getPlateau().getNbColonne(); j++) {
-						if (m.getPlateau().get(i, j).getPion() != null) {
-							caseJoueur.add(m.getPlateau().get(i, j));
-						}
+			jmin = 0;
+			jmax = 6;
+		}
+		else {
+			jmin = m.getPlateau().getNbColonne() - 6;
+			jmax = m.getPlateau().getNbColonne();
+		}
+		
+		if (etape == 2) {
+			for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
+				for (int j = jmin; j < jmax; j++) {
+					if (!m.getPlateau().get(i, j).isObstacleDeplacement()
+							&& !m.getPlateau().get(i, j).isOccupee()) {
+						caseJoueur.add(m.getPlateau().get(i, j));
 					}
 				}
 			}
 		}
-
+		if (etape == 3) {
+			for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
+				for (int j = jmin; j < jmax; j++) {
+					if (m.getPlateau().get(i, j).getPion() != null) {
+						caseJoueur.add(m.getPlateau().get(i, j));
+					}
+				}
+			}
+		}
+			
 		m.aireDeJeu.setListeCase(caseJoueur);
 	}
 

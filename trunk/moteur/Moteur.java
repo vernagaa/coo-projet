@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import moteur.classes.Tacticien;
-import moteur.familles.oiseau.Oiseau;
 
 /**
  *
@@ -21,7 +20,7 @@ public class Moteur implements Runnable, Serializable {
 	public AireDeJeu aireDeJeu;
 	public Animation animation;
 	private FenetreChoixPion fenetreChoixPion;
-	NouvellePartieGraphique nouvellePartie;
+	NouvellePartiePanel nouvellePartie;
 	private boolean debutDePartie;
 	private int tour;
 	/*
@@ -68,13 +67,9 @@ public class Moteur implements Runnable, Serializable {
 		fp = new FenetrePrincipale(this);
 		aireDeJeu = fp.getAireDeJeu();
 		fenetreChoixPion = new FenetreChoixPion(this);
-		nouvellePartie = new NouvellePartieGraphique(this);
+//		nouvellePartie = new NouvellePartieGraphique(this);
+		nouvellePartie = new NouvellePartiePanel(this);
 		animation = new Animation(fp.getAireDAnimation1(), this, fp.getEcouterPlateau());
-//		NouvellePartiePanel np = new NouvellePartiePanel();
-//		aireDeJeu.add(np);
-//		np.setLocation(Case.TAILLE * 6, 0);
-//		np.setSize(Case.TAILLE * 23, Case.TAILLE * 20);
-//		np.setVisible(true);
 	}
 
 	public void caseCliqueBoutonGaucheNouvellePartie(Case c1) {
@@ -98,7 +93,7 @@ public class Moteur implements Runnable, Serializable {
 				nouvellePartie.setChoix(false);
 			}
 
-			if (nouvellePartie.getNbPions() == 2) {
+			if (nouvellePartie.getNbPions() == 4) {
 				nouvellePartie.elireCommandant();
 			}
 		} else if (nouvellePartie.getEtape() == 3) {
@@ -399,7 +394,7 @@ public class Moteur implements Runnable, Serializable {
 		this.debutDePartie = debutDePartie;
 	}
 
-	public void setNouvellePartie(NouvellePartieGraphique nouvellePartie) {
+	public void setNouvellePartie(NouvellePartiePanel nouvellePartie) {
 		this.nouvellePartie = nouvellePartie;
 	}
 
@@ -413,7 +408,7 @@ public class Moteur implements Runnable, Serializable {
 			aireDeJeu.nouvellePartie();
 			tour = 0;
 			joueur2.setNbActions(0);
-			nouvellePartie = new NouvellePartieGraphique(this);
+			nouvellePartie = new NouvellePartiePanel(this);
 		} catch (MapException ex) {
 		}
 	}
