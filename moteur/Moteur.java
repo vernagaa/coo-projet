@@ -420,7 +420,9 @@ public class Moteur implements Runnable, Serializable {
 			plateau.init(mapPath);
 			aireDeJeu.nouvellePartie();
 			tour = 0;
-			joueur2.setNbActions(0);
+			joueur1.init();
+			joueur2.init();
+			lierChateaux();
 			aireDeJeu.repaint();
 			nouvellePartie = new NouvellePartiePanel(this);
 			nouvellePartie.updateUI();

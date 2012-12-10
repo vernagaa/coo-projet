@@ -384,7 +384,13 @@ public class AireDeJeu extends JComponent {
 
 	private void construireSurvolChateau(Graphics2D gd) {
 		int vie = ((Chateau) caseSurvol.getObstacle()).getConquerir() * 20;
-		gd.setColor(new Color(0, 255, 68, 240));
+		if (vie/20 == 3) {
+			gd.setColor(new Color(0, 255, 68, 200));
+		} else if (vie/20 == 2) {
+			gd.setColor(new Color(255, 204, 68, 200));
+		} else {
+			gd.setColor(new Color(255, 34, 17, 200));
+		}
 		gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, vie, 5);
 
 	}
