@@ -30,23 +30,13 @@ public class AireDAnimation extends JComponent {
 	public boolean attaquant;
 	public boolean esquive;
 	public int compteurAttaque;
-	/**
-	 * 
-	 */
 	public int val;
 	public Point positionA;
 	public Point positionD;
-	/*
-	 * Animation Deplacement (ne marche que pour les oiseaux)
-	 */
-	/**
-	 * 
-	 */
+
+
 	public BufferedImage imageEnCours;
 	public Point position;
-	/**
-	 * 
-	 */
 	public boolean animationDeplacement;
 	public boolean animationElire;
 

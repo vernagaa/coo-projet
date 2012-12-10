@@ -174,4 +174,13 @@ public final class Joueur {
 		}
 		return false;
 	}
+	
+	public void init(){
+		listeDePions = new ArrayList<Pion>();
+		chateaux = new ArrayList<ArrayList<Case>>();
+		teleporteur = new ArrayList<Teleporteur>();
+		nbActions = 0;
+		tacticien = null;
+		commandant = null;
+	}
 }
