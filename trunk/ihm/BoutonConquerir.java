@@ -11,6 +11,10 @@ import java.awt.event.MouseEvent;
  */
 public class BoutonConquerir extends BoutonAction implements ActionListener {
 
+	/**
+	 * Constructeur du bouton conquérir
+	 * @param fenetre
+	 */
 	public BoutonConquerir(final FenetreChoixPion fenetre) {
 		super("Conquerir", 2, fenetre);
 		addActionListener(this);
@@ -35,6 +39,10 @@ public class BoutonConquerir extends BoutonAction implements ActionListener {
 		});
 	}
 
+	/**
+	 * Cas du clic sur conquerir
+	 * @param e 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Conquerir");

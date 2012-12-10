@@ -13,12 +13,20 @@ import moteur.Case;
  */
 public class BoutonCapacite extends BoutonAction implements ActionListener {
 
+	/**
+	 * Constructeur bouton de capacité
+	 * @param fenetre
+	 */
 	public BoutonCapacite(final FenetreChoixPion fenetre) {
 		super("capacite", 1, fenetre);
 		addActionListener(this);
 
 	}
 
+	/**
+	 * Cas du clic sur capacité
+	 * @param e 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (fenetre.getCase().getPion().capaciteActive()) {
@@ -28,6 +36,10 @@ public class BoutonCapacite extends BoutonAction implements ActionListener {
 		fenetre.effacerFenetre();
 	}
 
+	/**
+	 * Surligne le bouton ou non et affiche le nom de la capacité
+	 * @param g 
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;

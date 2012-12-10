@@ -10,14 +10,19 @@ import moteur.Moteur;
  */
 public final class FenetreChoixPion extends JComponent {
 
-	protected Case c;
-	protected Moteur m;
+
+	private Case c;
+	private Moteur m;
 	private BoutonTacticien t;
 	private BoutonConquerir conq;
 	private BoutonCapacite capa;
 	private BoutonAttaquer b;
 	private BoutonFinDeTour finDeTour;
 
+	/**
+	 * Constructeur de la fenêtre de choix
+	 * @param m
+	 */
 	public FenetreChoixPion(Moteur m) {
 		this.m = m;
 		setSize(Case.TAILLE * 3, Case.TAILLE * 2);
@@ -35,6 +40,10 @@ public final class FenetreChoixPion extends JComponent {
 		setVisible(false);
 	}
 
+	/**
+	 * Affichage des boutons selon la classe, le role et le terrain 
+	 * @param c
+	 */
 	public void placerFenetre(Case c) {
 		this.c = c;
 		int i = 0;
@@ -94,21 +103,27 @@ public final class FenetreChoixPion extends JComponent {
 
 	}
 
+	/**
+	 * Cache la fenetre
+	 */
 	public void effacerFenetre() {
 		setVisible(false);
 	}
 
+	/**
+	 * Accesseur du moteur
+	 * @return m
+	 */
 	public Moteur getMoteur() {
 		return m;
 	}
 
+	/**
+	 * Accesseur de la case
+	 * @return c
+	 */
 	public Case getCase() {
 		return c;
 	}
 
-	public void effacerFinDeTour() {
-		finDeTour.setPosition(6);
-		b.setPosition(0);
-		setVisible(false);
-	}
 }
