@@ -104,8 +104,6 @@ public class Moteur implements Runnable, Serializable {
 				joueur2.setCommandant(c1.getPion());
 				aireDeJeu.setDebutDePartie(false);
 				debutDePartie = false;
-//				aireDeJeu.remove(nouvellePartie);
-//				nouvellePartie.setVisible(false);
 				aireDeJeu.remove(nouvellePartie);
 				aireDeJeu.setJoueurCourant(joueurCourant);
 
@@ -272,6 +270,10 @@ public class Moteur implements Runnable, Serializable {
 			// On indique qu'il ne faut plus afficher les tÃ©lÃ©porteurs disponibles
 			aireDeJeu.afficherTeleporteurDisponible(false, c);
 
+			// On indique qu'il ne faut plus afficher les poses de tÃ©lÃ©porteurs possibles
+			poserTeleporteur = false;
+			aireDeJeu.setAfficherPoseTeleporteur(false, c);
+
 			// On specifie que l'attaque est terminÃ©e
 			attaqueEnCours = false;
 			// On indique qu'il ne faut plus afficher les attaques possibles
@@ -399,7 +401,6 @@ public class Moteur implements Runnable, Serializable {
 	public void nouvellePartie() {
 		try {
 			if (isDebutDePartie()) {
-//				nouvellePartie.setVisible(false);
 				aireDeJeu.remove(nouvellePartie);
 			}
 			debutDePartie = true;
