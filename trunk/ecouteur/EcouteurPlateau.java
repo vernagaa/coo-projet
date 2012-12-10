@@ -16,6 +16,10 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 	private int lastLig, lastCol;
 	private boolean active;
 
+	/**
+	 * Constructeur de l'écouteur du plateau
+	 * @param moteur 
+	 */
 	public EcouteurPlateau(Moteur moteur) {
 		this.moteur = moteur;
 		active = true;
@@ -23,6 +27,11 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 		lastCol = -1;
 	}
 
+	/**
+	 * Evenement lors d'un clic
+	 * Selon le clic et si on est en début de partie ou non  appelle la methode de moteur appropriée
+	 * @param e 
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		int x = e.getX();
@@ -46,28 +55,54 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 		mouseMoved(e);
 	}
 
+	/**
+	 * Evenement lorsqu'un bouton de la souris est enfoncé
+	 * @param e 
+	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
 	}
-
+	
+	/**
+	 * Evenement lorsqu'un bouton de la souris est relachée
+	 * @param e 
+	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
 
+	/**
+	 * Evenement lorsque la souris entre dans l'aire de jeu
+	 * @param e 
+	 */
 	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
 
+	/**
+	 * Evenement lorsque la souris quitte l'aire de jeu
+	 * La case survolé est mise à null
+	 * @param e 
+	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
 		moteur.aireDeJeu.setCaseSurvol(null);
 		lastCol = -1;
 	}
 
+	/**
+	 * Evenement lorsqu'un bouton est enfoncé et que la souris est déplacée
+	 * @param e 
+	 */
 	@Override
 	public void mouseDragged(MouseEvent e) {
 	}
 
+	/**
+	 * Evenement lorsque la souris est déplacée
+	 * Met à jour la case survolée s'il n'y a pas d'animation en cours
+	 * @param e 
+	 */
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		int x = e.getX();
@@ -85,10 +120,16 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 		}
 	}
 
+	/**
+	 * Désactiver l'écouteur
+	 */
 	public void desactiverEcouteur() {
 		active = false;
 	}
 
+	/**
+	 * Activer l'écouteur
+	 */
 	public void activerEcouteur() {
 		active = true;
 	}
