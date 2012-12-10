@@ -666,13 +666,14 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 	
 	private void afficherStatPerso(boolean joueurCourant, ArrayList<Integer> stat) {
 		if (joueurCourant) {
+			//TODO label pour le nom de la classe
 			vie1.setText("Vie : " + stat.get(0));
 			attaque1.setText("Attaque : " + stat.get(1));
 			defense1.setText("Défense : " + stat.get(2));
 			vitesse1.setText("Vitesse : " + stat.get(3));
 			precision1.setText("Précision : " + stat.get(4));
 			portee1.setText("Portée : " + stat.get(5));
-			mouvement1.setText("Déplacement : " + stat.get(6));
+			mouvement1.setText("Mouvement : " + stat.get(6));
 		} else {
 			vie2.setText("Vie : " + stat.get(0));
 			attaque2.setText("Attaque : " + stat.get(1));
@@ -680,7 +681,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 			vitesse2.setText("Vitesse : " + stat.get(3));
 			precision2.setText("Précision : " + stat.get(4));
 			portee2.setText("Portée : " + stat.get(5));
-			mouvement2.setText("Déplacement : " + stat.get(6));
+			mouvement2.setText("Mouvement : " + stat.get(6));
 		}
 	}
 
@@ -987,8 +988,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         j1TextePanel.setMinimumSize(new java.awt.Dimension(200, 300));
         j1TextePanel.setPreferredSize(new java.awt.Dimension(315, 200));
         j1TextePanel.setLayout(new java.awt.GridBagLayout());
-
-        vie1.setText("jLabel1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -998,8 +997,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 10);
         j1TextePanel.add(vie1, gridBagConstraints);
-
-        attaque1.setText("jLabel2");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1009,8 +1006,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 10);
         j1TextePanel.add(attaque1, gridBagConstraints);
-
-        defense1.setText("jLabel3");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -1020,8 +1015,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 10);
         j1TextePanel.add(defense1, gridBagConstraints);
-
-        precision1.setText("jLabel4");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -1031,8 +1024,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 10);
         j1TextePanel.add(precision1, gridBagConstraints);
-
-        vitesse1.setText("jLabel5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -1042,8 +1033,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         j1TextePanel.add(vitesse1, gridBagConstraints);
-
-        portee1.setText("jLabel6");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -1053,8 +1042,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         j1TextePanel.add(portee1, gridBagConstraints);
-
-        mouvement1.setText("jLabel7");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -1065,7 +1052,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         j1TextePanel.add(mouvement1, gridBagConstraints);
 
-        afficherInfo1.setText("descr");
         afficherInfo1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1312,8 +1298,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         j2TextePanel.setMinimumSize(new java.awt.Dimension(200, 300));
         j2TextePanel.setPreferredSize(new java.awt.Dimension(315, 200));
         j2TextePanel.setLayout(new java.awt.GridBagLayout());
-
-        vie2.setText("jLabel1");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -1323,8 +1307,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 10);
         j2TextePanel.add(vie2, gridBagConstraints);
-
-        attaque2.setText("jLabel2");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1334,8 +1316,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 10);
         j2TextePanel.add(attaque2, gridBagConstraints);
-
-        defense2.setText("jLabel3");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -1345,8 +1325,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 10);
         j2TextePanel.add(defense2, gridBagConstraints);
-
-        precision2.setText("jLabel4");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -1356,8 +1334,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 10);
         j2TextePanel.add(precision2, gridBagConstraints);
-
-        vitesse2.setText("jLabel5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -1367,8 +1343,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         j2TextePanel.add(vitesse2, gridBagConstraints);
-
-        portee2.setText("jLabel6");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -1378,8 +1352,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         j2TextePanel.add(portee2, gridBagConstraints);
-
-        mouvement2.setText("jLabel7");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -1390,7 +1362,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         j2TextePanel.add(mouvement2, gridBagConstraints);
 
-        afficherInfo2.setText("descr");
         afficherInfo2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

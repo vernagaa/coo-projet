@@ -104,6 +104,8 @@ public class Moteur implements Runnable, Serializable {
 				joueur2.setCommandant(c1.getPion());
 				aireDeJeu.setDebutDePartie(false);
 				debutDePartie = false;
+//				aireDeJeu.remove(nouvellePartie);
+//				nouvellePartie.setVisible(false);
 				aireDeJeu.remove(nouvellePartie);
 				aireDeJeu.setJoueurCourant(joueurCourant);
 
@@ -394,14 +396,11 @@ public class Moteur implements Runnable, Serializable {
 		this.debutDePartie = debutDePartie;
 	}
 
-	public void setNouvellePartie(NouvellePartiePanel nouvellePartie) {
-		this.nouvellePartie = nouvellePartie;
-	}
-
 	public void nouvellePartie() {
 		try {
 			if (isDebutDePartie()) {
-				nouvellePartie.setVisible(false);
+//				nouvellePartie.setVisible(false);
+				aireDeJeu.remove(nouvellePartie);
 			}
 			debutDePartie = true;
 			plateau.init(mapPath);
@@ -409,6 +408,7 @@ public class Moteur implements Runnable, Serializable {
 			tour = 0;
 			joueur2.setNbActions(0);
 			nouvellePartie = new NouvellePartiePanel(this);
+			nouvellePartie.updateUI();
 		} catch (MapException ex) {
 		}
 	}
