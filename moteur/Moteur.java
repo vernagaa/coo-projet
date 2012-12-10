@@ -34,6 +34,7 @@ public class Moteur implements Runnable, Serializable {
 	private boolean poserTeleporteur;
 	private Joueur joueur1;
 	private Joueur joueur2;
+	private Joueur JoueurElireCommandant;
 	private boolean joueurCourant;
 	private boolean teleportationEnCours;
 	private String mapPath;
@@ -48,7 +49,7 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	public Moteur() {
-		mapPath = "map/map5.map";
+		mapPath = "map/map6.map";
 		plateau = new Plateau(mapPath);
 		joueur1 = new Joueur("joueur1", true);
 		joueur2 = new Joueur("joueur2", false);
@@ -131,9 +132,10 @@ public class Moteur implements Runnable, Serializable {
 		fenetreChoixPion.effacerFinDeTour();
 		System.out.println("Clique gauche");
 		if (elireCommandant) {
-			if (c1.contientPion() && getJoueurCourant().possede(c1.getPion())) {
-				getJoueurCourant().setCommandant(c1.getPion());
+			if (c1.contientPion() && JoueurElireCommandant.possede(c1.getPion())) {
+				JoueurElireCommandant.setCommandant(c1.getPion());
 				elireCommandant = false;
+				aireDeJeu.elireUnCommandant(JoueurElireCommandant, elireCommandant);
 				//TODO Affichage
 			}
 		} else if (getJoueurCourant().actionPossibles()) {
@@ -145,17 +147,27 @@ public class Moteur implements Runnable, Serializable {
 						caseAncienne.getPion().attaquerPion(caseCourante.getPion());
 						animation.animerAttaquePion(caseAncienne.getPion(), caseCourante.getPion());
 						if (!caseCourante.getPion().estVivant()) {
-							System.out.println("Il meurt");
-							caseAncienne.getPion().tuer(caseCourante.getPion());
+							elireCommandant = caseAncienne.getPion().tuer(caseCourante.getPion());
+							if (getJoueurAdverse().tousMort() || getJoueurCourant().tousMort()) {
+								victoire();
+							} else {
+								if (elireCommandant) {
+									JoueurElireCommandant = getJoueurAdverse();
+									animation.animerElireCommandant();
+								}
+							}
 						} else if (!caseAncienne.getPion().estVivant()) {
-							caseCourante.getPion().tuer(caseAncienne.getPion());
+							elireCommandant = caseCourante.getPion().tuer(caseAncienne.getPion());
+							if (getJoueurAdverse().tousMort() || getJoueurCourant().tousMort()) {
+								victoire();
+							} else {
+								if (elireCommandant) {
+									JoueurElireCommandant = getJoueurCourant();
+									animation.animerElireCommandant();
+								}
+							}
 						}
-
-//						if (getJoueurCourant().commandantMort()) {
-//							//TODO Elire un nouveau commandant
-//							elireCommandant = true;
-//							System.out.println("Commandant Mort");
-//						}
+						System.out.println(elireCommandant);
 					} else if (caseCourante.getObstacle() != null && caseCourante.getObstacle().isDestructible()) {
 						caseAncienne.getPion().attaquerObstacle(caseCourante);
 					} else if (caseCourante.contientTeleporteur(getJoueurAdverse())) {
@@ -269,7 +281,7 @@ public class Moteur implements Runnable, Serializable {
 			teleportationEnCours = false;
 			// On indique qu'il ne faut plus afficher les tÃ©lÃ©porteurs disponibles
 			aireDeJeu.afficherTeleporteurDisponible(false, c);
-
+			
 			// On indique qu'il ne faut plus afficher les poses de tÃ©lÃ©porteurs possibles
 			poserTeleporteur = false;
 			aireDeJeu.setAfficherPoseTeleporteur(false, c);
@@ -295,8 +307,10 @@ public class Moteur implements Runnable, Serializable {
 				caseSurvolConquete(c1);
 			} else if (c1.contientPion()) {
 				caseSurvolPion(c1);
+			} else if (c1.getObstacle() != null && c1.getObstacle().isChateau()) {
+				caseSurvolChateau(c1);
 			} else {
-				aireDeJeu.setCaseSurvol(c1);
+				caseSurvolPion(c1);
 			}
 		} else {
 			aireDeJeu.setCaseSurvol(null);
@@ -309,11 +323,11 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	private void caseSurvolAttaque(Case c1) {
-		aireDeJeu.suvolAfficherAttaque(c1);
+		aireDeJeu.setCaseSurvol(c1);
 	}
 
 	private void caseSurvolConquete(Case c1) {
-		aireDeJeu.suvolAfficherConquete(c1);
+		aireDeJeu.setCaseSurvol(c1);
 	}
 
 	private void caseSurvolPion(Case c1) {
@@ -381,6 +395,7 @@ public class Moteur implements Runnable, Serializable {
 		fp.setLabelAction(getJoueurCourant().getNbActions());
 		if (getJoueurCourant().getNbActions() == 0) {
 			changementJoueur();
+			animation.animerFinDeTour();
 		}
 		if (getJoueurAdverse().toutConquis() || getJoueurAdverse().tousMort()) {
 			victoire();
@@ -408,6 +423,7 @@ public class Moteur implements Runnable, Serializable {
 			aireDeJeu.nouvellePartie();
 			tour = 0;
 			joueur2.setNbActions(0);
+			aireDeJeu.repaint();
 			nouvellePartie = new NouvellePartiePanel(this);
 			nouvellePartie.updateUI();
 		} catch (MapException ex) {
@@ -468,5 +484,32 @@ public class Moteur implements Runnable, Serializable {
 		//TODO Victoire graphique
 		animation.animerFinDePartie();
 		System.out.println("Victoire " + getJoueurCourant().getNom() + " !!!");
+	}
+
+	private void caseSurvolChateau(Case c1) {
+		boolean trouve = false;
+		ArrayList<Case> tmp = null;
+		for (ArrayList<Case> lc : joueur1.getChateaux()) {
+			if (lc.contains(c1)) {
+				trouve = true;
+				tmp = lc;
+				break;
+			}
+		}
+		if (!trouve) {
+			for (ArrayList<Case> lc : joueur2.getChateaux()) {
+				if (lc.contains(c1)) {
+					trouve = true;
+					tmp = lc;
+					break;
+				}
+			}
+		}
+		System.out.println(tmp);
+		aireDeJeu.setCaseSurvol(tmp.get(0));
+	}
+
+	public Joueur getJoueurElireCommandant() {
+		return JoueurElireCommandant;
 	}
 }

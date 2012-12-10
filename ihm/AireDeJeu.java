@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 import moteur.Case;
+import moteur.Chateau;
+import moteur.Joueur;
 import moteur.Noeud;
 import moteur.Plateau;
 import moteur.Teleporteur;
@@ -33,6 +35,8 @@ public class AireDeJeu extends JComponent {
 	private ArrayList<Case> listeCase;
 	private boolean afficherPoseTeleporteur;
 	private boolean teleportationEnCours;
+	private Joueur joueurC;
+	private boolean elireUnCommandant;
 
 	public AireDeJeu(Plateau plateau) {
 		setPreferredSize(new Dimension(plateau.getNbColonne() * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1));
@@ -100,8 +104,8 @@ public class AireDeJeu extends JComponent {
 				afficherAttaquePossible(gd);
 				construireSurvolAttaque(gd);
 			}
-			
-			if(conqueteEnCours){
+
+			if (conqueteEnCours) {
 				afficherConquetePossible(gd);
 				construireSurvolConquete(gd);
 			}
@@ -141,6 +145,12 @@ public class AireDeJeu extends JComponent {
 				// Affichage des pions
 				if (c1.getPion() != null) {
 					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+				}
+				if (elireUnCommandant) {
+					gd.setColor(new Color(0, 0, 0, 200));
+					if (!joueurC.getListeDePions().contains(c1.getPion())) {
+						gd.fillRect(c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+					}
 				}
 			}
 		}
@@ -196,6 +206,10 @@ public class AireDeJeu extends JComponent {
 			construireSurvolPion(gd);
 		}
 
+		if (!attaqueEnCours && caseSurvol != null && caseSurvol.getObstacle() != null && caseSurvol.getObstacle().isChateau()) {
+			construireSurvolChateau(gd);
+		}
+
 		if (debutDePartie) {
 			if (!firstTime) {
 				if (joueurCourant) {
@@ -244,6 +258,7 @@ public class AireDeJeu extends JComponent {
 			i++;
 		}
 	}
+
 	private void afficherConquetePossible(Graphics2D gd) {
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeConquetePossible()) {
@@ -259,16 +274,12 @@ public class AireDeJeu extends JComponent {
 			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 		}
 	}
-	
+
 	private void construireSurvolConquete(Graphics2D gd) {
 		gd.setColor(new Color(255, 0, 255, 200));
 		if (caseEnCours.getPion().getListeConquetePossible().contains(caseSurvol)) {
 			gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 		}
-	}
-
-	public void suvolAfficherAttaque(Case c1) {
-		caseSurvol = c1;
 	}
 
 	public void setAttaqueEnCours(boolean attaque) {
@@ -283,10 +294,6 @@ public class AireDeJeu extends JComponent {
 	public void setAfficherPorteeConquerir(boolean b, Case c) {
 		afficherPorteeConquerir = b;
 		caseEnCours = c;
-	}
-
-	public void survolPion(Case c1) {
-		caseSurvol = c1;
 	}
 
 	private void construireSurvolPion(Graphics gd) {
@@ -375,7 +382,15 @@ public class AireDeJeu extends JComponent {
 		conqueteEnCours = b;
 	}
 
-	public void suvolAfficherConquete(Case c1) {
-		caseSurvol = c1;
+	private void construireSurvolChateau(Graphics2D gd) {
+		int vie = ((Chateau) caseSurvol.getObstacle()).getConquerir() * 20;
+		gd.setColor(new Color(0, 255, 68, 240));
+		gd.fillRect(caseSurvol.getColonne() * Case.TAILLE, caseSurvol.getLigne() * Case.TAILLE, vie, 5);
+
+	}
+
+	public void elireUnCommandant(Joueur joueurCourant, boolean b) {
+		this.joueurC = joueurCourant;
+		elireUnCommandant = b;
 	}
 }

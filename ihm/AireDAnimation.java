@@ -18,7 +18,7 @@ import moteur.Plateau;
 public class AireDAnimation extends JComponent {
 
 	private Moteur moteur;
-	public boolean animationLancement;
+	public boolean animationFin;
 	/*
 	 * Animation Fin De Tour
 	 */
@@ -31,15 +31,25 @@ public class AireDAnimation extends JComponent {
 	public boolean attaquant;
 	public boolean esquive;
 	public int compteurAttaque;
+	/**
+	 * 
+	 */
 	public int val;
 	public Point positionA;
 	public Point positionD;
 	/*
 	 * Animation Deplacement (ne marche que pour les oiseaux)
 	 */
+	/**
+	 * 
+	 */
 	public BufferedImage imageEnCours;
 	public Point position;
+	/**
+	 * 
+	 */
 	public boolean animationDeplacement;
+	public boolean animationElire;
 
 	public AireDAnimation() {
 	}
@@ -54,7 +64,11 @@ public class AireDAnimation extends JComponent {
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;
-		if (animationLancement) {
+		if (animationFin) {
+			gd.setColor(new Color(0, 0, 0, 200));
+			gd.fillRect(0, 0, getWidth(), getHeight());
+			gd.setColor(Color.WHITE);
+			gd.drawString("Le joueur " + moteur.getJoueurCourant().getNom() + " remporte la partie", getWidth() / 2 - 100, getHeight() / 2);
 		} else if (animationAttaque) {
 			gd.setColor(Color.RED);
 			if (!esquive) {
@@ -66,16 +80,25 @@ public class AireDAnimation extends JComponent {
 					gd.drawString("-" + val, positionA.x * Case.TAILLE + Case.TAILLE / 10, positionA.y * Case.TAILLE + Case.TAILLE / 2);
 				}
 			}
-		} else if (animationDeplacement) {		
+		} else if (animationDeplacement) {
 			gd.drawImage(imageEnCours, position.x, position.y, null);
 		} else if (animationFinDeTour) {
 			//FIXME pas de transition si fin de tour auto
-			gd.setColor(new Color(0, 0, 0, 15 + 6 * compteurFinDeTour));
+			gd.setColor(new Color(0, 0, 0, 15 + 8 * compteurFinDeTour));
 			gd.fillRect(0, 0, getWidth(), getHeight());
-			gd.setColor(new Color(255, 255, 255, 15 + 6 * compteurFinDeTour));
+			gd.setColor(Color.WHITE);
 			gd.setFont(new Font("impact", Font.BOLD, 20));
 			gd.drawString("Fin du tour !", getWidth() / 2 - 50, getHeight() / 2);
 			gd.drawString("A " + moteur.getJoueurCourant().getNom() + " de jouer !", getWidth() / 2 - 50, getHeight() / 2 + 30);
+
+		} else if (animationElire) {
+			gd.setColor(new Color(0, 0, 0, 6 * compteurFinDeTour));
+			gd.fillRect(0, 0, getWidth(), getHeight());
+			gd.setColor(Color.WHITE);
+			gd.setFont(new Font("impact", Font.BOLD, 20));
+			gd.drawString("Le commandant du joueur " + moteur.getJoueurElireCommandant().getNom()+ " est mort.", getWidth() / 2 - 150, getHeight() / 2);
+			gd.drawString("Il doit en choisir un nouveau !", getWidth() / 2 - 100, getHeight() / 2 + 30);
+
 
 		}
 
