@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import javax.swing.JComponent;
 import moteur.Case;
 import moteur.Moteur;
-import moteur.Plateau;
 
 /**
  *

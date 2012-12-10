@@ -62,7 +62,9 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 
 	
 	/**
-	 * Creates new form NewJPanel
+	 * Crée un nouveau form NouvellePartieJPanel
+	 * 
+	 * @param moteur 
 	 */
 	public NouvellePartiePanel(Moteur moteur) {
 		m = moteur;
@@ -248,6 +250,9 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		setSize(Case.TAILLE * 23, Case.TAILLE * 20);
 	}
 	
+	/**
+	 * Constructeur sans paramètre pour l'aperçu du form
+	 */
 	public NouvellePartiePanel() {
 		this(new Moteur());
 	}
@@ -270,50 +275,98 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		}
 	}
 	
+	/**
+	 * Accesseur de l'étape
+	 * @return
+	 */
 	public int getEtape() {
 		return etape;
 	}
 
+	/**
+	 * Affecteur de l'étape
+	 * @param etape
+	 */
 	public void setEtape(int etape) {
 		this.etape = etape;
 	}
 
+	/**
+	 * Renvoie true si joueur 1 et false si joueur 2
+	 * @return Booléen joueurCourant
+	 */
 	public boolean isJoueurCourant() {
 		return joueurCourant;
 	}
 
+	/**
+	 * Affecteur booléen joueur courant
+	 * @param joueurCourant
+	 */
 	public void setJoueurCourant(boolean joueurCourant) {
 		this.joueurCourant = joueurCourant;
 	}
 
+	/**
+	 * Accesseur du booléen si choix de la classe du pion
+	 * @return
+	 */
 	public boolean getChoix() {
 		return choix;
 	}
 
+	/**
+	 * Affecteur du booléen si choix de la classe du pion
+	 * @param choix
+	 */
 	public void setChoix(boolean choix) {
 		this.choix = choix;
 	}
 
+	/**
+	 * Accesseur du nombre total de pion posé sur le plateau
+	 * @return nbPions
+	 */
 	public int getNbPions() {
 		return nbPions;
 	}
 
+	/**
+	 * Accesseur de la famille du joueur 1
+	 * @return famille1
+	 */
 	public int getFamille1() {
 		return famille1;
 	}
 
+	/**
+	 * Accesseur de la famille du joueur 2
+	 * @return famille2
+	 */
 	public int getFamille2() {
 		return famille2;
 	}
 
+	/**
+	 * Accesseur de la classe de pion choisie
+	 * @return
+	 */
 	public int getClasse() {
 		return classeSelect;
 	}
 	
+	/**
+	 * Renvoie vrai si le pion peut être créé sur la case c
+	 * @param c
+	 * @return c dans caseJoueur
+	 */
 	public boolean choixPossible(Case c) {
 		return caseJoueur.contains(c);
 	}
 	
+	/**
+	 * Fin de l'ajout de pion au joueur 1
+	 */
 	public void pionAjouteJoueur1() {
 		nbPions++;
 		if (m.getJoueur1().getTacticien() != null) {
@@ -333,6 +386,9 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		m.aireDeJeu.repaint();
 	}
 	
+	/**
+	 * Fin de l'ajout de pion au joueur 2
+	 */
 	public void pionAjouteJoueur2() {
 		nbPions++;
 		m.aireDeJeu.setListeCase(null);
@@ -353,6 +409,9 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		m.aireDeJeu.repaint();
 	}
 	
+	/**
+	 * Choix du commandant
+	 */
 	public void elireCommandant() {
 		if (etape != 3) {
 			etape++;
@@ -1541,6 +1600,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
     private javax.swing.JLabel vitesse2;
     // End of variables declaration//GEN-END:variables
 
+	//Désactive l'écouteur sur la fenetre de nouvelle partie
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}

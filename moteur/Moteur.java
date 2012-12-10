@@ -127,9 +127,8 @@ public class Moteur implements Runnable, Serializable {
 
 	public void caseCliqueBoutonGauche(Case c1) {
 		aireDeJeu.setCaseSurvol(null);
-//	fenetreChoixPion.effacerFenetre();
+		fenetreChoixPion.effacerFenetre();
 		caseCourante = c1;
-		fenetreChoixPion.effacerFinDeTour();
 		System.out.println("Clique gauche");
 		if (elireCommandant) {
 			if (c1.contientPion() && JoueurElireCommandant.possede(c1.getPion())) {
@@ -265,7 +264,6 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	public void caseCliqueBoutonDroit(Case c) {
-		fenetreChoixPion.effacerFinDeTour();
 		if (c.contientPion() && getJoueurCourant() == c.getPion().getJoueur()) {
 			// On efface la fenetre
 			fenetreChoixPion.effacerFenetre();
