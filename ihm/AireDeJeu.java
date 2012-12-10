@@ -366,6 +366,7 @@ public class AireDeJeu extends JComponent {
 
 	public final void nouvellePartie() {
 		setDebutDePartie(true);
+		setListeCase(null);
 		firstTime = true;
 		repaint();
 	}
