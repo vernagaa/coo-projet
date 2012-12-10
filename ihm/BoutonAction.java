@@ -14,10 +14,25 @@ import moteur.Case;
  */
 public abstract class BoutonAction extends JButton {
 
+	/**
+	 * booléen du survol du bouton
+	 */
 	protected boolean survol;
+	/**
+	 * nom du bouton
+	 */
 	protected String nom;
+	/**
+	 * Fenetre du menu d'interaction
+	 */
 	protected FenetreChoixPion fenetre;
 
+	/**
+	 * Constructeur du bouton d'action
+	 * @param nom
+	 * @param numero
+	 * @param f
+	 */
 	public BoutonAction(String nom, int numero, FenetreChoixPion f) {
 		super(nom);
 		this.fenetre = f;
@@ -41,6 +56,10 @@ public abstract class BoutonAction extends JButton {
 		});
 	}
 
+	/**
+	 * Surligne le bouton ou non s'il est survolé ou non et affiche son nom
+	 * @param g 
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;
@@ -56,6 +75,10 @@ public abstract class BoutonAction extends JButton {
 		gd.drawString(nom, Case.TAILLE / 5, Case.TAILLE / 2);
 	}
 
+	/**
+	 * Affecteur du numéro de la position
+	 * @param numero
+	 */
 	public void setPosition(int numero) {
 		setBounds(0, Case.TAILLE * numero, Case.TAILLE * 3, Case.TAILLE);
 	}
