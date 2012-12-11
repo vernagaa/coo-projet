@@ -4,9 +4,7 @@ import exception.MapException;
 import ihm.*;
 import java.io.*;
 import java.util.ArrayList;
-import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import moteur.classes.Tacticien;
 
 /**
@@ -37,6 +35,7 @@ public class Moteur implements Runnable, Serializable {
 	private boolean teleportationEnCours;
 	private String mapPath;
 	private boolean elireCommandant;
+	private int nbPionParJoueur;
 
 	/**
 	 * Constructeur du moteur
@@ -48,6 +47,7 @@ public class Moteur implements Runnable, Serializable {
 		joueur2 = new Joueur("joueur2", false);
 		debutDePartie = true;
 		joueurCourant = true;
+		nbPionParJoueur = 8;
 		tour = 0;
 	}
 
@@ -97,7 +97,7 @@ public class Moteur implements Runnable, Serializable {
 				nouvellePartie.setChoix(false);
 			}
 
-			if (nouvellePartie.getNbPions() == 4) {
+			if (nouvellePartie.getNbPions() == nbPionParJoueur * 2) {
 				nouvellePartie.elireCommandant();
 			}
 		} else if (nouvellePartie.getEtape() == 3) {
@@ -619,6 +619,14 @@ public class Moteur implements Runnable, Serializable {
 	 */
 	public Case getCaseCourante() {
 		return caseCourante;
+	}
+
+	public int getNbPionParJoueur() {
+		return nbPionParJoueur;
+	}
+
+	public void setNbPionParJoueur(int nbPionParJoueur) {
+		this.nbPionParJoueur = nbPionParJoueur;
 	}
 	
 }
