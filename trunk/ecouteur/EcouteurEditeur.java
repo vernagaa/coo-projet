@@ -42,6 +42,8 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 	 * Evenement lorsqu'un bouton de la souris est enfoncé
 	 * Retiens la case cliquée
 	 * @param e 
+	 * pré-cond : L'aire de jeu et le plateau sont non null ET le clic est sur une case existante
+	 * post-cond : Les coordonées de la case sont enregistrées
 	 */
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -64,6 +66,8 @@ public class EcouteurEditeur implements MouseListener, MouseMotionListener {
 	 * Récupère le coin haut gauche et le coin bas droit du rectangle de selection
 	 * Demande le changement de texture pour ces cases
 	 * @param e 
+	 * pre-cond : c1, aire de jeu et le plateau sont non null ligneMin/Max et colonneMin/Max contiennent des int
+	 * post cond : le rectangle de sélection change de texture
 	 */
 	@Override
 	public void mouseReleased(MouseEvent e) {
