@@ -68,7 +68,6 @@ public class Moteur implements Runnable, Serializable {
 		fp = new FenetrePrincipale(this);
 		aireDeJeu = fp.getAireDeJeu();
 		fenetreChoixPion = new FenetreChoixPion(this);
-//		nouvellePartie = new NouvellePartieGraphique(this);
 		nouvellePartie = new NouvellePartiePanel(this);
 		animation = new Animation(fp.getAireDAnimation1(), this, fp.getEcouterPlateau());
 	}
