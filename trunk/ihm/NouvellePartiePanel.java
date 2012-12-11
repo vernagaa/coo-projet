@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import moteur.Case;
 import moteur.FabriquePion;
@@ -34,7 +35,11 @@ import moteur.familles.reptile.Reptile;
 // implements utile pour empêcher l'aireDeJeu de reçevoir les clics
 public class NouvellePartiePanel extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
 
-	private static final Color selectedCol = new Color(204, 0, 0);
+	private static final Color selectedColPanel = new Color(204, 0, 0);
+	private static final Color defaultColPanel = Color.GRAY;
+	private static final Color selectedColButton = Color.ORANGE;
+	private static final Color defaultColButton = new Color(238,238,238);
+	
 	private static final String FELIN_DESCR = "<html><h2>Félin</h2><p align=\"justify\">Les félins procurent un bonus en défense et en chance, et un malus en vie."
 			+ "<br/><br/>Le tacticien procure aux unités 1 de mouvement supplémentaire."
 			+ "<br/>Il procure la capacité spéciale \"Rage\" à chaque unité. La prochaine attaque sera un coup critique à coup sûr, au prochain tour, il aura une précision de 0. "
@@ -103,6 +108,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				afficherFamille(joueur, famille);
+				((Component)e.getSource()).setBackground(selectedColButton);
 				if (joueur == JOUEUR1) {
 					choixFamilleJoueur1(famille);
 				} else {
@@ -164,8 +170,17 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(choix) {
+					JButton deselect = getButtonClasse(classeSelect, joueurCourant);
+					if(deselect != null) {
+						deselect.setBackground(defaultColButton);
+					}
+				}
+				((Component)e.getSource()).setBackground(selectedColButton);
+				
 				classeSelect = classe;
 				choix = true;
+				
 				setListeAireDejeu();
 				m.aireDeJeu.repaint();
 			}
@@ -262,10 +277,10 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 			c.setEnabled(b);
 		}
 		if(b) {
-			panel.setBackground(selectedCol);
+			panel.setBackground(selectedColPanel);
 		}
 		else {
-			panel.setBackground(Color.GRAY);
+			panel.setBackground(defaultColPanel);
 		}
 	}
 
@@ -275,6 +290,30 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		}
 	}
 	
+	private JButton getButtonClasse(int classe, boolean joueur) {
+		JButton button;
+		switch(classe) {
+			case FabriquePion.ARCHER:
+				button = joueur ? archer1 : archer2;
+				break;
+			case FabriquePion.ASSASSIN:
+				button = joueur ? assassin1 : assassin2;
+				break;
+			case FabriquePion.GUERRIER:
+				button = joueur ? guerrier1 : guerrier2;
+				break;
+			case FabriquePion.TACTICIEN:
+				button = joueur ? tacticien1 : tacticien2;
+				break;
+			case FabriquePion.TANK:
+				button = joueur ? tank1 : tank2;
+				break;
+			default:
+				button = null;
+		}
+		return button;
+	}
+
 	/**
 	 * Accesseur de l'étape
 	 * @return
@@ -321,6 +360,12 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 	 */
 	public void setChoix(boolean choix) {
 		this.choix = choix;
+		if(!choix) {
+			JButton deselect = getButtonClasse(classeSelect, (nbPions % 2 == 0 ? joueurCourant : !joueurCourant));
+			if(deselect != null) {
+				deselect.setBackground(defaultColButton);
+			}
+		}
 	}
 
 	/**
@@ -426,14 +471,14 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		if (joueurCourant) {
 			afficherInfo1.setText("<html><h2> Veuillez choisir votre commandant !</h2></html>");
 			afficherInfo1.setVisible(true);
-			j1TextePanel.setBackground(selectedCol);
+			j1TextePanel.setBackground(selectedColPanel);
 		} else {
 			afficherInfo2.setText("<html><h2> Veuillez choisir votre commandant !</h2></html>");
 			afficherInfo2.setVisible(true);
-			j2TextePanel.setBackground(selectedCol);
+			j2TextePanel.setBackground(selectedColPanel);
 			
 			afficherInfo1.setVisible(false);
-			j1TextePanel.setBackground(Color.GRAY);
+			j1TextePanel.setBackground(defaultColPanel);
 		}
 		m.aireDeJeu.setJoueurCourant(joueurCourant);
 		m.aireDeJeu.repaint();
