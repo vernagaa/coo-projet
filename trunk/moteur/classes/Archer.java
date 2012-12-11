@@ -2,6 +2,7 @@ package moteur.classes;
 
 import java.awt.Point;
 import moteur.Case;
+import moteur.FabriquePion;
 import moteur.Pion;
 
 /**
@@ -25,5 +26,10 @@ public abstract class Archer extends Pion {
 	@Override
 	protected float janken(Pion p) {
 		return 0;
+	}
+
+	@Override
+	public int getNumClasse() {
+		return FabriquePion.ARCHER;
 	}
 }

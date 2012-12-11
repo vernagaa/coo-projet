@@ -162,7 +162,6 @@ public class AireDeJeu extends JComponent {
 				afficherMouvementPossible(gd);
 			}
 
-			//TODO a modifier
 			if (afficherPoseTeleporteur) {
 				gd.setColor(new Color(200, 0, 200, 150));
 				if (plateau.get(caseEnCours.getLigne() - 1, caseEnCours.getColonne()) != null

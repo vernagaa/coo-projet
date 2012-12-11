@@ -2,6 +2,7 @@ package moteur.classes;
 
 import java.awt.Point;
 import moteur.Case;
+import moteur.FabriquePion;
 import moteur.Pion;
 
 /**
@@ -24,9 +25,14 @@ public abstract class Tank extends Pion {
 
 	@Override
 	protected float janken(Pion p) {
-		if (p instanceof Guerrier) {
+		if (p.getNumClasse() == FabriquePion.GUERRIER) {
 			return 20 / 100;
 		}
 		return 0;
+	}
+
+	@Override
+	public int getNumClasse() {
+		return FabriquePion.TANK;
 	}
 }

@@ -22,8 +22,6 @@ public class Teleporteur {
 		System.out.println(joueur.getTeleporteur());
 		joueur.ajouterTeleporteur(this);
 		System.out.println("Liste des teleporteurs " + joueur.getTeleporteur());
-
-		//TODO Image differente selon teleporteur
 	}
 
 	public void diminuerVie(int force) {

@@ -3,8 +3,6 @@ package moteur;
 import exception.MapException;
 import ihm.*;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.ArrayList;
 import javax.swing.SwingUtilities;
 import moteur.classes.Tacticien;
@@ -78,7 +76,7 @@ public class Moteur implements Runnable, Serializable {
 			if (nouvellePartie.isJoueurCourant() && nouvellePartie.choixPossible(c1)) {
 				Pion pion = FabriquePion.getPion(nouvellePartie.getFamille1(), nouvellePartie.getClasse(), c1);
 				joueur1.ajouterPion(pion);
-				if (pion instanceof Tacticien) {
+				if (pion.getNumClasse() == FabriquePion.TACTICIEN) {
 					joueur1.setTacticien(pion);
 				}
 				nouvellePartie.pionAjouteJoueur1();
@@ -86,7 +84,7 @@ public class Moteur implements Runnable, Serializable {
 			} else if (nouvellePartie.choixPossible(c1)) {
 				Pion pion = FabriquePion.getPion(nouvellePartie.getFamille2(), nouvellePartie.getClasse(), c1);
 				joueur2.ajouterPion(pion);
-				if (pion instanceof Tacticien) {
+				if (pion.getNumClasse() == FabriquePion.TACTICIEN) {
 					joueur2.setTacticien(pion);
 				}
 				nouvellePartie.pionAjouteJoueur2();
@@ -217,7 +215,7 @@ public class Moteur implements Runnable, Serializable {
 				// On indique qu'il ne faut plus afficher les mouvements possibles
 				aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
 				//Si fin sur une case telportation
-				if (caseCourante.getTeleporteur() != null) {
+				if (caseCourante.getTeleporteur() != null && getJoueurCourant().getTeleporteur().contains(caseCourante.getTeleporteur())) {
 					System.out.println("Je peux me teleporter");
 					//Surbrillance des cases teleportations
 					//teleportation en cours

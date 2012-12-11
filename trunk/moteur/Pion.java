@@ -1,6 +1,5 @@
 package moteur;
 
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -856,4 +855,10 @@ public abstract class Pion implements Serializable {
 	public boolean isCommandant() {
 		return commandant;
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public abstract int getNumClasse();
 }
