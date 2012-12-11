@@ -21,7 +21,7 @@ public class Previsualisation extends JComponent {
 	}
 
 	public Previsualisation() {
-		this(new Plateau("map/map5.map"));
+		this(new Plateau("map/map4.map"));
 	}
 
 	public Plateau getPlateau() {
