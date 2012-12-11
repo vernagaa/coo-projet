@@ -177,7 +177,6 @@ public class AireDeJeu extends JComponent {
 				}
 			}
 		}
-
 		if (!debutDePartie) {
 			// Affiche le deplacement du pion en caseEnCours
 			//FIXME l'affichage des déplacements masque les téléporteurs : les rendre moins opaques

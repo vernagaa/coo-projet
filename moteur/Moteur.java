@@ -140,7 +140,6 @@ public class Moteur implements Runnable, Serializable {
 		aireDeJeu.setCaseSurvol(null);
 		fenetreChoixPion.effacerFenetre();
 		caseCourante = c1;
-		System.out.println("Clique gauche");
 		if (elireCommandant) {
 			if (c1.contientPion() && JoueurElireCommandant.possede(c1.getPion())) {
 				JoueurElireCommandant.setCommandant(c1.getPion());
@@ -177,11 +176,9 @@ public class Moteur implements Runnable, Serializable {
 								}
 							}
 						}
-						System.out.println(elireCommandant);
 					} else if (caseCourante.getObstacle() != null && caseCourante.getObstacle().isDestructible()) {
 						caseAncienne.getPion().attaquerObstacle(caseCourante);
 					} else if (caseCourante.contientTeleporteur(getJoueurAdverse())) {
-						System.out.println("TELEPORTEUR EN COURS DE DECES");
 						caseAncienne.getPion().attaquerTeleporteur(caseCourante);
 					}
 					utiliserAction();
@@ -197,7 +194,6 @@ public class Moteur implements Runnable, Serializable {
 						 * joueurOppose().geListeDePions().contains(caseCourante.getPion())
 						 */) {
 					getJoueurAdverse().conquerir(caseCourante);
-					System.out.println(getJoueurAdverse().toutConquis());
 					utiliserAction();
 				}
 				conqueteEnCours = false;
@@ -206,7 +202,6 @@ public class Moteur implements Runnable, Serializable {
 			// Permet de gerer le calculDeplacementPossible d'un pion suite a un clic gauche sur celui ci
 			else if (poserTeleporteur) {
 				//TODO Cas a verifier ?
-				System.out.println("Il faut poser un teleporteur");
 				((Tacticien) caseAncienne.getPion()).poserTeleporteur(caseCourante);
 				poserTeleporteur = false;
 				aireDeJeu.setAfficherPoseTeleporteur(false, caseCourante);
@@ -230,7 +225,6 @@ public class Moteur implements Runnable, Serializable {
 				aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
 				//Si fin sur une case telportation
 				if (caseCourante.getTeleporteur() != null && getJoueurCourant().getTeleporteur().contains(caseCourante.getTeleporteur())) {
-					System.out.println("Je peux me teleporter");
 					//Surbrillance des cases teleportations
 					//teleportation en cours
 					caseAncienne = caseCourante;
@@ -501,7 +495,6 @@ public class Moteur implements Runnable, Serializable {
 	 */
 	public void lierChateaux() {
 		ArrayList<Case> l = plateau.listeChateaux();
-		System.out.println(l);
 		ArrayList<Case> chateau = new ArrayList<Case>();
 		ArrayList<ArrayList<Case>> listeChateau = new ArrayList<ArrayList<Case>>();
 		int i = 0;
@@ -540,9 +533,6 @@ public class Moteur implements Runnable, Serializable {
 				joueur2.lierChateaux(lch);
 			}
 		}
-
-		System.out.println(joueur1.getChateaux());
-		System.out.println(joueur2.getChateaux());
 	}
 
 	/**
@@ -579,7 +569,6 @@ public class Moteur implements Runnable, Serializable {
 				}
 			}
 		}
-		System.out.println(tmp);
 		aireDeJeu.setCaseSurvol(tmp.get(0));
 	}
 

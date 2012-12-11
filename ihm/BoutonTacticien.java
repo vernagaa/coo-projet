@@ -25,7 +25,6 @@ public class BoutonTacticien extends BoutonAction implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Placer Teleporteur");
 		fenetre.getMoteur().setPoseTeleporteur(true);
 		fenetre.getMoteur().getAireDeJeu().setAfficherPoseTeleporteur(true, fenetre.getCase());
 		fenetre.getMoteur().getAireDeJeu().repaint();

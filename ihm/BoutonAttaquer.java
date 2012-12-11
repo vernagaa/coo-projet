@@ -46,7 +46,6 @@ public class BoutonAttaquer extends BoutonAction implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Attaquer");
 		fenetre.getMoteur().setAttaqueEnCours(true);
 		fenetre.getMoteur().getAireDeJeu().setAttaqueEnCours(true);
 		fenetre.effacerFenetre();

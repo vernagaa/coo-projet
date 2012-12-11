@@ -45,7 +45,6 @@ public final class Joueur {
 	 * @param commandant
 	 */
 	public void setCommandant(Pion commandant) {
-		System.out.println("Nomme commandant " + commandant);
 		if (commandant != null) {
 			commandant.setCommandant(true);
 		}

@@ -19,11 +19,11 @@ public class Terrain {
 		switch (i) {
 			case Textures.NEIGE:
 			case Textures.SABLE:
-				return CoutDefaut * 5/2;
+				return CoutDefaut * 1.5;
 			case Textures.ROUTE:
-				return CoutDefaut * 3/4;
+				return CoutDefaut * 0.75;
 			case Textures.GLACE:
-				return CoutDefaut * 1/2;
+				return CoutDefaut * 0.5;
 			case Textures.HERBE:
 			case Textures.ROC:
 			default:

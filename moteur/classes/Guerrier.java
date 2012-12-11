@@ -65,7 +65,7 @@ public abstract class Guerrier extends Pion {
 	@Override
 	protected double janken(Pion p) {
 		if (p.getNumClasse() == FabriquePion.ASSASSIN) {
-			return 2 / 10;
+			return 0.2;
 		}
 		return 0;
 	}

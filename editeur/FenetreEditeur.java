@@ -1239,7 +1239,6 @@ public class FenetreEditeur extends javax.swing.JFrame {
 
     private void chargerMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chargerMapActionPerformed
 		JFileChooser fc = new JFileChooser("map/");
-		System.out.println(aireDeJeu1.getPlateau());
 		if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 			File fichier = fc.getSelectedFile();
 
@@ -1279,12 +1278,6 @@ public class FenetreEditeur extends javax.swing.JFrame {
 				}
 			} else {
 				System.err.println("Le fichier n'existe pas");
-			}
-			for (int i = 0; i < Plateau.NB_LIGNE; i++) {
-				for (int j = 0; j < Plateau.NB_COLONNE; j++) {
-					System.out.print(aireDeJeu1.getPlateau().get(i, j).getTypeTerrain());
-				}
-				System.out.println("");
 			}
 		}
 

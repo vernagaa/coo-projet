@@ -75,9 +75,7 @@ public abstract class Tacticien extends Pion {
 	 * @param c
 	 */
 	public void poserTeleporteur(Case c) {
-			System.out.println("Je pose un teleporteur en " + c);
 			if (distanceManhattan(c) == 1 && c.getPion() == null && c.getObstacle() == null) {
-				System.out.println("Pose possible");
 				new Teleporteur(joueur, c);
 				cooldownTeleporteur = 1;
 			}
