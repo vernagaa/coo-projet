@@ -5,8 +5,16 @@ package moteur;
  * @author disavinr
  */
 public class Terrain {
+	/**
+	 * Cout par défaut d'un terrain
+	 */
 	public static int CoutDefaut = 2;
 
+	/**
+	 * Effet du terrain sur les déplacement
+	 * @param i
+	 * @return
+	 */
 	public static double effetDeplacement(int i) {
 		switch (i) {
 			case Textures.NEIGE:

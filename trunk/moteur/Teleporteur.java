@@ -13,6 +13,11 @@ public class Teleporteur {
 	private Case c;
 	private int vie;
 
+	/**
+	 * Constructeur de Téléporteur
+	 * @param joueur
+	 * @param c
+	 */
 	public Teleporteur(Joueur joueur, Case c) {
 		this.joueur = joueur;
 		vie = 50;
@@ -24,6 +29,10 @@ public class Teleporteur {
 		System.out.println("Liste des teleporteurs " + joueur.getTeleporteur());
 	}
 
+	/**
+	 * Diminue la vie du téléporteur
+	 * @param force
+	 */
 	public void diminuerVie(int force) {
 		this.vie -= force / 2;
 		if (vie < 0) {
@@ -32,6 +41,10 @@ public class Teleporteur {
 		}
 	}
 
+	/**
+	 * Renvoie la liste des téléporteur liés à this
+	 * @return
+	 */
 	public ArrayList<Teleporteur> getListeTeleporteur() {
 		return joueur.getTeleporteur();
 	}
@@ -41,14 +54,26 @@ public class Teleporteur {
 		return c.toString();
 	}
 
+	/**
+	 * Renvoie la case du téléporteur
+	 * @return
+	 */
 	public Case getCase() {
 		return c;
 	}
 
+	/**
+	 * Renvoie si le téléporteur est utilisable
+	 * @return
+	 */
 	public boolean isDisponible() {
 		return c.getPion() == null;
 	}
 	
+	/**
+	 * Renvoie l'image du téléporteur
+	 * @return
+	 */
 	public BufferedImage getImage() {
 		return Textures.getObstacle(joueur.getBoolValue() ? Textures.TELEPORTEUR1 : Textures.TELEPORTEUR2);
 	}

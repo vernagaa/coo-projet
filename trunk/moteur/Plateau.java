@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author KÃ©vin
+ * @author Kévin
  */
 public class Plateau implements Serializable {
 
@@ -43,7 +43,7 @@ public class Plateau implements Serializable {
 	}
 
 	/**
-	 * Constructeur avec une carte prÃ©dÃ©finie
+	 * Constructeur avec une carte donnée
 	 *
 	 * @param f
 	 */
@@ -78,10 +78,10 @@ public class Plateau implements Serializable {
 	}
 
 	/**
-	 * Retourne la case situÃ© Ã  la mÃªme position, c'est-Ã -dire mÃªme ligne et
-	 * mÃªme colonne.
+	 * Retourne la case située à la même position, c'est-à-dire même ligne et
+	 * même colonne.
 	 *
-	 * @param c Case qui est retournÃ©e
+	 * @param c Case qui est retournee
 	 * @return Retourne la case c.
 	 */
 	public Case get(Case c) {
@@ -92,11 +92,11 @@ public class Plateau implements Serializable {
 	}
 
 	/**
-	 * Retourne la case se situant Ã  la ligne l,et Ã  la colonne c.
+	 * Retourne la case se situant à la ligne l,et à la colonne c.
 	 *
 	 * @param l ligne de la case.
 	 * @param c colonne de la case.
-	 * @return Case situÃ© en position l,c
+	 * @return Case située en position l,c
 	 */
 	public Case get(int l, int c) {
 		//Arguments sont valides
@@ -108,22 +108,18 @@ public class Plateau implements Serializable {
 
 	}
 
+	/**
+	 * Renvoie le plateau
+	 * @return 
+	 */
 	public Case[][] get() {
 		return plateau;
 	}
 
 	/**
-	 * Supprime les pieces se situant sur la plateau.
-	 *
+	 * Renvoie la liste des chateau trouvés sur la carte
+	 * @return 
 	 */
-	public void vider() {
-		for (int i = 0; i < NB_LIGNE; i++) {
-			for (int j = 0; j < NB_COLONNE; j++) {
-				get(i, j).remove();
-			}
-		}
-	}
-
 	public ArrayList<Case> listeChateaux(){
 		ArrayList<Case> l = new ArrayList<Case>();
 		for(int i=0;i<NB_COLONNE;i++){
