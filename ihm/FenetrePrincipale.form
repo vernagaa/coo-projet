@@ -33,11 +33,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menuBarOption">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Option"/>
-          </Properties>
-        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
