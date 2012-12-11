@@ -32,5 +32,7 @@ public abstract class Obstacle implements Serializable {
 		return false;
 	}
 
-	public abstract boolean isDestructible();
+	public boolean isDestructible() {
+		return false;
+	}
 }
