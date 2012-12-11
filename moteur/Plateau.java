@@ -16,11 +16,11 @@ public class Plateau implements Serializable {
 	/**
 	 * Nombre de colonne dans le plateau
 	 */
-	private int colonne = 35;
+	public final static int NB_COLONNE = 35;
 	/**
 	 * Nombre de ligne dans le plateau
 	 */
-	private int ligne = 20;
+	public final static int NB_LIGNE = 20;
 	/**
 	 * Tableau de Cases symbolisant la plateau.
 	 */
@@ -31,12 +31,12 @@ public class Plateau implements Serializable {
 	 */
 	public Plateau() {
 		super();
-		plateau = new Case[ligne][colonne];
+		plateau = new Case[NB_LIGNE][NB_COLONNE];
 		/*
 		 * Initialisation des cases blanches
 		 */
-		for (int i = 0; i < ligne; i++) {
-			for (int j = 0; j < colonne; j++) {
+		for (int i = 0; i < NB_LIGNE; i++) {
+			for (int j = 0; j < NB_COLONNE; j++) {
 				plateau[i][j] = new Case(i, j, this);
 			}
 		}
@@ -49,7 +49,7 @@ public class Plateau implements Serializable {
 	 */
 	public Plateau(String str) {
 		try {
-			plateau = new Case[ligne][colonne];
+			plateau = new Case[NB_LIGNE][NB_COLONNE];
 			init(str);
 		} catch (MapException ex) {}
 	}
@@ -100,7 +100,7 @@ public class Plateau implements Serializable {
 	 */
 	public Case get(int l, int c) {
 		//Arguments sont valides
-		if (l >= 0 && l < ligne && c >= 0 && c < colonne) {
+		if (l >= 0 && l < NB_LIGNE && c >= 0 && c < NB_COLONNE) {
 			return plateau[l][c];
 		}
 
@@ -117,25 +117,17 @@ public class Plateau implements Serializable {
 	 *
 	 */
 	public void vider() {
-		for (int i = 0; i < ligne; i++) {
-			for (int j = 0; j < colonne; j++) {
+		for (int i = 0; i < NB_LIGNE; i++) {
+			for (int j = 0; j < NB_COLONNE; j++) {
 				get(i, j).remove();
 			}
 		}
 	}
 
-	public int getNbColonne() {
-		return colonne;
-	}
-
-	public int getNbLigne() {
-		return ligne;
-	}
-	
 	public ArrayList<Case> listeChateaux(){
 		ArrayList<Case> l = new ArrayList<Case>();
-		for(int i=0;i<colonne;i++){
-			for(int j=0;j<ligne;j++){
+		for(int i=0;i<NB_COLONNE;i++){
+			for(int j=0;j<NB_LIGNE;j++){
 				if(plateau[j][i].getObstacle()!=null && plateau[j][i].getObstacle().isChateau()){
 					l.add(plateau[j][i]);
 				}
