@@ -107,18 +107,9 @@ public class AireDeJeu extends JComponent {
 				construireSurvolAttaque(gd);
 			}
 
-			if (conqueteEnCours) {
-				afficherConquetePossible(gd);
-				construireSurvolConquete(gd);
-			}
-
 			// Affiche la porte d'attaque du pion en caseEnCours
 			if (afficherPorteeAttaque) {
 				afficherPorteAttaque(gd);
-			}
-
-			if (afficherPorteeConquerir) {
-				afficherPorteConquerir(gd);
 			}
 		}
 
@@ -160,8 +151,16 @@ public class AireDeJeu extends JComponent {
 			}
 		}
 		if (!debutDePartie) {
+			if (conqueteEnCours) {
+				afficherConquetePossible(gd);
+				construireSurvolConquete(gd);
+			}
+
+			if (afficherPorteeConquerir) {
+				afficherPorteConquerir(gd);
+			}
+
 			// Affiche le deplacement du pion en caseEnCours
-			//FIXME l'affichage des déplacements masque les téléporteurs : les rendre moins opaques
 			if (mouvementEnCours) {
 				afficherMouvementPossible(gd);
 			}
@@ -196,7 +195,6 @@ public class AireDeJeu extends JComponent {
 			}
 
 			// Mise en valeur des téléporteurs communiquants
-			//FIXME ne rien mettre en valeur si on est sur un téléporteur ennemi
 			if (teleportationEnCours) {
 				gd.setColor(new Color(200, 0, 200, 100));
 				for (Teleporteur t : caseEnCours.getTeleporteur().getListeTeleporteur()) {

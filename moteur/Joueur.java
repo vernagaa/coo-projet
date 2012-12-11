@@ -255,11 +255,16 @@ public final class Joueur {
 	 * @return
 	 */
 	public boolean toutConquis() {
-		boolean resultat = true;
-		for (ArrayList<Case> lc : chateaux) {
-			resultat = resultat && ((Chateau) lc.get(0).getObstacle()).isConquis();
+		
+		if(chateaux.isEmpty()) {
+			return false;
 		}
-		return resultat;
+		for (ArrayList<Case> lc : chateaux) {
+			if(!((Chateau) lc.get(0).getObstacle()).isConquis()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
