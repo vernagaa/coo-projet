@@ -15,7 +15,7 @@ import moteur.classes.Tacticien;
  */
 public class Moteur implements Runnable, Serializable {
 
-	private static final String DEFAULT_MAP = "map/map6.map";
+	private static final String DEFAULT_MAP = "map/map4.map";
 	private FenetrePrincipale fp;
 	private Plateau plateau;
 	private AireDeJeu aireDeJeu;

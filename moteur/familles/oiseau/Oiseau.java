@@ -115,7 +115,7 @@ public interface Oiseau extends Famille {
 	/**
 	 * bonus de mouvement de l'assassin oiseau
 	 */
-	public static final int mouvementAssassin = 50;
+	public static final int mouvementAssassin = 0;
 	/**
 	 * nom du tank oiseau
 	 */
