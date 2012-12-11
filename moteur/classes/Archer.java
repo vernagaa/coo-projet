@@ -20,8 +20,6 @@ public abstract class Archer extends Pion {
 
 	public Archer(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
 		super(vie + VIE, force + FORCE, precision + PRECISION, vitesse + VITESSE, defense + DEFENSE, bonusChance, portee + PORTEE, mouvement + MOUVEMENT, c);
-		id = new Point(2, 0);
-
 	}
 
 	@Override

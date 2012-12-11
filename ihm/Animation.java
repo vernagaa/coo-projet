@@ -21,6 +21,10 @@ public class Animation {
 	private Timer timer;
 	private EcouteurPlateau ecouteur;
 	private ArrayList<Integer> listeAnimation;
+	private Integer finDeTour;
+	private Integer finDePartie;
+	private Integer elireCommandant;
+	int i = 0;
 
 	public Animation(AireDAnimation aire, Moteur m, EcouteurPlateau ecouteur) {
 		this.aire = aire;
@@ -28,11 +32,15 @@ public class Animation {
 		listeAnimation = new ArrayList<Integer>();
 		this.ecouteur = ecouteur;
 		this.m = m;
+		finDeTour = new Integer(0);
+		finDePartie = new Integer(1);
+		elireCommandant = new Integer(2);
 	}
 
 	public void animerFinDeTour() {
 		if (!animationEnCours) {
 			animationEnCours = true;
+			System.out.println(animationEnCours);
 			ecouteur.desactiverEcouteur();
 			aire.animationFinDeTour = true;
 			timer = new Timer(42, new ActionListener() {
@@ -54,14 +62,11 @@ public class Animation {
 						animationEnCours = false;
 						aire.animationFinDeTour = false;
 						timer.stop();
-						lancerAnimation();
 					}
 					aire.repaint();
 				}
 			});
 			timer.start();
-		} else {
-			listeAnimation.add(new Integer(0));
 		}
 	}
 
@@ -136,7 +141,7 @@ public class Animation {
 		}
 	}
 
-	public void animerMouvement(final Pion p) throws IOException {
+	public void animerMouvement(final Pion p){
 		if (!animationEnCours) {
 			animationEnCours = true;
 			ecouteur.desactiverEcouteur();
@@ -160,10 +165,7 @@ public class Animation {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-//					System.out.println("Deplacement " + p.getDeplacement().size() + " " + caseEnCours);
-//					System.out.println(p.getDeplacement());
 					if (p.getDeplacement().size() - 1 > caseEnCours) {
-//						System.out.println(deplacementEnCours + " " + deplacementCase);
 						if (initialisation) {
 							caseTemp = p.getDeplacement().get(caseEnCours);
 							if (p.getDeplacement().size() > caseEnCours + 1) {
@@ -175,20 +177,16 @@ public class Animation {
 							if (caseSuiv != caseTemp) {
 								if (caseSuiv.getColonne() - caseTemp.getColonne() > 0) {
 									orientation = 2;
-//									orientation = Orientation.EST;
 									p.setOrientation(Orientation.EST);
 								} else if (caseSuiv.getColonne() - caseTemp.getColonne() < 0) {
 									orientation = 1;
 									p.setOrientation(Orientation.OUEST);
-//									orientation = Orientation.OUEST;
 								} else if (caseSuiv.getLigne() - caseTemp.getLigne() > 0) {
 									orientation = 0;
-									//orientation = Orientation.SUD;
 									p.setOrientation(Orientation.SUD);
 								} else if (caseSuiv.getLigne() - caseTemp.getLigne() < 0) {
 									orientation = 3;
 									p.setOrientation(Orientation.NORD);
-//									orientation = Orientation.NORD;
 								}
 							}
 						} else {
@@ -222,9 +220,9 @@ public class Animation {
 						animationEnCours = false;
 						aire.animationDeplacement = false;
 						p.deplacerPion(m.caseCourante);
-						m.utiliserAction();
 						timer.stop();
-						lancerAnimation();
+						m.utiliserAction();
+//						lancerAnimation();
 					}
 					aire.repaint();
 				}
@@ -263,7 +261,9 @@ public class Animation {
 			});
 			timer.start();
 		} else {
-			listeAnimation.add(new Integer(1));
+			if (!listeAnimation.contains(finDePartie)) {
+				listeAnimation.add(finDePartie);
+			}
 		}
 	}
 
@@ -297,7 +297,9 @@ public class Animation {
 			});
 			timer.start();
 		} else {
-			listeAnimation.add(new Integer(2));
+			if (!listeAnimation.contains(elireCommandant)) {
+				listeAnimation.add(elireCommandant);
+			}
 		}
 	}
 
@@ -305,16 +307,19 @@ public class Animation {
 		if (!listeAnimation.isEmpty()) {
 			switch (listeAnimation.get(0)) {
 				case 0:
+					System.out.println("Infini -----------------------------------------------------------");
+					listeAnimation.remove(0);
 					animerFinDeTour();
 					break;
 				case 1:
+					listeAnimation.remove(0);
 					animerFinDePartie();
 					break;
 				case 2:
+					listeAnimation.remove(0);
 					animerElireCommandant();
 					break;
 			}
-			listeAnimation.remove(0);
 		}
 	}
 }

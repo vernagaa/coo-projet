@@ -17,4 +17,9 @@ public class Noeud {
 		this.cout = cout;
 		listeNoeud = new ArrayList<Noeud>();
 	}
+	
+	@Override
+	public String toString(){
+		return "{"+c.toString()+" "+cout+"}";
+	}
 }

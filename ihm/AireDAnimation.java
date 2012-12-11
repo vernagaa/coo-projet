@@ -33,8 +33,6 @@ public class AireDAnimation extends JComponent {
 	public int val;
 	public Point positionA;
 	public Point positionD;
-
-
 	public BufferedImage imageEnCours;
 	public Point position;
 	public boolean animationDeplacement;
@@ -72,20 +70,18 @@ public class AireDAnimation extends JComponent {
 		} else if (animationDeplacement) {
 			gd.drawImage(imageEnCours, position.x, position.y, null);
 		} else if (animationFinDeTour) {
-			//FIXME pas de transition si fin de tour auto
 			gd.setColor(new Color(0, 0, 0, 15 + 8 * compteurFinDeTour));
 			gd.fillRect(0, 0, getWidth(), getHeight());
 			gd.setColor(Color.WHITE);
 			gd.setFont(new Font("impact", Font.BOLD, 20));
 			gd.drawString("Fin du tour !", getWidth() / 2 - 50, getHeight() / 2);
 			gd.drawString("A " + moteur.getJoueurCourant().getNom() + " de jouer !", getWidth() / 2 - 50, getHeight() / 2 + 30);
-
 		} else if (animationElire) {
 			gd.setColor(new Color(0, 0, 0, 6 * compteurFinDeTour));
 			gd.fillRect(0, 0, getWidth(), getHeight());
 			gd.setColor(Color.WHITE);
 			gd.setFont(new Font("impact", Font.BOLD, 20));
-			gd.drawString("Le commandant du joueur " + moteur.getJoueurElireCommandant().getNom()+ " est mort.", getWidth() / 2 - 150, getHeight() / 2);
+			gd.drawString("Le commandant du joueur " + moteur.getJoueurElireCommandant().getNom() + " est mort.", getWidth() / 2 - 150, getHeight() / 2);
 			gd.drawString("Il doit en choisir un nouveau !", getWidth() / 2 - 100, getHeight() / 2 + 30);
 
 
