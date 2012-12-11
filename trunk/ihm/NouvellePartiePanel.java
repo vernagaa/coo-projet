@@ -12,8 +12,6 @@ import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.ArrayList;
-import java.util.List;
-import javax.naming.spi.DirectoryManager;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -988,8 +986,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 
         jPanel2.setBackground(new java.awt.Color(128, 128, 128));
         jPanel2.setLayout(new java.awt.BorderLayout());
-
-        previsualisation.setBackground(new java.awt.Color(128, 128, 128));
         jPanel2.add(previsualisation, java.awt.BorderLayout.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1014,7 +1010,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         j1Panel.setPreferredSize(new Dimension(Case.TAILLE * 10, Case.TAILLE * 20));
         j1Panel.setLayout(new java.awt.GridBagLayout());
 
-        j1NomPanel.setBackground(java.awt.Color.gray);
+        j1NomPanel.setBackground(new java.awt.Color(128, 128, 128));
         j1NomPanel.setLayout(new java.awt.GridBagLayout());
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
