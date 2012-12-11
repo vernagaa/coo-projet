@@ -57,8 +57,7 @@ public class Plateau implements Serializable {
 	public final void init(String str) throws MapException{
 		try {
 			FileInputStream fis = new FileInputStream(str);
-			ObjectInputStream ois = null;
-			ois = new ObjectInputStream(fis);
+			ObjectInputStream ois = new ObjectInputStream(fis);
 			Plateau p = (Plateau) ois.readObject();
 			for (int i = 0; i < plateau.length; i++) {
 				for (int j = 0; j < plateau[i].length; j++) {
