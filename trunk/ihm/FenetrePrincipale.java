@@ -90,7 +90,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
         menuBarFichier = new javax.swing.JMenu();
         menuNouvellePartie = new javax.swing.JMenuItem();
         menuQuitter = new javax.swing.JMenuItem();
-        menuBarOption = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Animosity");
@@ -152,9 +151,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 
         jMenuBar1.add(menuBarFichier);
 
-        menuBarOption.setText("Option");
-        jMenuBar1.add(menuBarOption);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,7 +168,7 @@ public class FenetrePrincipale extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(aireDeJeu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +212,6 @@ public class FenetrePrincipale extends javax.swing.JFrame {
     private javax.swing.JLabel labelJoueur;
     private javax.swing.JLabel labelTour;
     private javax.swing.JMenu menuBarFichier;
-    private javax.swing.JMenu menuBarOption;
     private javax.swing.JMenuItem menuNouvellePartie;
     private javax.swing.JMenuItem menuQuitter;
     // End of variables declaration//GEN-END:variables
