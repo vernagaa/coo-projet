@@ -230,7 +230,7 @@ public abstract class Pion implements Serializable {
 		int aleaRiposte = (int) (Math.random() * (101));
 		int aleaCoupCritique = (int) (Math.random() * (101));
 		int coupReel;
-		System.out.println(aleaEsquive+" < "+(hit - esquive)+" : "+hit+" - "+esquive);
+		System.out.println(aleaEsquive+" < "+(hit - esquive)+" : "+hit+" - "+esquive+" "+janken(p));
 		if (esquive < 100 && aleaEsquive < (hit - esquive)) {
 			System.out.println("Coups critiques : "+aleaCoupCritique+" < "+coupCritiques());
 			System.out.println("Defense : "+seDefend);
@@ -281,7 +281,7 @@ public abstract class Pion implements Serializable {
 	 * @param p
 	 * @return un pourcentage
 	 */
-	protected abstract float janken(Pion p);
+	protected abstract double janken(Pion p);
 
 	/**
 	 * Permet de calculer le pourcentage en bonus d'attaque obtenu en fonction

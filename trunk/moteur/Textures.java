@@ -184,11 +184,14 @@ public final class Textures {
 	public static final String TANKREPTILEPATH = "/images/perso/reptile/tortue.png";
 	public static final String ASSASSINFELINPATH = "/images/perso/felin/felin_test.png";
 	public static final String TANKFELINPATH = "/images/perso/felin/lion2.png";
+	
+	public static final String ETOILEPATH = "/images/perso/etoileCommandant.png";
 	// Attributs
 	private BufferedImage[] terrain = new BufferedImage[7];
 	private BufferedImage[] bordureTerrain = new BufferedImage[12];
 	private BufferedImage[][][] perso = new BufferedImage[15][4][3];
 	private BufferedImage[] obstacle = new BufferedImage[45];
+	private BufferedImage etoileCommandant;
 	private static Textures singleton = new Textures();
 
 	/**
@@ -210,7 +213,11 @@ public final class Textures {
 //			obstacle[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
 //		}
 
-
+		try {
+			etoileCommandant = ImageIO.read(getClass().getResource(ETOILEPATH));
+		} catch (IOException ex) {
+			System.err.println("Image non trouvÃ©e : " + ETOILEPATH);
+		}
 
 
 		try {
@@ -253,6 +260,10 @@ public final class Textures {
 		tileChateau();
 		tileBarriere();
 		initPersos();
+	}
+	
+	public static BufferedImage getEtoileCommandant(){
+		return singleton.etoileCommandant;
 	}
 
 	public static BufferedImage getPersonnage(int numPerso, Orientation orientation) {

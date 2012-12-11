@@ -24,6 +24,15 @@ public class Animation {
 	private Integer finDePartie;
 	private Integer elireCommandant;
 
+	/**
+	 * Constructeur d'animation.
+	 * Elle a besoin d'une iareDAnimation pour l'affichage
+	 * Du moteur pour certains cas de certaines animations
+	 * Et de l'ecouteurPlateau pour pouvoir le rendre inactif
+	 * @param aire
+	 * @param m
+	 * @param ecouteur
+	 */
 	public Animation(AireDAnimation aire, Moteur m, EcouteurPlateau ecouteur) {
 		this.aire = aire;
 		animationEnCours = false;
@@ -35,6 +44,13 @@ public class Animation {
 		elireCommandant = new Integer(2);
 	}
 
+	/**
+	 * Permet l'animation fin de tour gâce à un timer et de l'airDAnimation.
+	 * Si une animation est en cours (Mouvement ou Attaque), 
+	 * elle est stocké dans une file d'animation.
+	 * A la fin de l'animation, on lance les animtions dans la file 
+	 * (seule l'animation fin de tour est possible).
+	 */
 	public void animerFinDeTour() {
 		if (!animationEnCours) {
 			animationEnCours = true;
@@ -73,6 +89,13 @@ public class Animation {
 		}
 	}
 
+	/**
+	 * Permet l'animation de l'attaque entre les pions pionA et pionD.
+	 * A la fin de l'animation, on lance les animations dans la file d'naimation
+	 * il ne peut y avoir que finDePartie ou finDetour.
+	 * @param pionA
+	 * @param pionD
+	 */
 	public void animerAttaquePion(final Pion pionA, final Pion pionD) {
 		if (!animationEnCours) {
 			animationEnCours = true;
@@ -144,6 +167,12 @@ public class Animation {
 		}
 	}
 
+	/**
+	 * Permet de gérer l'animation du mouvement.
+	 * L'animation du mouvement peut seulement entrainer l'animation fin de tour.
+	 * Mais cette dernière sera lancé par m.utiliserAction()
+	 * @param p
+	 */
 	public void animerMouvement(final Pion p) {
 		if (!animationEnCours) {
 			animationEnCours = true;
@@ -233,10 +262,20 @@ public class Animation {
 		}
 	}
 
+	/**
+	 * Si une animation est en cours, retourne faux.
+	 * @return
+	 */
 	public boolean animationPossible() {
 		return !animationEnCours;
 	}
 
+	/**
+	 * Permet l'animation de fin de partie.
+	 * La plus plart du temps, elle sera mise dans la file d'animation.
+	 * Elle supprime tout les éléments contenu dans la liste d'animation lorsqu'elle
+	 * se termine. Meme si elle devrait etre vide.
+	 */
 	public void animerFinDePartie() {
 		if (!animationEnCours) {
 			animationEnCours = true;
@@ -269,6 +308,9 @@ public class Animation {
 		}
 	}
 
+	/**
+	 * Permet l'animation du choix de commandant lors de la mort de l'un des deux.
+	 */
 	public void animerElireCommandant() {
 		if (!animationEnCours) {
 			animationEnCours = true;

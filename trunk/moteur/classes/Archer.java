@@ -62,7 +62,7 @@ public abstract class Archer extends Pion {
 	 * @return 
 	 */
 	@Override
-	protected float janken(Pion p) {
+	protected double janken(Pion p) {
 		return 0;
 	}
 

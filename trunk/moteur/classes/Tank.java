@@ -62,9 +62,9 @@ public abstract class Tank extends Pion {
 	 * @return 
 	 */
 	@Override
-	protected float janken(Pion p) {
+	protected double janken(Pion p) {
 		if (p.getNumClasse() == FabriquePion.GUERRIER) {
-			return 20 / 100;
+			return 2 / 10;
 		}
 		return 0;
 	}

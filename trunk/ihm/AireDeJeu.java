@@ -165,6 +165,9 @@ public class AireDeJeu extends JComponent {
 				// Affichage des pions
 				if (c1.getPion() != null) {
 					gd.drawImage(c1.getPion().getImage(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+					if(c1.getPion().isCommandant()){
+						gd.drawImage(Textures.getEtoileCommandant(), c1.getColonne() * Case.TAILLE, c1.getLigne() * Case.TAILLE, null);
+					}
 				}
 				if (elireUnCommandant) {
 					gd.setColor(new Color(0, 0, 0, 200));
