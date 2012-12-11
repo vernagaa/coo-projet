@@ -11,6 +11,10 @@ import moteur.classes.Assassin;
  */
 public class AssassinReptile extends Assassin implements Reptile {
 
+	/**
+	 * Constructeur de l'assassin reptile
+	 * @param c
+	 */
 	public AssassinReptile(Case c) {
 		super(vieAssassin, forceAssassin, precisionAssassin, vitesseAssassin, defenseAssassin, chanceAssassin, porteeAssassin, mouvementAssassin, c);
 		nomCapaciteSpeciale = nomCapacite;

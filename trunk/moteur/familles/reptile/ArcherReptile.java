@@ -11,6 +11,10 @@ import moteur.classes.Archer;
  */
 public final class ArcherReptile extends Archer implements Reptile {
 
+	/**
+	 * Constructeur de l'archer reptile
+	 * @param c
+	 */
 	public ArcherReptile(Case c) {
 		super(vieArcher, forceArcher, precisionArcher, vitesseArcher, defenseArcher, chanceArcher, porteeArcher, mouvementArcher, c);
 		nomCapaciteSpeciale = nomCapacite;

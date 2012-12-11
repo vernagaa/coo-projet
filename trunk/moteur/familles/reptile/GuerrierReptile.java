@@ -11,6 +11,10 @@ import moteur.classes.Guerrier;
  */
 public final class GuerrierReptile extends Guerrier implements Reptile {
 
+	/**
+	 * Constructeur du guerrier reptile
+	 * @param c
+	 */
 	public GuerrierReptile(Case c) {
 		super(vieGuerrier, forceGuerrier, precisionGuerrier, vitesseGuerrier, defenseGuerrier, chanceGuerrier, porteeGuerrier, mouvementGuerrier, c);
 		nomCapaciteSpeciale = nomCapacite;

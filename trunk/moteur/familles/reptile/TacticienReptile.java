@@ -11,6 +11,10 @@ import moteur.classes.Tacticien;
  */
 public final class TacticienReptile extends Tacticien implements Reptile {
 
+	/**
+	 * Constructeur du tacticien reptile
+	 * @param c
+	 */
 	public TacticienReptile(Case c) {
 		super(vieTacticien, forceTacticien, precisionTacticien, vitesseTacticien, defenseTacticien, chanceTacticien, porteeTacticien, mouvementTacticien, c);
 		nomCapaciteSpeciale = nomCapacite;
