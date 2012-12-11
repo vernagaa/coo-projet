@@ -38,6 +38,10 @@ public class AireDeJeu extends JComponent {
 	private Joueur joueurC;
 	private boolean elireUnCommandant;
 
+	/**
+	 * Constructeur de l'aire de jeu
+	 * @param plateau
+	 */
 	public AireDeJeu(Plateau plateau) {
 		setPreferredSize(new Dimension(plateau.getNbColonne() * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1));
 		this.plateau = plateau;
@@ -45,18 +49,34 @@ public class AireDeJeu extends JComponent {
 		nouvellePartie();
 	}
 
+	/**
+	 * Constructeur vide pour le form
+	 * Necessaire mais jamais appelé
+	 */
 	public AireDeJeu() {
 		this(new Plateau());
 	}
 
+	/**
+	 * Accesseur du plateau
+	 * @return
+	 */
 	public Plateau getPlateau() {
 		return plateau;
 	}
 
+	/**
+	 * Affecteur du plateau
+	 * @param plateau
+	 */
 	public void setPlateau(Plateau plateau) {
 		this.plateau = plateau;
 	}
 
+	/**
+	 * Affiche le plateau
+	 * @param g 
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;
@@ -230,7 +250,9 @@ public class AireDeJeu extends JComponent {
 
 	}
 
-//	Les methodes suivantes concernent l'affichage de l'attaque
+	/**
+	 * Affiche les cases à portée pour une attaque
+	 */
 	private void afficherPorteAttaque(Graphics2D gd) {
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeAttaqueAire()) {
@@ -240,6 +262,10 @@ public class AireDeJeu extends JComponent {
 		}
 	}
 
+	/**
+	 * Affiche les case à portée pour conquerir
+	 * @param gd 
+	 */
 	private void afficherPorteConquerir(Graphics2D gd) {
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeConquetePossible()) {
@@ -249,6 +275,10 @@ public class AireDeJeu extends JComponent {
 		}
 	}
 
+	/**
+	 * Affiche les cases pouvant être attaquées
+	 * @param gd 
+	 */
 	private void afficherAttaquePossible(Graphics2D gd) {
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeAttaquePossible()) {
@@ -258,6 +288,10 @@ public class AireDeJeu extends JComponent {
 		}
 	}
 
+	/**
+	 * Affiche les case pouvant être conquises
+	 * @param gd 
+	 */
 	private void afficherConquetePossible(Graphics2D gd) {
 		int i = 0;
 		for (Case c : caseEnCours.getPion().getListeConquetePossible()) {
@@ -267,6 +301,10 @@ public class AireDeJeu extends JComponent {
 		}
 	}
 
+	/**
+	 * Met en valeur la case attaquable survolée 
+	 * @param gd 
+	 */
 	private void construireSurvolAttaque(Graphics2D gd) {
 		gd.setColor(new Color(255, 0, 0, 200));
 		if (caseEnCours.getPion().getListeAttaquePossible().contains(caseSurvol)) {
@@ -274,6 +312,10 @@ public class AireDeJeu extends JComponent {
 		}
 	}
 
+	/**
+	 * Met en valeur la case pouvant être conquise survolée
+	 * @param gd 
+	 */
 	private void construireSurvolConquete(Graphics2D gd) {
 		gd.setColor(new Color(255, 0, 255, 200));
 		if (caseEnCours.getPion().getListeConquetePossible().contains(caseSurvol)) {
@@ -281,20 +323,38 @@ public class AireDeJeu extends JComponent {
 		}
 	}
 
+	/**
+	 * Affecteur d'attaque en cours
+	 * @param attaque
+	 */
 	public void setAttaqueEnCours(boolean attaque) {
 		this.attaqueEnCours = attaque;
 	}
 
+	/**
+	 * Active ou desactive l'affichage de la portee d'attaque
+	 * @param b
+	 * @param c
+	 */
 	public void setAfficherPorteeAttaque(boolean b, Case c) {
 		afficherPorteeAttaque = b;
 		caseEnCours = c;
 	}
 
+	/**
+	 * Active ou desactive l'affichage de la portée de conquerir
+	 * @param b
+	 * @param c
+	 */
 	public void setAfficherPorteeConquerir(boolean b, Case c) {
 		afficherPorteeConquerir = b;
 		caseEnCours = c;
 	}
 
+	/**
+	 * Affiche la vie du pion survolé
+	 * @param gd 
+	 */
 	private void construireSurvolPion(Graphics gd) {
 		Case affVie;
 		String affichageVie = caseSurvol.getPion().getVieRestante() + "pv";
@@ -322,11 +382,18 @@ public class AireDeJeu extends JComponent {
 		gd.drawString(affichageVie, affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE + 20);
 	}
 
+	/**
+	 * Affecteur de caseSurvol
+	 * @param c
+	 */
 	public void setCaseSurvol(Case c) {
 		caseSurvol = c;
 	}
 
-//	Les methodes suivantes concernent l'affichage du mouvement
+	/**
+	 * Affiche la portée de déplacement
+	 * @param gd 
+	 */
 	private void afficherMouvementPossible(Graphics2D gd) {
 		int i = 0;
 		for (Noeud c2 : caseEnCours.getPion().listeDeplacementPossible) {
@@ -341,35 +408,65 @@ public class AireDeJeu extends JComponent {
 		gd.drawImage(caseEnCours.getPion().getImage(), caseEnCours.getColonne() * Case.TAILLE, caseEnCours.getLigne() * Case.TAILLE, null);
 	}
 
+	/**
+	 * Active ou désactive l'affichage de la portée des mouvement
+	 * @param b
+	 * @param c1
+	 */
 	public void afficherMouvement(boolean b, Case c1) {
 		mouvementEnCours = b;
 		caseEnCours = c1;
 	}
 
+	/**
+	 * Affecteur de debutDePartie
+	 * @param debutDePartie
+	 */
 	public void setDebutDePartie(boolean debutDePartie) {
 		this.debutDePartie = debutDePartie;
 	}
 
+	/**
+	 * Affecteur du joueurCourant
+	 * @param joueurCourant
+	 */
 	public void setJoueurCourant(boolean joueurCourant) {
 		this.joueurCourant = joueurCourant;
 		firstTime = false;
 	}
 
+	/**
+	 * Affecteur de la listeCase
+	 * @param caseJoueur
+	 */
 	public void setListeCase(ArrayList<Case> caseJoueur) {
 		listeCase = caseJoueur;
 	}
 
+	/**
+	 * Active ou désactive la portée de la pose d'un téléporteur
+	 * @param b
+	 * @param c
+	 */
 	public void setAfficherPoseTeleporteur(boolean b, Case c) {
 		afficherPoseTeleporteur = b;
 		caseEnCours = c;
 	}
 
+	/**
+	 * Active ou desactive l'affichage des téléporteurs disponibles
+	 * @param teleportationEnCours
+	 * @param c
+	 */
 	public void afficherTeleporteurDisponible(boolean teleportationEnCours, Case c) {
 		this.teleportationEnCours = teleportationEnCours;
 		caseEnCours = c;
 
 	}
 
+	/**
+	 * Réinitialise l'aireDeJeu lors d'une nouvellePartie
+	 */
 	public final void nouvellePartie() {
 		setDebutDePartie(true);
 		setListeCase(null);
@@ -377,10 +474,18 @@ public class AireDeJeu extends JComponent {
 		repaint();
 	}
 
+	/**
+	 * Affecteur de conqueteEnCours
+	 * @param b
+	 */
 	public void setConqueteEnCours(boolean b) {
 		conqueteEnCours = b;
 	}
 
+	/**
+	 * Affiche la vie d'un chateau
+	 * @param gd 
+	 */
 	private void construireSurvolChateau(Graphics2D gd) {
 		int vie = ((Chateau) caseSurvol.getObstacle()).getConquerir() * 20;
 		if (vie/20 == 3) {
@@ -394,6 +499,11 @@ public class AireDeJeu extends JComponent {
 
 	}
 
+	/**
+	 * Active l'affichage des potentiels futurs commandants
+	 * @param joueurCourant
+	 * @param b
+	 */
 	public void elireUnCommandant(Joueur joueurCourant, boolean b) {
 		this.joueurC = joueurCourant;
 		elireUnCommandant = b;

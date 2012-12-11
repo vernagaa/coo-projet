@@ -38,9 +38,17 @@ public class AireDAnimation extends JComponent {
 	public boolean animationDeplacement;
 	public boolean animationElire;
 
+	/**
+	 * Constructeur pour le form
+	 * Jamais appelé mais nécessaire
+	 */
 	public AireDAnimation() {
 	}
 
+	/**
+	 * Constructeur de l'aire d'animation
+	 * @param moteur 
+	 */
 	public AireDAnimation(Moteur moteur) {
 		this.moteur = moteur;
 		positionA = new Point();
@@ -48,6 +56,10 @@ public class AireDAnimation extends JComponent {
 		position = new Point();
 	}
 
+	/**
+	 * Affiche les animations
+	 * @param g 
+	 */
 	@Override
 	public void paintComponent(Graphics g) {
 		Graphics2D gd = (Graphics2D) g;
