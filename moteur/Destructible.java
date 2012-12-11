@@ -6,6 +6,7 @@ package moteur;
  */
 public final class Destructible extends Obstacle {
 
+	private final static long serialVersionUID = -6990856900230380003L;
 	private int vie;
 
 	/**
