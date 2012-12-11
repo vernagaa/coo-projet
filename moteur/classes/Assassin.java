@@ -63,9 +63,9 @@ public abstract class Assassin extends Pion {
 	 * pré-cond : p != null
 	 */
 	@Override
-	protected float janken(Pion p) {
+	protected double janken(Pion p) {
 		if (p.getNumClasse() == FabriquePion.TANK) {
-			return 20 / 100;
+			return 2/10;
 		}
 		return 0;
 	}
