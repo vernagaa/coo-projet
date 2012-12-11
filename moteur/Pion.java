@@ -163,8 +163,8 @@ public abstract class Pion implements Serializable {
 	public void deplacerPion(Case c1) {
 		double mouvementDepense = 0;
 		for (Noeud n1 : listeDeplacementPossible) {
-			if (n1.c.compare(c1)) {
-				mouvementDepense = n1.cout;
+			if (n1.getC().compare(c1)) {
+				mouvementDepense = n1.getCout();
 				break;
 			}
 		}
@@ -440,75 +440,75 @@ public abstract class Pion implements Serializable {
 		while (!listeOuverte.isEmpty()) {
 			tmp = listeOuverte.remove(0);
 			listeFerme.add(tmp);
-			caseVerif = c.getPlateau().get(tmp.c.getLigne() + 1, tmp.c.getColonne());
+			caseVerif = c.getPlateau().get(tmp.getC().getLigne() + 1, tmp.getC().getColonne());
 			if (caseVerif != null) {
-				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+				tmp2 = new Noeud(caseVerif, tmp.getCout() + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
 			} else {
-				tmp2 = new Noeud(caseVerif, tmp.cout);
+				tmp2 = new Noeud(caseVerif, tmp.getCout());
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
-			tmp2.listeNoeud.add(tmp);
+			tmp2.getListeNoeud().add(tmp);
 			if (caseVerif != null && contient(tmp2, listeDeplacementPossible, noeudContenu)) {
-				if (tmp2.cout < noeudContenu.cout) {
-					noeudContenu.cout = tmp2.cout;
-					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				if (tmp2.getCout() < noeudContenu.getCout()) {
+					noeudContenu.setCout(tmp2.getCout());
+					noeudContenu.setListeNoeud(tmp2.getListeNoeud());
 				}
-			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
+			} else if (caseVerif != null && !tmp2.getC().isObstacleDeplacement() && !tmp2.getC().contientPion() && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.getCout() <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
-			caseVerif = c.getPlateau().get(tmp.c.getLigne() - 1, tmp.c.getColonne());
+			caseVerif = c.getPlateau().get(tmp.getC().getLigne() - 1, tmp.getC().getColonne());
 			if (caseVerif != null) {
-				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+				tmp2 = new Noeud(caseVerif, tmp.getCout() + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
 			} else {
-				tmp2 = new Noeud(caseVerif, tmp.cout);
+				tmp2 = new Noeud(caseVerif, tmp.getCout());
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
-			tmp2.listeNoeud.add(tmp);
+			tmp2.getListeNoeud().add(tmp);
 			if (caseVerif != null && contient(tmp2, listeDeplacementPossible, noeudContenu)) {
-				if (tmp2.cout < noeudContenu.cout) {
-					noeudContenu.cout = tmp2.cout;
-					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				if (tmp2.getCout() < noeudContenu.getCout()) {
+					noeudContenu.setCout(tmp2.getCout());
+					noeudContenu.setListeNoeud(tmp2.getListeNoeud());
 				}
-			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
+			} else if (caseVerif != null && !tmp2.getC().isObstacleDeplacement() && !tmp2.getC().contientPion() && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.getCout() <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
-			caseVerif = c.getPlateau().get(tmp.c.getLigne(), tmp.c.getColonne() + 1);
+			caseVerif = c.getPlateau().get(tmp.getC().getLigne(), tmp.getC().getColonne() + 1);
 			if (caseVerif != null) {
-				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+				tmp2 = new Noeud(caseVerif, tmp.getCout() + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
 			} else {
-				tmp2 = new Noeud(caseVerif, tmp.cout);
+				tmp2 = new Noeud(caseVerif, tmp.getCout());
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
-			tmp2.listeNoeud.add(tmp);
+			tmp2.getListeNoeud().add(tmp);
 			if (caseVerif != null && contient(tmp2, listeDeplacementPossible, noeudContenu)) {
-				if (tmp2.cout < noeudContenu.cout) {
-					noeudContenu.cout = tmp2.cout;
-					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				if (tmp2.getCout() < noeudContenu.getCout()) {
+					noeudContenu.setCout(tmp2.getCout());
+					noeudContenu.setListeNoeud(tmp2.getListeNoeud());
 				}
-			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
+			} else if (caseVerif != null && !tmp2.getC().isObstacleDeplacement() && !tmp2.getC().contientPion() && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.getCout() <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
-			caseVerif = c.getPlateau().get(tmp.c.getLigne(), tmp.c.getColonne() - 1);
+			caseVerif = c.getPlateau().get(tmp.getC().getLigne(), tmp.getC().getColonne() - 1);
 			if (caseVerif != null) {
-				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+				tmp2 = new Noeud(caseVerif, tmp.getCout() + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
 			} else {
-				tmp2 = new Noeud(caseVerif, tmp.cout);
+				tmp2 = new Noeud(caseVerif, tmp.getCout());
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
-			tmp2.listeNoeud.add(tmp);
+			tmp2.getListeNoeud().add(tmp);
 			if (caseVerif != null && contient(tmp2, listeDeplacementPossible, noeudContenu)) {
-				if (tmp2.cout < noeudContenu.cout) {
-					noeudContenu.cout = tmp2.cout;
-					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				if (tmp2.getCout() < noeudContenu.getCout()) {
+					noeudContenu.setCout(tmp2.getCout());
+					noeudContenu.setListeNoeud(tmp2.getListeNoeud());
 				}
-			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
+			} else if (caseVerif != null && !tmp2.getC().isObstacleDeplacement() && !tmp2.getC().contientPion() && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.getCout() <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -661,7 +661,7 @@ public abstract class Pion implements Serializable {
 	 */
 	protected boolean contient(Noeud n, ArrayList<Noeud> ln, Noeud n2) {
 		for (Noeud n1 : ln) {
-			if (n1.c.compare(n.c)) {
+			if (n1.getC().compare(n.getC())) {
 				n2 = n1;
 				return true;
 			}
@@ -676,8 +676,8 @@ public abstract class Pion implements Serializable {
 	 * @param n2
 	 */
 	protected void recopierNoeudDansNoeud(Noeud n1, Noeud n2) {
-		for (Noeud nk : n1.listeNoeud) {
-			n2.listeNoeud.add(nk);
+		for (Noeud nk : n1.getListeNoeud()) {
+			n2.getListeNoeud().add(nk);
 		}
 	}
 
@@ -690,9 +690,9 @@ public abstract class Pion implements Serializable {
 	public void afficherDeplacement(Case c2) {
 		deplacement.clear();
 		for (Noeud n1 : listeDeplacementPossible) {
-			if (n1.c.compare(c2)) {
-				for (Noeud n2 : n1.listeNoeud) {
-					deplacement.add(n2.c);
+			if (n1.getC().compare(c2)) {
+				for (Noeud n2 : n1.getListeNoeud()) {
+					deplacement.add(n2.getC());
 				}
 				deplacement.add(c2);
 			}

@@ -71,75 +71,75 @@ public final class AssassinOiseau extends Assassin implements Oiseau {
 		while (!listeOuverte.isEmpty()) {
 			tmp = listeOuverte.remove(0);
 			listeFerme.add(tmp);
-			caseVerif = c.getPlateau().get(tmp.c.getLigne() + 1, tmp.c.getColonne());
+			caseVerif = c.getPlateau().get(tmp.getC().getLigne() + 1, tmp.getC().getColonne());
 			if (caseVerif != null) {
-				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+				tmp2 = new Noeud(caseVerif, tmp.getCout() + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
 			} else {
-				tmp2 = new Noeud(caseVerif, tmp.cout);
+				tmp2 = new Noeud(caseVerif, tmp.getCout());
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
-			tmp2.listeNoeud.add(tmp);
+			tmp2.getListeNoeud().add(tmp);
 			if (caseVerif != null && contient(tmp2, listeDeplacementPossible,noeudContenu)) {
-				if (tmp2.cout < noeudContenu.cout) {
-					noeudContenu.cout = tmp2.cout;
-					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				if (tmp2.getCout() < noeudContenu.getCout()) {
+					noeudContenu.setCout(tmp2.getCout());
+					noeudContenu.setListeNoeud(tmp2.getListeNoeud());
 				}
-			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
+			} else if (caseVerif != null && (!tmp2.getC().isObstacleDeplacement() || vol) && (!tmp2.getC().contientPion() || vol) && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.getCout() <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
-			caseVerif = c.getPlateau().get(tmp.c.getLigne() - 1, tmp.c.getColonne());
+			caseVerif = c.getPlateau().get(tmp.getC().getLigne() - 1, tmp.getC().getColonne());
 			if (caseVerif != null) {
-				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+				tmp2 = new Noeud(caseVerif, tmp.getCout() + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
 			} else {
-				tmp2 = new Noeud(caseVerif, tmp.cout);
+				tmp2 = new Noeud(caseVerif, tmp.getCout());
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
-			tmp2.listeNoeud.add(tmp);
+			tmp2.getListeNoeud().add(tmp);
 			if (caseVerif != null && contient(tmp2, listeDeplacementPossible,noeudContenu)) {
-				if (tmp2.cout < noeudContenu.cout) {
-					noeudContenu.cout = tmp2.cout;
-					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				if (tmp2.getCout() < noeudContenu.getCout()) {
+					noeudContenu.setCout(tmp2.getCout());
+					noeudContenu.setListeNoeud(tmp2.getListeNoeud());
 				}
-			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
+			} else if (caseVerif != null && (!tmp2.getC().isObstacleDeplacement() || vol) && (!tmp2.getC().contientPion() || vol) && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.getCout() <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
-			caseVerif = c.getPlateau().get(tmp.c.getLigne(), tmp.c.getColonne() + 1);
+			caseVerif = c.getPlateau().get(tmp.getC().getLigne(), tmp.getC().getColonne() + 1);
 			if (caseVerif != null) {
-				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+				tmp2 = new Noeud(caseVerif, tmp.getCout() + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
 			} else {
-				tmp2 = new Noeud(caseVerif, tmp.cout);
+				tmp2 = new Noeud(caseVerif, tmp.getCout());
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
-			tmp2.listeNoeud.add(tmp);
+			tmp2.getListeNoeud().add(tmp);
 			if (caseVerif != null && contient(tmp2, listeDeplacementPossible,noeudContenu)) {
-				if (tmp2.cout < noeudContenu.cout) {
-					noeudContenu.cout = tmp2.cout;
-					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				if (tmp2.getCout() < noeudContenu.getCout()) {
+					noeudContenu.setCout(tmp2.getCout());
+					noeudContenu.setListeNoeud(tmp2.getListeNoeud());
 				}
-			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
+			} else if (caseVerif != null && (!tmp2.getC().isObstacleDeplacement() || vol) && (!tmp2.getC().contientPion() || vol) && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.getCout() <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
-			caseVerif = c.getPlateau().get(tmp.c.getLigne(), tmp.c.getColonne() - 1);
+			caseVerif = c.getPlateau().get(tmp.getC().getLigne(), tmp.getC().getColonne() - 1);
 			if (caseVerif != null) {
-				tmp2 = new Noeud(caseVerif, tmp.cout + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
+				tmp2 = new Noeud(caseVerif, tmp.getCout() + Terrain.effetDeplacement(caseVerif.getTypeTerrain()));
 			} else {
-				tmp2 = new Noeud(caseVerif, tmp.cout);
+				tmp2 = new Noeud(caseVerif, tmp.getCout());
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
-			tmp2.listeNoeud.add(tmp);
+			tmp2.getListeNoeud().add(tmp);
 			if (caseVerif != null && contient(tmp2, listeDeplacementPossible,noeudContenu)) {
-				if (tmp2.cout < noeudContenu.cout) {
-					noeudContenu.cout = tmp2.cout;
-					noeudContenu.listeNoeud = tmp2.listeNoeud;
+				if (tmp2.getCout() < noeudContenu.getCout()) {
+					noeudContenu.setCout(tmp2.getCout());
+					noeudContenu.setListeNoeud(tmp2.getListeNoeud());
 				}
-			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
+			} else if (caseVerif != null && (!tmp2.getC().isObstacleDeplacement() || vol) && (!tmp2.getC().contientPion() || vol) && !listeFerme.contains(tmp2)
+					&& !listeOuverte.contains(tmp2) && tmp2.getCout() <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -147,7 +147,7 @@ public final class AssassinOiseau extends Assassin implements Oiseau {
 		if (vol) {
 			ArrayList<Noeud> l = (ArrayList<Noeud>) listeDeplacementPossible.clone();
 			for (Noeud n : l) {
-				if (c != n.c && n.c.contientPion()) {
+				if (c != n.getC() && n.getC().contientPion()) {
 					listeDeplacementPossible.remove(n);
 				}
 			}

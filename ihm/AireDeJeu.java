@@ -397,12 +397,12 @@ public class AireDeJeu extends JComponent {
 	private void afficherMouvementPossible(Graphics2D gd) {
 		int i = 0;
 		for (Noeud c2 : caseEnCours.getPion().listeDeplacementPossible) {
-			i = (caseEnCours.getPion().distanceManhattan(c2.c) + 5) * caseEnCours.getPion().distanceManhattan(c2.c);
+			i = (caseEnCours.getPion().distanceManhattan(c2.getC()) + 5) * caseEnCours.getPion().distanceManhattan(c2.getC());
 			if(i > 180){
 				i = 180;
 			}
 			gd.setColor(new Color(25, 150, 255, 230 - i));
-			gd.fillRect(c2.c.getColonne() * Case.TAILLE, c2.c.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
+			gd.fillRect(c2.getC().getColonne() * Case.TAILLE, c2.getC().getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 		}
 		for (Case c2 : caseEnCours.getPion().getDeplacement()) {
 			gd.setColor(new Color(50, 50, 100, 200));
