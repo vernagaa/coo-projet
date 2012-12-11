@@ -169,6 +169,7 @@ public final class TacticienOiseau extends Tacticien implements Oiseau {
 		if (vol && getTourspecial() < 3) {
 			setTourspecial(getTourspecial() + 1);
 		}
+		decrementerCDTeleporteur();
 		setMouvement(getMouvementBase());
 		recuperationCapacite();
 	}

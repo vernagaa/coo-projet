@@ -1,6 +1,7 @@
 package ihm;
 
 import ecouteur.EcouteurPlateau;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import moteur.Moteur;
 
@@ -233,9 +234,18 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	 * @param tour
 	 */
 	public void setLabelTour(int tour) {
+		labelTour.setForeground(Color.BLACK);
 		labelTour.setText("Tour : " + tour);
 	}
 
+	/**
+	 * Affecteur du label de tour
+	 * @param tour
+	 */
+	public void setLabelTour() {
+		labelTour.setForeground(Color.RED);
+		labelTour.setText("Mort subite");
+	}
 	/**
 	 * Affecteur du label de nombre d'actions
 	 * @param actions

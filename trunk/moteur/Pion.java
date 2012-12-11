@@ -855,10 +855,19 @@ public abstract class Pion implements Serializable {
 	public boolean isCommandant() {
 		return commandant;
 	}
+
+	/**
+	 * Lors de la mort subite le pion perd 2pv à chaque tour
+	 */
+	public void mortSubite(){
+		vie -=2;
+	}
+
 	
 	/**
 	 * 
 	 * @return
 	 */
 	public abstract int getNumClasse();
+
 }
