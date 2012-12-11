@@ -23,8 +23,8 @@ public class BoutonAttaquer extends BoutonAction implements ActionListener {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				fenetre.getCase().getPion().attaque();
-				fenetre.getMoteur().aireDeJeu.setAfficherPorteeAttaque(true, fenetre.getCase());
-				fenetre.getMoteur().aireDeJeu.repaint();
+				fenetre.getMoteur().getAireDeJeu().setAfficherPorteeAttaque(true, fenetre.getCase());
+				fenetre.getMoteur().getAireDeJeu().repaint();
 				survol = true;
 				repaint();
 			}
@@ -33,8 +33,8 @@ public class BoutonAttaquer extends BoutonAction implements ActionListener {
 			public void mouseExited(MouseEvent e) {
 				survol = false;
 				repaint();
-				fenetre.getMoteur().aireDeJeu.setAfficherPorteeAttaque(false, fenetre.getCase());
-				fenetre.getMoteur().aireDeJeu.repaint();
+				fenetre.getMoteur().getAireDeJeu().setAfficherPorteeAttaque(false, fenetre.getCase());
+				fenetre.getMoteur().getAireDeJeu().repaint();
 			}
 		});
 
@@ -48,7 +48,7 @@ public class BoutonAttaquer extends BoutonAction implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Attaquer");
 		fenetre.getMoteur().setAttaqueEnCours(true);
-		fenetre.getMoteur().aireDeJeu.setAttaqueEnCours(true);
+		fenetre.getMoteur().getAireDeJeu().setAttaqueEnCours(true);
 		fenetre.effacerFenetre();
 	}
 }

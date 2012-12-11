@@ -223,7 +223,7 @@ public class Animation {
 						ecouteur.activerEcouteur();
 						animationEnCours = false;
 						aire.animationDeplacement = false;
-						p.deplacerPion(m.caseCourante);
+						p.deplacerPion(m.getCaseCourante());
 						timer.stop();
 						m.utiliserAction();
 //						lancerAnimation();
@@ -291,8 +291,8 @@ public class Animation {
 						animationEnCours = false;
 						aire.animationElire = false;
 						aire.compteurFinDeTour = 0;
-						m.aireDeJeu.elireUnCommandant(m.getJoueurElireCommandant(), true);
-						m.aireDeJeu.repaint();
+						m.getAireDeJeu().elireUnCommandant(m.getJoueurElireCommandant(), true);
+						m.getAireDeJeu().repaint();
 						timer.stop();
 						lancerAnimation();
 					}

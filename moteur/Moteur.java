@@ -17,16 +17,13 @@ public class Moteur implements Runnable, Serializable {
 
 	private FenetrePrincipale fp;
 	private Plateau plateau;
-	public AireDeJeu aireDeJeu;
-	public Animation animation;
+	private AireDeJeu aireDeJeu;
+	private Animation animation;
 	private FenetreChoixPion fenetreChoixPion;
-	NouvellePartiePanel nouvellePartie;
+	private NouvellePartiePanel nouvellePartie;
 	private boolean debutDePartie;
 	private int tour;
-	/*
-	 * Gestion de la souris
-	 */
-	public Case caseCourante;
+	private Case caseCourante;
 	private boolean mouvementEnCours;
 	private Case caseAncienne;
 	private boolean attaqueEnCours;
@@ -40,14 +37,25 @@ public class Moteur implements Runnable, Serializable {
 	private String mapPath;
 	private boolean elireCommandant;
 
+	/**
+	 * Accesseur du plateau
+	 * @return
+	 */
 	public Plateau getPlateau() {
 		return plateau;
 	}
 
+	/**
+	 * Affecteur du plateau
+	 * @param plateau
+	 */
 	public void setPlateau(Plateau plateau) {
 		this.plateau = plateau;
 	}
 
+	/**
+	 * Constructeur du moteur
+	 */
 	public Moteur() {
 		mapPath = "map/map6.map";
 //		plateau = new Plateau(mapPath);
@@ -58,10 +66,17 @@ public class Moteur implements Runnable, Serializable {
 		tour = 0;
 	}
 
+	/**
+	 * Main principal du jeu
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Moteur());
 	}
 
+	/**
+	 * Initialisation du jeu et lancement des fenêtres
+	 */
 	@Override
 	public void run() {
 		JFileChooser chooser = new JFileChooser("map/");
@@ -84,6 +99,10 @@ public class Moteur implements Runnable, Serializable {
 		animation = new Animation(fp.getAireDAnimation1(), this, fp.getEcouterPlateau());
 	}
 
+	/**
+	 * Gestion du clic gauche sur l'aire de jeu en début de partie (Choix des familles, classes, ...)
+	 * @param c1
+	 */
 	public void caseCliqueBoutonGaucheNouvellePartie(Case c1) {
 		aireDeJeu.setDebutDePartie(debutDePartie);
 		if (nouvellePartie.getEtape() == 2 && nouvellePartie.getChoix()) {
@@ -132,10 +151,18 @@ public class Moteur implements Runnable, Serializable {
 		majInfosTour();
 	}
 
+	/**
+	 * Renvoie si on est au début de la partie
+	 * @return
+	 */
 	public boolean isDebutDePartie() {
 		return debutDePartie;
 	}
 
+	/**
+	 * Gestion du clic gauche pendant la partie
+	 * @param c1
+	 */
 	public void caseCliqueBoutonGauche(Case c1) {
 		aireDeJeu.setCaseSurvol(null);
 		fenetreChoixPion.effacerFenetre();
@@ -269,6 +296,10 @@ public class Moteur implements Runnable, Serializable {
 		aireDeJeu.repaint();
 	}
 
+	/**
+	 * Gestion du clic droit pendant la partie
+	 * @param c
+	 */
 	public void caseCliqueBoutonDroit(Case c) {
 		if (c.contientPion() && getJoueurCourant() == c.getPion().getJoueur()) {
 			// On efface la fenetre
@@ -300,6 +331,10 @@ public class Moteur implements Runnable, Serializable {
 		}
 	}
 
+	/**
+	 * Cas du survol d'une case
+	 * @param c1
+	 */
 	public void caseSurvol(Case c1) {
 //		aireDeJeu.setCaseSurvol(null);
 		if (c1 != null) {
@@ -338,30 +373,57 @@ public class Moteur implements Runnable, Serializable {
 		aireDeJeu.setCaseSurvol(c1);
 	}
 
+	/**
+	 * Affecteur de l'attaque en cours
+	 * @param b
+	 */
 	public void setAttaqueEnCours(boolean b) {
 		attaqueEnCours = b;
 	}
 
+	/**
+	 * Affecteur de poserTeleporteur
+	 * @param b
+	 */
 	public void setPoseTeleporteur(boolean b) {
 		poserTeleporteur = b;
 	}
 
+	/**
+	 * Renvoie le joueur 1
+	 * @return
+	 */
 	public Joueur getJoueur1() {
 		return joueur1;
 	}
 
+	/**
+	 * Affecteur du joueur 1
+	 * @param joueur1
+	 */
 	public void setJoueur1(Joueur joueur1) {
 		this.joueur1 = joueur1;
 	}
 
+	/**
+	 * Renvoie le joueur 2
+	 * @return
+	 */
 	public Joueur getJoueur2() {
 		return joueur2;
 	}
 
+	/**
+	 * Affecreur du joueur 2
+	 * @param joueur2
+	 */
 	public void setJoueur2(Joueur joueur2) {
 		this.joueur2 = joueur2;
 	}
 
+	/**
+	 * Change le joueur courant et met à jour les labels
+	 */
 	public void changementJoueur() {
 		joueurCourant = !joueurCourant;
 		aireDeJeu.setJoueurCourant(joueurCourant);
@@ -384,6 +446,10 @@ public class Moteur implements Runnable, Serializable {
 		majInfosTour();
 	}
 
+	/**
+	 * Renvoie le joueur courant
+	 * @return
+	 */
 	public Joueur getJoueurCourant() {
 		if (joueurCourant) {
 			return joueur1;
@@ -392,6 +458,10 @@ public class Moteur implements Runnable, Serializable {
 		}
 	}
 
+	/**
+	 * Renvoie le joueur Adverse
+	 * @return
+	 */
 	public Joueur getJoueurAdverse() {
 		if (joueurCourant) {
 			return joueur2;
@@ -400,12 +470,13 @@ public class Moteur implements Runnable, Serializable {
 		}
 	}
 
+	/**
+	 * Utilise une action et vérifie s'il y a victoire
+	 */
 	public void utiliserAction() {
-		System.out.println("Infini. Fuck.");
 		getJoueurCourant().utiliserAction();
 		fp.setLabelAction(getJoueurCourant().getNbActions());
 		if (getJoueurCourant().getNbActions() == 0) {
-			System.out.println("Fin suite à un mouvement !");
 			animation.animerFinDeTour();
 			changementJoueur();
 		}
@@ -414,17 +485,25 @@ public class Moteur implements Runnable, Serializable {
 		}
 	}
 
+	/**
+	 * Met à jour les labels du pseudo et du nombre d'actions
+	 */
 	public void majInfosTour() {
 		fp.setLabelJoueur(getJoueurCourant().getNom());
 		fp.setLabelAction(getJoueurCourant().getNbActions());
 	}
 
-	//TODO RAJOUTER DES TEXTURES
-	//TODO Actuellement teleporteur incompatible avec les bordures, changer comportement en cas de bordure
+	/**
+	 * Affeceteur du début de partie
+	 * @param debutDePartie
+	 */
 	public void setDebutDePartie(boolean debutDePartie) {
 		this.debutDePartie = debutDePartie;
 	}
 
+	/**
+	 * Réinitialise le moteur pour une nouvelle partie
+	 */
 	public void nouvellePartie() {
 		try {
 			if (isDebutDePartie()) {
@@ -444,6 +523,9 @@ public class Moteur implements Runnable, Serializable {
 		}
 	}
 
+	/**
+	 * Cherche les chateaux sur la carte et les lie aux joueur
+	 */
 	public void lierChateaux() {
 		ArrayList<Case> l = plateau.listeChateaux();
 		System.out.println(l);
@@ -490,14 +572,19 @@ public class Moteur implements Runnable, Serializable {
 		System.out.println(joueur2.getChateaux());
 	}
 
+	/**
+	 * Affecteur de conqueteEnCours
+	 * @param b
+	 */
 	public void setConqueteEnCours(boolean b) {
 		conqueteEnCours = b;
 	}
 
+	/**
+	 * Anime la victoire et fini la partie
+	 */
 	private void victoire() {
-		//TODO Victoire graphique
 		animation.animerFinDePartie();
-		System.out.println("Victoire " + getJoueurCourant().getNom() + " !!!");
 	}
 
 	private void caseSurvolChateau(Case c1) {
@@ -523,7 +610,37 @@ public class Moteur implements Runnable, Serializable {
 		aireDeJeu.setCaseSurvol(tmp.get(0));
 	}
 
+	/**
+	 * Renvoie le joueur qui doit elire le commandant
+	 * @return
+	 */
 	public Joueur getJoueurElireCommandant() {
 		return JoueurElireCommandant;
 	}
+
+	/**
+	 * Accesseur de l'aireDeJeu
+	 * @return 
+	 */
+	public AireDeJeu getAireDeJeu() {
+		return aireDeJeu;
+	}
+
+	/**
+	 * Accesseur d'Animation
+	 * @return 
+	 */
+	public Animation getAnimation() {
+		return animation;
+	}
+
+	/**
+	 * Accesseur de caseCourante
+	 * @return 
+	 */
+	public Case getCaseCourante() {
+		return caseCourante;
+	}
+	
+	
 }

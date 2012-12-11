@@ -45,13 +45,13 @@ public abstract class BoutonAction extends JButton {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				survol = true;
-				fenetre.getMoteur().aireDeJeu.repaint();
+				fenetre.getMoteur().getAireDeJeu().repaint();
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				survol = false;
-				fenetre.getMoteur().aireDeJeu.repaint();
+				fenetre.getMoteur().getAireDeJeu().repaint();
 			}
 		});
 	}
