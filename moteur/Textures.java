@@ -191,6 +191,9 @@ public final class Textures {
 	private BufferedImage[] obstacle = new BufferedImage[45];
 	private static Textures singleton = new Textures();
 
+	/**
+	 * Constructeur de Texture
+	 */
 	public Textures() {
 //		for (int i = 0; i < terrain.length; i++) {
 //			terrain[i] = new BufferedImage(Case.TAILLE, Case.TAILLE, BufferedImage.TYPE_INT_ARGB);
@@ -261,7 +264,7 @@ public final class Textures {
 	}
 
 	/**
-	 *
+	 * Renvoie l'image d'un personnage avec la bonne orientation
 	 * @param famille Famille dans FabriquePion
 	 * @param classe Classe dans FabriquePion
 	 * @param orientation
@@ -271,10 +274,19 @@ public final class Textures {
 		return getPersonnage(famille * 5 + classe, orientation);
 	}
 
+	/**
+	 * Renvoie l'image du personnage pour l'animation
+	 * @param famille
+	 * @param classe
+	 * @param orientation
+	 * @param i
+	 * @return 
+	 */
 	public static BufferedImage getPersonnage(int famille, int classe, Orientation orientation, int i) {
 		return getPersonnage(famille * 5 + classe, orientation, i);
 	}
 
+	
 	private BufferedImage getPerso(int numPerso, Orientation orientation) {
 		switch (orientation) {
 			case NORD:
@@ -305,6 +317,11 @@ public final class Textures {
 		}
 	}
 
+	/**
+	 * Renvoie l'image du terrain
+	 * @param numTerrain
+	 * @return 
+	 */
 	public static BufferedImage getTerrain(int numTerrain) {
 		return singleton.getTerr(numTerrain);
 	}
@@ -313,6 +330,11 @@ public final class Textures {
 		return terrain[numTerrain];
 	}
 
+	/**
+	 * Renvoie l'image de l'obstacle
+	 * @param numObstacle
+	 * @return 
+	 */
 	public static BufferedImage getObstacle(int numObstacle) {
 		return singleton.getObst(numObstacle);
 	}
@@ -321,6 +343,11 @@ public final class Textures {
 		return obstacle[numObstacle];
 	}
 
+	/**
+	 * Renvoie l'image de la bordure
+	 * @param numBordure
+	 * @return 
+	 */
 	public static BufferedImage getBordure(int numBordure) {
 		return singleton.getBord(numBordure);
 	}
@@ -329,11 +356,6 @@ public final class Textures {
 		return bordureTerrain[numBordure];
 	}
 
-	/**
-	 * Certaines de ces images qui servent a construire les plans d'eau sont
-	 * consideres comme de type HERBE et non EAU. Le type EAU est
-	 * infranchissable, contrairement au type HERBE
-	 */
 	private void tileEau() {
 
 		try {
