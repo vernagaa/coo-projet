@@ -1,6 +1,7 @@
 package moteur.classes;
 
 import moteur.Case;
+import moteur.FabriquePion;
 import moteur.Pion;
 import moteur.Teleporteur;
 
@@ -46,6 +47,11 @@ public abstract class Tacticien extends Pion {
 	}
 	
 	public boolean telePorterDisponible(){
-		return cooldownTeleporteur==0;
+		return cooldownTeleporteur == 0;
+	}
+
+	@Override
+	public int getNumClasse() {
+		return FabriquePion.TACTICIEN;
 	}
 }
