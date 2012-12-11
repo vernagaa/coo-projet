@@ -14,6 +14,10 @@ public class AssassinFelin extends Assassin implements Felin {
 	private boolean enrage;
 	int precisionBase;
 
+	/**
+	 * Constructeur d'un assassin félin
+	 * @param c
+	 */
 	public AssassinFelin(Case c) {
 		super(vieAssassin, forceAssassin, precisionAssassin, vitesseAssassin, defenseAssassin, chanceAssassin, porteeAssassin, mouvementAssassin, c);
 		enrage = false;
@@ -64,6 +68,7 @@ public class AssassinFelin extends Assassin implements Felin {
 		enrage = true;
 	}
 
+	@Override
 	public BufferedImage getImageMouvement(int i) {
 		return Textures.getPersonnage(Textures.ASSASSINFELIN, orientation, i);
 	}

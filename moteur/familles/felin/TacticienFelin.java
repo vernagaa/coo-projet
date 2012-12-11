@@ -11,9 +11,13 @@ import moteur.classes.Tacticien;
  */
 public final class TacticienFelin extends Tacticien implements Felin {
 
-	public boolean enrage;
+	private boolean enrage;
 	int precisionBase;
 
+	/**
+	 * Constructeur du tacticien félin
+	 * @param c
+	 */
 	public TacticienFelin(Case c) {
 		super(vieTacticien, forceTacticien, precisionTacticien, vitesseTacticien, defenseTacticien, chanceTacticien, porteeTacticien, mouvementTacticien, c);
 		enrage = false;

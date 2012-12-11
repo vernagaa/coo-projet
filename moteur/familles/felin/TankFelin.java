@@ -11,9 +11,13 @@ import moteur.classes.Tank;
  */
 public final class TankFelin extends Tank implements Felin {
 
-	public boolean enrage;
+	private boolean enrage;
 	int precisionBase;
 
+	/**
+	 * Constructeur tank félin
+	 * @param c
+	 */
 	public TankFelin(Case c) {
 		super(vieTank, forceTank, precisionTank, vitesseTank, defenseTank, chanceTank, porteeTank, mouvementTank, c);
 		enrage = false;

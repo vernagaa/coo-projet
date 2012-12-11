@@ -14,6 +14,10 @@ public final class ArcherFelin extends Archer implements Felin {
 	private boolean enrage;
 	int precisionBase;
 
+	/**
+	 * Constructeur d'un archer félin
+	 * @param c
+	 */
 	public ArcherFelin(Case c) {
 		super(vieArcher, forceArcher, precisionArcher, vitesseArcher, defenseArcher, chanceArcher, porteeArcher, mouvementArcher, c);
 		enrage = false;
@@ -65,6 +69,7 @@ public final class ArcherFelin extends Archer implements Felin {
 		}
 	}
 	
+	@Override
 	public BufferedImage getImageMouvement(int i) {
 		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
 	}

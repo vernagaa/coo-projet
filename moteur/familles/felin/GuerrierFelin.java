@@ -11,9 +11,13 @@ import moteur.classes.Guerrier;
  */
 public final class GuerrierFelin extends Guerrier implements Felin {
 
-	public boolean enrage;
+	private boolean enrage;
 	int precisionBase;
 
+	/**
+	 * Constructeur du guerrier félin
+	 * @param c
+	 */
 	public GuerrierFelin(Case c) {
 		super(vieGuerrier, forceGuerrier, precisionGuerrier, vitesseGuerrier, defenseGuerrier, chanceGuerrier, porteeGuerrier, mouvementGuerrier, c);
 		enrage = false;
