@@ -494,6 +494,8 @@ public class Moteur implements Runnable, Serializable {
 	 * Cherche les chateaux sur la carte et les lie aux joueur
 	 */
 	public void lierChateaux() {
+		joueur1.getChateaux().clear();
+		joueur2.getChateaux().clear();
 		ArrayList<Case> l = plateau.listeChateaux();
 		ArrayList<Case> chateau = new ArrayList<Case>();
 		ArrayList<ArrayList<Case>> listeChateau = new ArrayList<ArrayList<Case>>();
