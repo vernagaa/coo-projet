@@ -84,7 +84,7 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
-			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.isOccupee() || vol) && !listeFerme.contains(tmp2)
+			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
 					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
@@ -102,7 +102,7 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
-			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.isOccupee() || vol) && !listeFerme.contains(tmp2)
+			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
 					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
@@ -120,7 +120,7 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
-			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.isOccupee() || vol) && !listeFerme.contains(tmp2)
+			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
 					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
@@ -138,7 +138,7 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
-			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.isOccupee() || vol) && !listeFerme.contains(tmp2)
+			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
 					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
@@ -147,7 +147,7 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 		if (vol) {
 			ArrayList<Noeud> l = (ArrayList<Noeud>) listeDeplacementPossible.clone();
 			for (Noeud n : l) {
-				if (c != n.c && n.c.isOccupee()) {
+				if (c != n.c && n.c.contientPion()) {
 					listeDeplacementPossible.remove(n);
 				}
 			}
