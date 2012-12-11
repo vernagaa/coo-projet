@@ -89,21 +89,6 @@ public class AireDeJeu extends JComponent {
 				}
 			}
 		}
-//		if (finDeDeplacement) {
-//			gd.setColor(new Color(50, 200, 100, 200));
-//			if (plateau.get(pionDeplace.getLigne() - 1, pionDeplace.getColonne()) != null) {
-//				gd.fillRect(pionDeplace.getColonne() * Case.TAILLE, (pionDeplace.getLigne() - 1) * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-//			}
-//			if (plateau.get(pionDeplace.getLigne() + 1, pionDeplace.getColonne()) != null) {
-//				gd.fillRect(pionDeplace.getColonne() * Case.TAILLE, (pionDeplace.getLigne() + 1) * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-//			}
-//			if (plateau.get(pionDeplace.getLigne(), pionDeplace.getColonne() - 1) != null) {
-//				gd.fillRect((pionDeplace.getColonne() - 1) * Case.TAILLE, pionDeplace.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-//			}
-//			if (plateau.get(pionDeplace.getLigne(), pionDeplace.getColonne() + 1) != null) {
-//				gd.fillRect((pionDeplace.getColonne() + 1) * Case.TAILLE, pionDeplace.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
-//			}
-//		}
 
 		// Construit la grille du plateau	
 		gd.setColor(new Color(80, 80, 80, 40));
@@ -113,9 +98,6 @@ public class AireDeJeu extends JComponent {
 		for (int j = 0; j < getWidth(); j += Case.TAILLE) {
 			gd.drawLine(j, 0, j, getHeight());
 		}
-//		if (caseSurvolPion != null) {
-//			construireSurvolPion(gd);
-//		}
 
 
 		if (!debutDePartie) {
@@ -399,9 +381,9 @@ public class AireDeJeu extends JComponent {
 	private void afficherMouvementPossible(Graphics2D gd) {
 		int i = 0;
 		for (Noeud c2 : caseEnCours.getPion().listeDeplacementPossible) {
-			i = (caseEnCours.getPion().distanceManhattan(c2.getC()) + 5) * caseEnCours.getPion().distanceManhattan(c2.getC());
-			if(i > 180){
-				i = 180;
+			i = (caseEnCours.getPion().distanceManhattan(c2.getC()) + 20) * caseEnCours.getPion().distanceManhattan(c2.getC());
+			if(i > 170){
+				i = 170;
 			}
 			gd.setColor(new Color(25, 150, 255, 230 - i));
 			gd.fillRect(c2.getC().getColonne() * Case.TAILLE, c2.getC().getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
