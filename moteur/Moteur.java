@@ -4,7 +4,9 @@ import exception.MapException;
 import ihm.*;
 import java.io.*;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import moteur.classes.Tacticien;
 
 /**
@@ -48,7 +50,7 @@ public class Moteur implements Runnable, Serializable {
 
 	public Moteur() {
 		mapPath = "map/map6.map";
-		plateau = new Plateau(mapPath);
+//		plateau = new Plateau(mapPath);
 		joueur1 = new Joueur("joueur1", true);
 		joueur2 = new Joueur("joueur2", false);
 		debutDePartie = true;
@@ -62,6 +64,18 @@ public class Moteur implements Runnable, Serializable {
 
 	@Override
 	public void run() {
+		JFileChooser chooser = new JFileChooser("map/");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Cartes Animosity", "map");
+		chooser.setFileFilter(filter);
+		chooser.setDialogTitle("Choisir une carte");
+		
+		int returnVal = chooser.showOpenDialog(null);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			System.out.println("You chose to open this file: " + chooser.getSelectedFile().getName());
+			mapPath = chooser.getSelectedFile().getAbsolutePath();
+			System.out.println(mapPath);
+		}
+		plateau = new Plateau(mapPath);
 		lierChateaux();
 		fp = new FenetrePrincipale(this);
 		aireDeJeu = fp.getAireDeJeu();
