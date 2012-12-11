@@ -10,15 +10,46 @@ import moteur.familles.reptile.*;
  */
 public class FabriquePion {
 
+	/**
+	 * Constante famille félin
+	 */
 	public static final int FELIN = 0;
+	/**
+	 * Constante famille oiseau
+	 */
 	public static final int OISEAU = 1;
+	/**
+	 * Constante famille reptile
+	 */
 	public static final int REPTILE = 2;
+	/**
+	 * Constante classe archer
+	 */
 	public static final int ARCHER = 0;
+	/**
+	 * Constante classe assassin
+	 */
 	public static final int ASSASSIN = 1;
+	/**
+	 * Constante classe guerrier
+	 */
 	public static final int GUERRIER = 2;
+	/**
+	 * Constante classe tacticien
+	 */
 	public static final int TACTICIEN = 3;
+	/**
+	 * Constante classe tank
+	 */
 	public static final int TANK = 4;
 
+	/**
+	 * Construction du pion selon sa famille et sa classe à la case donnée
+	 * @param famille
+	 * @param classe
+	 * @param c
+	 * @return
+	 */
 	public static Pion getPion(int famille, int classe, Case c) {
 		switch (famille) {
 			case FELIN:
