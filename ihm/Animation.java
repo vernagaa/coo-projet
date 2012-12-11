@@ -67,6 +67,10 @@ public class Animation {
 				}
 			});
 			timer.start();
+		} else {
+			if (!listeAnimation.contains(finDeTour)) {
+				listeAnimation.add(finDeTour);
+			}
 		}
 	}
 
@@ -141,14 +145,14 @@ public class Animation {
 		}
 	}
 
-	public void animerMouvement(final Pion p){
+	public void animerMouvement(final Pion p) {
 		if (!animationEnCours) {
 			animationEnCours = true;
 			ecouteur.desactiverEcouteur();
 			aire.animationDeplacement = true;
 			aire.position.x = p.getCase().getColonne() * 30;
 			aire.position.y = p.getCase().getLigne() * 30;
-			aire.imageEnCours = p.getImageMouvement(1);
+			aire.imageEnCours = p.getImage(1);
 			timer = new Timer(42, new ActionListener() {
 
 				int deplacementCase = 6;
@@ -190,7 +194,7 @@ public class Animation {
 								}
 							}
 						} else {
-							aire.imageEnCours = p.getImageMouvement(compteurMouvement % 3);
+							aire.imageEnCours = p.getImage(compteurMouvement % 3);
 							switch (orientation) {
 								case (0):
 									aire.position.y += pixelDeplacement;
@@ -261,8 +265,8 @@ public class Animation {
 			});
 			timer.start();
 		} else {
-			if (!listeAnimation.contains(finDePartie)) {
-				listeAnimation.add(finDePartie);
+			if (!listeAnimation.contains(finDeTour)) {
+				listeAnimation.add(finDeTour);
 			}
 		}
 	}
@@ -307,7 +311,6 @@ public class Animation {
 		if (!listeAnimation.isEmpty()) {
 			switch (listeAnimation.get(0)) {
 				case 0:
-					System.out.println("Infini -----------------------------------------------------------");
 					listeAnimation.remove(0);
 					animerFinDeTour();
 					break;

@@ -47,7 +47,7 @@ public final class TankReptile extends Tank implements Reptile {
 	}
 
 	@Override
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.TANKREPTILE, orientation, i);
 	}
 }

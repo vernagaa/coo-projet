@@ -69,7 +69,7 @@ public final class TacticienFelin extends Tacticien implements Felin {
 	}
 
 	@Override
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.TACTICIENFELIN, orientation, i);
 	}
 	

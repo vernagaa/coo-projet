@@ -47,7 +47,7 @@ public final class GuerrierReptile extends Guerrier implements Reptile {
 	}
 
 	@Override
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.GUERRIERREPTILE, orientation, i);
 	}
 }

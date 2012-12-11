@@ -47,7 +47,7 @@ public class AssassinReptile extends Assassin implements Reptile {
 	}
 
 	@Override
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.ASSASSINREPTILE, orientation, i);
 	}
 }

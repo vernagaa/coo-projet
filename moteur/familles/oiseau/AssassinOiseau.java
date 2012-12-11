@@ -85,7 +85,7 @@ public final class AssassinOiseau extends Assassin implements Oiseau {
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
 			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -103,7 +103,7 @@ public final class AssassinOiseau extends Assassin implements Oiseau {
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
 			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -121,7 +121,7 @@ public final class AssassinOiseau extends Assassin implements Oiseau {
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
 			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -139,7 +139,7 @@ public final class AssassinOiseau extends Assassin implements Oiseau {
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
 			} else if (caseVerif != null && (!tmp2.c.isObstacleDeplacement() || vol) && (!tmp2.c.contientPion() || vol) && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -178,7 +178,7 @@ public final class AssassinOiseau extends Assassin implements Oiseau {
 	}
 
 	@Override
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.ASSASSINOISEAU, orientation, i);
 	}
 }

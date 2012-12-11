@@ -68,7 +68,7 @@ public final class TankFelin extends Tank implements Felin {
 		}
 	}
 
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.TANKFELIN, orientation, i);
 	}
 }

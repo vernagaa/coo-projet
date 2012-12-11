@@ -104,6 +104,7 @@ public abstract class Pion implements Serializable {
 	 */
 	public ArrayList<Integer> degatsCombat;
 	private static final int BONUSKILL = 20;
+
 	private int special;
 	private int tourspecial;
 	private int mouvementBase;
@@ -157,10 +158,17 @@ public abstract class Pion implements Serializable {
 	 * Pre-Cond : Le deplacement du pion de c à c1 est possible.
 	 * Post-Cond : Le pion se trouve en c1 avec l'orientation obtenue
 	 * lors de son deplacement. Et son nombre de deplacement a diminué
-	 * d'un 
+	 * d'un certain nombre.
 	 */
 	public void deplacerPion(Case c1) {
-		mouvement -= deplacement.size() / 2;
+		double mouvementDepense = 0;
+		for (Noeud n1 : listeDeplacementPossible) {
+			if (n1.c.compare(c1)) {
+				mouvementDepense = n1.cout;
+				break;
+			}
+		}
+		mouvement -= mouvementDepense / 2;
 
 		c.setPion(null);
 		c1.setPion(this);
@@ -173,7 +181,10 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Pre-Cond : Le pion est sur une case comportant un teleporteur (c).
+	 * Post-Cond : Le pion se trouve sur une case comportant un teleporteur (c1).
+	 * Les teleporteurs utilisés doivent appartenir au joueur possedant le pion.
+	 * Cette verifiaction est faite avant l'appel à la fonction.
 	 * @param c1
 	 */
 	public void deplacerPionTeleportation(Case c1) {
@@ -187,8 +198,11 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 *
-	 * 
+	 * Permet d'attaquer un pion. La list degatsCombat est necessaire pour afficher
+	 * les degats infligés dans l'animation.
+	 * Pre-Cond : Le pion p est non null. Le pion p est dans la portee du pion attaquant.
+	 * Post-Cond : Les 2 pions peuvent avoir perdu de la vie. Ce n'est pas toujours
+	 * le cas.
 	 * @param p 
 	 */
 	public void attaquerPion(Pion p) {
@@ -197,10 +211,18 @@ public abstract class Pion implements Serializable {
 		attaquerPion(p, TAUXRIPOSTE);
 	}
 
+	/**
+	 * Cette methode est appelé par attaquerPion(Pion).
+	 * Elle prend en compte un taux de riposte decroissant à chaque riposte.
+	 * Le pion p est le pion qui va recevoir des degats.
+	 * Cette methode va calculer le deroulement du combat entre les 2 pions.
+	 * Pre-Cond : Le pion p est non null.
+	 * @param p
+	 * @param tauxRiposte 
+	 */
 	private void attaquerPion(Pion p, int tauxRiposte) {
-		System.out.println(degatsCombat);
-		float orient = dosCoteFace(p);
-		int degatInflige = (int) ((force + (int) (force * janken(p))) * orient);
+		double orient = dosCoteFace(p);
+		int degatInflige = (int) ((force + (int) (force * janken(p))) + force * orient + force * cooperation());
 		int seDefend = p.seDefendre(p);
 		int hit = hit();
 		int esquive = esquiveEnnemi(p);
@@ -208,119 +230,146 @@ public abstract class Pion implements Serializable {
 		int aleaRiposte = (int) (Math.random() * (101));
 		int aleaCoupCritique = (int) (Math.random() * (101));
 		int coupReel;
-		System.out.println(this.toString() + " attaque " + p.toString());
-		System.out.println("Il a %chance de toucher " + (hit - esquive));
 		if (esquive < 100 && aleaEsquive < (hit - esquive)) {
-			System.out.println("%chance coup critique " + coupCritiques());
 			if (aleaCoupCritique < coupCritiques()) {
-				System.out.println("Coup Critique");
-				System.out.println("J'attaque avec " + (int) (1.2 * degatInflige - seDefend));
 				p.recevoirDegat(coupReel = (int) (1.2 * degatInflige - seDefend));
 			} else if (degatInflige > seDefend) {
-				System.out.println("J'attaque avec " + (degatInflige - seDefend));
 				p.recevoirDegat(coupReel = (degatInflige - seDefend));
 			} else {
-				System.out.println("Attaque de 1");
 				p.recevoirDegat(coupReel = 1);
 			}
 			degatsCombat.add(new Integer((int) (coupReel)));
 			if (estVivant(p)) {
 				p.attaque();
 				if (p.getListeAttaquePossible().contains(this.c)) {
-					System.out.println("Riposte");
 					if (aleaRiposte < tauxRiposte) {
-						System.out.println("Il riposte");
 						p.attaquerPion(this, tauxRiposte / 2);
 					}
 				}
 			}
-		} else {
-			System.out.println("J'esquive");
 		}
 	}
 
+	/**
+	 * Methode appelé lorsque qu'un pion doit recevoir des degats.
+	 * Pre-Cond : Le pion a une vie égal à x.
+	 * Pre-Cond : Le pion p est non null.
+	 * Post-Cond : Le pion a une vite égal à x - degatInflige
+	 * @param degatInflige 
+	 */
 	private void recevoirDegat(int degatInflige) {
 		vie -= degatInflige;
 	}
 
+	/**
+	 * Permet de calculer la defense du pion p
+	 * Pre-Cond : Le pion p est non null.
+	 * @param p
+	 * @return la defense du pion p
+	 */
 	private int seDefendre(Pion p) {
 		return defense + (int) (defense * cooperation());
 	}
 
-	/*
-	 * Les methodes suivantes sont destines a calculer les paramatres du combat.
-	 */
 	/**
-	 * 
+	 * Permet de calculer les bonus/malus en fonction de la famille du pion
+	 * Pre-Cond : Le pion p est non null.
 	 * @param p
-	 * @return
+	 * @return un pourcentage
 	 */
 	protected abstract float janken(Pion p);
 
-	private float dosCoteFace(Pion p) {
+	/**
+	 * Permet de calculer le pourcentage en bonus d'attaque obtenu en fonction
+	 * de l'orientation.
+	 * Pre-Cond : Le pion p est non null.
+	 * @param p
+	 * @return un pourcentage
+	 */
+	private double dosCoteFace(Pion p) {
 		if (orientation.equals(p.getOrientation())) {
-			return 15 / 10;
+			return 1/2;
 		} else if (orientation.equalsOp(p.getOrientation())) {
-			return 1;
+			return 0;
 		}
-		return 12 / 10;
+		return 1/3;
 	}
 
+	/**
+	 * Permet de calculer la chance de toucher un pion
+	 * @return entier
+	 */
 	private int hit() {
 		return precision * 4;
 	}
 
+	/**
+	 * Permet de calculer l'esquive du pion p qui est attaqué.
+	 * Pre-Cond : Le pion p est non null.
+	 * @param p
+	 * @return l'esquive du pion p
+	 */
 	private int esquiveEnnemi(Pion p) {
 		return ((int) (p.vitesse * 1.5) + p.chance) + (int) (p.cooperation() * ((int) (p.vitesse * 1.5) + p.chance) / 4)
-				+ (int) (janken(p) * ((int) (p.vitesse * 1.5) + p.chance) / 2) /*
-				 * + (int) (p.getCase().getType.getBonus()*(p.vitesse * 1.5) +
-				 * p.chance)/3)
-				 */;
+				+ (int) (janken(p) * ((int) (p.vitesse * 1.5) + p.chance) / 2);
 	}
 
 	/**
-	 * 
+	 * Calcul la chance d'infliger un coup Critique
 	 * @return
 	 */
 	protected float coupCritiques() {
 		return precision * 4 * vitesse / 150;
 	}
 
-	private float cooperation() {
-		int resultat = 0;
-		if (c.getPlateau().get(c.getLigne() + 1, c.getColonne() + 1) != null) {
+	/**
+	 * Return un bonus en pourcentage suivant le nombre de pion à coté. Ces pions
+	 * doivent appartenir au même joueur.
+	 * @return un pourcentage
+	 */
+	private double cooperation() {
+		double resultat = 0;
+		if (c.getPlateau().get(c.getLigne() + 1, c.getColonne()) != null
+				&& c.getPlateau().get(c.getLigne() + 1, c.getColonne()).getPion() != null 
+				&& c.getPlateau().get(c.getLigne() + 1, c.getColonne()).getPion().getJoueur() == joueur) {
 			resultat += 1;
 		}
-		if (c.getPlateau().get(c.getLigne() - 1, c.getColonne() + 1) != null) {
+		if (c.getPlateau().get(c.getLigne() - 1, c.getColonne()) != null
+				&& c.getPlateau().get(c.getLigne() - 1, c.getColonne()).getPion() != null 
+				&& c.getPlateau().get(c.getLigne() - 1, c.getColonne()).getPion().getJoueur() == joueur) {
 			resultat += 1;
 		}
-		if (c.getPlateau().get(c.getLigne() + 1, c.getColonne() - 1) != null) {
+		if (c.getPlateau().get(c.getLigne(), c.getColonne() - 1) != null
+				&& c.getPlateau().get(c.getLigne(), c.getColonne() - 1).getPion() != null 
+				&& c.getPlateau().get(c.getLigne(), c.getColonne() - 1).getPion().getJoueur() == joueur) {
 			resultat += 1;
 		}
-		if (c.getPlateau().get(c.getLigne() - 1, c.getColonne() - 1) != null) {
+		if (c.getPlateau().get(c.getLigne(), c.getColonne() + 1) != null
+				&& c.getPlateau().get(c.getLigne(), c.getColonne() + 1).getPion() != null 
+				&& c.getPlateau().get(c.getLigne(), c.getColonne() + 1).getPion().getJoueur() == joueur) {
 			resultat += 1;
 		}
-		return (resultat * 7) / 100;
+		return resultat / 8;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Permet de connaitre ke nom du pion
+	 * @return le nom du pion
 	 */
 	public abstract String getNom();
 
 	/**
-	 * 
+	 * Permet d'appeller une fonction qui effectura la capacité spéciale
 	 */
 	public abstract void capaciteSpeciale();
 
 	/**
-	 * 
+	 * Permet de savoir si la capacité spéciale est disponible
 	 */
 	public abstract void specialIndispo();
 
 	/**
-	 * 
+	 * Permet de modifier la variable special. 
 	 * @param special
 	 */
 	public void setSpecial(int special) {
@@ -334,7 +383,7 @@ public abstract class Pion implements Serializable {
 
 	/**
 	 * 
-	 * @return
+	 * @return la case du pion
 	 */
 	public Case getCase() {
 		return c;
@@ -342,14 +391,14 @@ public abstract class Pion implements Serializable {
 
 	/**
 	 * 
-	 * @return
+	 * @return l'orientation du pion
 	 */
 	public Orientation getOrientation() {
 		return orientation;
 	}
 
 	/**
-	 * 
+	 * Permet de changer l'orientation du pion
 	 * @param orientation
 	 */
 	public void setOrientation(Orientation orientation) {
@@ -357,16 +406,19 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Pre-Cond : c != null
 	 * @param c
-	 * @return
+	 * @return vrai si c appartient au déplacement calculé du pion sinon faux
 	 */
 	public boolean deplacementPossible(Case c) {
 		return getDeplacement().contains(c);
 	}
 
 	/**
-	 * 
+	 * Methode qui va calculer tout les deplacements possible du pion depuis c.
+	 * Ces deplacements sont stocké dans listeDeplacementPossible, une liste de noeud.
+	 * Chaque noeud de cette liste connait le meilleur deplacement possible pour
+	 * l'atteindre.
 	 */
 	public void calculDeplacementPossible() {
 		listeDeplacementPossible.clear();
@@ -398,7 +450,7 @@ public abstract class Pion implements Serializable {
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
 			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -416,7 +468,7 @@ public abstract class Pion implements Serializable {
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
 			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -434,7 +486,7 @@ public abstract class Pion implements Serializable {
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
 			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -452,7 +504,7 @@ public abstract class Pion implements Serializable {
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
 			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
-					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
+					&& !listeOuverte.contains(tmp2) && tmp2.cout <= Terrain.CoutDefaut * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
 			}
@@ -460,7 +512,12 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Cette methode calcule 2 choses :
+	 *		- L'aire d'attaque du pion à partir de c et de sa portee
+	 *			(listeAttaqueAire)
+	 *		- Les elements attaquables (teleporteurs ennemis, pions ennemis et
+	 *			obstacle destructible) compris dans cette aire
+	 *			(listeAttaquePossible)
 	 */
 	public void attaque() {
 		listeAttaquePossible.clear();
@@ -527,7 +584,8 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Cette methode ne peut etre appelé que par un commandant.
+	 * Elle permet de calculer les chateaux a portés.
 	 */
 	public void conquerir() {
 		listeConquetePossible.clear();
@@ -579,16 +637,20 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourne la distance de Manhattan entre c et c1.
+	 * Pre-Cond : c1 != null
 	 * @param c1
 	 * @return
 	 */
-	protected int distanceManhattan(Case c1) {
+	public int distanceManhattan(Case c1) {
 		return Math.abs(c1.getLigne() - c.getLigne()) + Math.abs(c1.getColonne() - c.getColonne());
 	}
 
 	/**
-	 * 
+	 * Methode permettant de verifier si un la case du noeud n est présent dans la liste de
+	 * noeud ln. Si c'est le cas, on retourne vrai et n2 est le noeud de ln contenant c.
+	 * Si ce n'est pas le cas, n2 n'est pas pertinent.
+	 * Pre-Cond : n, ln et n2 != null
 	 * @param n
 	 * @param ln
 	 * @return
@@ -604,7 +666,8 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Permet de recopier la liste de noeud contenu dans n1 dans la liste de n2.
+	 * Pre-Cond : n1 et n2 != null
 	 * @param n1
 	 * @param n2
 	 */
@@ -615,15 +678,15 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Recupère le deplacement entre c et c2 depuis listeDeplacementPossible et
+	 * le stock dans deplacement
+	 * Pre-Cond : c2 != 2
 	 * @param c2
 	 */
 	public void afficherDeplacement(Case c2) {
 		deplacement.clear();
-		System.out.println(c2);
 		for (Noeud n1 : listeDeplacementPossible) {
 			if (n1.c.compare(c2)) {
-				System.out.println(n1.listeNoeud);
 				for (Noeud n2 : n1.listeNoeud) {
 					deplacement.add(n2.c);
 				}
@@ -633,7 +696,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Modifier la variable commandant
 	 * @param commandant
 	 */
 	public void setCommandant(boolean commandant) {
@@ -641,7 +704,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourn la variable deplacement
 	 * @return
 	 */
 	public ArrayList<Case> getDeplacement() {
@@ -649,7 +712,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourne la variable listeAttaquePossible
 	 * @return
 	 */
 	public ArrayList<Case> getListeAttaquePossible() {
@@ -657,7 +720,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourn la variable listeAttaqueAire
 	 * @return
 	 */
 	public ArrayList<Case> getListeAttaqueAire() {
@@ -665,7 +728,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourne la variable vie
 	 * @return
 	 */
 	public int getVieRestante() {
@@ -673,7 +736,9 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Pre-Cond :  pion != null
+	 * Post-Cond : pion = null, vie a été augmenté, pion a été enlevé de
+	 * la liste de pion de son joueur et pion est enlevé de sa case.
 	 * @param pion
 	 * @return
 	 */
@@ -686,10 +751,12 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Post-Cond : le pion a été enlevé de la liste de son joueur.
+	 * Si c'est un tacticien il est enlevé.
+	 * Si c'est un commandant, il est enlevé.
+	 * Le pion est enlevé de sa case
 	 */
 	public void meurt() {
-		//TODO Animation mort
 		if (this == joueur.getTacticien()) {
 			joueur.setTacticien(null);
 		}
@@ -701,24 +768,25 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Verifie si le pion est encore vivant
+	 * Pre-Cond : p != null
 	 * @param p
-	 * @return
+	 * @return vrai si p.vie > 0
 	 */
 	public boolean estVivant(Pion p) {
 		return p.vie > 0;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Verifie si il est vivant
+	 * @return vie > 0
 	 */
 	public boolean estVivant() {
 		return vie > 0;
 	}
 
 	/**
-	 * 
+	 * Modifie la valeur de tourspecial
 	 * @param tourspecial
 	 */
 	public void setTourspecial(int tourspecial) {
@@ -726,7 +794,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourne la valeur de tourspecial
 	 * @return
 	 */
 	public int getTourspecial() {
@@ -734,7 +802,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Reinitialise le nombre de mouvement et appelle recuperationCapacite
 	 */
 	public void finDeTour() {
 		mouvement = mouvementBase;
@@ -742,7 +810,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Diminue de 1 special si il est > 0
 	 */
 	public void recuperationCapacite() {
 		if (special > 0) {
@@ -751,7 +819,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourne le nombre de mouvement disponible pour le pion au debut de tour.
 	 * @return
 	 */
 	public int getMouvementBase() {
@@ -759,7 +827,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Modifie la variable mouvement
 	 * @param mouvement
 	 */
 	public void setMouvement(int mouvement) {
@@ -767,7 +835,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourne joueur
 	 * @return
 	 */
 	public Joueur getJoueur() {
@@ -775,7 +843,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Modifie la variable joueur
 	 * @param joueur
 	 */
 	public void setJoueur(Joueur joueur) {
@@ -783,7 +851,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Permet de savoir si une capacite est utilisable ou non
 	 * @return
 	 */
 	public boolean capaciteActive() {
@@ -791,7 +859,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourne le nom de la capcite speciale
 	 * @return
 	 */
 	public String getNomCapacite() {
@@ -799,7 +867,9 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Pre-Cond : c != null et c contient un obstacle destructible.
+	 * Post-Cond : l'obstacle destructible de c à perdu de la vie,
+	 * si cette vie est inferieur à 0 il est supprimé de la case c.
 	 * @param c
 	 */
 	public void attaquerObstacle(Case c) {
@@ -810,7 +880,8 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Pre-Cond : c != null et c contient un teleporteur.
+	 * Post-Cond : le teleporteur dans c a perdu de la vie, peut avoir disparu.
 	 * @param c
 	 */
 	public void attaquerTeleporteur(Case c) {
@@ -818,7 +889,7 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Retourne listeConquetePossible
 	 * @return
 	 */
 	public ArrayList<Case> getListeConquetePossible() {
@@ -826,30 +897,29 @@ public abstract class Pion implements Serializable {
 	}
 
 	/**
-	 * 
+	 * Permet de savoir si une conquete est possible
 	 * @return
 	 */
 	public boolean conquetePossible() {
 		conquerir();
-		System.out.println(listeConquetePossible.size());
 		return !listeConquetePossible.isEmpty();
 	}
 
 	/**
-	 * 
+	 * Retourne une image suivant l'entier i qui correspond au mouvement en cours
 	 * @param i
 	 * @return
 	 */
-	public abstract BufferedImage getImageMouvement(int i);
+	public abstract BufferedImage getImage(int i);
 
 	/**
-	 * 
+	 * Retourne une image avec i = 1 de getImage(i)
 	 * @return
 	 */
 	public abstract BufferedImage getImage();
 
 	/**
-	 * 
+	 * Retourne la variable commandant
 	 * @return
 	 */
 	public boolean isCommandant() {
@@ -865,7 +935,7 @@ public abstract class Pion implements Serializable {
 
 	
 	/**
-	 * 
+	 * Retourne le numero de classe
 	 * @return
 	 */
 	public abstract int getNumClasse();
