@@ -16,6 +16,10 @@ public final class GuerrierOiseau extends Guerrier implements Oiseau {
 
 	private boolean vol;
 
+	/**
+	 * Constructeur d'un guerrier oiseau
+	 * @param c
+	 */
 	public GuerrierOiseau(Case c) {
 		super(vieGuerrier, forceGuerrier, precisionGuerrier, vitesseGuerrier, defenseGuerrier, chanceGuerrier, porteeGuerrier, mouvementGuerrier, c);
 		vol = false;

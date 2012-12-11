@@ -16,6 +16,10 @@ public final class AssassinOiseau extends Assassin implements Oiseau {
 
 	private boolean vol;
 
+	/**
+	 * Constructeur d'un assassin oiseau
+	 * @param c
+	 */
 	public AssassinOiseau(Case c) {
 		super(vieAssassin, forceAssassin, precisionAssassin, vitesseAssassin, defenseAssassin, chanceAssassin, porteeAssassin, mouvementAssassin, c);
 		vol = false;

@@ -16,6 +16,10 @@ public final class ArcherOiseau extends Archer implements Oiseau {
 
 	private boolean vol;
 
+	/**
+	 * Constructeur d'un oiseau archer
+	 * @param c
+	 */
 	public ArcherOiseau(Case c) {
 		super(vieArcher, forceArcher, precisionArcher, vitesseArcher, defenseArcher, chanceArcher, porteeArcher, mouvementArcher, c);
 		vol = false;

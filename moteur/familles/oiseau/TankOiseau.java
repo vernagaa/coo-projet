@@ -16,6 +16,10 @@ public final class TankOiseau extends Tank implements Oiseau {
 
 	private boolean vol;
 
+	/**
+	 * Constructeur d'un tank oiseau
+	 * @param c
+	 */
 	public TankOiseau(Case c) {
 		super(vieTank, forceTank, precisionTank, vitesseTank, defenseTank, chanceTank, porteeTank, mouvementTank, c);
 		vol = false;
