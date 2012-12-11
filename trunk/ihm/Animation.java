@@ -54,8 +54,6 @@ public class Animation {
 	public void animerFinDeTour() {
 		if (!animationEnCours) {
 			animationEnCours = true;
-			System.out.println(animationEnCours);
-			ecouteur.desactiverEcouteur();
 			aire.animationFinDeTour = true;
 			timer = new Timer(42, new ActionListener() {
 
@@ -103,9 +101,6 @@ public class Animation {
 			aire.animationAttaque = true;
 			aire.attaquant = true;
 			aire.esquive = true;
-			System.out.println(pionA.degatsCombat);
-			System.out.println(pionD.degatsCombat);
-			System.out.println(aire.positionD);
 			aire.positionA = new Point(pionA.getCase().getColonne(), pionA.getCase().getLigne());
 			aire.positionD = new Point(pionD.getCase().getColonne(), pionD.getCase().getLigne());
 			timer = new Timer(42, new ActionListener() {
@@ -348,7 +343,6 @@ public class Animation {
 
 	private void lancerAnimation() {
 		if (!listeAnimation.isEmpty()) {
-			System.out.println(listeAnimation);
 			switch (listeAnimation.get(0)) {
 				case 0:
 					listeAnimation.remove(0);

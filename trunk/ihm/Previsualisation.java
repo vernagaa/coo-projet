@@ -36,7 +36,6 @@ public class Previsualisation extends JComponent {
 	protected void paintComponent(Graphics g) {
 //		super.paintComponent(g);
 		Graphics2D gd = (Graphics2D) g;
-		System.out.println(getSize());
 		int caseTaille = Math.min((getWidth()-1)/Plateau.NB_COLONNE, (getHeight()-1)/Plateau.NB_LIGNE);
 		
 		if(plateau != null) {

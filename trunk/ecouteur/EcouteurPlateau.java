@@ -40,7 +40,6 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 		int col = x / Case.TAILLE;
 		int lig = y / Case.TAILLE;
 		Case c = moteur.getPlateau().get(lig, col);
-		System.out.println("case : " + c);
 
 		if (c != null && active) {
 			if (moteur.isDebutDePartie()) {

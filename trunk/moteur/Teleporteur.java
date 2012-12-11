@@ -24,9 +24,7 @@ public class Teleporteur {
 		this.c = c;
 		
 		c.setTeleporteur(this);
-		System.out.println(joueur.getTeleporteur());
 		joueur.ajouterTeleporteur(this);
-		System.out.println("Liste des teleporteurs " + joueur.getTeleporteur());
 	}
 
 	/**

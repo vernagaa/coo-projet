@@ -230,11 +230,7 @@ public abstract class Pion implements Serializable {
 		int aleaRiposte = (int) (Math.random() * (101));
 		int aleaCoupCritique = (int) (Math.random() * (101));
 		int coupReel;
-		System.out.println(aleaEsquive+" < "+(hit - esquive)+" : "+hit+" - "+esquive+" "+janken(p));
 		if (esquive < 100 && aleaEsquive < (hit - esquive)) {
-			System.out.println("Coups critiques : "+aleaCoupCritique+" < "+coupCritiques());
-			System.out.println("Defense : "+seDefend);
-			System.out.println("Attaque : "+degatInflige);
 			if (aleaCoupCritique < coupCritiques()) {
 				p.recevoirDegat(coupReel = (int) (1.7 * degatInflige - seDefend));
 			} else if (degatInflige > seDefend) {

@@ -45,7 +45,6 @@ public class BoutonConquerir extends BoutonAction implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("Conquerir");
 		fenetre.getMoteur().setConqueteEnCours(true);
 		fenetre.getMoteur().getAireDeJeu().setConqueteEnCours(true);
 		fenetre.effacerFenetre();
