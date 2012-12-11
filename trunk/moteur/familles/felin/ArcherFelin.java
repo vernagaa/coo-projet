@@ -69,8 +69,9 @@ public final class ArcherFelin extends Archer implements Felin {
 		}
 	}
 	
+
 	@Override
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.ARCHERFELIN, orientation, i);
 	}
 }

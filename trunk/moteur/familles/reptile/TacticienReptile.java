@@ -47,7 +47,7 @@ public final class TacticienReptile extends Tacticien implements Reptile {
 	}
 
 	@Override
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.TACTICIENREPTILE, orientation, i);
 	}
 	

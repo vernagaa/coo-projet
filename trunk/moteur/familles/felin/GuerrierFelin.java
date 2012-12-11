@@ -69,7 +69,7 @@ public final class GuerrierFelin extends Guerrier implements Felin {
 	}
 
 
-	public BufferedImage getImageMouvement(int i) {
+	public BufferedImage getImage(int i) {
 		return Textures.getPersonnage(Textures.GUERRIERFELIN, orientation, i);
 	}
 }
