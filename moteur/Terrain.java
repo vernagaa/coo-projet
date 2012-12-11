@@ -22,18 +22,4 @@ public class Terrain {
 				return CoutDefaut;
 		}
 	}
-
-	public static int effetPrecision(int i) {
-		switch (i) {
-			case Textures.GLACE:
-			case Textures.SABLE:
-				return -2;
-			case Textures.NEIGE:
-			case Textures.ROUTE:
-			case Textures.HERBE:
-			case Textures.ROC:
-			default:
-				return 0;
-		}
-	}
 }
