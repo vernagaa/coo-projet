@@ -11,6 +11,10 @@ import moteur.classes.Tank;
  */
 public final class TankReptile extends Tank implements Reptile {
 
+	/**
+	 * Constructeur du tank reptile
+	 * @param c
+	 */
 	public TankReptile(Case c) {
 		super(vieTank, forceTank, precisionTank, vitesseTank, defenseTank, chanceTank, porteeTank, mouvementTank, c);
 		nomCapaciteSpeciale = nomCapacite;
