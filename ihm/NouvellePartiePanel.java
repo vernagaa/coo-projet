@@ -9,7 +9,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.List;
+import javax.naming.spi.DirectoryManager;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -93,13 +99,11 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		setEnabled(j2FamillePanel, false);
 		setEnabled(j2ClassePanel, false);
 		setVisible(j2TextePanel, false);
+		
+		mapComboBoxActionPerformed(null);
+		
 		j1Nom.setSelectionStart(0);
 		j1Nom.setSelectionEnd(j1Nom.getText().length());
-		Previsualisation pr = new Previsualisation();
-		jPanel2.add(pr);
-		pr.setLocation(0, 0);
-		pr.setSize(400, 300);
-		pr.setVisible(true);
 		
 		class EcouteurBoutonFamille extends MouseAdapter implements ActionListener {
 
@@ -847,6 +851,23 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		}
 	}
 	
+	private ComboBoxModel getFichiersMap() {
+		ArrayList<Couple<String, String>> liste = new ArrayList<Couple<String, String>>();
+		File f = new File("map/");
+		String[] l = f.list(new FilenameFilter() {
+
+			@Override
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".map");
+			}
+		});
+		
+		for(String s : l) {
+			liste.add(new Couple<String, String>("map/"+s, s.substring(0, s.length()-4)));
+		}
+		return new DefaultComboBoxModel(liste.toArray());
+	}
+
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -935,7 +956,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         mapPanel.add(jLabel1, gridBagConstraints);
 
-        mapComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        mapComboBox.setModel(getFichiersMap());
         mapComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mapComboBoxActionPerformed(evt);
@@ -965,7 +986,10 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         mapPanel.add(mapValider, gridBagConstraints);
 
+        jPanel2.setBackground(new java.awt.Color(128, 128, 128));
         jPanel2.setLayout(new java.awt.BorderLayout());
+
+        previsualisation.setBackground(new java.awt.Color(128, 128, 128));
         jPanel2.add(previsualisation, java.awt.BorderLayout.CENTER);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1674,7 +1698,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 	}//GEN-LAST:event_mapValiderActionPerformed
 
 	private void mapComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mapComboBoxActionPerformed
-		previsualisation.setPlateau(new Plateau(mapComboBox.getSelectedItem().toString()));
+		previsualisation.setPlateau(new Plateau(((Couple<String, String>)mapComboBox.getSelectedItem()).getKey()));
 	}//GEN-LAST:event_mapComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
