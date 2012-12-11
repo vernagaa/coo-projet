@@ -304,7 +304,7 @@ public abstract class Pion implements Serializable {
 	 * @return entier
 	 */
 	private int hit() {
-		return (precision /*+ Terrain.effetPrecision(c.getTypeTerrain())*/ * 4);
+		return precision  * 4;
 	}
 
 	/**
