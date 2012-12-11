@@ -8,33 +8,18 @@ import java.io.Serializable;
  */
 public class Case implements Serializable {
 
+	/**
+	 * ID de serrializable
+	 */
 	protected static final long serialVersionUID = 1L;
 	/**
 	 * Constante qui définit la taille en pixel de la case
 	 */
 	public static final int TAILLE = 30;
-	/**
-	 * Entier contenant la colonne où se trouve la case
-	 */
 	private int col;
-	/**
-	 * Entier contenant la ligne où se trouve la case
-	 */
 	private int lig;
-	/**
-	 * Représente le plateau sur lequel se trouve la case
-	 */
 	private Plateau plateau;
-	/**
-	 * Cette variable permet de mettre la case en surbrillance dans 2 cas : - Si
-	 * la case est selectionné - Si la case est accessible est survolé
-	 */
 	private boolean select;
-	/**
-	 * Variable contenant l'element présent sur la case, 3 cas : - null, signifie
-	 * qu'il n'y a pas d'élément - Pion, signifie qu'il y a un personnage jouable
-	 * - Obstacle, signifie qu'il y a un obsatcle non jouable
-	 */
 	private Pion pion;
 	private Obstacle obstacle;
 	private Bordure bordure;
@@ -45,6 +30,10 @@ public class Case implements Serializable {
 	 * Constructeur de base de la classe Case. Prend 3 paramètres : param l entier
 	 * désignant la ligne param c entier désignant la colonne param terrain où se
 	 * trouve la case
+	 * 
+	 * @param l 
+	 * @param c 
+	 * @param p 
 	 */
 	public Case(int l, int c, Plateau p) {
 		lig = l;
@@ -57,21 +46,6 @@ public class Case implements Serializable {
 		typeTerrain = Textures.ROC;
 	}
 
-	/**
-	 * Constructeur prenant une case en paramètre Nécessaire afin de copier une
-	 * case
-	 *
-	 * @param c
-	 */
-	private Case(Case c) {
-		lig = c.lig;
-		col = c.col;
-		plateau = c.plateau;
-		select = c.select;
-		pion = c.pion;
-		obstacle = c.obstacle;
-		typeTerrain = c.typeTerrain;
-	}
 
 	/**
 	 * Méthode qui compare 2 case grace à la ligne et à la colonne
@@ -86,15 +60,8 @@ public class Case implements Serializable {
 		return false;
 	}
 
-	/**
-	 * Méthode abstraite qui retourne la copie d'une case
-	 *
-	 * @param p le plateau où est la case
-	 * @return Case copie de this
-	 */
-	/*
-	 * public Case copie(Plateau p){ return Case(this); }
-	 */
+
+
 	/**
 	 * Retourne le numéro de la colonne de la case
 	 *
@@ -114,28 +81,15 @@ public class Case implements Serializable {
 	}
 
 	/**
-	 * Méthode abstraite renvoyant le
-	 * <code>pion se trouvant sur la
-	 * <code>case</code>.
-	 *
-	 * @return
-	 * <code>Pion</code> se trouvant sur la
-	 * <code>case</code>, null s'il n'y a pas de
-	 * <code>pion</code> dessus
+	 * Accesseur du pion de la case
+	 * @return pion
 	 */
 	public Pion getPion() {
 		return pion;
 	}
 
 	/**
-	 * Méthode abstraite renvoyant l'
-	 * <code>obstacle se trouvant sur la
-	 * <code>case</code>.
-	 *
-	 * @return
-	 * <code>Obstacle</code> se trouvant sur la
-	 * <code>case</code>, null s'il n'y a pas d'
-	 * <code>obstacle</code> dessus
+	 * Accesseur de l'obstacle de la case
 	 */
 	public Obstacle getObstacle() {
 		return obstacle;
@@ -150,14 +104,18 @@ public class Case implements Serializable {
 		return plateau;
 	}
 
-	public int getTaille() {
-		return TAILLE;
-	}
-
+	/**
+	 * Accesseur du téléporteur de la case
+	 * @return
+	 */
 	public Teleporteur getTeleporteur() {
 		return teleporteur;
 	}
 
+	/**
+	 * Affecteur de teleporteur
+	 * @param teleporteur
+	 */
 	public void setTeleporteur(Teleporteur teleporteur) {
 		this.teleporteur = teleporteur;
 	}
@@ -169,35 +127,62 @@ public class Case implements Serializable {
 	public void remove() {
 		pion = null;
 		obstacle = null;
+		teleporteur = null;
 	}
 
 	/**
 	 * Méthode permettant de sélectionner une case
+	 * 
+	 * @param b 
 	 */
 	public void setSelect(boolean b) {
 		select = b;
 	}
 
-	void setPion(Pion pion) {
+	/**
+	 * Affecteur du pion de la case
+	 * @param pion 
+	 */
+	public void setPion(Pion pion) {
 		this.pion = pion;
 	}
 
+	/**
+	 * Accesseur du type de terrain de la case
+	 * @return
+	 */
 	public int getTypeTerrain() {
 		return typeTerrain;
 	}
 
+	/**
+	 * Affecteur du type de terrain de la case
+	 * @param typeTerrain
+	 */
 	public void setTypeTerrain(int typeTerrain) {
 		this.typeTerrain = typeTerrain;
 	}
 
+	/**
+	 * Affecteur de l'obstacle de la case
+	 * @param obstacle
+	 */
 	public void setObstacle(Obstacle obstacle) {
 		this.obstacle = obstacle;
 	}
 
+	/**
+	 * Affecteur de la bordure de la case
+	 * @param bordure
+	 */
 	public void setBordure(Bordure bordure) {
 		this.bordure = bordure;
 	}
 
+	/**
+	 * Accesseur de la bordure de la case
+	 * @return
+	 */
 	public Bordure getBordure() {
 		return bordure;
 	}
@@ -210,18 +195,34 @@ public class Case implements Serializable {
 		return "(" + col + "," + lig + ")";
 	}
 
+	/**
+	 * Accesseur de select
+	 * @return
+	 */
 	public boolean getSelect() {
 		return select;
 	}
 
+	/**
+	 * Renvoie vrai si la case contient un obstacle aux déplacements
+	 * @return
+	 */
 	public boolean isObstacleDeplacement() {
 		return obstacle != null;
 	}
 
-	public boolean isOccupee() {
+	/**
+	 * Renvoie vrai si la case contient un pion
+	 * @return
+	 */
+	public boolean contientPion() {
 		return pion != null;
 	}
 
+	/**
+	 * Renvoie vrai si la case contient un obstacle indestructible
+	 * @return
+	 */
 	public boolean isObstacleAttaque() {
 		if (obstacle != null) {
 			if (obstacle.isDestructible()) {
@@ -233,11 +234,19 @@ public class Case implements Serializable {
 		return obstacle != null;
 	}
 
+	/**
+	 * Supprime l'obstacle de la case
+	 */
 	public void supprimerObstacle() {
 		obstacle = null;
 	}
 
-	boolean contientTeleporteur(Joueur joueur) {
+	/**
+	 * Renvoie vrai si la case contient un téléporteur du joueur
+	 * @param joueur
+	 * @return 
+	 */
+	public boolean contientTeleporteur(Joueur joueur) {
 		if (teleporteur != null) {
 			if (joueur.getTeleporteur().contains(teleporteur)) {
 				return true;
@@ -246,7 +255,4 @@ public class Case implements Serializable {
 		return false;
 	}
 
-	boolean contientPion() {
-		return pion != null;
-	}
 }

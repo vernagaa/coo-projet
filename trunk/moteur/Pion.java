@@ -397,7 +397,7 @@ public abstract class Pion implements Serializable {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
-			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.isOccupee() && !listeFerme.contains(tmp2)
+			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
 					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
@@ -415,7 +415,7 @@ public abstract class Pion implements Serializable {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
-			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.isOccupee() && !listeFerme.contains(tmp2)
+			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
 					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
@@ -433,7 +433,7 @@ public abstract class Pion implements Serializable {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
-			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.isOccupee() && !listeFerme.contains(tmp2)
+			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
 					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
@@ -451,7 +451,7 @@ public abstract class Pion implements Serializable {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
 				}
-			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.isOccupee() && !listeFerme.contains(tmp2)
+			} else if (caseVerif != null && !tmp2.c.isObstacleDeplacement() && !tmp2.c.contientPion() && !listeFerme.contains(tmp2)
 					&& !listeOuverte.contains(tmp2) && tmp2.cout <= 2 * mouvement) {
 				listeDeplacementPossible.add(tmp2);
 				listeOuverte.add(tmp2);
