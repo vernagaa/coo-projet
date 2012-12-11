@@ -17,6 +17,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JSpinner.NumberEditor;
+import javax.swing.JTextField;
 import moteur.Case;
 import moteur.FabriquePion;
 import moteur.Moteur;
@@ -99,9 +101,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		setVisible(j2TextePanel, false);
 		
 		mapComboBoxActionPerformed(null);
-		
-		j1Nom.setSelectionStart(0);
-		j1Nom.setSelectionEnd(j1Nom.getText().length());
 		
 		class EcouteurBoutonFamille extends MouseAdapter implements ActionListener {
 
@@ -880,8 +879,10 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         jLabel1 = new javax.swing.JLabel();
         mapComboBox = new javax.swing.JComboBox();
         mapValider = new javax.swing.JButton();
+        nbPionsSpinner = new javax.swing.JSpinner();
         jPanel2 = new javax.swing.JPanel();
         previsualisation = new ihm.Previsualisation();
+        jLabel2 = new javax.swing.JLabel();
         j1Panel = new javax.swing.JPanel();
         j1NomPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -948,7 +949,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
@@ -966,7 +967,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         mapPanel.add(mapComboBox, gridBagConstraints);
 
         mapValider.setText("Valider");
@@ -978,11 +979,21 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         mapPanel.add(mapValider, gridBagConstraints);
+
+        nbPionsSpinner.setModel(new javax.swing.SpinnerNumberModel(6, 2, 15, 2));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        mapPanel.add(nbPionsSpinner, gridBagConstraints);
 
         jPanel2.setBackground(new java.awt.Color(128, 128, 128));
         jPanel2.setLayout(new java.awt.BorderLayout());
@@ -990,13 +1001,23 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 5.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         mapPanel.add(jPanel2, gridBagConstraints);
+
+        jLabel2.setText("<html>Nombre de personnages par équipe (pair) :</html>");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        mapPanel.add(jLabel2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1685,11 +1706,24 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 	private void mapValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mapValiderActionPerformed
 		if(previsualisation.getPlateau() != null)
 		{
-			mapPanel.setVisible(false);
-			j1Panel.setVisible(true);
-			j2Panel.setVisible(true);
-			m.setPlateau(previsualisation.getPlateau());
-			m.lierChateaux();
+			int nb = Integer.parseInt(nbPionsSpinner.getValue().toString());
+			if(nb % 2 != 0){
+				nbPionsSpinner.getEditor().requestFocus();
+			}
+			else {
+				m.setNbPionParJoueur(nb);
+
+				m.setPlateau(previsualisation.getPlateau());
+				m.lierChateaux();
+
+				mapPanel.setVisible(false);
+				j1Panel.setVisible(true);
+				j2Panel.setVisible(true);
+
+				j1Nom.requestFocus();
+				j1Nom.setSelectionStart(0);
+				j1Nom.setSelectionEnd(j1Nom.getText().length());
+			}
 		}
 	}//GEN-LAST:event_mapValiderActionPerformed
 
@@ -1732,6 +1766,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1741,6 +1776,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
     private javax.swing.JButton mapValider;
     private javax.swing.JLabel mouvement1;
     private javax.swing.JLabel mouvement2;
+    private javax.swing.JSpinner nbPionsSpinner;
     private javax.swing.JButton oiseau1;
     private javax.swing.JButton oiseau2;
     private javax.swing.JLabel portee1;

@@ -49,15 +49,14 @@ public class FenetrePrincipale extends javax.swing.JFrame {
 	}
 
 	private void quitterApplication() {
-		//TODO rétablir à la fin
-//		int confirm = JOptionPane.showConfirmDialog(this,
-//				"Voulez-vous vraiment quitter Animosity ?",
-//				"Quitter",
-//				JOptionPane.YES_NO_OPTION);
-//
-//		if (confirm == JOptionPane.YES_OPTION) {
+		int confirm = JOptionPane.showConfirmDialog(this,
+				"Voulez-vous vraiment quitter Animosity ?",
+				"Quitter",
+				JOptionPane.YES_NO_OPTION);
+
+		if (confirm == JOptionPane.YES_OPTION) {
 		System.exit(0);
-//		}
+		}
 	}
 
 	/** This method is called from within the constructor to
