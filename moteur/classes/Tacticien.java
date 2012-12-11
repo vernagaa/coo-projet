@@ -30,7 +30,6 @@ public abstract class Tacticien extends Pion {
 	}
 
 	public void poserTeleporteur(Case c) {
-		if (cooldownTeleporteur == 0) {
 			System.out.println("Je pose un teleporteur en " + c);
 			if (distanceManhattan(c) == 1 && c.getPion() == null && c.getObstacle() == null) {
 				System.out.println("Pose possible");
@@ -38,12 +37,15 @@ public abstract class Tacticien extends Pion {
 				cooldownTeleporteur = 1;
 			}
 			//TODO Ajouter un cooldown à la pose?
-		}
 	}
 
 	public void decrementerCDTeleporteur() {
 		if (cooldownTeleporteur > 0) {
 			cooldownTeleporteur--;
 		}
+	}
+	
+	public boolean telePorterDisponible(){
+		return cooldownTeleporteur==0;
 	}
 }

@@ -3,6 +3,7 @@ package ihm;
 import javax.swing.JComponent;
 import moteur.Case;
 import moteur.Moteur;
+import moteur.classes.Tacticien;
 
 /**
  *
@@ -76,7 +77,7 @@ public final class FenetreChoixPion extends JComponent {
 			} else {
 				conq.setPosition(6);
 			}
-			if (c.getPion() == m.getJoueurCourant().getTacticien()) {
+			if (c.getPion() == m.getJoueurCourant().getTacticien() && ((Tacticien)c.getPion()).telePorterDisponible()) {
 				setSize(Case.TAILLE * 3, Case.TAILLE * (i + 1));
 				t.setPosition(i++);
 				if (placement.getPlateau().get(placement.getLigne() + i, placement.getColonne()) == null) {
