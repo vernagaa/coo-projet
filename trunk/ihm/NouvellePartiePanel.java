@@ -182,7 +182,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 				choix = true;
 				
 				setListeAireDejeu();
-				m.aireDeJeu.repaint();
+				m.getAireDeJeu().repaint();
 			}
 
 			@Override
@@ -259,7 +259,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		tank2.addActionListener(ebc);
 		tank2.addMouseListener(ebc);
 		
-		m.aireDeJeu.add(this);
+		m.getAireDeJeu().add(this);
 		setLocation(Case.TAILLE * 6, 0);
 		setVisible(true);
 		setSize(Case.TAILLE * 23, Case.TAILLE * 20);
@@ -425,10 +425,10 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 				tacticien2.setEnabled(false);
 			}
 			afficherStatJoueur(joueurCourant);
-			m.aireDeJeu.setJoueurCourant(joueurCourant);
+			m.getAireDeJeu().setJoueurCourant(joueurCourant);
 		}
-		m.aireDeJeu.setListeCase(null);
-		m.aireDeJeu.repaint();
+		m.getAireDeJeu().setListeCase(null);
+		m.getAireDeJeu().repaint();
 	}
 	
 	/**
@@ -436,7 +436,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 	 */
 	public void pionAjouteJoueur2() {
 		nbPions++;
-		m.aireDeJeu.setListeCase(null);
+		m.getAireDeJeu().setListeCase(null);
 		if (m.getJoueur2().getTacticien() != null) {
 			tacticien2.setEnabled(false);
 		}
@@ -448,10 +448,10 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 				tacticien1.setEnabled(false);
 			}
 			afficherStatJoueur(joueurCourant);
-			m.aireDeJeu.setJoueurCourant(joueurCourant);
+			m.getAireDeJeu().setJoueurCourant(joueurCourant);
 		}
-		//m.aireDeJeu.setListeCase(null);
-		m.aireDeJeu.repaint();
+		//m.getAireDeJeu().setListeCase(null);
+		m.getAireDeJeu().repaint();
 	}
 	
 	/**
@@ -480,8 +480,8 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 			afficherInfo1.setVisible(false);
 			j1TextePanel.setBackground(defaultColPanel);
 		}
-		m.aireDeJeu.setJoueurCourant(joueurCourant);
-		m.aireDeJeu.repaint();
+		m.getAireDeJeu().setJoueurCourant(joueurCourant);
+		m.getAireDeJeu().repaint();
 //		repaint();
 	}
 
@@ -517,7 +517,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 			}
 		}
 			
-		m.aireDeJeu.setListeCase(caseJoueur);
+		m.getAireDeJeu().setListeCase(caseJoueur);
 	}
 
 	private void choixFamilleJoueur1(int famille) {
@@ -541,8 +541,8 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		etape++;
 		
 		afficherStatJoueur(joueurCourant);
-		m.aireDeJeu.setJoueurCourant(joueurCourant);
-		m.aireDeJeu.repaint();
+		m.getAireDeJeu().setJoueurCourant(joueurCourant);
+		m.getAireDeJeu().repaint();
 	}
 	
 	private void afficherFamille(boolean joueurCourant, int famille) {

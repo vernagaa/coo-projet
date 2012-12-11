@@ -86,7 +86,7 @@ public class EcouteurPlateau implements MouseListener, MouseMotionListener {
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {
-		moteur.aireDeJeu.setCaseSurvol(null);
+		moteur.getAireDeJeu().setCaseSurvol(null);
 		lastCol = -1;
 	}
 

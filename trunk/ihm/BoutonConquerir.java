@@ -23,8 +23,8 @@ public class BoutonConquerir extends BoutonAction implements ActionListener {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				fenetre.getCase().getPion().conquerir();
-				fenetre.getMoteur().aireDeJeu.setAfficherPorteeConquerir(true, fenetre.getCase());
-				fenetre.getMoteur().aireDeJeu.repaint();
+				fenetre.getMoteur().getAireDeJeu().setAfficherPorteeConquerir(true, fenetre.getCase());
+				fenetre.getMoteur().getAireDeJeu().repaint();
 				survol = true;
 				repaint();
 			}
@@ -33,8 +33,8 @@ public class BoutonConquerir extends BoutonAction implements ActionListener {
 			public void mouseExited(MouseEvent e) {
 				survol = false;
 				repaint();
-				fenetre.getMoteur().aireDeJeu.setAfficherPorteeConquerir(false, fenetre.getCase());
-				fenetre.getMoteur().aireDeJeu.repaint();
+				fenetre.getMoteur().getAireDeJeu().setAfficherPorteeConquerir(false, fenetre.getCase());
+				fenetre.getMoteur().getAireDeJeu().repaint();
 			}
 		});
 	}
@@ -47,7 +47,7 @@ public class BoutonConquerir extends BoutonAction implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Conquerir");
 		fenetre.getMoteur().setConqueteEnCours(true);
-		fenetre.getMoteur().aireDeJeu.setConqueteEnCours(true);
+		fenetre.getMoteur().getAireDeJeu().setConqueteEnCours(true);
 		fenetre.effacerFenetre();
 	}
 }

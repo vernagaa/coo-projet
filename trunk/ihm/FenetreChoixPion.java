@@ -37,7 +37,7 @@ public final class FenetreChoixPion extends JComponent {
 		add(t);
 		conq = new BoutonConquerir(this);
 		add(conq);
-		m.aireDeJeu.add(this);
+		m.getAireDeJeu().add(this);
 		setVisible(false);
 	}
 
