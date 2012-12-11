@@ -14,7 +14,7 @@ public abstract class Assassin extends Pion {
 	/**
 	 * Constante de vie d'un assassin
 	 */
-	public final static int VIE = 30;
+	public final static int VIE = 70;
 	/**
 	 * Constante de force d'un assassin
 	 */

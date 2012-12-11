@@ -14,7 +14,7 @@ public abstract class Guerrier extends Pion {
 	/**
 	 * Constante de vie d'un guerrier
 	 */
-	public final static int VIE = 41;
+	public final static int VIE = 82;
 	/**
 	 * Constante de force d'un guerrier
 	 */
@@ -30,7 +30,7 @@ public abstract class Guerrier extends Pion {
 	/**
 	 * Constante de défense d'un guerrier
 	 */
-	public final static int DEFENSE = 29;
+	public final static int DEFENSE = 28;
 	/**
 	 * Constante de portée d'un guerrier
 	 */
@@ -38,7 +38,7 @@ public abstract class Guerrier extends Pion {
 	/**
 	 * Constante de mouvement d'un guerrier
 	 */
-	public final static int MOUVEMENT = 6;
+	public final static int MOUVEMENT = 4;
 
 	/**
 	 * Constructeur du guerrier
