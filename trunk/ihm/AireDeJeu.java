@@ -170,23 +170,27 @@ public class AireDeJeu extends JComponent {
 				gd.setColor(new Color(200, 0, 200, 150));
 				if (plateau.get(caseEnCours.getLigne() - 1, caseEnCours.getColonne()) != null
 						&& plateau.get(caseEnCours.getLigne() - 1, caseEnCours.getColonne()).getPion() == null
-						&& plateau.get(caseEnCours.getLigne() - 1, caseEnCours.getColonne()).getObstacle() == null) {
+						&& plateau.get(caseEnCours.getLigne() - 1, caseEnCours.getColonne()).getObstacle() == null
+						&& plateau.get(caseEnCours.getLigne() - 1, caseEnCours.getColonne()).getTeleporteur() == null) {
 					gd.fillRect(caseEnCours.getColonne() * Case.TAILLE, (caseEnCours.getLigne() - 1) * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 				}
 				if (plateau.get(caseEnCours.getLigne() + 1, caseEnCours.getColonne()) != null
 						&& plateau.get(caseEnCours.getLigne() + 1, caseEnCours.getColonne()).getPion() == null
-						&& plateau.get(caseEnCours.getLigne() + 1, caseEnCours.getColonne()).getObstacle() == null) {
+						&& plateau.get(caseEnCours.getLigne() + 1, caseEnCours.getColonne()).getObstacle() == null
+						&& plateau.get(caseEnCours.getLigne() + 1, caseEnCours.getColonne()).getTeleporteur() == null) {
 					gd.fillRect(caseEnCours.getColonne() * Case.TAILLE, (caseEnCours.getLigne() + 1) * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 				}
 
 				if (plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() - 1) != null
 						&& plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() - 1).getPion() == null
-						&& plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() - 1).getObstacle() == null) {
+						&& plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() - 1).getObstacle() == null
+						&& plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() - 1).getTeleporteur() == null) {
 					gd.fillRect((caseEnCours.getColonne() - 1) * Case.TAILLE, caseEnCours.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 				}
 				if (plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() + 1) != null
 						&& plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() + 1).getPion() == null
-						&& plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() + 1).getObstacle() == null) {
+						&& plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() + 1).getObstacle() == null
+						&& plateau.get(caseEnCours.getLigne(), caseEnCours.getColonne() + 1).getTeleporteur() == null) {
 					gd.fillRect((caseEnCours.getColonne() + 1) * Case.TAILLE, caseEnCours.getLigne() * Case.TAILLE, Case.TAILLE, Case.TAILLE);
 				}
 			}
