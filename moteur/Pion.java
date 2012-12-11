@@ -803,8 +803,8 @@ public abstract class Pion implements Serializable {
 	 * @param c
 	 */
 	public void attaquerObstacle(Case c) {
-		((Destructible) c.getObstacle()).vie -= force / 2;
-		if (((Destructible) c.getObstacle()).vie < 0) {
+		((Destructible) c.getObstacle()).setVie(force / 2);
+		if (((Destructible) c.getObstacle()).getVie() < 0) {
 			c.supprimerObstacle();
 		}
 	}

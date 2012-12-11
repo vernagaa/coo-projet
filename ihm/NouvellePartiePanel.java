@@ -501,7 +501,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 			for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
 				for (int j = jmin; j < jmax; j++) {
 					if (!m.getPlateau().get(i, j).isObstacleDeplacement()
-							&& !m.getPlateau().get(i, j).isOccupee()) {
+							&& !m.getPlateau().get(i, j).contientPion()) {
 						caseJoueur.add(m.getPlateau().get(i, j));
 					}
 				}
