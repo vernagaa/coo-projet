@@ -353,13 +353,19 @@ public class Moteur implements Runnable, Serializable {
 		aireDeJeu.setJoueurCourant(joueurCourant);
 
 		getJoueurCourant().finDeTour();
-
-		if (getJoueurCourant().getTacticien() != null) {
-			((Tacticien) getJoueurCourant().getTacticien()).decrementerCDTeleporteur();
-		}
 		if (joueurCourant) {
 			tour++;
-			fp.setLabelTour(tour);
+			if(tour<15){
+				fp.setLabelTour(tour);
+			}else {
+				fp.setLabelTour();
+				for(Pion p :joueur1.getListeDePions()){
+					p.mortSubite();
+				}
+				for(Pion p :joueur2.getListeDePions()){
+					p.mortSubite();
+				}
+			}
 		}
 		majInfosTour();
 	}

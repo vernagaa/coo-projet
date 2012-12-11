@@ -46,4 +46,11 @@ public final class TacticienReptile extends Tacticien implements Reptile {
 	public BufferedImage getImageMouvement(int i) {
 		return Textures.getPersonnage(Textures.TACTICIENREPTILE, orientation, i);
 	}
+	
+	@Override
+	public void finDeTour(){
+		decrementerCDTeleporteur();
+		setMouvement(getMouvementBase());
+		recuperationCapacite();
+	}
 }
