@@ -209,18 +209,13 @@ public class Moteur implements Runnable, Serializable {
 				aireDeJeu.afficherTeleporteurDisponible(teleportationEnCours, caseCourante);
 			} else if (mouvementEnCours && caseAncienne.getPion().deplacementPossible(caseCourante)) {
 				if (caseAncienne != caseCourante) {
-					try {
-						animation.animerMouvement(caseAncienne.getPion());
-						caseAncienne.setPion(null);
-					} catch (IOException ex) {
-						Logger.getLogger(Moteur.class.getName()).log(Level.SEVERE, null, ex);
-					}
+					animation.animerMouvement(caseAncienne.getPion());
+					caseAncienne.setPion(null);
 				}
 				// On specifie que le mouvement est termine
 				mouvementEnCours = false;
 				// On indique qu'il ne faut plus afficher les mouvements possibles
 				aireDeJeu.afficherMouvement(mouvementEnCours, caseCourante);
-
 				//Si fin sur une case telportation
 				if (caseCourante.getTeleporteur() != null) {
 					System.out.println("Je peux me teleporter");
@@ -278,7 +273,7 @@ public class Moteur implements Runnable, Serializable {
 			teleportationEnCours = false;
 			// On indique qu'il ne faut plus afficher les tÃ©lÃ©porteurs disponibles
 			aireDeJeu.afficherTeleporteurDisponible(false, c);
-			
+
 			// On indique qu'il ne faut plus afficher les poses de tÃ©lÃ©porteurs possibles
 			poserTeleporteur = false;
 			aireDeJeu.setAfficherPoseTeleporteur(false, c);
@@ -388,11 +383,13 @@ public class Moteur implements Runnable, Serializable {
 	}
 
 	public void utiliserAction() {
+		System.out.println("Infini. Fuck.");
 		getJoueurCourant().utiliserAction();
 		fp.setLabelAction(getJoueurCourant().getNbActions());
 		if (getJoueurCourant().getNbActions() == 0) {
-			changementJoueur();
+			System.out.println("Fin suite à un mouvement !");
 			animation.animerFinDeTour();
+			changementJoueur();
 		}
 		if (getJoueurAdverse().toutConquis() || getJoueurAdverse().tousMort()) {
 			victoire();

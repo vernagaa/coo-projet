@@ -18,32 +18,115 @@ public abstract class Pion implements Serializable {
 	private static final int CHANCEMIN = 20;
 	private static final int CHANCEMAX = 30;
 	private static final int TAUXRIPOSTE = 95;
+	/**
+	 * Determine la vie d'un pion
+	 */
 	protected int vie;
+	/**
+	 * Determine la force d'un pion, plus la force est grande, plus il infligera
+	 * de degats.
+	 */
 	protected int force;
+	/**
+	 * Determine la precision, plus elle est grande, plus il aura de chance
+	 * de toucher son adversaire et plus il aura de chance d'infliger un
+	 * coup ciritque.
+	 */
 	protected int precision;
+	/**
+	 * Determine la vitesse, plus elle est grande, plus il aura de chance
+	 * d'infliger un coup critique.
+	 */
 	protected int vitesse;
+	/**
+	 * Determine la defense, plus elle est grande, moins il recevra de degats.
+	 */
 	protected int defense;
+	/**
+	 * Determine la chance, elle est une des composantes du calcul d'esquive.
+	 */
 	protected int chance;
+	/**
+	 * Determine la portee maximale du pion. Il pourra attaquer tout element
+	 * attaquable present dans cette portee.
+	 */
 	protected int portee;
+	/**
+	 * Determine le nombre de mouvement maximal d'un pion sur un terrain neutre.
+	 */
 	protected int mouvement;
+	/**
+	 * Determine si le pion est le commandant actuel.
+	 */
 	protected boolean commandant;
+	/**
+	 * Determine l'orientation du pion. Influe sur l'attaque d'un pion.
+	 */
 	protected Orientation orientation;
+	/**
+	 * Une liste de noeud qui permet d'obtenir tout les deplacements possibles
+	 * du pion à partir de sa case c.
+	 */
 	public ArrayList<Noeud> listeDeplacementPossible;
+	/**
+	 * Une liste de Case qui contient toutes les cases attaquables 
+	 * (qui contiennent un élément attaquable) par le pion.
+	 */
 	public ArrayList<Case> listeAttaquePossible;
+	/**
+	 * Une liste de Case qui contient toutes les cases que le pion pourrait 
+	 * attaquer si elles etaient occupees.
+	 */
 	public ArrayList<Case> listeAttaqueAire;
+	/**
+	 * Une liste de Case qui, pour le commandant, permet de connaitre les cases
+	 * qu'il peut conquerir depuis sa case.
+	 */
 	public ArrayList<Case> listeConquetePossible;
+	/**
+	 * Une liste de case qui contient le meilleur deplacement entre 2 cases.
+	 */
 	protected ArrayList<Case> deplacement;
-	protected Noeud noeudContenu;
+	/**
+	 * La case où se trouve le pion.
+	 */
 	protected Case c;
+	/**
+	 * La joueur à qui appartient le pion.
+	 */
 	protected Joueur joueur;
+	/**
+	 * Determine le nom de la capacite speciale du pion.
+	 */
+	protected String nomCapaciteSpeciale;
+	/**
+	 * Necessaire pour l'animation. Determine la sequence des degats infliges
+	 * durant un combat.
+	 */
+	public ArrayList<Integer> degatsCombat;
 	private static final int BONUSKILL = 20;
 	private int special;
 	private int tourspecial;
 	private int mouvementBase;
-	protected String nomCapaciteSpeciale;
-	public ArrayList<Integer> degatsCombat;
-	protected Point id;
 
+	/**
+	 * Constructeur de Pion.
+	 * @param vie
+	 * @param force
+	 * @param precision
+	 * @param vitesse
+	 * @param defense
+	 * @param bonusChance
+	 * @param portee
+	 * @param mouvement
+	 * @param c
+	 * 
+	 * Les parametres sont associes aux variables portant le meme nom.
+	 * Par defaut, le pion a une orientation vers le SUD.
+	 * La creation d'un pion l'ajoute au plateau de c.
+	 * Toutes les ArrayList sont créées.
+	 * 
+	 */
 	public Pion(int vie, int force, int precision, int vitesse, int defense, int bonusChance, int portee, int mouvement, Case c) {
 		this.vie = vie;
 		this.force = force;
@@ -69,33 +152,31 @@ public abstract class Pion implements Serializable {
 
 	}
 
+	/**
+	 * Deplace le pion en c1.
+	 * @param c1
+	 * Pre-Cond : Le deplacement du pion de c à c1 est possible.
+	 * Post-Cond : Le pion se trouve en c1 avec l'orientation obtenue
+	 * lors de son deplacement. Et son nombre de deplacement a diminué
+	 * d'un 
+	 */
 	public void deplacerPion(Case c1) {
-		System.out.println("Je suis en " + c.toString());
-		mouvement -= distanceManhattan(c1);
+		mouvement -= deplacement.size() / 2;
 
 		c.setPion(null);
 		c1.setPion(this);
 		c = c1;
-		// orientation
-		Case last = deplacement.get(deplacement.size() - 2);
-		if (c1.getColonne() - last.getColonne() > 0) {
-			orientation = Orientation.EST;
-		} else if (c1.getColonne() - last.getColonne() < 0) {
-			orientation = Orientation.OUEST;
-		} else if (c1.getLigne() - last.getLigne() > 0) {
-			orientation = Orientation.SUD;
-		} else if (c1.getLigne() - last.getLigne() < 0) {
-			orientation = Orientation.NORD;
-		}
-		System.out.println("Je suis allé en " + c.toString() + " il me reste nb mouvement " + mouvement);
+
 		listeAttaquePossible.clear();
 		listeDeplacementPossible.clear();
 		listeAttaqueAire.clear();
 		deplacement.clear();
-		//TODO Joueur.getPions().effacerTout();
-
 	}
 
+	/**
+	 * 
+	 * @param c1
+	 */
 	public void deplacerPionTeleportation(Case c1) {
 		c.setPion(null);
 		c1.setPion(this);
@@ -108,6 +189,8 @@ public abstract class Pion implements Serializable {
 
 	/**
 	 *
+	 * 
+	 * @param p 
 	 */
 	public void attaquerPion(Pion p) {
 		degatsCombat.clear();
@@ -168,6 +251,11 @@ public abstract class Pion implements Serializable {
 	/*
 	 * Les methodes suivantes sont destines a calculer les paramatres du combat.
 	 */
+	/**
+	 * 
+	 * @param p
+	 * @return
+	 */
 	protected abstract float janken(Pion p);
 
 	private float dosCoteFace(Pion p) {
@@ -191,6 +279,10 @@ public abstract class Pion implements Serializable {
 				 */;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	protected float coupCritiques() {
 		return precision * 4 * vitesse / 150;
 	}
@@ -212,12 +304,26 @@ public abstract class Pion implements Serializable {
 		return (resultat * 7) / 100;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public abstract String getNom();
 
+	/**
+	 * 
+	 */
 	public abstract void capaciteSpeciale();
 
+	/**
+	 * 
+	 */
 	public abstract void specialIndispo();
 
+	/**
+	 * 
+	 * @param special
+	 */
 	public void setSpecial(int special) {
 		this.special = special;
 	}
@@ -227,24 +333,42 @@ public abstract class Pion implements Serializable {
 		return getNom() + " (" + getClass().getSimpleName() + ", " + vie + "pv)";
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Case getCase() {
 		return c;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Orientation getOrientation() {
 		return orientation;
 	}
 
+	/**
+	 * 
+	 * @param orientation
+	 */
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
 
-	
-
+	/**
+	 * 
+	 * @param c
+	 * @return
+	 */
 	public boolean deplacementPossible(Case c) {
 		return getDeplacement().contains(c);
 	}
 
+	/**
+	 * 
+	 */
 	public void calculDeplacementPossible() {
 		listeDeplacementPossible.clear();
 		deplacement.clear();
@@ -254,7 +378,7 @@ public abstract class Pion implements Serializable {
 		Noeud tmp;
 		Noeud tmp2;
 		Case caseVerif;
-
+		Noeud noeudContenu = new Noeud(c, 0);
 		tmp = new Noeud(c, 0);
 		listeOuverte.add(tmp);
 		listeDeplacementPossible.add(tmp);
@@ -269,7 +393,7 @@ public abstract class Pion implements Serializable {
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
 			tmp2.listeNoeud.add(tmp);
-			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible, noeudContenu)) {
 				if (tmp2.cout < noeudContenu.cout) {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
@@ -287,7 +411,7 @@ public abstract class Pion implements Serializable {
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
 			tmp2.listeNoeud.add(tmp);
-			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible, noeudContenu)) {
 				if (tmp2.cout < noeudContenu.cout) {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
@@ -305,7 +429,7 @@ public abstract class Pion implements Serializable {
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
 			tmp2.listeNoeud.add(tmp);
-			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible, noeudContenu)) {
 				if (tmp2.cout < noeudContenu.cout) {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
@@ -323,7 +447,7 @@ public abstract class Pion implements Serializable {
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
 			tmp2.listeNoeud.add(tmp);
-			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible, noeudContenu)) {
 				if (tmp2.cout < noeudContenu.cout) {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
@@ -336,6 +460,9 @@ public abstract class Pion implements Serializable {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void attaque() {
 		listeAttaquePossible.clear();
 		listeAttaqueAire.clear();
@@ -399,7 +526,10 @@ public abstract class Pion implements Serializable {
 		}
 		listeAttaquePossible.remove(c);
 	}
-	
+
+	/**
+	 * 
+	 */
 	public void conquerir() {
 		listeConquetePossible.clear();
 		ArrayList<Case> listeFerme = new ArrayList<Case>();
@@ -417,7 +547,7 @@ public abstract class Pion implements Serializable {
 
 			if (caseVerif != null && !listeFerme.contains(caseVerif)
 					&& !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau()  && !joueur.chateauPresent(caseVerif) && !((Chateau)caseVerif.getObstacle()).isConquis()) {
+				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau() && !joueur.chateauPresent(caseVerif) && !((Chateau) caseVerif.getObstacle()).isConquis()) {
 					listeConquetePossible.add(caseVerif);
 				}
 				listeOuverte.add(caseVerif);
@@ -425,7 +555,7 @@ public abstract class Pion implements Serializable {
 			caseVerif = c.getPlateau().get(tmp.getLigne() - 1, tmp.getColonne());
 			if (caseVerif != null && !listeFerme.contains(caseVerif)
 					&& !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau() && !joueur.chateauPresent(caseVerif) && !((Chateau)caseVerif.getObstacle()).isConquis()) {
+				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau() && !joueur.chateauPresent(caseVerif) && !((Chateau) caseVerif.getObstacle()).isConquis()) {
 					listeConquetePossible.add(caseVerif);
 				}
 				listeOuverte.add(caseVerif);
@@ -433,7 +563,7 @@ public abstract class Pion implements Serializable {
 			caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() + 1);
 			if (caseVerif != null && !listeFerme.contains(caseVerif)
 					&& !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau() && !joueur.chateauPresent(caseVerif)  && !((Chateau)caseVerif.getObstacle()).isConquis()) {
+				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau() && !joueur.chateauPresent(caseVerif) && !((Chateau) caseVerif.getObstacle()).isConquis()) {
 					listeConquetePossible.add(caseVerif);
 				}
 				listeOuverte.add(caseVerif);
@@ -441,7 +571,7 @@ public abstract class Pion implements Serializable {
 			caseVerif = c.getPlateau().get(tmp.getLigne(), tmp.getColonne() - 1);
 			if (caseVerif != null && !listeFerme.contains(caseVerif)
 					&& !listeOuverte.contains(caseVerif) && distanceManhattan(caseVerif) <= portee) {
-				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau() && !joueur.chateauPresent(caseVerif) && !((Chateau)caseVerif.getObstacle()).isConquis()) {
+				if (caseVerif.getObstacle() != null && caseVerif.getObstacle().isChateau() && !joueur.chateauPresent(caseVerif) && !((Chateau) caseVerif.getObstacle()).isConquis()) {
 					listeConquetePossible.add(caseVerif);
 				}
 				listeOuverte.add(caseVerif);
@@ -449,30 +579,52 @@ public abstract class Pion implements Serializable {
 		}
 	}
 
+	/**
+	 * 
+	 * @param c1
+	 * @return
+	 */
 	protected int distanceManhattan(Case c1) {
 		return Math.abs(c1.getLigne() - c.getLigne()) + Math.abs(c1.getColonne() - c.getColonne());
 	}
 
-	protected boolean contient(Noeud n, ArrayList<Noeud> ln) {
+	/**
+	 * 
+	 * @param n
+	 * @param ln
+	 * @return
+	 */
+	protected boolean contient(Noeud n, ArrayList<Noeud> ln, Noeud n2) {
 		for (Noeud n1 : ln) {
 			if (n1.c.compare(n.c)) {
-				noeudContenu = n1;
+				n2 = n1;
 				return true;
 			}
 		}
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param n1
+	 * @param n2
+	 */
 	protected void recopierNoeudDansNoeud(Noeud n1, Noeud n2) {
 		for (Noeud nk : n1.listeNoeud) {
 			n2.listeNoeud.add(nk);
 		}
 	}
 
+	/**
+	 * 
+	 * @param c2
+	 */
 	public void afficherDeplacement(Case c2) {
 		deplacement.clear();
+		System.out.println(c2);
 		for (Noeud n1 : listeDeplacementPossible) {
 			if (n1.c.compare(c2)) {
+				System.out.println(n1.listeNoeud);
 				for (Noeud n2 : n1.listeNoeud) {
 					deplacement.add(n2.c);
 				}
@@ -481,26 +633,51 @@ public abstract class Pion implements Serializable {
 		}
 	}
 
+	/**
+	 * 
+	 * @param commandant
+	 */
 	public void setCommandant(boolean commandant) {
 		this.commandant = commandant;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Case> getDeplacement() {
 		return deplacement;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Case> getListeAttaquePossible() {
 		return listeAttaquePossible;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Case> getListeAttaqueAire() {
 		return listeAttaqueAire;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getVieRestante() {
 		return vie;
 	}
 
+	/**
+	 * 
+	 * @param pion
+	 * @return
+	 */
 	public boolean tuer(Pion pion) {
 		boolean tmp = pion.isCommandant();
 		vie += BONUSKILL;
@@ -508,7 +685,10 @@ public abstract class Pion implements Serializable {
 		pion = null;
 		return tmp;
 	}
-	
+
+	/**
+	 * 
+	 */
 	public void meurt() {
 		//TODO Animation mort
 		if (this == joueur.getTacticien()) {
@@ -521,57 +701,108 @@ public abstract class Pion implements Serializable {
 		joueur.enleverPion(this);
 	}
 
+	/**
+	 * 
+	 * @param p
+	 * @return
+	 */
 	public boolean estVivant(Pion p) {
 		return p.vie > 0;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean estVivant() {
 		return vie > 0;
 	}
 
+	/**
+	 * 
+	 * @param tourspecial
+	 */
 	public void setTourspecial(int tourspecial) {
 		this.tourspecial = tourspecial;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getTourspecial() {
 		return tourspecial;
 	}
 
+	/**
+	 * 
+	 */
 	public void finDeTour() {
 		mouvement = mouvementBase;
 		recuperationCapacite();
 	}
 
+	/**
+	 * 
+	 */
 	public void recuperationCapacite() {
 		if (special > 0) {
 			special--;
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getMouvementBase() {
 		return mouvementBase;
 	}
 
+	/**
+	 * 
+	 * @param mouvement
+	 */
 	public void setMouvement(int mouvement) {
 		this.mouvement = mouvement;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Joueur getJoueur() {
 		return joueur;
 	}
 
+	/**
+	 * 
+	 * @param joueur
+	 */
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean capaciteActive() {
 		return special == 0;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getNomCapacite() {
 		return nomCapaciteSpeciale;
 	}
 
+	/**
+	 * 
+	 * @param c
+	 */
 	public void attaquerObstacle(Case c) {
 		((Destructible) c.getObstacle()).vie -= force / 2;
 		if (((Destructible) c.getObstacle()).vie < 0) {
@@ -579,28 +810,49 @@ public abstract class Pion implements Serializable {
 		}
 	}
 
+	/**
+	 * 
+	 * @param c
+	 */
 	public void attaquerTeleporteur(Case c) {
 		c.getTeleporteur().diminuerVie(force / 2);
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Case> getListeConquetePossible() {
 		return listeConquetePossible;
 	}
 
-	public boolean conquetePossible(){
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean conquetePossible() {
 		conquerir();
 		System.out.println(listeConquetePossible.size());
 		return !listeConquetePossible.isEmpty();
 	}
 
-	public Point getId() {
-		return id;
-	}
-	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public abstract BufferedImage getImageMouvement(int i);
-	
+
+	/**
+	 * 
+	 * @return
+	 */
 	public abstract BufferedImage getImage();
 
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean isCommandant() {
 		return commandant;
 	}

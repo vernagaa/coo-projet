@@ -42,7 +42,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 		vol = true;
 	}
 
-	@Override
+		@Override
 	public void calculDeplacementPossible() {
 		listeDeplacementPossible.clear();
 		deplacement.clear();
@@ -51,6 +51,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 
 		Noeud tmp;
 		Noeud tmp2;
+		Noeud noeudContenu = new Noeud(c, 0);
 		Case caseVerif;
 
 		tmp = new Noeud(c, 0);
@@ -74,7 +75,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
 			tmp2.listeNoeud.add(tmp);
-			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible,noeudContenu)) {
 				if (tmp2.cout < noeudContenu.cout) {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
@@ -92,7 +93,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
 			tmp2.listeNoeud.add(tmp);
-			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible,noeudContenu)) {
 				if (tmp2.cout < noeudContenu.cout) {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
@@ -110,7 +111,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
 			tmp2.listeNoeud.add(tmp);
-			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible,noeudContenu)) {
 				if (tmp2.cout < noeudContenu.cout) {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
@@ -128,7 +129,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 			}
 			recopierNoeudDansNoeud(tmp, tmp2);
 			tmp2.listeNoeud.add(tmp);
-			if (caseVerif != null && contient(tmp2, listeDeplacementPossible)) {
+			if (caseVerif != null && contient(tmp2, listeDeplacementPossible,noeudContenu)) {
 				if (tmp2.cout < noeudContenu.cout) {
 					noeudContenu.cout = tmp2.cout;
 					noeudContenu.listeNoeud = tmp2.listeNoeud;
@@ -146,6 +147,7 @@ public final class TankOiseau extends Tank implements Oiseau {
 					listeDeplacementPossible.remove(n);
 				}
 			}
+			specialIndispo();
 		}
 	}
 
