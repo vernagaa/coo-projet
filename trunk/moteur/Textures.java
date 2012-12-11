@@ -762,7 +762,7 @@ public final class Textures {
 	 * @param height Hauteur de l'image cible.
 	 * @return Image redimensionnÃ©e.
 	 */
-	private static BufferedImage scale(Image source, int width, int height) {
+	public static BufferedImage scale(Image source, int width, int height) {
 		/*
 		 * On crÃ©Ã© une nouvelle image aux bonnes dimensions.
 		 */

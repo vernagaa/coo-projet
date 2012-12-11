@@ -43,7 +43,7 @@ public class AireDeJeu extends JComponent {
 	 * @param plateau
 	 */
 	public AireDeJeu(Plateau plateau) {
-		setPreferredSize(new Dimension(plateau.getNbColonne() * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1));
+		setPreferredSize(new Dimension(Plateau.NB_COLONNE * Case.TAILLE + 1, Plateau.NB_LIGNE * Case.TAILLE + 1));
 		this.plateau = plateau;
 		joueurCourant = true;
 		nouvellePartie();
@@ -232,9 +232,9 @@ public class AireDeJeu extends JComponent {
 		if (debutDePartie) {
 			if (!firstTime) {
 				if (joueurCourant) {
-					gd.clearRect(Case.TAILLE * (plateau.getNbColonne() - 6), 0, 6 * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1);
+					gd.clearRect(Case.TAILLE * (Plateau.NB_COLONNE - 6), 0, 6 * Case.TAILLE + 1, Plateau.NB_LIGNE * Case.TAILLE + 1);
 				} else {
-					gd.clearRect(0, 0, Case.TAILLE * 6, plateau.getNbLigne() * Case.TAILLE + 1);
+					gd.clearRect(0, 0, Case.TAILLE * 6, Plateau.NB_LIGNE * Case.TAILLE + 1);
 				}
 				if (listeCase != null) {
 					for (Case c : listeCase) {
@@ -243,8 +243,8 @@ public class AireDeJeu extends JComponent {
 					}
 				}
 			} else {
-				gd.clearRect(0, 0, Case.TAILLE * 6, plateau.getNbLigne() * Case.TAILLE + 1);
-				gd.clearRect(Case.TAILLE * (plateau.getNbColonne() - 6), 0, 6 * Case.TAILLE + 1, plateau.getNbLigne() * Case.TAILLE + 1);
+				gd.clearRect(0, 0, Case.TAILLE * 6, Plateau.NB_LIGNE * Case.TAILLE + 1);
+				gd.clearRect(Case.TAILLE * (Plateau.NB_COLONNE - 6), 0, 6 * Case.TAILLE + 1, Plateau.NB_LIGNE * Case.TAILLE + 1);
 			}
 		}
 

@@ -17,6 +17,7 @@ import moteur.Case;
 import moteur.FabriquePion;
 import moteur.Moteur;
 import moteur.Orientation;
+import moteur.Plateau;
 import moteur.Textures;
 import moteur.classes.Archer;
 import moteur.classes.Assassin;
@@ -94,6 +95,11 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		setVisible(j2TextePanel, false);
 		j1Nom.setSelectionStart(0);
 		j1Nom.setSelectionEnd(j1Nom.getText().length());
+		Previsualisation pr = new Previsualisation();
+		jPanel2.add(pr);
+		pr.setLocation(0, 0);
+		pr.setSize(400, 300);
+		pr.setVisible(true);
 		
 		class EcouteurBoutonFamille extends MouseAdapter implements ActionListener {
 
@@ -259,6 +265,8 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		tank2.addActionListener(ebc);
 		tank2.addMouseListener(ebc);
 		
+		j1Panel.setVisible(false);
+		j2Panel.setVisible(false);
 		m.getAireDeJeu().add(this);
 		setLocation(Case.TAILLE * 6, 0);
 		setVisible(true);
@@ -493,12 +501,12 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 			jmax = 6;
 		}
 		else {
-			jmin = m.getPlateau().getNbColonne() - 6;
-			jmax = m.getPlateau().getNbColonne();
+			jmin = Plateau.NB_COLONNE - 6;
+			jmax = Plateau.NB_COLONNE;
 		}
 		
 		if (etape == 2) {
-			for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
+			for (int i = 0; i < Plateau.NB_LIGNE; i++) {
 				for (int j = jmin; j < jmax; j++) {
 					if (!m.getPlateau().get(i, j).isObstacleDeplacement()
 							&& !m.getPlateau().get(i, j).contientPion()) {
@@ -508,7 +516,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 			}
 		}
 		if (etape == 3) {
-			for (int i = 0; i < m.getPlateau().getNbLigne(); i++) {
+			for (int i = 0; i < Plateau.NB_LIGNE; i++) {
 				for (int j = jmin; j < jmax; j++) {
 					if (m.getPlateau().get(i, j).getPion() != null) {
 						caseJoueur.add(m.getPlateau().get(i, j));
@@ -849,6 +857,12 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        mapPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        mapComboBox = new javax.swing.JComboBox();
+        mapValider = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        previsualisation = new ihm.Previsualisation();
         j1Panel = new javax.swing.JPanel();
         j1NomPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -907,6 +921,70 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         setBackground(new java.awt.Color(64, 64, 64));
         setMinimumSize(new Dimension(Case.TAILLE * 23, Case.TAILLE * 20));
         setLayout(new java.awt.GridBagLayout());
+
+        mapPanel.setBackground(new java.awt.Color(128, 128, 128));
+        mapPanel.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setText("Choisissez la carte :");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        mapPanel.add(jLabel1, gridBagConstraints);
+
+        mapComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        mapComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mapComboBoxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        mapPanel.add(mapComboBox, gridBagConstraints);
+
+        mapValider.setText("Valider");
+        mapValider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mapValiderActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        mapPanel.add(mapValider, gridBagConstraints);
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+        jPanel2.add(previsualisation, java.awt.BorderLayout.CENTER);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 5.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        mapPanel.add(jPanel2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 15, 15);
+        add(mapPanel, gridBagConstraints);
 
         j1Panel.setBackground(new java.awt.Color(64, 64, 64));
         j1Panel.setPreferredSize(new Dimension(Case.TAILLE * 10, Case.TAILLE * 20));
@@ -1126,8 +1204,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         j1TextePanel.setLayout(new java.awt.GridBagLayout());
 
         classe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        classe1.setMaximumSize(new java.awt.Dimension(0, 0));
-        classe1.setMinimumSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -1223,7 +1299,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         j1Panel.add(j1TextePanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
@@ -1449,8 +1525,6 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         j2TextePanel.setLayout(new java.awt.GridBagLayout());
 
         classe2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        classe2.setMaximumSize(new java.awt.Dimension(0, 0));
-        classe2.setMinimumSize(new java.awt.Dimension(0, 0));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -1546,7 +1620,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
         j2Panel.add(j2TextePanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
@@ -1588,6 +1662,21 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
 		j2ValiderActionPerformed(evt);
 	}//GEN-LAST:event_j2NomActionPerformed
 
+	private void mapValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mapValiderActionPerformed
+		if(previsualisation.getPlateau() != null)
+		{
+			mapPanel.setVisible(false);
+			j1Panel.setVisible(true);
+			j2Panel.setVisible(true);
+			m.setPlateau(previsualisation.getPlateau());
+			m.lierChateaux();
+		}
+	}//GEN-LAST:event_mapValiderActionPerformed
+
+	private void mapComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mapComboBoxActionPerformed
+		previsualisation.setPlateau(new Plateau(mapComboBox.getSelectedItem().toString()));
+	}//GEN-LAST:event_mapComboBoxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel afficherInfo1;
     private javax.swing.JLabel afficherInfo2;
@@ -1619,12 +1708,17 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
     private javax.swing.JPanel j2Panel;
     private javax.swing.JPanel j2TextePanel;
     private javax.swing.JButton j2Valider;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JComboBox mapComboBox;
+    private javax.swing.JPanel mapPanel;
+    private javax.swing.JButton mapValider;
     private javax.swing.JLabel mouvement1;
     private javax.swing.JLabel mouvement2;
     private javax.swing.JButton oiseau1;
@@ -1633,6 +1727,7 @@ public class NouvellePartiePanel extends javax.swing.JPanel implements MouseList
     private javax.swing.JLabel portee2;
     private javax.swing.JLabel precision1;
     private javax.swing.JLabel precision2;
+    private ihm.Previsualisation previsualisation;
     private javax.swing.JButton reptile1;
     private javax.swing.JButton reptile2;
     private javax.swing.JButton tacticien1;
