@@ -370,14 +370,14 @@ public class AireDeJeu extends JComponent {
 		} else {
 			affVie = plateau.get(caseSurvol.getLigne() - 1, caseSurvol.getColonne());
 		}
-		if (vie > 20) {
+		if (vie > 40) {
 			gd.setColor(new Color(0, 255, 68, 200));
-		} else if (vie > 10) {
+		} else if (vie > 20) {
 			gd.setColor(new Color(255, 204, 68, 200));
 		} else {
 			gd.setColor(new Color(255, 34, 17, 200));
 		}
-		gd.fillRect(affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE, vie, 5);
+		gd.fillRect(affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE, vie/2, 5);
 		gd.setColor(Color.WHITE);
 		gd.drawString(affichageVie, affVie.getColonne() * Case.TAILLE, affVie.getLigne() * Case.TAILLE + 20);
 	}

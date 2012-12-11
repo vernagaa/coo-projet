@@ -4,7 +4,6 @@ import ecouteur.EcouteurPlateau;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.Timer;
 import moteur.*;
@@ -24,7 +23,6 @@ public class Animation {
 	private Integer finDeTour;
 	private Integer finDePartie;
 	private Integer elireCommandant;
-	int i = 0;
 
 	public Animation(AireDAnimation aire, Moteur m, EcouteurPlateau ecouteur) {
 		this.aire = aire;
@@ -62,6 +60,7 @@ public class Animation {
 						animationEnCours = false;
 						aire.animationFinDeTour = false;
 						timer.stop();
+						lancerAnimation();
 					}
 					aire.repaint();
 				}
@@ -226,7 +225,6 @@ public class Animation {
 						p.deplacerPion(m.getCaseCourante());
 						timer.stop();
 						m.utiliserAction();
-//						lancerAnimation();
 					}
 					aire.repaint();
 				}
@@ -265,8 +263,8 @@ public class Animation {
 			});
 			timer.start();
 		} else {
-			if (!listeAnimation.contains(finDeTour)) {
-				listeAnimation.add(finDeTour);
+			if (!listeAnimation.contains(finDePartie)) {
+				listeAnimation.add(finDePartie);
 			}
 		}
 	}
@@ -276,7 +274,6 @@ public class Animation {
 			animationEnCours = true;
 			ecouteur.desactiverEcouteur();
 			aire.animationElire = true;
-			System.out.println("J'anime");
 			timer = new Timer(42, new ActionListener() {
 
 				int compteurInterne = 0;
@@ -309,6 +306,7 @@ public class Animation {
 
 	private void lancerAnimation() {
 		if (!listeAnimation.isEmpty()) {
+			System.out.println(listeAnimation);
 			switch (listeAnimation.get(0)) {
 				case 0:
 					listeAnimation.remove(0);

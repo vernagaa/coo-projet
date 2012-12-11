@@ -91,7 +91,7 @@ public interface Oiseau extends Famille {
 	/**
 	 * bonus de force de l'assassin oiseau
 	 */
-	public static final int forceAssassin = 0;
+	public static final int forceAssassin = 5;
 	/**
 	 * bonus de précision de l'assassin oiseau
 	 */
@@ -115,7 +115,7 @@ public interface Oiseau extends Famille {
 	/**
 	 * bonus de mouvement de l'assassin oiseau
 	 */
-	public static final int mouvementAssassin = 0;
+	public static final int mouvementAssassin = 50;
 	/**
 	 * nom du tank oiseau
 	 */

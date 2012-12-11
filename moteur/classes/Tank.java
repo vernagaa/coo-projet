@@ -14,15 +14,15 @@ public abstract class Tank extends Pion {
 	/**
 	 * Constante de vie d'un tank
 	 */
-	public final static int VIE = 50;
+	public final static int VIE = 98;
 	/**
 	 * Constante de force d'un tank
 	 */
-	public final static int FORCE = 39;
+	public final static int FORCE = 35;
 	/**
 	 * Constante de précision d'un tank
 	 */
-	public final static int PRECISION = 38;
+	public final static int PRECISION = 32;
 	/**
 	 * Constante de vitesse d'un tank
 	 */
@@ -30,7 +30,7 @@ public abstract class Tank extends Pion {
 	/**
 	 * Constante de défense d'un tank
 	 */
-	public final static int DEFENSE = 34;
+	public final static int DEFENSE = 32;
 	/**
 	 * Constante de portée d'un tank
 	 */
@@ -38,7 +38,7 @@ public abstract class Tank extends Pion {
 	/**
 	 * Constante de mouvement d'un tank
 	 */
-	public final static int MOUVEMENT = 4;
+	public final static int MOUVEMENT = 3;
 
 	/**
 	 * Constructeur d'un tank

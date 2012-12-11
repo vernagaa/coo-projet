@@ -14,11 +14,11 @@ public abstract class Archer extends Pion {
 	/**
 	 * Constante de vie d'un archer
 	 */
-	public final static int VIE = 36;
+	public final static int VIE = 76;
 	/**
 	 * Constante de force d'un archer
 	 */
-	public final static int FORCE = 38;
+	public final static int FORCE = 36;
 	/**
 	 * Constante de precision d'un archer
 	 */
@@ -34,11 +34,11 @@ public abstract class Archer extends Pion {
 	/**
 	 * Constante de portée d'un archer
 	 */
-	public final static int PORTEE = 3;
+	public final static int PORTEE = 5;
 	/**
 	 * Constante de mouvement d'un archer
 	 */
-	public final static int MOUVEMENT = 5;
+	public final static int MOUVEMENT = 3;
 
 	/**
 	 * Constructeur d'un archer

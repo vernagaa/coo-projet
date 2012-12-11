@@ -14,7 +14,7 @@ public abstract class Tacticien extends Pion {
 	/**
 	 * Constante de vie d'un tacticien
 	 */
-	public final static int VIE = 22;
+	public final static int VIE = 67;
 	/**
 	 * Constante de force d'un tacticien
 	 */
@@ -30,7 +30,7 @@ public abstract class Tacticien extends Pion {
 	/**
 	 * Constante de défense d'un tacticien
 	 */
-	public final static int DEFENSE = 20;
+	public final static int DEFENSE = 21;
 	/**
 	 * Constante de portée d'un tacticien
 	 */
@@ -38,7 +38,7 @@ public abstract class Tacticien extends Pion {
 	/**
 	 * Constante de mouvement d'un tacticien
 	 */
-	public final static int MOUVEMENT = 5;
+	public final static int MOUVEMENT = 3;
 	
 	private int cooldownTeleporteur;
 
