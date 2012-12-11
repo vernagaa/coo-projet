@@ -21,7 +21,7 @@ public class Previsualisation extends JComponent {
 	}
 
 	public Previsualisation() {
-		this(new Plateau("map/map4.map"));
+		plateau = null;
 	}
 
 	public Plateau getPlateau() {
@@ -30,12 +30,13 @@ public class Previsualisation extends JComponent {
 
 	public void setPlateau(Plateau plateau) {
 		this.plateau = plateau;
+		repaint();
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-//		super.paintComponent(g);
 		Graphics2D gd = (Graphics2D) g;
+		
 		int caseTaille = Math.min((getWidth()-1)/Plateau.NB_COLONNE, (getHeight()-1)/Plateau.NB_LIGNE);
 		
 		if(plateau != null) {
@@ -47,7 +48,7 @@ public class Previsualisation extends JComponent {
 					}
 					if (c1.getObstacle() != null) {
 					gd.drawImage(Textures.scale(c1.getObstacle().getImage(), caseTaille, caseTaille), c1.getColonne() * caseTaille, c1.getLigne() * caseTaille, null);
-				}
+					}
 				}
 			}
 		}
@@ -61,8 +62,7 @@ public class Previsualisation extends JComponent {
 		for (int j = 0; j <= Plateau.NB_COLONNE; j ++) {
 			gd.drawLine(j * caseTaille, 0, j * caseTaille, Plateau.NB_LIGNE * caseTaille);
 		}
-		
-		
 	}
+	
 	
 }
